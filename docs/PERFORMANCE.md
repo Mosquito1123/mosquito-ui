@@ -48,10 +48,10 @@
 
 ## 安全区
 
-`mq-safe-bottom` 用 `constant(safe-area-inset-bottom)` 和 `env(safe-area-inset-bottom)` 垫高，背景由 `bg` 决定，默认 `transparent`。不在渲染路径上调用测量 API。页面需要贴底栏时，把栏放进这个组件的默认插槽，而不是给每一行加安全区。
+`mq-safe-bottom` 用 `constant(safe-area-inset-bottom)` 和 `env(safe-area-inset-bottom)` 垫高。`bg` 默认 `transparent`，同时写进行内 `background-color` 和 `--mq-safe-bg`，留白和插槽是同一块底色。不在渲染路径上调用测量 API。页面需要贴底栏时，把栏放进这个组件的默认插槽，而不是给每一行加安全区。
 
 H5 要生效，视口需要 `viewport-fit=cover`。示例 `index.html` 已带上。
 
 ## 命令式反馈
 
-`showToast` / `hideToast` 只更新一块响应式状态，或在没有宿主时调用一次 `uni.showToast`。不要为一次提示创建组件树。同一页面只挂一个 `<mq-toast />`。
+`showToast` / `hideToast` 只更新一块响应式状态。调用时若宿主还没挂上，会等到这一轮渲染结束：`<mq-toast />` 出现就继续用这块状态，否则才调用一次 `uni.showToast`。不要为一次提示创建组件树。同一页面只挂一个 `<mq-toast />`。

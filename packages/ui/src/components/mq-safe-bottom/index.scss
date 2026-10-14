@@ -1,7 +1,8 @@
 .mq-safe-bottom {
   box-sizing: border-box;
   width: 100%;
-  background: var(--mq-safe-bg, transparent);
+  // bg 会再写一行内 background-color。变量留给不吃行内样式的场景，两边保持同一颜色。
+  background-color: var(--mq-safe-bg, transparent);
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
 }

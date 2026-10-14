@@ -13,6 +13,7 @@
   font-family: inherit;
   font-size: var(--mq-font-size, 14px);
   line-height: 1;
+  cursor: pointer;
 }
 
 .mq-button::after {
@@ -64,7 +65,18 @@
   opacity: 0.82;
 }
 
+.mq-button:focus-visible {
+  outline: 2px solid var(--mq-color-primary, #0f3d32);
+  outline-offset: 2px;
+}
+
 .mq-button.is-disabled,
 .mq-button[disabled] {
   opacity: 0.45;
+  cursor: default;
+}
+
+.mq-button.is-loading {
+  opacity: 0.72;
+  cursor: default;
 }

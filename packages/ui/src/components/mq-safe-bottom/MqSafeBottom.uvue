@@ -1,5 +1,5 @@
 <template>
-  <!-- uni-app x 占位 -->
+  <!-- uni-app x 占位：同目录有 .vue 时 x 端会编译本文件。补完前不要打 x 端包。 -->
   <view class="mq-safe-bottom">
     <slot />
   </view>

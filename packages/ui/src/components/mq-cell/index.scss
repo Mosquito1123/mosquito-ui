@@ -9,9 +9,22 @@
   font-size: var(--mq-font-size, 14px);
 }
 
-.mq-cell.is-link:active,
+.mq-cell.is-link:not(.is-disabled) {
+  cursor: pointer;
+}
+
+.mq-cell.is-link:not(.is-disabled):active,
 .mq-cell--pressed {
   background: var(--mq-bg-active, #ebe4d8);
+}
+
+.mq-cell.is-link:focus-visible {
+  outline: 2px solid var(--mq-color-primary, #0f3d32);
+  outline-offset: -2px;
+}
+
+.mq-cell.is-disabled {
+  opacity: 0.45;
 }
 
 .mq-cell__title {

@@ -6,7 +6,7 @@
 
 1. 在仓库根目录执行 `pnpm install`，让 `@mosquito/ui` 链接到本示例。
 2. 用 HBuilderX 打开 `examples/uni-app-demo`。
-3. 运行到浏览器。首页会打出按钮、单元格、加载、两种弹出层、toast 和底部安全区。
+3. 运行到浏览器。首页覆盖按钮（含禁用、加载中）、单元格（含 `value` 为 0 和禁用）、加载、三种弹出层、可停住的 toast，以及可切换的安全区背景。
 4. H5 安全区依赖 `index.html` 里的 `viewport-fit=cover`。
 
 若 easycom 解析不到包导出，把 `pages.json` 里的组件路径改成：

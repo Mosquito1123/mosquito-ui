@@ -2,8 +2,10 @@
   <button
     class="mq-button"
     :class="rootClass"
-    :disabled="disabled"
-    :hover-class="disabled ? 'none' : 'mq-button--pressed'"
+    :disabled="inactive"
+    :aria-disabled="inactive ? 'true' : undefined"
+    :aria-busy="loading ? 'true' : undefined"
+    :hover-class="inactive ? 'none' : 'mq-button--pressed'"
     :hover-stay-time="70"
     @click="onClick"
   >
@@ -13,7 +15,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { MqButtonProps } from './types'
+import type { MqButtonEmits, MqButtonProps } from './types'
 
 defineOptions({
   name: 'mq-button',
@@ -24,11 +26,12 @@ const props = withDefaults(defineProps<MqButtonProps>(), {
   size: 'medium',
   block: false,
   disabled: false,
+  loading: false,
 })
 
-const emit = defineEmits<{
-  click: [event: Event]
-}>()
+const emit = defineEmits<MqButtonEmits>()
+
+const inactive = computed(() => props.disabled || props.loading)
 
 const rootClass = computed(() => [
   `mq-button--${props.type}`,
@@ -36,11 +39,12 @@ const rootClass = computed(() => [
   {
     'mq-button--block': props.block,
     'is-disabled': props.disabled,
+    'is-loading': props.loading,
   },
 ])
 
 function onClick(event: Event) {
-  if (props.disabled) {
+  if (inactive.value) {
     return
   }
   emit('click', event)

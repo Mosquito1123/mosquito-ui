@@ -1,14 +1,15 @@
 {
   "name": "mosquito-ui",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "面向 uni-app 的轻量组件库 @mosquito/ui。运行时性能优先，并为 uni-app x 预留双文件结构。",
   "packageManager": "pnpm@9.15.9",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "typecheck": "pnpm --filter @mosquito/ui typecheck"
+    "typecheck": "pnpm --filter @mosquito/ui typecheck",
+    "test": "pnpm --filter @mosquito/ui test"
   },
   "devDependencies": {
     "typescript": "^5.6.3"

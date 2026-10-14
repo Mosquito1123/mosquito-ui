@@ -1,11 +1,11 @@
 <template>
-  <view v-if="toastState.visible" class="mq-toast">
+  <view v-if="toastState.visible" class="mq-toast" role="status" aria-live="polite">
     <text class="mq-toast__text">{{ toastState.message }}</text>
   </view>
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from 'vue'
+import { onBeforeMount, onBeforeUnmount } from 'vue'
 import { attachToastHost, toastState } from '../../utils/toast'
 
 defineOptions({
@@ -14,12 +14,13 @@ defineOptions({
 
 let detach = () => {}
 
-onMounted(() => {
+onBeforeMount(() => {
   detach = attachToastHost()
 })
 
 onBeforeUnmount(() => {
   detach()
+  detach = () => {}
 })
 </script>
 

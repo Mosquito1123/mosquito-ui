@@ -18,6 +18,7 @@
 ```bash
 pnpm install
 pnpm typecheck
+pnpm test
 ```
 
 业务项目里：
@@ -34,7 +35,7 @@ pnpm add @mosquito/ui
 @import '@mosquito/ui/styles/index.scss';
 ```
 
-`pages.json` 按需 easycom（文件名是帕斯卡形式，所以用自定义映射）：
+`pages.json` 按需 easycom（文件名是帕斯卡形式，所以用自定义映射）。映射要指向 `.vue`，不要指向同目录的 `.uvue` 占位：
 
 ```json
 {
@@ -64,12 +65,12 @@ import { MqButton, showToast } from '@mosquito/ui'
 
 | 组件 | 能力 |
 | --- | --- |
-| `mq-button` | `type` / `size` / `block` / `disabled`，发出 `click` |
-| `mq-cell` | `title` / `value` / `is-link` |
-| `mq-popup` | `v-model` 控制显隐，`position` 为 `bottom` 或 `center` |
+| `mq-button` | `type` / `size` / `block` / `disabled` / `loading`，发出 `click`。禁用和加载中不发出 |
+| `mq-cell` | `title` / `value` / `is-link` / `disabled`。`value` 为 `0` 会显示，禁用不发出 `click` |
+| `mq-popup` | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close` |
 | `mq-toast` | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主 |
-| `mq-loading` | 单节点旋转指示，可选 `size`、`color` |
-| `mq-safe-bottom` | 底部安全区留白，`bg` 可改背景，默认透明 |
+| `mq-loading` | 单节点旋转指示，可选 `size`、`color`、`label` |
+| `mq-safe-bottom` | 底部安全区留白，`bg` 同时写进行内背景和 `--mq-safe-bg`，默认透明 |
 
 ```vue
 <script setup lang="ts">
@@ -91,7 +92,7 @@ const visible = ref(false)
 </template>
 ```
 
-没有宿主时，`showToast` 会改走 `uni.showToast`（运行环境里存在 `uni` 时）。
+`showToast` 返回一个只关闭这一条的函数。`duration` 默认 2000，传 `0` 则不自动关闭；空白文案会被忽略。调用时如果宿主还没挂上，会等到这一轮渲染结束再决定：有 `<mq-toast />` 就走组件，否则在运行环境里存在 `uni` 时改走 `uni.showToast`（`icon: 'none'`）。没有宿主且 `duration` 为 `0` 时，原生提示用 10 分钟托住，`hideToast()` 仍可关掉。属性表和 `pages.json` 全文见 [packages/ui/README.md](packages/ui/README.md)。
 
 ## 性能原则
 
@@ -101,7 +102,7 @@ const visible = ref(false)
 
 `.vue` 与 `.uvue` 双文件、蒸汽模式 flatten、`list-view`、UTS 只用于原生插件。见 [docs/UNIAPPX.md](docs/UNIAPPX.md)。
 
-当前 `.uvue` 只有「uni-app x 占位」。uni-app x 在同目录同时存在两种文件时会优先编译 `.uvue`，所以在补完实现之前不要把这些占位文件带进 x 端生产包。
+**现在不要用这套源码打 uni-app x 包。** 每个组件旁的 `.uvue` 只是占位，不是实现。uni-app x 在同目录同时存在 `.vue` 和 `.uvue` 时会优先编译 `.uvue`，占位会盖住可用的 `.vue`。补完 x 端实现，或先移走占位文件之前，保持 easycom 指向 `.vue`，只在 uni-app（Vue 3）里用。
 
 ## 示例
 
