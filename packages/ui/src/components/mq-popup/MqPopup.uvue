@@ -1,0 +1,13 @@
+<template>
+  <!-- uni-app x 占位 -->
+  <view class="mq-popup">
+    <slot />
+  </view>
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位
+defineOptions({
+  name: 'mq-popup',
+})
+</script>

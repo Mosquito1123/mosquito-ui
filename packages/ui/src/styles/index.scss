@@ -1,0 +1,4 @@
+@import './variables.scss';
+
+// 组件样式跟在各自的 SFC 里，随 easycom 按需进入页面。
+// 不要把本文件改成「全量组件 CSS」，也不要在 uni.scss 里再引一遍。

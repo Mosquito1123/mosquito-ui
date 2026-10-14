@@ -1,0 +1,11 @@
+<template>
+  <!-- uni-app x 占位 -->
+  <view class="mq-toast" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位
+defineOptions({
+  name: 'mq-toast',
+})
+</script>

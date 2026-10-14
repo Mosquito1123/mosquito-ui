@@ -1,0 +1,20 @@
+<template>
+  <!-- uni-app x 占位 -->
+  <view class="mq-cell">
+    <text>{{ title }}</text>
+  </view>
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位
+defineProps({
+  title: {
+    type: String,
+    default: '',
+  },
+})
+
+defineOptions({
+  name: 'mq-cell',
+})
+</script>

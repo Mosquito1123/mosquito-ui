@@ -1,0 +1,19 @@
+.mq-toast {
+  position: fixed;
+  left: 50%;
+  top: 42%;
+  z-index: var(--mq-z-toast, 1100);
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: var(--mq-radius, 8px);
+  background: var(--mq-color-primary, #0f3d32);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.mq-toast__text {
+  color: var(--mq-color-primary-text, #f7f4ee);
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.4;
+  text-align: center;
+}

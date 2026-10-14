@@ -1,0 +1,67 @@
+// 主题令牌。只在应用入口引入一次。
+// 明暗拆分借鉴独立主题表的做法，这里直接写成 CSS 变量，组件不再读 JS 主题对象。
+
+page,
+:root,
+.mq-theme-light {
+  --mq-color-primary: #0f3d32;
+  --mq-color-primary-text: #f7f4ee;
+  --mq-color-success: #2f7d4a;
+  --mq-color-success-text: #f4fbf6;
+  --mq-color-warning: #b86e00;
+  --mq-color-warning-text: #fff8ee;
+  --mq-color-danger: #b42318;
+  --mq-color-danger-text: #fff6f5;
+  --mq-text: #1c1915;
+  --mq-text-secondary: #6f675e;
+  --mq-bg: #fffcf7;
+  --mq-bg-muted: #f6f1e8;
+  --mq-bg-active: #ebe4d8;
+  --mq-border: #e6e2da;
+  --mq-mask: rgba(22, 18, 12, 0.45);
+  --mq-radius: 8px;
+  --mq-font-size: 14px;
+  --mq-duration: 200ms;
+  --mq-z-popup: 1000;
+  --mq-z-toast: 1100;
+  --mq-safe-bg: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  page,
+  :root {
+    --mq-color-primary: #8fd0b4;
+    --mq-color-primary-text: #10211b;
+    --mq-color-success: #8fd0a4;
+    --mq-color-success-text: #102117;
+    --mq-color-warning: #f0c27a;
+    --mq-color-warning-text: #2a1c08;
+    --mq-color-danger: #f0a8a2;
+    --mq-color-danger-text: #2a100e;
+    --mq-text: #f6f3ee;
+    --mq-text-secondary: #c2b8aa;
+    --mq-bg: #161411;
+    --mq-bg-muted: #241f1a;
+    --mq-bg-active: #2e2822;
+    --mq-border: #3a332c;
+    --mq-mask: rgba(0, 0, 0, 0.55);
+  }
+}
+
+.mq-theme-dark {
+  --mq-color-primary: #8fd0b4;
+  --mq-color-primary-text: #10211b;
+  --mq-color-success: #8fd0a4;
+  --mq-color-success-text: #102117;
+  --mq-color-warning: #f0c27a;
+  --mq-color-warning-text: #2a1c08;
+  --mq-color-danger: #f0a8a2;
+  --mq-color-danger-text: #2a100e;
+  --mq-text: #f6f3ee;
+  --mq-text-secondary: #c2b8aa;
+  --mq-bg: #161411;
+  --mq-bg-muted: #241f1a;
+  --mq-bg-active: #2e2822;
+  --mq-border: #3a332c;
+  --mq-mask: rgba(0, 0, 0, 0.55);
+}

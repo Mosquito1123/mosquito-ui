@@ -1,0 +1,27 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^mq-button$": "@mosquito/ui/components/mq-button/MqButton.vue",
+      "^mq-cell$": "@mosquito/ui/components/mq-cell/MqCell.vue",
+      "^mq-popup$": "@mosquito/ui/components/mq-popup/MqPopup.vue",
+      "^mq-toast$": "@mosquito/ui/components/mq-toast/MqToast.vue",
+      "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
+      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "蚊式组件"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "蚊式组件",
+    "navigationBarBackgroundColor": "#FFFCF7",
+    "backgroundColor": "#F6F1E8"
+  }
+}

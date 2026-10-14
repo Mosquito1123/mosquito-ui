@@ -1,0 +1,15 @@
+.mq-loading {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--mq-border, #e6e2da);
+  border-top-color: var(--mq-color-primary, #0f3d32);
+  border-radius: 50%;
+  animation: mq-loading-spin 0.7s linear infinite;
+}
+
+@keyframes mq-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
