@@ -1,6 +1,6 @@
 {
   "name": "@mosquito/ui",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "面向 uni-app 的轻量组件库，运行时性能优先。",
   "type": "module",
   "main": "./src/index.ts",
@@ -54,6 +54,6 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json && vue-tsc --noEmit -p tsconfig.vue.json",
-    "test": "node --import tsx --test --test-concurrency=1 test/toast.test.ts"
+    "test": "node --import tsx --test --test-concurrency=1 test/*.test.ts"
   }
 }

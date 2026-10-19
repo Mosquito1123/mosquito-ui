@@ -1,0 +1,42 @@
+.mq-progress {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px 16px;
+}
+
+.mq-progress__track {
+  flex: 1;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--mq-bg-active, #ebe4d8);
+}
+
+.mq-progress__bar {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--mq-progress-color, var(--mq-color-primary, #0f3d32));
+}
+
+.mq-progress.is-success {
+  --mq-progress-color: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-progress.is-warning {
+  --mq-progress-color: var(--mq-color-warning, #b86e00);
+}
+
+.mq-progress.is-danger {
+  --mq-progress-color: var(--mq-color-danger, #b42318);
+}
+
+.mq-progress__text {
+  flex: none;
+  min-width: 36px;
+  margin-left: 8px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 12px;
+  text-align: right;
+}

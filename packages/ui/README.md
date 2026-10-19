@@ -26,7 +26,18 @@ pnpm add @mosquito/ui
       "^mq-popup$": "@mosquito/ui/components/mq-popup/MqPopup.vue",
       "^mq-toast$": "@mosquito/ui/components/mq-toast/MqToast.vue",
       "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
-      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue"
+      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue",
+      "^mq-cell-group$": "@mosquito/ui/components/mq-cell-group/MqCellGroup.vue",
+      "^mq-switch$": "@mosquito/ui/components/mq-switch/MqSwitch.vue",
+      "^mq-checkbox$": "@mosquito/ui/components/mq-checkbox/MqCheckbox.vue",
+      "^mq-checkbox-group$": "@mosquito/ui/components/mq-checkbox-group/MqCheckboxGroup.vue",
+      "^mq-radio$": "@mosquito/ui/components/mq-radio/MqRadio.vue",
+      "^mq-radio-group$": "@mosquito/ui/components/mq-radio-group/MqRadioGroup.vue",
+      "^mq-input$": "@mosquito/ui/components/mq-input/MqInput.vue",
+      "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
+      "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
+      "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
+      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue"
     }
   },
   "pages": [
@@ -62,14 +73,50 @@ import { MqButton, showToast } from '@mosquito/ui'
 
 | 组件 | 属性 | 事件 |
 | --- | --- | --- |
-| `mq-button` | `type` `size` `block` `disabled` `loading` | `click`。禁用或加载中不发出 |
-| `mq-cell` | `title` `value` `is-link` `disabled` | `click`。禁用不发出。`value` 为 `0` 会显示 |
+| `mq-button` | `type` `variant` `size` `round` `block` `disabled` `loading` | `click`。禁用或加载中不发出 |
+| `mq-cell` | `title` `value` `label` `placeholder` `is-link` `clickable` `disabled` `required` `border` `ellipsis` | `click`。禁用不发出。`value` 为 `0` 会显示 |
+| `mq-cell-group` | `title` `value` `border` `insert` | 无 |
+| `mq-switch` | `v-model` `active-value` `inactive-value` `active-color` `inactive-color` `size` `shape` `loading` `disabled` `before-change` | `change`，参数 `{ value }` |
+| `mq-checkbox` | 单独用 `v-model`；组内用 `name`。`type` 为 `circle` / `square` / `button` | 单独使用时 `change` |
+| `mq-checkbox-group` | `v-model` 数组，`min` `max` `direction` `disabled` | `change`，参数 `{ value }` |
+| `mq-radio` | `value`，样式可从组继承 | 无。点选交给组 |
+| `mq-radio-group` | `v-model` `type` `direction` `allow-uncheck` `disabled` | `change`，参数 `{ value }` |
+| `mq-input` | `v-model` `type` `clearable` `show-password` `maxlength` `show-word-limit` `error` `compact` | `input` `focus` `blur` `clear` `confirm` |
+| `mq-tag` | `type` `variant` `size` `round` `closable` `color` `bg-color` | `close` |
+| `mq-badge` | `value` `max` `is-dot` `show-zero` `hidden` `type` | 无 |
+| `mq-divider` | `content-position` `dashed` `vertical` `hairline` `color` | 无 |
+| `mq-progress` | `percentage` `hide-text` `color` `status` | 无 |
 | `mq-popup` | `v-model` `position` `mask-closable` `duration` `z-index` `title` | `update:modelValue` `open` `close` |
 | `mq-toast` | 无。用 `showToast` / `hideToast` | 页面放一个 `<mq-toast />` 当宿主 |
 | `mq-loading` | `size` `color` `label` | 无。根节点就是指示器 |
 | `mq-safe-bottom` | `bg` | 无。见下方背景说明 |
 
-`mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`size`：`small` | `medium` | `large`。
+`mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`variant`：`base` | `plain` | `text`。`size`：`mini` | `small` | `medium` | `large`。
+
+这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。
+
+```vue
+<mq-cell-group title="配送" insert border>
+  <mq-cell title="称呼" required>
+    <mq-input v-model="name" compact placeholder="怎么称呼" clearable />
+  </mq-cell>
+  <mq-cell title="通知">
+    <mq-switch v-model="on" />
+  </mq-cell>
+</mq-cell-group>
+
+<mq-checkbox-group v-model="fruits" direction="horizontal" :max="2">
+  <mq-checkbox name="apple">苹果</mq-checkbox>
+  <mq-checkbox name="pear">梨</mq-checkbox>
+</mq-checkbox-group>
+
+<mq-radio-group v-model="ship" type="button" direction="horizontal">
+  <mq-radio value="air">空运</mq-radio>
+  <mq-radio value="land">陆运</mq-radio>
+</mq-radio-group>
+```
+
+`mq-switch` 的 `before-change` 可以返回 `false` 或一个最终为 `false` 的 Promise，用来拦住切换。`mq-checkbox-group` 的 `max` 为 `0` 时不限制个数；已经选到 `min` 时不能再取消。`mq-input` 的 `type` 透传 `text`、`number`、`digit`、`idcard`、`tel`、`safe-password`、`nickname`。
 
 `mq-popup` 的 `position`：`bottom` | `center`。它是受控的：遮罩和 Esc 只发出 `update:modelValue(false)`，父级把值改回 `false` 后才会收起并发出 `close`。`mask-closable` 为 `false` 时，遮罩和 Esc 都不关。`open` / `close` 跟 `modelValue` 的变化走，不重复发。过渡结束后卸载。
 

@@ -1,11 +1,22 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import {
+  MqBadge,
   MqButton,
   MqCell,
+  MqCellGroup,
+  MqCheckbox,
+  MqCheckboxGroup,
+  MqDivider,
+  MqInput,
   MqLoading,
   MqPopup,
+  MqProgress,
+  MqRadio,
+  MqRadioGroup,
   MqSafeBottom,
+  MqSwitch,
+  MqTag,
   MqToast,
   hideToast,
   showToast,
@@ -18,6 +29,13 @@ const popupNote = ref('弹出层还没打开')
 const saving = ref(false)
 const footerBg = ref('#f6f1e8')
 const footerColor = ref('#6f675e')
+const notifyOn = ref(true)
+const agreed = ref(false)
+const nickname = ref('')
+const fruit = ref<Array<string | number>>(['apple'])
+const shipping = ref('air')
+const progress = ref(46)
+const tags = ref(['已支付', '待发货'])
 
 const bgChoices = [
   { bg: 'transparent', label: '透明', ink: '#6f675e' },
@@ -53,13 +71,21 @@ function pickBg(bg: string, ink: string) {
   footerBg.value = bg
   footerColor.value = ink
 }
+
+function closeTag(index: number) {
+  tags.value = tags.value.filter((_, item) => item !== index)
+}
+
+function bumpProgress(delta: number) {
+  progress.value = Math.min(100, Math.max(0, progress.value + delta))
+}
 </script>
 
 <template>
   <view class="demo">
     <view class="demo__hero">
       <text class="demo__title">蚊式组件</text>
-      <text class="demo__desc">浅节点、CSS 变量。禁用、加载和 v-model 都停在组件边界上。</text>
+      <text class="demo__desc">浅节点、CSS 变量。按钮、单元格和表单都走同一套 v-model。</text>
     </view>
 
     <mq-cell title="底部面板" value="滑出" is-link @click="sheetVisible = true" />
@@ -72,6 +98,8 @@ function pickBg(bg: string, ink: string) {
 
     <view class="demo__row">
       <mq-button type="primary" :loading="saving" @click="onSave">保存</mq-button>
+      <mq-button variant="plain" type="primary" round @click="hideToast">镂空</mq-button>
+      <mq-button variant="text" type="primary" @click="hideToast">文字</mq-button>
       <mq-button @click="hideToast">收起提示</mq-button>
       <mq-button type="warning" size="small" @click="holdToast">停住</mq-button>
       <mq-button type="danger" size="small" disabled>禁用</mq-button>
@@ -85,6 +113,67 @@ function pickBg(bg: string, ink: string) {
       <mq-loading />
       <mq-loading :size="28" color="#b86e00" />
       <mq-loading size="12px" color="#b42318" label="提交中" />
+    </view>
+
+    <mq-divider>表单和标记</mq-divider>
+
+    <mq-cell-group title="订单" value="可嵌开关" insert border>
+      <mq-cell title="昵称" label="最多 12 个字" required>
+        <mq-input v-model="nickname" compact placeholder="怎么称呼" :maxlength="12" show-word-limit clearable />
+      </mq-cell>
+      <mq-cell title="通知" clickable @click="notifyOn = !notifyOn">
+        <mq-switch v-model="notifyOn" />
+      </mq-cell>
+      <mq-cell title="备注" placeholder="还没写" ellipsis value="" />
+    </mq-cell-group>
+
+    <view class="demo__field">
+      <mq-checkbox v-model="agreed">同意记在这一页</mq-checkbox>
+      <text class="demo__note">水果最多选两项</text>
+      <mq-checkbox-group v-model="fruit" direction="horizontal" :max="2">
+        <mq-checkbox name="apple">苹果</mq-checkbox>
+        <mq-checkbox name="pear">梨</mq-checkbox>
+        <mq-checkbox name="plum" disabled>李子</mq-checkbox>
+      </mq-checkbox-group>
+      <mq-radio-group v-model="shipping" direction="horizontal" type="button">
+        <mq-radio value="air">空运</mq-radio>
+        <mq-radio value="land">陆运</mq-radio>
+      </mq-radio-group>
+    </view>
+
+    <view class="demo__row">
+      <mq-tag>默认</mq-tag>
+      <mq-tag type="primary">进行中</mq-tag>
+      <mq-tag type="success" variant="plain">完成</mq-tag>
+      <mq-tag type="warning" variant="light" round>注意</mq-tag>
+      <mq-tag
+        v-for="(tag, index) in tags"
+        :key="tag"
+        type="danger"
+        closable
+        @close="closeTag(index)"
+      >
+        {{ tag }}
+      </mq-tag>
+    </view>
+
+    <view class="demo__row">
+      <mq-badge :value="8">
+        <mq-button size="small">消息</mq-button>
+      </mq-badge>
+      <mq-badge :value="120" :max="99">
+        <mq-button size="small" variant="plain">未读</mq-button>
+      </mq-badge>
+      <mq-badge is-dot>
+        <text class="demo__dot-label">有更新</text>
+      </mq-badge>
+    </view>
+
+    <mq-progress :percentage="progress" />
+    <mq-progress :percentage="100" status="success" hide-text />
+    <view class="demo__row">
+      <mq-button size="small" @click="bumpProgress(-10)">减十</mq-button>
+      <mq-button size="small" type="primary" @click="bumpProgress(10)">加十</mq-button>
     </view>
 
     <text class="demo__note">安全区背景。点色块，底部条跟着变。</text>
@@ -175,9 +264,20 @@ function pickBg(bg: string, ink: string) {
 }
 
 .demo__row > .mq-button,
-.demo__row > .mq-loading {
+.demo__row > .mq-loading,
+.demo__row > .mq-badge,
+.demo__row > .mq-tag {
   margin-right: 8px;
   margin-bottom: 8px;
+}
+
+.demo__field {
+  padding: 0 16px 8px;
+}
+
+.demo__dot-label {
+  display: inline-block;
+  padding: 8px 12px 8px 0;
 }
 
 .demo__presets {

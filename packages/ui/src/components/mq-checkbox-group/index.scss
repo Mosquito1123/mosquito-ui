@@ -1,0 +1,13 @@
+.mq-checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mq-checkbox-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.mq-checkbox-group--horizontal > .mq-checkbox {
+  margin-right: 16px;
+}
