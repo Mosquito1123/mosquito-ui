@@ -38,6 +38,19 @@ export { default as MqTabs } from './components/mq-tabs/MqTabs.vue'
 export { default as MqTab } from './components/mq-tab/MqTab.vue'
 export { default as MqTabbar } from './components/mq-tabbar/MqTabbar.vue'
 export { default as MqTabbarItem } from './components/mq-tabbar-item/MqTabbarItem.vue'
+export { default as MqOverlay } from './components/mq-overlay/MqOverlay.vue'
+export { default as MqCard } from './components/mq-card/MqCard.vue'
+export { default as MqRow } from './components/mq-row/MqRow.vue'
+export { default as MqCol } from './components/mq-col/MqCol.vue'
+export { default as MqGrid } from './components/mq-grid/MqGrid.vue'
+export { default as MqGridItem } from './components/mq-grid-item/MqGridItem.vue'
+export { default as MqLoadmore } from './components/mq-loadmore/MqLoadmore.vue'
+export { default as MqSticky } from './components/mq-sticky/MqSticky.vue'
+export { default as MqFab } from './components/mq-fab/MqFab.vue'
+export { default as MqPagination } from './components/mq-pagination/MqPagination.vue'
+export { default as MqTransition } from './components/mq-transition/MqTransition.vue'
+export { default as MqBacktop } from './components/mq-backtop/MqBacktop.vue'
+export { default as MqText } from './components/mq-text/MqText.vue'
 
 export type { MqButtonEmits, MqButtonProps, MqButtonSize, MqButtonType, MqButtonVariant } from './components/mq-button/types'
 export type { MqCellEmits, MqCellProps } from './components/mq-cell/types'
@@ -96,6 +109,35 @@ export type { MqTabsEmits, MqTabsProps } from './components/mq-tabs/types'
 export type { MqTabProps } from './components/mq-tab/types'
 export type { MqTabbarBeforeChange, MqTabbarEmits, MqTabbarProps } from './components/mq-tabbar/types'
 export type { MqTabbarItemProps } from './components/mq-tabbar-item/types'
+export type { MqOverlayEmits, MqOverlayProps } from './components/mq-overlay/types'
+export type { MqCardProps, MqCardType } from './components/mq-card/types'
+export type { MqRowAlign, MqRowJustify, MqRowProps } from './components/mq-row/types'
+export type { MqColProps } from './components/mq-col/types'
+export type { MqGridDirection, MqGridProps } from './components/mq-grid/types'
+export type { MqGridItemEmits, MqGridItemProps } from './components/mq-grid-item/types'
+export type { MqLoadmoreEmits, MqLoadmoreProps, MqLoadmoreState } from './components/mq-loadmore/types'
+export type { MqStickyProps } from './components/mq-sticky/types'
+export type {
+  MqFabDirection,
+  MqFabEmits,
+  MqFabPosition,
+  MqFabProps,
+  MqFabType,
+} from './components/mq-fab/types'
+export type { MqPaginationEmits, MqPaginationProps } from './components/mq-pagination/types'
+export type {
+  MqTransitionEmits,
+  MqTransitionName,
+  MqTransitionProps,
+} from './components/mq-transition/types'
+export type { MqBacktopEmits, MqBacktopProps, MqBacktopShape } from './components/mq-backtop/types'
+export type {
+  MqTextDecoration,
+  MqTextEmits,
+  MqTextMode,
+  MqTextProps,
+  MqTextType,
+} from './components/mq-text/types'
 export type { MqOptionValue } from './utils/model'
 
 export { hideToast, showToast, toastState } from './utils/toast'

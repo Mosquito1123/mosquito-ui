@@ -1,0 +1,39 @@
+.mq-card {
+  box-sizing: border-box;
+  margin: 12px 16px;
+  overflow: hidden;
+  color: var(--mq-text, #1c1915);
+  background: var(--mq-bg, #fffcf7);
+  border: 1px solid var(--mq-border, #e6e2da);
+  border-radius: var(--mq-radius, 8px);
+}
+
+.mq-card.is-rectangle {
+  margin: 0;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.mq-card__title {
+  padding: 14px 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.mq-card__body {
+  padding: 12px 16px 16px;
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.6;
+  color: var(--mq-text-secondary, #6f675e);
+}
+
+.mq-card__footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 16px 14px;
+}

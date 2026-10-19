@@ -1,13 +1,19 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import {
+  clampPage,
   clampPercent,
   formatBadge,
   formatCountDown,
+  formatDisplayText,
+  formatName,
+  formatPhone,
+  formatPrice,
   nextCollapseValue,
   nextRadioValue,
   nextRateValue,
   nextSwitchValue,
+  pageCount,
   parseTimeData,
   resolvePx,
   snapNumber,
@@ -102,4 +108,22 @@ test('badge hides zero unless asked and caps numbers', () => {
   assert.equal(formatBadge(' hot '), 'hot')
   assert.equal(formatBadge('   '), null)
   assert.equal(formatBadge(null, { dot: true }), '')
+})
+
+test('pagination page count and clamp', () => {
+  assert.equal(pageCount(190, 10), 19)
+  assert.equal(pageCount(0, 10), 1)
+  assert.equal(pageCount(5, 0), 1)
+  assert.equal(clampPage(0, 5), 1)
+  assert.equal(clampPage(9, 5), 5)
+  assert.equal(clampPage(3, 5), 3)
+})
+
+test('display text modes mask and format values', () => {
+  assert.equal(formatPrice(16354.156), '16,354.16')
+  assert.equal(formatPhone('18888888888'), '188****8888')
+  assert.equal(formatName('王三'), '王*')
+  assert.equal(formatName('欧阳修'), '欧*修')
+  assert.equal(formatDisplayText(12.5, { mode: 'price', prefix: '￥' }), '￥12.50')
+  assert.equal(formatDisplayText('hello', { suffix: '!' }), 'hello!')
 })

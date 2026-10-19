@@ -1,0 +1,41 @@
+.mq-pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 8px;
+  padding: 8px 0;
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+}
+
+.mq-pagination__bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.mq-pagination__btn {
+  min-width: 64px;
+  padding: 6px 12px;
+  text-align: center;
+  color: var(--mq-color-primary, #0f3d32);
+  background: var(--mq-bg-muted, #f6f1e8);
+  border-radius: var(--mq-radius, 8px);
+}
+
+.mq-pagination__btn.is-disabled {
+  color: var(--mq-text-secondary, #6f675e);
+  opacity: 0.45;
+}
+
+.mq-pagination__size {
+  min-width: 64px;
+  text-align: center;
+}
+
+.mq-pagination__message {
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 12px;
+}

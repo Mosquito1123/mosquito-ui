@@ -203,3 +203,80 @@ export function formatBadge(
   const text = value.trim()
   return text ? text : null
 }
+
+/** 总页数。total / pageSize 非法或非正时按 1 页。 */
+export function pageCount(total = 0, pageSize = 10): number {
+  const size = Number.isFinite(pageSize) && pageSize > 0 ? Math.floor(pageSize) : 10
+  const all = Number.isFinite(total) && total > 0 ? Math.floor(total) : 0
+  return Math.max(1, Math.ceil(all / size) || 1)
+}
+
+/** 把页码夹到 [1, pages]。 */
+export function clampPage(page: number, pages = 1): number {
+  const ceiling = Number.isFinite(pages) && pages > 0 ? Math.floor(pages) : 1
+  const current = typeof page === 'number' && Number.isFinite(page) ? Math.floor(page) : 1
+  return Math.min(ceiling, Math.max(1, current))
+}
+
+export function formatPrice(value: string | number | null | undefined): string {
+  if (value == null || value === '') {
+    return ''
+  }
+  const raw = typeof value === 'number' ? value : Number.parseFloat(String(value).replace(/,/g, ''))
+  if (!Number.isFinite(raw)) {
+    return String(value)
+  }
+  const fixed = raw.toFixed(2)
+  const [integer, decimal] = fixed.split('.')
+  const grouped = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return `${grouped}.${decimal}`
+}
+
+export function formatPhone(value: string | number | null | undefined): string {
+  const digits = String(value ?? '').replace(/\D/g, '')
+  if (digits.length < 7) {
+    return String(value ?? '')
+  }
+  if (digits.length === 11) {
+    return `${digits.slice(0, 3)}****${digits.slice(7)}`
+  }
+  return `${digits.slice(0, 3)}****${digits.slice(-4)}`
+}
+
+export function formatName(value: string | number | null | undefined): string {
+  const text = String(value ?? '').trim()
+  if (!text) {
+    return ''
+  }
+  if (text.length === 1) {
+    return '*'
+  }
+  if (text.length === 2) {
+    return `${text[0]}*`
+  }
+  return `${text[0]}${'*'.repeat(text.length - 2)}${text[text.length - 1]}`
+}
+
+export function formatDisplayText(
+  value: string | number | null | undefined,
+  options: {
+    mode?: 'text' | 'price' | 'phone' | 'name'
+    prefix?: string
+    suffix?: string
+  } = {},
+): string {
+  const mode = options.mode || 'text'
+  let body = ''
+  if (mode === 'price') {
+    body = formatPrice(value)
+  } else if (mode === 'phone') {
+    body = formatPhone(value)
+  } else if (mode === 'name') {
+    body = formatName(value)
+  } else if (value == null) {
+    body = ''
+  } else {
+    body = String(value)
+  }
+  return `${options.prefix || ''}${body}${options.suffix || ''}`
+}

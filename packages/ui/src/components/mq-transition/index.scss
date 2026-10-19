@@ -1,0 +1,46 @@
+.mq-transition {
+  transition-property: opacity, transform;
+  transition-duration: var(--mq-transition-duration, 200ms);
+  transition-timing-function: ease;
+}
+
+.mq-transition.is-fade-enter,
+.mq-transition.is-fade-leave {
+  opacity: 0;
+}
+
+.mq-transition.is-slide-up-enter,
+.mq-transition.is-slide-up-leave {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.mq-transition.is-slide-down-enter,
+.mq-transition.is-slide-down-leave {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+.mq-transition.is-slide-left-enter,
+.mq-transition.is-slide-left-leave {
+  opacity: 0;
+  transform: translateX(16px);
+}
+
+.mq-transition.is-slide-right-enter,
+.mq-transition.is-slide-right-leave {
+  opacity: 0;
+  transform: translateX(-16px);
+}
+
+.mq-transition.is-zoom-in-enter,
+.mq-transition.is-zoom-in-leave {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.mq-transition.is-zoom-out-enter,
+.mq-transition.is-zoom-out-leave {
+  opacity: 0;
+  transform: scale(1.15);
+}

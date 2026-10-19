@@ -1,0 +1,41 @@
+.mq-text {
+  display: inline;
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.mq-text.is-primary {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-text.is-success {
+  color: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-text.is-warning {
+  color: var(--mq-color-warning, #b86e00);
+}
+
+.mq-text.is-error {
+  color: var(--mq-color-danger, #b42318);
+}
+
+.mq-text.is-bold {
+  font-weight: 600;
+}
+
+.mq-text.is-underline {
+  text-decoration: underline;
+}
+
+.mq-text.is-line-through {
+  text-decoration: line-through;
+}
+
+.mq-text.is-clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
