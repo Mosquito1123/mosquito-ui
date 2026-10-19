@@ -71,7 +71,19 @@ pnpm add @mosquito/ui
       "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
       "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
       "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
-      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue"
+      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue",
+      "^mq-dialog$": "@mosquito/ui/components/mq-dialog/MqDialog.vue",
+      "^mq-input-number$": "@mosquito/ui/components/mq-input-number/MqInputNumber.vue",
+      "^mq-notify$": "@mosquito/ui/components/mq-notify/MqNotify.vue",
+      "^mq-gap$": "@mosquito/ui/components/mq-gap/MqGap.vue",
+      "^mq-skeleton$": "@mosquito/ui/components/mq-skeleton/MqSkeleton.vue",
+      "^mq-countdown$": "@mosquito/ui/components/mq-countdown/MqCountdown.vue",
+      "^mq-segmented$": "@mosquito/ui/components/mq-segmented/MqSegmented.vue",
+      "^mq-navbar$": "@mosquito/ui/components/mq-navbar/MqNavbar.vue",
+      "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
+      "^mq-tab$": "@mosquito/ui/components/mq-tab/MqTab.vue",
+      "^mq-tabbar$": "@mosquito/ui/components/mq-tabbar/MqTabbar.vue",
+      "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue"
     }
   }
 }
@@ -109,6 +121,16 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-collapse` / `mq-collapse-item` | 多选或手风琴。`before-expand` 返回 `false` 时不展开 |
 | `mq-action-sheet` | 底部动作列表，复用弹出层。`select` 为 `{ item, index }` |
 | `mq-search` | 原生输入加文字按钮，不套输入框和按钮组件 |
+| `mq-dialog` | 受控对话框，复用弹出层。可 `before-confirm` |
+| `mq-input-number` | 加减计数，文字按钮，不使用图标字体 |
+| `mq-notify` | `showNotify` / `hideNotify`，页面挂 `<mq-notify />` |
+| `mq-navbar` | 顶栏。左侧箭头用文字 `‹` |
+| `mq-tabs` / `mq-tab` | 标签页。`v-model` 可为索引或 `name` |
+| `mq-tabbar` / `mq-tabbar-item` | 底栏。用 `mark` 文字标记，可用 `icon` 插槽 |
+| `mq-segmented` | 分段器 |
+| `mq-countdown` | 倒计时。暴露 `start` / `pause` / `reset` |
+| `mq-skeleton` | 骨架占位。`loading` 为 false 时显示插槽 |
+| `mq-gap` | 间隔槽，可开底部安全区 |
 | `mq-popup` | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close` |
 | `mq-toast` | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主 |
 | `mq-loading` | 单节点旋转指示，可选 `size`、`color`、`label` |
@@ -166,7 +188,7 @@ mosquito-ui/
 
 ## 致谢
 
-交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮类型、变体和尺寸，单元格与分组，开关、复选、单选、输入框，标签、徽标、分割线和进度条，多行输入、滑块、评分、通告、空状态、步骤、折叠、动作面板和搜索，以及 `v-model` 弹出层、命令式 toast。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。滑块这一版只做单值，折叠不做「查看更多」。
+交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏和标签栏用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版仍不做日历、选择器、上传和图标字体。
 
 目录与性能结构参考了 [cool-unix](https://gitee.com/cool-team-official/cool-unix)（[GitHub](https://github.com/cool-team-official/cool-unix)，MIT）：`components/名称/名称` 的 easycom 习惯、`theme.json` 的明暗令牌拆分、安全区组件、`useUi().showToast` 这种命令式入口，以及 uni-app x 的 `list-view`。本仓库没有引入其 Tailwind、PassThrough 或 `cl-` 组件实现；主题做成 CSS 变量，安全区用 `env(safe-area-inset-bottom)`，toast 不再套一层 popup。
 

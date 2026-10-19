@@ -26,6 +26,18 @@ export { default as MqCollapse } from './components/mq-collapse/MqCollapse.vue'
 export { default as MqCollapseItem } from './components/mq-collapse-item/MqCollapseItem.vue'
 export { default as MqActionSheet } from './components/mq-action-sheet/MqActionSheet.vue'
 export { default as MqSearch } from './components/mq-search/MqSearch.vue'
+export { default as MqDialog } from './components/mq-dialog/MqDialog.vue'
+export { default as MqInputNumber } from './components/mq-input-number/MqInputNumber.vue'
+export { default as MqNotify } from './components/mq-notify/MqNotify.vue'
+export { default as MqGap } from './components/mq-gap/MqGap.vue'
+export { default as MqSkeleton } from './components/mq-skeleton/MqSkeleton.vue'
+export { default as MqCountdown } from './components/mq-countdown/MqCountdown.vue'
+export { default as MqSegmented } from './components/mq-segmented/MqSegmented.vue'
+export { default as MqNavbar } from './components/mq-navbar/MqNavbar.vue'
+export { default as MqTabs } from './components/mq-tabs/MqTabs.vue'
+export { default as MqTab } from './components/mq-tab/MqTab.vue'
+export { default as MqTabbar } from './components/mq-tabbar/MqTabbar.vue'
+export { default as MqTabbarItem } from './components/mq-tabbar-item/MqTabbarItem.vue'
 
 export type { MqButtonEmits, MqButtonProps, MqButtonSize, MqButtonType, MqButtonVariant } from './components/mq-button/types'
 export type { MqCellEmits, MqCellProps } from './components/mq-cell/types'
@@ -60,6 +72,31 @@ export type { MqCollapseEmits, MqCollapseModel, MqCollapseProps } from './compon
 export type { MqCollapseBeforeExpand, MqCollapseItemProps } from './components/mq-collapse-item/types'
 export type { MqActionSheetEmits, MqActionSheetItem, MqActionSheetProps } from './components/mq-action-sheet/types'
 export type { MqSearchEmits, MqSearchProps } from './components/mq-search/types'
+export type { MqDialogBeforeConfirm, MqDialogEmits, MqDialogProps } from './components/mq-dialog/types'
+export type { MqInputNumberBeforeChange, MqInputNumberEmits, MqInputNumberProps } from './components/mq-input-number/types'
+export type {
+  MqNotifyCloser,
+  MqNotifyInput,
+  MqNotifyOptions,
+  MqNotifyPosition,
+  MqNotifyState,
+  MqNotifyType,
+} from './components/mq-notify/types'
+export type { MqGapProps } from './components/mq-gap/types'
+export type { MqSkeletonAnimation, MqSkeletonProps, MqSkeletonTheme } from './components/mq-skeleton/types'
+export type { MqCountdownEmits, MqCountdownProps, MqTimeData } from './components/mq-countdown/types'
+export type {
+  MqSegmentedEmits,
+  MqSegmentedOption,
+  MqSegmentedProps,
+  MqSegmentedTheme,
+} from './components/mq-segmented/types'
+export type { MqNavbarEmits, MqNavbarProps } from './components/mq-navbar/types'
+export type { MqTabsEmits, MqTabsProps } from './components/mq-tabs/types'
+export type { MqTabProps } from './components/mq-tab/types'
+export type { MqTabbarBeforeChange, MqTabbarEmits, MqTabbarProps } from './components/mq-tabbar/types'
+export type { MqTabbarItemProps } from './components/mq-tabbar-item/types'
 export type { MqOptionValue } from './utils/model'
 
 export { hideToast, showToast, toastState } from './utils/toast'
+export { hideNotify, showNotify, notifyState } from './utils/notify'

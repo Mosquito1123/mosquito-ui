@@ -29,7 +29,19 @@
       "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
       "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
       "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
-      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue"
+      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue",
+      "^mq-dialog$": "@mosquito/ui/components/mq-dialog/MqDialog.vue",
+      "^mq-input-number$": "@mosquito/ui/components/mq-input-number/MqInputNumber.vue",
+      "^mq-notify$": "@mosquito/ui/components/mq-notify/MqNotify.vue",
+      "^mq-gap$": "@mosquito/ui/components/mq-gap/MqGap.vue",
+      "^mq-skeleton$": "@mosquito/ui/components/mq-skeleton/MqSkeleton.vue",
+      "^mq-countdown$": "@mosquito/ui/components/mq-countdown/MqCountdown.vue",
+      "^mq-segmented$": "@mosquito/ui/components/mq-segmented/MqSegmented.vue",
+      "^mq-navbar$": "@mosquito/ui/components/mq-navbar/MqNavbar.vue",
+      "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
+      "^mq-tab$": "@mosquito/ui/components/mq-tab/MqTab.vue",
+      "^mq-tabbar$": "@mosquito/ui/components/mq-tabbar/MqTabbar.vue",
+      "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue"
     }
   },
   "pages": [

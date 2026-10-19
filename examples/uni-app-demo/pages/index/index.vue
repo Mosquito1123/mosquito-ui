@@ -10,11 +10,17 @@ import {
   MqCheckboxGroup,
   MqCollapse,
   MqCollapseItem,
+  MqCountdown,
+  MqDialog,
   MqDivider,
   MqEmpty,
+  MqGap,
   MqInput,
+  MqInputNumber,
   MqLoading,
+  MqNavbar,
   MqNoticeBar,
+  MqNotify,
   MqPopup,
   MqProgress,
   MqRadio,
@@ -22,14 +28,21 @@ import {
   MqRate,
   MqSafeBottom,
   MqSearch,
+  MqSegmented,
+  MqSkeleton,
   MqSlider,
   MqStep,
   MqSteps,
   MqSwitch,
+  MqTab,
+  MqTabbar,
+  MqTabbarItem,
+  MqTabs,
   MqTag,
   MqTextarea,
   MqToast,
   hideToast,
+  showNotify,
   showToast,
 } from '@mosquito/ui'
 
@@ -59,6 +72,13 @@ const orderActions = [
   { name: '删除订单', color: '#b42318' },
   { name: '暂不可用', disabled: true },
 ]
+const dialogVisible = ref(false)
+const count = ref(2)
+const tab = ref('order')
+const tabbar = ref('home')
+const segment = ref('评论')
+const skeletonOn = ref(true)
+const segments = ['评论', '点赞', '贡献']
 
 const bgChoices = [
   { bg: 'transparent', label: '透明', ink: '#6f675e' },
@@ -114,6 +134,14 @@ function onAction(payload: { item: { name: string } }) {
 
 function moveStep(delta: number) {
   step.value = Math.min(2, Math.max(0, step.value + delta))
+}
+
+function onDialogConfirm() {
+  showToast('已确认')
+}
+
+function flashNotify() {
+  showNotify({ type: 'primary', message: '订单状态已更新', closable: true })
 }
 </script>
 
@@ -263,6 +291,57 @@ function moveStep(delta: number) {
       <mq-button size="small" @click="showToast('去添加')">去添加</mq-button>
     </mq-empty>
 
+    <mq-divider>导航和反馈</mq-divider>
+
+    <mq-navbar title="订单详情" left-text="返回" left-arrow right-text="分享" bordered @click-left="showToast('返回')" @click-right="showToast('分享')" />
+
+    <mq-gap :height="12" />
+
+    <mq-tabs v-model="tab">
+      <mq-tab title="订单" name="order">
+        <text>订单内容</text>
+      </mq-tab>
+      <mq-tab title="物流" name="ship">
+        <text>物流内容</text>
+      </mq-tab>
+      <mq-tab title="禁用" name="off" disabled>
+        <text>不会打开</text>
+      </mq-tab>
+    </mq-tabs>
+
+    <view class="demo__field">
+      <mq-segmented v-model="segment" :options="segments" />
+      <text class="demo__note">当前分段：{{ segment }}</text>
+    </view>
+
+    <view class="demo__row">
+      <mq-input-number v-model="count" :min="0" :max="9" />
+      <mq-button size="small" @click="dialogVisible = true">对话框</mq-button>
+      <mq-button size="small" type="primary" @click="flashNotify">通知</mq-button>
+      <mq-button size="small" @click="skeletonOn = !skeletonOn">骨架</mq-button>
+    </view>
+
+    <view class="demo__field">
+      <mq-countdown :time="90 * 60 * 1000" format="mm分ss秒" />
+      <mq-gap :height="8" />
+      <mq-skeleton theme="paragraph" :loading="skeletonOn" animation="gradient">
+        <text>骨架关掉后显示这段文字。</text>
+      </mq-skeleton>
+    </view>
+
+    <mq-tabbar v-model="tabbar" bordered>
+      <mq-tabbar-item name="home" title="首页" mark="首" />
+      <mq-tabbar-item name="cart" title="购物车" mark="车" :value="3" />
+      <mq-tabbar-item name="me" title="我的" mark="我" is-dot />
+    </mq-tabbar>
+
+    <mq-dialog
+      v-model="dialogVisible"
+      title="确认操作"
+      message="记在这一页，不会连到支付。"
+      @confirm="onDialogConfirm"
+    />
+
     <text class="demo__note">安全区背景。点色块，底部条跟着变。</text>
     <view class="demo__presets">
       <mq-safe-bottom
@@ -306,6 +385,7 @@ function moveStep(delta: number) {
     </mq-popup>
 
     <mq-toast />
+    <mq-notify />
 
     <mq-safe-bottom class="demo__footer" :bg="footerBg">
       <text class="demo__footer-text" :style="{ color: footerColor }">底部安全区 {{ footerBg }}</text>

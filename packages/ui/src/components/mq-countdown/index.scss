@@ -1,0 +1,11 @@
+.mq-countdown {
+  display: inline-flex;
+  align-items: center;
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+  font-variant-numeric: tabular-nums;
+}
+
+.mq-countdown__text {
+  line-height: 1.2;
+}

@@ -48,7 +48,19 @@ pnpm add @mosquito/ui
       "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
       "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
       "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
-      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue"
+      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue",
+      "^mq-dialog$": "@mosquito/ui/components/mq-dialog/MqDialog.vue",
+      "^mq-input-number$": "@mosquito/ui/components/mq-input-number/MqInputNumber.vue",
+      "^mq-notify$": "@mosquito/ui/components/mq-notify/MqNotify.vue",
+      "^mq-gap$": "@mosquito/ui/components/mq-gap/MqGap.vue",
+      "^mq-skeleton$": "@mosquito/ui/components/mq-skeleton/MqSkeleton.vue",
+      "^mq-countdown$": "@mosquito/ui/components/mq-countdown/MqCountdown.vue",
+      "^mq-segmented$": "@mosquito/ui/components/mq-segmented/MqSegmented.vue",
+      "^mq-navbar$": "@mosquito/ui/components/mq-navbar/MqNavbar.vue",
+      "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
+      "^mq-tab$": "@mosquito/ui/components/mq-tab/MqTab.vue",
+      "^mq-tabbar$": "@mosquito/ui/components/mq-tabbar/MqTabbar.vue",
+      "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue"
     }
   },
   "pages": [
@@ -68,7 +80,7 @@ pnpm add @mosquito/ui
 
 ```vue
 <script setup lang="ts">
-import { MqButton, showToast } from '@mosquito/ui'
+import { MqButton, showNotify, showToast } from '@mosquito/ui'
 </script>
 ```
 
@@ -108,6 +120,18 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-collapse-item` | `name` `title` `disabled` `before-expand` | 无。点标题切换 |
 | `mq-action-sheet` | `v-model` `actions` `title` `cancel-text` `mask-closable` | `select` 参数 `{ item, index }`，`close` |
 | `mq-search` | `v-model` `placeholder` `clearable` `action-text` `maxlength` | `input` `search` `clear` |
+| `mq-dialog` | `v-model` `title` `message` `show-cancel` `confirm-text` `cancel-text` `before-confirm` `mask-closable` | `confirm` `cancel` `close` |
+| `mq-input-number` | `v-model` `min` `max` `step` `precision` `step-strictly` `disabled` `before-change` | `change`，参数 `{ value }` |
+| `mq-notify` | 无。用 `showNotify` / `hideNotify` | 页面放一个 `<mq-notify />` |
+| `mq-navbar` | `title` `left-text` `right-text` `left-arrow` `fixed` `placeholder` `safe-area-inset-top` | `click-left` `click-right` |
+| `mq-tabs` | `v-model` `color` `inactive-color` | `change` `click` `disabled`，参数 `{ index, name }` |
+| `mq-tab` | `title` `name` `disabled` | 无 |
+| `mq-tabbar` | `v-model` `fixed` `bordered` `safe-area-inset-bottom` `placeholder` `before-change` | `change`，参数 `{ value }` |
+| `mq-tabbar-item` | `title` `name` `mark` `value` `is-dot` `max`。`icon` 插槽可自定义标记 | 无 |
+| `mq-segmented` | `v-model` `options` `disabled` `theme` | `change`，参数 `{ value }` |
+| `mq-countdown` | `time` `format` `auto-start` `millisecond` | `change` `finish`。方法 `start` `pause` `reset` |
+| `mq-skeleton` | `theme` `loading` `animation` `rows` | 无 |
+| `mq-gap` | `height` `bg` `safe-area-bottom` | 无 |
 | `mq-popup` | `v-model` `position` `mask-closable` `duration` `z-index` `title` | `update:modelValue` `open` `close` |
 | `mq-toast` | 无。用 `showToast` / `hideToast` | 页面放一个 `<mq-toast />` 当宿主 |
 | `mq-loading` | `size` `color` `label` | 无。根节点就是指示器 |
@@ -115,7 +139,7 @@ import { MqButton, showToast } from '@mosquito/ui'
 
 `mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`variant`：`base` | `plain` | `text`。`size`：`mini` | `small` | `medium` | `large`。
 
-这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，动作面板直接套已有的弹出层。滑块只做单值，折叠不做「查看更多」。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
+这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏用 `mark` 文字。对话框、动作面板复用已有弹出层。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数，不做复杂 `row-col`。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
 
 ```vue
 <mq-cell-group title="配送" insert border>
@@ -142,6 +166,8 @@ import { MqButton, showToast } from '@mosquito/ui'
 
 `mq-slider` 把值吸到 `step` 上，并夹在 `min` 和 `max` 之间。拖动过程发出 `dragmove`，松开发出 `change`；只有发生过拖动才发出 `dragend`。`mq-rate` 在拿不到点击横坐标时按整星计算。`clearable` 时再点当前值会回到 `0`。`mq-collapse` 的 `accordion` 为 `false` 时 `v-model` 是名字数组，为 `true` 时是当前名字，全部收起是空字符串。`before-expand` 的参数是即将变成的展开状态。`mq-action-sheet` 受控方式和弹出层一样：选中或取消只把 `v-model` 设为 `false`。取消文案传空字符串可以藏掉取消行。底部会带一块安全区。
 
+`mq-dialog` 默认点遮罩不关。`before-confirm` 返回 `false` 时不关闭。`mq-notify` 默认 `danger`，时长 `3000`，传 `0` 不自动关；空白文案会被忽略。`mq-countdown` 的 `format` 支持 `DD` `HH` `mm` `ss` `S` `SS` `SSS`。`mq-segmented` 的 `options` 可以是字符串、数字，或 `{ value, label?, disabled? }`。
+
 `mq-popup` 的 `position`：`bottom` | `center`。它是受控的：遮罩和 Esc 只发出 `update:modelValue(false)`，父级把值改回 `false` 后才会收起并发出 `close`。`mask-closable` 为 `false` 时，遮罩和 Esc 都不关。`open` / `close` 跟 `modelValue` 的变化走，不重复发。过渡结束后卸载。
 
 ```vue
@@ -164,14 +190,17 @@ const visible = ref(false)
 </template>
 ```
 
-## showToast / hideToast
+## showToast / hideToast / showNotify / hideNotify
 
 ```ts
-import { hideToast, showToast } from '@mosquito/ui'
+import { hideNotify, hideToast, showNotify, showToast } from '@mosquito/ui'
 
 showToast('已保存')
 showToast({ message: '停在这里', duration: 0 })
 hideToast()
+
+showNotify({ type: 'primary', message: '订单已更新', closable: true })
+hideNotify()
 
 const close = showToast('这一条')
 close()
