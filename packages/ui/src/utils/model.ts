@@ -60,6 +60,68 @@ export function clampPercent(value: number): number {
   return Math.min(100, Math.max(0, Math.round(value)))
 }
 
+/** 把滑块值吸到步长上，并夹在 min/max 之间。步长非法时按 1。 */
+export function snapSlider(value: number, min = 0, max = 100, step = 1): number {
+  const lo = Number.isFinite(min) ? min : 0
+  const hi = Number.isFinite(max) ? max : 100
+  const floor = Math.min(lo, hi)
+  const ceiling = Math.max(lo, hi)
+  const stride = Number.isFinite(step) && step > 0 ? step : 1
+  const raw = typeof value === 'number' && Number.isFinite(value) ? value : floor
+  const clamped = Math.min(ceiling, Math.max(floor, raw))
+  const steps = Math.round((clamped - floor) / stride)
+  const snapped = floor + steps * stride
+  const places = decimalPlaces(stride)
+  const fixed = Number(snapped.toFixed(Math.min(places + 2, 8)))
+  return Math.min(ceiling, Math.max(floor, fixed))
+}
+
+function decimalPlaces(value: number): number {
+  const text = String(value)
+  const dot = text.indexOf('.')
+  return dot === -1 ? 0 : text.length - dot - 1
+}
+
+/**
+ * 评分下一次的值。index 从 1 起。half 表示点在这颗星的左半边。
+ * clearable 时再点当前值会回到 0。
+ */
+export function nextRateValue(
+  current: number,
+  index: number,
+  half: boolean,
+  clearable: boolean,
+  max = 5,
+): number {
+  const ceiling = Number.isFinite(max) && max > 0 ? Math.floor(max) : 5
+  const star = Math.min(ceiling, Math.max(1, Math.floor(index)))
+  const next = half ? star - 0.5 : star
+  const safe = typeof current === 'number' && Number.isFinite(current) ? current : 0
+  if (clearable && safe === next) {
+    return 0
+  }
+  return next
+}
+
+/** 折叠面板的下一次展开值。手风琴返回字符串，多选返回数组。 */
+export function nextCollapseValue(
+  current: string | readonly string[] | undefined,
+  name: string,
+  accordion: boolean,
+): string | string[] {
+  if (accordion) {
+    return current === name ? '' : name
+  }
+  const list = Array.isArray(current) ? [...current] : []
+  const index = list.indexOf(name)
+  if (index >= 0) {
+    list.splice(index, 1)
+    return list
+  }
+  list.push(name)
+  return list
+}
+
 export function formatBadge(
   value: string | number | null | undefined,
   options: { max?: number; showZero?: boolean; dot?: boolean } = {},

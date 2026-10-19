@@ -3,9 +3,12 @@ import { test } from 'node:test'
 import {
   clampPercent,
   formatBadge,
+  nextCollapseValue,
   nextRadioValue,
+  nextRateValue,
   nextSwitchValue,
   resolvePx,
+  snapSlider,
   toggleCheckedValues,
 } from '../src/utils/model.ts'
 
@@ -37,6 +40,34 @@ test('size and percent fall back on bad numbers', () => {
   assert.equal(clampPercent(140.2), 100)
   assert.equal(clampPercent(Number.NaN), 0)
   assert.equal(clampPercent(-4), 0)
+})
+
+test('slider snaps to step and stays inside min and max', () => {
+  assert.equal(snapSlider(23, 0, 100, 10), 20)
+  assert.equal(snapSlider(26, 0, 100, 10), 30)
+  assert.equal(snapSlider(-5, 0, 100, 1), 0)
+  assert.equal(snapSlider(140, 0, 100, 5), 100)
+  assert.equal(snapSlider(1.26, 0, 2, 0.5), 1.5)
+  assert.equal(snapSlider(Number.NaN, 10, 20, 1), 10)
+  assert.equal(snapSlider(3, 0, 5, 10), 0)
+  assert.equal(snapSlider(5, 0, 5, 10), 5)
+})
+
+test('rate uses half stars and can clear the current value', () => {
+  assert.equal(nextRateValue(0, 3, false, false, 5), 3)
+  assert.equal(nextRateValue(0, 3, true, false, 5), 2.5)
+  assert.equal(nextRateValue(2.5, 3, true, true, 5), 0)
+  assert.equal(nextRateValue(4, 4, false, false, 5), 4)
+  assert.equal(nextRateValue(1, 8, false, false, 5), 5)
+  assert.equal(nextRateValue(Number.NaN, 1, true, false, 0), 0.5)
+})
+
+test('collapse toggles accordion and multiple names', () => {
+  assert.equal(nextCollapseValue('ship', 'ship', true), '')
+  assert.equal(nextCollapseValue('ship', 'pay', true), 'pay')
+  assert.deepEqual(nextCollapseValue(['ship'], 'pay', false), ['ship', 'pay'])
+  assert.deepEqual(nextCollapseValue(['ship', 'pay'], 'ship', false), ['pay'])
+  assert.deepEqual(nextCollapseValue(undefined, 'ship', false), ['ship'])
 })
 
 test('badge hides zero unless asked and caps numbers', () => {
