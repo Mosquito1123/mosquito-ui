@@ -1,0 +1,36 @@
+.mq-loadmore {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: 12px 16px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: var(--mq-font-size, 14px);
+}
+
+.mq-loadmore.is-error {
+  color: var(--mq-color-danger, #b42318);
+}
+
+.mq-loadmore__spin {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border: 2px solid var(--mq-border, #e6e2da);
+  border-top-color: var(--mq-color-primary, #0f3d32);
+  border-radius: 50%;
+  animation: mq-loadmore-spin 0.8s linear infinite;
+}
+
+.mq-loadmore__hint {
+  margin-left: 6px;
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+@keyframes mq-loadmore-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

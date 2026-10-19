@@ -1,0 +1,18 @@
+.mq-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mq-z-popup, 1000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: var(--mq-mask, rgba(22, 18, 12, 0.45));
+  opacity: 0;
+  transition: opacity var(--mq-overlay-duration, 200ms) ease;
+  pointer-events: none;
+}
+
+.mq-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}

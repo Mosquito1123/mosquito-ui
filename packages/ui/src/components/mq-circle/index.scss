@@ -1,0 +1,36 @@
+.mq-circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.mq-circle__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.mq-circle__svg.is-reverse {
+  transform: rotate(-90deg) scaleY(-1);
+}
+
+.mq-circle__layer,
+.mq-circle__hover {
+  fill: none;
+}
+
+.mq-circle__text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mq-text, #1c1915);
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+}

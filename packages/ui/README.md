@@ -60,7 +60,27 @@ pnpm add @mosquito/ui
       "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
       "^mq-tab$": "@mosquito/ui/components/mq-tab/MqTab.vue",
       "^mq-tabbar$": "@mosquito/ui/components/mq-tabbar/MqTabbar.vue",
-      "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue"
+      "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue",
+      "^mq-overlay$": "@mosquito/ui/components/mq-overlay/MqOverlay.vue",
+      "^mq-card$": "@mosquito/ui/components/mq-card/MqCard.vue",
+      "^mq-row$": "@mosquito/ui/components/mq-row/MqRow.vue",
+      "^mq-col$": "@mosquito/ui/components/mq-col/MqCol.vue",
+      "^mq-grid$": "@mosquito/ui/components/mq-grid/MqGrid.vue",
+      "^mq-grid-item$": "@mosquito/ui/components/mq-grid-item/MqGridItem.vue",
+      "^mq-loadmore$": "@mosquito/ui/components/mq-loadmore/MqLoadmore.vue",
+      "^mq-sticky$": "@mosquito/ui/components/mq-sticky/MqSticky.vue",
+      "^mq-fab$": "@mosquito/ui/components/mq-fab/MqFab.vue",
+      "^mq-pagination$": "@mosquito/ui/components/mq-pagination/MqPagination.vue",
+      "^mq-transition$": "@mosquito/ui/components/mq-transition/MqTransition.vue",
+      "^mq-backtop$": "@mosquito/ui/components/mq-backtop/MqBacktop.vue",
+      "^mq-text$": "@mosquito/ui/components/mq-text/MqText.vue",
+      "^mq-swipe-action$": "@mosquito/ui/components/mq-swipe-action/MqSwipeAction.vue",
+      "^mq-sidebar$": "@mosquito/ui/components/mq-sidebar/MqSidebar.vue",
+      "^mq-sidebar-item$": "@mosquito/ui/components/mq-sidebar-item/MqSidebarItem.vue",
+      "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
+      "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
+      "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
+      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue"
     }
   },
   "pages": [
@@ -132,6 +152,22 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 | `mq-countdown` | `time` `format` `auto-start` `millisecond` | `change` `finish`。方法 `start` `pause` `reset` |
 | `mq-skeleton` | `theme` `loading` `animation` `rows` | 无 |
 | `mq-gap` | `height` `bg` `safe-area-bottom` | 无 |
+| `mq-overlay` | `show` `duration` `z-index` | `click` |
+| `mq-card` | `title` `type`。插槽 `title` `footer` | 无 |
+| `mq-row` / `mq-col` | `gutter` `justify` `align`；`span` `offset`（24 栅格） | 无 |
+| `mq-grid` / `mq-grid-item` | `column` `border` `gutter` `square` `clickable`；项用 `mark`/`text` | 项 `click` |
+| `mq-loadmore` | `state` `loading-text` `finished-text` `error-text` | `reload` |
+| `mq-sticky` | `offset-top` `z-index`（CSS sticky） | 无 |
+| `mq-fab` | `v-model:active` `type` `position` `direction` `expandable` | `click` `change` |
+| `mq-pagination` | `v-model` `total` `page-size` `show-message` | `change`，参数 `{ value }` |
+| `mq-transition` | `show` `name` `duration` | `after-enter` `after-leave` |
+| `mq-backtop` | `scroll-top` `top` `text` `shape` `bottom` `right` | `click` |
+| `mq-text` | `text` `type` `mode` `size` `bold` `lines` `decoration` | `click` |
+| `mq-swipe-action` | `v-model` `left`/`right`/`close`，`before-close` | `click`。可用 `closeSwipeActions()` |
+| `mq-sidebar` / `mq-sidebar-item` | `v-model` `before-change`；项 `label` `value` `badge` | `change` |
+| `mq-circle` | `v-model` 进度，`size` `color` `stroke-width` `speed` | 无 |
+| `mq-count-to` | `start-val` `end-val` `duration` `prefix` `suffix` | `finish`。方法 `start` `pause` `reset` |
+| `mq-form` / `mq-form-item` | `model` `schema` `error-type`；项 `prop` `title` | 方法 `validate` `reset` |
 | `mq-popup` | `v-model` `position` `mask-closable` `duration` `z-index` `title` | `update:modelValue` `open` `close` |
 | `mq-toast` | 无。用 `showToast` / `hideToast` | 页面放一个 `<mq-toast />` 当宿主 |
 | `mq-loading` | `size` `color` `label` | 无。根节点就是指示器 |
@@ -139,7 +175,7 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 
 `mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`variant`：`base` | `plain` | `text`。`size`：`mini` | `small` | `medium` | `large`。
 
-这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏用 `mark` 文字。对话框、动作面板复用已有弹出层。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数，不做复杂 `row-col`。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
+这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏和宫格用 `mark` 文字，悬浮按钮用 `+` / `×`，回到顶部用 `↑`。对话框、动作面板复用已有弹出层。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数。栅格是 24 列；吸顶走 CSS `position: sticky`。表单校验走轻量 `schema.validate`，不内置 Zod。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
 
 ```vue
 <mq-cell-group title="配送" insert border>

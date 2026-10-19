@@ -41,7 +41,27 @@
       "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
       "^mq-tab$": "@mosquito/ui/components/mq-tab/MqTab.vue",
       "^mq-tabbar$": "@mosquito/ui/components/mq-tabbar/MqTabbar.vue",
-      "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue"
+      "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue",
+      "^mq-overlay$": "@mosquito/ui/components/mq-overlay/MqOverlay.vue",
+      "^mq-card$": "@mosquito/ui/components/mq-card/MqCard.vue",
+      "^mq-row$": "@mosquito/ui/components/mq-row/MqRow.vue",
+      "^mq-col$": "@mosquito/ui/components/mq-col/MqCol.vue",
+      "^mq-grid$": "@mosquito/ui/components/mq-grid/MqGrid.vue",
+      "^mq-grid-item$": "@mosquito/ui/components/mq-grid-item/MqGridItem.vue",
+      "^mq-loadmore$": "@mosquito/ui/components/mq-loadmore/MqLoadmore.vue",
+      "^mq-sticky$": "@mosquito/ui/components/mq-sticky/MqSticky.vue",
+      "^mq-fab$": "@mosquito/ui/components/mq-fab/MqFab.vue",
+      "^mq-pagination$": "@mosquito/ui/components/mq-pagination/MqPagination.vue",
+      "^mq-transition$": "@mosquito/ui/components/mq-transition/MqTransition.vue",
+      "^mq-backtop$": "@mosquito/ui/components/mq-backtop/MqBacktop.vue",
+      "^mq-text$": "@mosquito/ui/components/mq-text/MqText.vue",
+      "^mq-swipe-action$": "@mosquito/ui/components/mq-swipe-action/MqSwipeAction.vue",
+      "^mq-sidebar$": "@mosquito/ui/components/mq-sidebar/MqSidebar.vue",
+      "^mq-sidebar-item$": "@mosquito/ui/components/mq-sidebar-item/MqSidebarItem.vue",
+      "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
+      "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
+      "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
+      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue"
     }
   },
   "pages": [

@@ -1,0 +1,9 @@
+.mq-form {
+  box-sizing: border-box;
+  background: var(--mq-bg, #fffcf7);
+}
+
+.mq-form.is-border {
+  border-top: 1px solid var(--mq-border, #e6e2da);
+  border-bottom: 1px solid var(--mq-border, #e6e2da);
+}
