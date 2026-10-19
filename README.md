@@ -96,7 +96,14 @@ pnpm add @mosquito/ui
       "^mq-pagination$": "@mosquito/ui/components/mq-pagination/MqPagination.vue",
       "^mq-transition$": "@mosquito/ui/components/mq-transition/MqTransition.vue",
       "^mq-backtop$": "@mosquito/ui/components/mq-backtop/MqBacktop.vue",
-      "^mq-text$": "@mosquito/ui/components/mq-text/MqText.vue"
+      "^mq-text$": "@mosquito/ui/components/mq-text/MqText.vue",
+      "^mq-swipe-action$": "@mosquito/ui/components/mq-swipe-action/MqSwipeAction.vue",
+      "^mq-sidebar$": "@mosquito/ui/components/mq-sidebar/MqSidebar.vue",
+      "^mq-sidebar-item$": "@mosquito/ui/components/mq-sidebar-item/MqSidebarItem.vue",
+      "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
+      "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
+      "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
+      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue"
     }
   }
 }
@@ -155,6 +162,11 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-transition` | 进入离开过渡：`fade` / `slide-*` / `zoom-*` |
 | `mq-backtop` | 回到顶部，默认文字 `↑` |
 | `mq-text` | 文本：主题色、行数、`price` / `phone` / `name` 模式 |
+| `mq-swipe-action` | 左右滑动操作，`closeSwipeActions()` 可统一收起 |
+| `mq-sidebar` / `mq-sidebar-item` | 侧边导航 |
+| `mq-circle` | 环形进度（SVG） |
+| `mq-count-to` | 数字滚动 |
+| `mq-form` / `mq-form-item` | 表单与校验（轻量 `schema`，不内置 Zod） |
 | `mq-popup` | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close` |
 | `mq-toast` | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主 |
 | `mq-loading` | 单节点旋转指示，可选 `size`、`color`、`label` |
@@ -212,7 +224,7 @@ mosquito-ui/
 
 ## 致谢
 
-交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏、标签栏和宫格用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版仍不做日历、选择器、上传、滑动单元格和图标字体。
+交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏、标签栏和宫格用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版仍不做日历、选择器、上传和图标字体。
 
 目录与性能结构参考了 [cool-unix](https://gitee.com/cool-team-official/cool-unix)（[GitHub](https://github.com/cool-team-official/cool-unix)，MIT）：`components/名称/名称` 的 easycom 习惯、`theme.json` 的明暗令牌拆分、安全区组件、`useUi().showToast` 这种命令式入口，以及 uni-app x 的 `list-view`。本仓库没有引入其 Tailwind、PassThrough 或 `cl-` 组件实现；主题做成 CSS 变量，安全区用 `env(safe-area-inset-bottom)`，toast 不再套一层 popup。
 

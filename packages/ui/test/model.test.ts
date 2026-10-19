@@ -3,8 +3,10 @@ import { test } from 'node:test'
 import {
   clampPage,
   clampPercent,
+  easeOutCubic,
   formatBadge,
   formatCountDown,
+  formatCountToValue,
   formatDisplayText,
   formatName,
   formatPhone,
@@ -126,4 +128,13 @@ test('display text modes mask and format values', () => {
   assert.equal(formatName('欧阳修'), '欧*修')
   assert.equal(formatDisplayText(12.5, { mode: 'price', prefix: '￥' }), '￥12.50')
   assert.equal(formatDisplayText('hello', { suffix: '!' }), 'hello!')
+})
+
+test('count-to formats decimals separators and easing', () => {
+  assert.equal(formatCountToValue(21286.321, { decimals: 2 }), '21,286.32')
+  assert.equal(formatCountToValue(-12, { decimals: 0, separator: '' }), '-12')
+  assert.equal(formatCountToValue(1.2, { decimals: 3, decimal: ',' }), '1,200')
+  assert.ok(easeOutCubic(0) === 0)
+  assert.ok(easeOutCubic(1) === 1)
+  assert.ok(easeOutCubic(0.5) > 0.5)
 })

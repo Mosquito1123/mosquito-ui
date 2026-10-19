@@ -280,3 +280,27 @@ export function formatDisplayText(
   }
   return `${options.prefix || ''}${body}${options.suffix || ''}`
 }
+
+export function easeOutCubic(t: number): number {
+  const x = typeof t === 'number' && Number.isFinite(t) ? Math.min(1, Math.max(0, t)) : 0
+  return 1 - (1 - x) ** 3
+}
+
+export function formatCountToValue(
+  value: number,
+  options: { decimals?: number; decimal?: string; separator?: string } = {},
+): string {
+  const decimals = Number.isFinite(options.decimals) && (options.decimals as number) >= 0
+    ? Math.floor(options.decimals as number)
+    : 0
+  const decimal = options.decimal || '.'
+  const separator = options.separator ?? ','
+  const raw = typeof value === 'number' && Number.isFinite(value) ? value : 0
+  const fixed = raw.toFixed(decimals)
+  const [integerPart, fractionPart] = fixed.split('.')
+  const negative = integerPart.startsWith('-')
+  const digits = negative ? integerPart.slice(1) : integerPart
+  const grouped = separator ? digits.replace(/\B(?=(\d{3})+(?!\d))/g, separator) : digits
+  const head = `${negative ? '-' : ''}${grouped}`
+  return decimals > 0 ? `${head}${decimal}${fractionPart}` : head
+}

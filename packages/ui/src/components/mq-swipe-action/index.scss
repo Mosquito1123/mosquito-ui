@@ -1,0 +1,48 @@
+.mq-swipe {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.mq-swipe.is-disabled {
+  pointer-events: none;
+}
+
+.mq-swipe__track {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  transition: transform var(--mq-duration, 200ms) ease;
+  will-change: transform;
+}
+
+.mq-swipe__track.is-dragging {
+  transition: none;
+}
+
+.mq-swipe__left,
+.mq-swipe__right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.mq-swipe__left {
+  right: 100%;
+}
+
+.mq-swipe__right {
+  left: 100%;
+}
+
+.mq-swipe__content {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  background: var(--mq-bg, #fffcf7);
+}

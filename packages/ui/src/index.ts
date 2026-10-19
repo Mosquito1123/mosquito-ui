@@ -51,6 +51,13 @@ export { default as MqPagination } from './components/mq-pagination/MqPagination
 export { default as MqTransition } from './components/mq-transition/MqTransition.vue'
 export { default as MqBacktop } from './components/mq-backtop/MqBacktop.vue'
 export { default as MqText } from './components/mq-text/MqText.vue'
+export { default as MqSwipeAction } from './components/mq-swipe-action/MqSwipeAction.vue'
+export { default as MqSidebar } from './components/mq-sidebar/MqSidebar.vue'
+export { default as MqSidebarItem } from './components/mq-sidebar-item/MqSidebarItem.vue'
+export { default as MqCircle } from './components/mq-circle/MqCircle.vue'
+export { default as MqCountTo } from './components/mq-count-to/MqCountTo.vue'
+export { default as MqForm } from './components/mq-form/MqForm.vue'
+export { default as MqFormItem } from './components/mq-form-item/MqFormItem.vue'
 
 export type { MqButtonEmits, MqButtonProps, MqButtonSize, MqButtonType, MqButtonVariant } from './components/mq-button/types'
 export type { MqCellEmits, MqCellProps } from './components/mq-cell/types'
@@ -138,7 +145,36 @@ export type {
   MqTextProps,
   MqTextType,
 } from './components/mq-text/types'
+export type {
+  MqSwipeActionBeforeClose,
+  MqSwipeActionEmits,
+  MqSwipeActionPosition,
+  MqSwipeActionProps,
+  MqSwipeActionReason,
+  MqSwipeActionStatus,
+} from './components/mq-swipe-action/types'
+export type { MqSidebarBeforeChange, MqSidebarEmits, MqSidebarProps } from './components/mq-sidebar/types'
+export type { MqSidebarItemProps } from './components/mq-sidebar-item/types'
+export type {
+  MqCircleColor,
+  MqCircleEmits,
+  MqCircleLinecap,
+  MqCircleProps,
+} from './components/mq-circle/types'
+export type { MqCountToEmits, MqCountToProps, MqCountToType } from './components/mq-count-to/types'
+export type {
+  MqFormAsteriskPosition,
+  MqFormErrorType,
+  MqFormLayout,
+  MqFormProps,
+  MqFormSchema,
+  MqFormSchemaIssue,
+  MqFormValidateResult,
+  MqFormValueAlign,
+} from './components/mq-form/types'
+export type { MqFormItemEmits, MqFormItemProps } from './components/mq-form-item/types'
 export type { MqOptionValue } from './utils/model'
 
 export { hideToast, showToast, toastState } from './utils/toast'
 export { hideNotify, showNotify, notifyState } from './utils/notify'
+export { closeSwipeActions } from './utils/swipe'

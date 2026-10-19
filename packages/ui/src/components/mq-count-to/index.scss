@@ -1,0 +1,30 @@
+.mq-count-to {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  color: var(--mq-text, #1c1915);
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+
+.mq-count-to.is-primary {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-count-to.is-success {
+  color: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-count-to.is-warning {
+  color: var(--mq-color-warning, #b86e00);
+}
+
+.mq-count-to.is-error {
+  color: var(--mq-color-danger, #b42318);
+}
+
+.mq-count-to__prefix,
+.mq-count-to__suffix {
+  font-size: 0.75em;
+}
