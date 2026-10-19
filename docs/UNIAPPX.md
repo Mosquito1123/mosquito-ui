@@ -53,15 +53,9 @@ PassThrough 可以把属性打进内部节点，但会鼓励组件长出更多�
 
 组件逻辑停在 TypeScript 与 Vue 模板里。不把样式、显隐、toast 队列写成 UTS。
 
-UTS 留给必须进原生的插件。UI 包 `@mosquito/ui` 本身不携带这类插件。安全区默认仍然是 CSS。
+UTS 留给必须进原生的插件（例如某端 `env(safe-area-inset-*)` 不可用时的安全区插件）。UI 包本身不携带这类插件。安全区默认仍然是 CSS。
 
-截屏 / 截长图单独放在 [`packages/uts-screenshot`](../packages/uts-screenshot)（发布形态为 `uni_modules/mosquito-screenshot`）：
-
-- App Android / iOS 用 UTS 做窗口截图和多图拼接
-- `mq-screenshot` 组件负责滚动编排
-- H5 / 小程序明确返回不支持
-
-复制到业务工程的 `uni_modules/mosquito-screenshot` 后，在 App 自定义基座或云打包中编译。
+截屏 / 截长图不在本仓库，见独立仓库 [mosquito-screenshot](https://github.com/Mosquito1123/mosquito-screenshot)。
 
 ## 从现有开源项目吸收的结构
 

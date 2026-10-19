@@ -176,16 +176,11 @@ const visible = ref(false)
 pnpm --filter @mosquito/uni-app-demo dev
 ```
 
-## UTS 截屏插件
-
-原生截屏不塞进 UI 包。需要 App 端截屏 / 截长图时，使用独立包 [`packages/uts-screenshot`](packages/uts-screenshot)，复制为工程内 `uni_modules/mosquito-screenshot`。说明见该目录 README 与 [docs/UNIAPPX.md](docs/UNIAPPX.md)。
-
 ## 目录
 
 ```
 mosquito-ui/
-  packages/ui/               @mosquito/ui
-  packages/uts-screenshot/   UTS 截屏 / 截长图（uni_modules 形态）
+  packages/ui/          @mosquito/ui
   examples/uni-app-demo
   docs/PERFORMANCE.md
   docs/UNIAPPX.md
