@@ -8,8 +8,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "typecheck": "pnpm --filter @mosquito/ui typecheck",
-    "test": "pnpm --filter @mosquito/ui test"
+    "typecheck": "pnpm --filter @mosquito/ui typecheck && pnpm --filter @mosquito/uts-screenshot typecheck",
+    "test": "pnpm --filter @mosquito/ui test && pnpm --filter @mosquito/uts-screenshot test"
   },
   "devDependencies": {
     "typescript": "^5.6.3"
