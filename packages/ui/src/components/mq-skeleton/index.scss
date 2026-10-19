@@ -1,0 +1,68 @@
+.mq-skeleton {
+  box-sizing: border-box;
+}
+
+.mq-skeleton__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--mq-bg-active, #ebe4d8);
+}
+
+.mq-skeleton__image {
+  width: 100%;
+  height: 120px;
+  border-radius: var(--mq-radius, 8px);
+  background: var(--mq-bg-active, #ebe4d8);
+}
+
+.mq-skeleton__line {
+  height: 14px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background: var(--mq-bg-active, #ebe4d8);
+}
+
+.mq-skeleton__line:last-child {
+  margin-bottom: 0;
+}
+
+.mq-skeleton.is-gradient .mq-skeleton__avatar,
+.mq-skeleton.is-gradient .mq-skeleton__image,
+.mq-skeleton.is-gradient .mq-skeleton__line {
+  background: linear-gradient(
+    90deg,
+    var(--mq-bg-active, #ebe4d8) 25%,
+    var(--mq-bg-muted, #f6f1e8) 37%,
+    var(--mq-bg-active, #ebe4d8) 63%
+  );
+  background-size: 400% 100%;
+  animation: mq-skeleton-gradient 1.4s ease infinite;
+}
+
+.mq-skeleton.is-flashed .mq-skeleton__avatar,
+.mq-skeleton.is-flashed .mq-skeleton__image,
+.mq-skeleton.is-flashed .mq-skeleton__line {
+  animation: mq-skeleton-flash 1.2s ease infinite;
+}
+
+@keyframes mq-skeleton-gradient {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes mq-skeleton-flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}

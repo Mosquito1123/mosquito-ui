@@ -1,0 +1,45 @@
+.mq-input-number {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  height: 32px;
+  border: 1px solid var(--mq-border, #e6e2da);
+  border-radius: var(--mq-radius, 8px);
+  overflow: hidden;
+  background: var(--mq-bg, #fffcf7);
+  color: var(--mq-text, #1c1915);
+}
+
+.mq-input-number.is-disabled {
+  opacity: 0.45;
+}
+
+.mq-input-number__btn {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  color: var(--mq-text, #1c1915);
+  background: var(--mq-bg-muted, #f6f1e8);
+  font-size: 18px;
+}
+
+.mq-input-number__btn.is-disabled {
+  color: var(--mq-text-secondary, #6f675e);
+  opacity: 0.55;
+}
+
+.mq-input-number__control {
+  width: 48px;
+  height: 32px;
+  padding: 0 4px;
+  border: none;
+  border-left: 1px solid var(--mq-border, #e6e2da);
+  border-right: 1px solid var(--mq-border, #e6e2da);
+  background: transparent;
+  color: inherit;
+  font-size: var(--mq-font-size, 14px);
+  text-align: center;
+}

@@ -3,11 +3,14 @@ import { test } from 'node:test'
 import {
   clampPercent,
   formatBadge,
+  formatCountDown,
   nextCollapseValue,
   nextRadioValue,
   nextRateValue,
   nextSwitchValue,
+  parseTimeData,
   resolvePx,
+  snapNumber,
   snapSlider,
   toggleCheckedValues,
 } from '../src/utils/model.ts'
@@ -68,6 +71,28 @@ test('collapse toggles accordion and multiple names', () => {
   assert.deepEqual(nextCollapseValue(['ship'], 'pay', false), ['ship', 'pay'])
   assert.deepEqual(nextCollapseValue(['ship', 'pay'], 'ship', false), ['pay'])
   assert.deepEqual(nextCollapseValue(undefined, 'ship', false), ['ship'])
+})
+
+test('input number snaps with precision and strict step', () => {
+  assert.equal(snapNumber(1.26, 0, 10, 0.1, 1, false), 1.3)
+  assert.equal(snapNumber(5, 1, 10, 2, 0, true), 5)
+  assert.equal(snapNumber(4, 1, 10, 2, 0, true), 5)
+  assert.equal(snapNumber(100, 1, 10, 1, 0, false), 10)
+  assert.equal(snapNumber(Number.NaN, 3, 9, 1, 0, false), 3)
+})
+
+test('countdown formats remaining milliseconds', () => {
+  assert.deepEqual(parseTimeData(3_661_005), {
+    total: 3_661_005,
+    days: 0,
+    hours: 1,
+    minutes: 1,
+    seconds: 1,
+    milliseconds: 5,
+  })
+  assert.equal(formatCountDown(3_661_005, 'HH:mm:ss'), '01:01:01')
+  assert.equal(formatCountDown(90_000, 'mm分ss秒'), '01分30秒')
+  assert.equal(formatCountDown(-10, 'ss'), '00')
 })
 
 test('badge hides zero unless asked and caps numbers', () => {

@@ -122,6 +122,61 @@ export function nextCollapseValue(
   return list
 }
 
+/** 计数器把值夹到区间，并按精度取整。stepStrictly 时再吸到步长。 */
+export function snapNumber(
+  value: number,
+  min = 0,
+  max = Number.MAX_SAFE_INTEGER,
+  step = 1,
+  precision = 0,
+  stepStrictly = false,
+): number {
+  const lo = Number.isFinite(min) ? min : 0
+  const hi = Number.isFinite(max) ? max : Number.MAX_SAFE_INTEGER
+  const floor = Math.min(lo, hi)
+  const ceiling = Math.max(lo, hi)
+  const places = Number.isFinite(precision) && precision >= 0 ? Math.floor(precision) : 0
+  let next = typeof value === 'number' && Number.isFinite(value) ? value : floor
+  next = Math.min(ceiling, Math.max(floor, next))
+  if (stepStrictly) {
+    next = snapSlider(next, floor, ceiling, step)
+  }
+  return Number(next.toFixed(places))
+}
+
+export interface MqTimeData {
+  total: number
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+  milliseconds: number
+}
+
+export function parseTimeData(remain: number): MqTimeData {
+  const total = typeof remain === 'number' && Number.isFinite(remain) ? Math.max(0, Math.floor(remain)) : 0
+  const days = Math.floor(total / 86_400_000)
+  const hours = Math.floor((total % 86_400_000) / 3_600_000)
+  const minutes = Math.floor((total % 3_600_000) / 60_000)
+  const seconds = Math.floor((total % 60_000) / 1000)
+  const milliseconds = total % 1000
+  return { total, days, hours, minutes, seconds, milliseconds }
+}
+
+/** 把剩余毫秒格式化。支持 DD HH mm ss S SS SSS。 */
+export function formatCountDown(remain: number, format = 'HH:mm:ss'): string {
+  const current = parseTimeData(remain)
+  const pad = (value: number, width: number) => String(value).padStart(width, '0')
+  return format
+    .replace(/DD/g, pad(current.days, 2))
+    .replace(/HH/g, pad(current.hours, 2))
+    .replace(/mm/g, pad(current.minutes, 2))
+    .replace(/ss/g, pad(current.seconds, 2))
+    .replace(/SSS/g, pad(current.milliseconds, 3))
+    .replace(/SS/g, pad(Math.floor(current.milliseconds / 10), 2))
+    .replace(/S/g, String(Math.floor(current.milliseconds / 100)))
+}
+
 export function formatBadge(
   value: string | number | null | undefined,
   options: { max?: number; showZero?: boolean; dot?: boolean } = {},

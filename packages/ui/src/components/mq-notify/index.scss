@@ -1,0 +1,62 @@
+.mq-notify {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: var(--mq-z-toast, 1100);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 10px 16px;
+  padding-top: calc(10px + constant(safe-area-inset-top));
+  padding-top: calc(10px + env(safe-area-inset-top));
+  color: var(--mq-color-danger-text, #fff6f5);
+  background: var(--mq-color-danger, #b42318);
+  font-size: var(--mq-font-size, 14px);
+}
+
+.mq-notify.is-bottom {
+  top: auto;
+  bottom: 0;
+  padding-top: 10px;
+  padding-bottom: calc(10px + constant(safe-area-inset-bottom));
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+}
+
+.mq-notify.is-top {
+  top: 0;
+}
+
+.mq-notify.is-primary {
+  color: var(--mq-color-primary-text, #f7f4ee);
+  background: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-notify.is-success {
+  color: var(--mq-color-success-text, #f4fbf6);
+  background: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-notify.is-warning {
+  color: var(--mq-color-warning-text, #fff8ee);
+  background: var(--mq-color-warning, #b86e00);
+}
+
+.mq-notify.is-danger {
+  color: var(--mq-color-danger-text, #fff6f5);
+  background: var(--mq-color-danger, #b42318);
+}
+
+.mq-notify__text {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.4;
+}
+
+.mq-notify__close {
+  flex: none;
+  margin-left: 12px;
+  font-size: 16px;
+  line-height: 1;
+}

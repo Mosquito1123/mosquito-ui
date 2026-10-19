@@ -1,0 +1,52 @@
+.mq-dialog__panel {
+  padding: 20px 0 0;
+}
+
+.mq-dialog__title {
+  display: block;
+  padding: 0 20px;
+  color: var(--mq-text, #1c1915);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.mq-dialog__body {
+  padding: 12px 20px 20px;
+}
+
+.mq-dialog__message {
+  display: block;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.mq-dialog__actions {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid var(--mq-border, #e6e2da);
+}
+
+.mq-dialog__btn {
+  flex: 1;
+  padding: 14px 8px;
+  text-align: center;
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.2;
+}
+
+.mq-dialog__btn--cancel {
+  color: var(--mq-text-secondary, #6f675e);
+  border-right: 1px solid var(--mq-border, #e6e2da);
+}
+
+.mq-dialog__btn--confirm {
+  color: var(--mq-color-primary, #0f3d32);
+  font-weight: 600;
+}
+
+.mq-dialog__btn.is-pending {
+  opacity: 0.45;
+}
