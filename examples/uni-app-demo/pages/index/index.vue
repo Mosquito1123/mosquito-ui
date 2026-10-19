@@ -1,22 +1,33 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import {
+  MqActionSheet,
   MqBadge,
   MqButton,
   MqCell,
   MqCellGroup,
   MqCheckbox,
   MqCheckboxGroup,
+  MqCollapse,
+  MqCollapseItem,
   MqDivider,
+  MqEmpty,
   MqInput,
   MqLoading,
+  MqNoticeBar,
   MqPopup,
   MqProgress,
   MqRadio,
   MqRadioGroup,
+  MqRate,
   MqSafeBottom,
+  MqSearch,
+  MqSlider,
+  MqStep,
+  MqSteps,
   MqSwitch,
   MqTag,
+  MqTextarea,
   MqToast,
   hideToast,
   showToast,
@@ -36,6 +47,18 @@ const fruit = ref<Array<string | number>>(['apple'])
 const shipping = ref('air')
 const progress = ref(46)
 const tags = ref(['已支付', '待发货'])
+const memo = ref('')
+const volume = ref(40)
+const score = ref(3)
+const step = ref(1)
+const openPanels = ref<string[]>(['ship'])
+const query = ref('')
+const actionsVisible = ref(false)
+const orderActions = [
+  { name: '复制单号', description: '记在这一页' },
+  { name: '删除订单', color: '#b42318' },
+  { name: '暂不可用', disabled: true },
+]
 
 const bgChoices = [
   { bg: 'transparent', label: '透明', ink: '#6f675e' },
@@ -78,6 +101,19 @@ function closeTag(index: number) {
 
 function bumpProgress(delta: number) {
   progress.value = Math.min(100, Math.max(0, progress.value + delta))
+}
+
+function onSearch(payload: { value: string }) {
+  const keyword = payload.value.trim()
+  showToast(keyword ? `搜索 ${keyword}` : '请输入关键字')
+}
+
+function onAction(payload: { item: { name: string } }) {
+  showToast(payload.item.name)
+}
+
+function moveStep(delta: number) {
+  step.value = Math.min(2, Math.max(0, step.value + delta))
 }
 </script>
 
@@ -175,6 +211,57 @@ function bumpProgress(delta: number) {
       <mq-button size="small" @click="bumpProgress(-10)">减十</mq-button>
       <mq-button size="small" type="primary" @click="bumpProgress(10)">加十</mq-button>
     </view>
+
+    <mq-divider>反馈和导航</mq-divider>
+
+    <view class="demo__field">
+      <mq-search v-model="query" placeholder="搜订单" clearable @search="onSearch" />
+    </view>
+
+    <mq-notice-bar text="包裹已揽收，预计明天送达" closable scrollable @click="showToast('点了通告')">
+      <template #prefix>
+        <text>通知</text>
+      </template>
+    </mq-notice-bar>
+    <mq-notice-bar text="说明可以换行，不滚动。" type="info" wrapable />
+
+    <view class="demo__field">
+      <mq-textarea v-model="memo" placeholder="补充说明" :maxlength="40" show-word-limit clearable auto-height />
+    </view>
+
+    <mq-slider v-model="volume" show-extreme-value :step="10" />
+    <text class="demo__note">音量 {{ volume }}</text>
+
+    <view class="demo__field">
+      <mq-rate v-model="score" allow-half clearable />
+      <text class="demo__note">评分 {{ score }}。再点当前星会清空。</text>
+    </view>
+
+    <mq-steps :active="step" align-center>
+      <mq-step title="下单" description="已提交" />
+      <mq-step title="发货" />
+      <mq-step title="签收" />
+    </mq-steps>
+    <view class="demo__row">
+      <mq-button size="small" @click="moveStep(-1)">上一步</mq-button>
+      <mq-button size="small" type="primary" @click="moveStep(1)">下一步</mq-button>
+    </view>
+
+    <mq-collapse v-model="openPanels">
+      <mq-collapse-item name="ship" title="配送说明">
+        <text>空运两天，陆运五天。</text>
+      </mq-collapse-item>
+      <mq-collapse-item name="pay" title="付款说明">
+        <text>记在这一页，不连支付。</text>
+      </mq-collapse-item>
+    </mq-collapse>
+
+    <mq-cell title="更多操作" value="打开" is-link @click="actionsVisible = true" />
+    <mq-action-sheet v-model="actionsVisible" title="订单" :actions="orderActions" @select="onAction" />
+
+    <mq-empty tip="这里还没有记录">
+      <mq-button size="small" @click="showToast('去添加')">去添加</mq-button>
+    </mq-empty>
 
     <text class="demo__note">安全区背景。点色块，底部条跟着变。</text>
     <view class="demo__presets">

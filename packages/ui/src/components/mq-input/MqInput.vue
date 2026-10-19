@@ -15,7 +15,7 @@
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
-      :maxlength="maxlength >= 0 ? maxlength : undefined"
+      :maxlength="maxlength >= 0 ? maxlength : -1"
       :confirm-type="confirmType"
       :password="passwordHidden"
       @input="onInput"

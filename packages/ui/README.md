@@ -37,7 +37,18 @@ pnpm add @mosquito/ui
       "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
       "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
       "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
-      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue"
+      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue",
+      "^mq-textarea$": "@mosquito/ui/components/mq-textarea/MqTextarea.vue",
+      "^mq-slider$": "@mosquito/ui/components/mq-slider/MqSlider.vue",
+      "^mq-rate$": "@mosquito/ui/components/mq-rate/MqRate.vue",
+      "^mq-notice-bar$": "@mosquito/ui/components/mq-notice-bar/MqNoticeBar.vue",
+      "^mq-empty$": "@mosquito/ui/components/mq-empty/MqEmpty.vue",
+      "^mq-steps$": "@mosquito/ui/components/mq-steps/MqSteps.vue",
+      "^mq-step$": "@mosquito/ui/components/mq-step/MqStep.vue",
+      "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
+      "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
+      "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
+      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue"
     }
   },
   "pages": [
@@ -86,6 +97,17 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-badge` | `value` `max` `is-dot` `show-zero` `hidden` `type` | 无 |
 | `mq-divider` | `content-position` `dashed` `vertical` `hairline` `color` | 无 |
 | `mq-progress` | `percentage` `hide-text` `color` `status` | 无 |
+| `mq-textarea` | `v-model` `maxlength` `clearable` `show-word-limit` `auto-height` `error` `compact` | `input` `focus` `blur` `clear` `confirm` |
+| `mq-slider` | `v-model` `min` `max` `step` `disabled` `show-extreme-value` `active-color` | `change` `dragstart` `dragmove` `dragend`，参数都是 `{ value }` |
+| `mq-rate` | `v-model` `num` `allow-half` `clearable` `readonly` `disabled` `size` `space` | `change`，参数 `{ value }` |
+| `mq-notice-bar` | `text` `type` `closable` `scrollable` `wrapable` `color` `background`。前缀用 `prefix` 插槽 | `click` `close` |
+| `mq-empty` | `tip`。`image` 插槽替换标记，默认插槽放在底部 | 无 |
+| `mq-steps` | `active` `vertical` `dot` `align-center` | 无 |
+| `mq-step` | `title` `description` `status` | 无。序号按渲染顺序 |
+| `mq-collapse` | `v-model` `accordion` `disabled` | `change`，参数 `{ value }` |
+| `mq-collapse-item` | `name` `title` `disabled` `before-expand` | 无。点标题切换 |
+| `mq-action-sheet` | `v-model` `actions` `title` `cancel-text` `mask-closable` | `select` 参数 `{ item, index }`，`close` |
+| `mq-search` | `v-model` `placeholder` `clearable` `action-text` `maxlength` | `input` `search` `clear` |
 | `mq-popup` | `v-model` `position` `mask-closable` `duration` `z-index` `title` | `update:modelValue` `open` `close` |
 | `mq-toast` | 无。用 `showToast` / `hideToast` | 页面放一个 `<mq-toast />` 当宿主 |
 | `mq-loading` | `size` `color` `label` | 无。根节点就是指示器 |
@@ -93,7 +115,7 @@ import { MqButton, showToast } from '@mosquito/ui'
 
 `mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`variant`：`base` | `plain` | `text`。`size`：`mini` | `small` | `medium` | `large`。
 
-这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。
+这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，动作面板直接套已有的弹出层。滑块只做单值，折叠不做「查看更多」。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
 
 ```vue
 <mq-cell-group title="配送" insert border>
@@ -116,7 +138,9 @@ import { MqButton, showToast } from '@mosquito/ui'
 </mq-radio-group>
 ```
 
-`mq-switch` 的 `before-change` 可以返回 `false` 或一个最终为 `false` 的 Promise，用来拦住切换。`mq-checkbox-group` 的 `max` 为 `0` 时不限制个数；已经选到 `min` 时不能再取消。`mq-input` 的 `type` 透传 `text`、`number`、`digit`、`idcard`、`tel`、`safe-password`、`nickname`。
+`mq-switch` 的 `before-change` 可以返回 `false` 或一个最终为 `false` 的 Promise，用来拦住切换。`mq-checkbox-group` 的 `max` 为 `0` 时不限制个数；已经选到 `min` 时不能再取消。`mq-input` 和 `mq-textarea`、`mq-search` 的 `maxlength` 小于 `0` 时传给原生控件 `-1`，表示不限制。`mq-input` 的 `type` 透传 `text`、`number`、`digit`、`idcard`、`tel`、`safe-password`、`nickname`。
+
+`mq-slider` 把值吸到 `step` 上，并夹在 `min` 和 `max` 之间。拖动过程发出 `dragmove`，松开发出 `change`；只有发生过拖动才发出 `dragend`。`mq-rate` 在拿不到点击横坐标时按整星计算。`clearable` 时再点当前值会回到 `0`。`mq-collapse` 的 `accordion` 为 `false` 时 `v-model` 是名字数组，为 `true` 时是当前名字，全部收起是空字符串。`before-expand` 的参数是即将变成的展开状态。`mq-action-sheet` 受控方式和弹出层一样：选中或取消只把 `v-model` 设为 `false`。取消文案传空字符串可以藏掉取消行。底部会带一块安全区。
 
 `mq-popup` 的 `position`：`bottom` | `center`。它是受控的：遮罩和 Esc 只发出 `update:modelValue(false)`，父级把值改回 `false` 后才会收起并发出 `close`。`mask-closable` 为 `false` 时，遮罩和 Esc 都不关。`open` / `close` 跟 `modelValue` 的变化走，不重复发。过渡结束后卸载。
 

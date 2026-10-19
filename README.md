@@ -58,7 +58,18 @@ pnpm add @mosquito/ui
       "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
       "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
       "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
-      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue"
+      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue",
+      "^mq-textarea$": "@mosquito/ui/components/mq-textarea/MqTextarea.vue",
+      "^mq-slider$": "@mosquito/ui/components/mq-slider/MqSlider.vue",
+      "^mq-rate$": "@mosquito/ui/components/mq-rate/MqRate.vue",
+      "^mq-notice-bar$": "@mosquito/ui/components/mq-notice-bar/MqNoticeBar.vue",
+      "^mq-empty$": "@mosquito/ui/components/mq-empty/MqEmpty.vue",
+      "^mq-steps$": "@mosquito/ui/components/mq-steps/MqSteps.vue",
+      "^mq-step$": "@mosquito/ui/components/mq-step/MqStep.vue",
+      "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
+      "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
+      "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
+      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue"
     }
   }
 }
@@ -87,6 +98,15 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-badge` | 数字、上限、红点。`0` 默认不显示 |
 | `mq-divider` | 文本位置、虚线、垂直 |
 | `mq-progress` | `percentage` 限制在 0–100，可用 `status` 换色 |
+| `mq-textarea` | 多行输入，清空、字数、`auto-height`。`maxlength` 小于 0 时不限制 |
+| `mq-slider` | 单值滑块，`min` / `max` / `step`。`change` 为 `{ value }` |
+| `mq-rate` | 文字星号评分，可半星、可再点清空 |
+| `mq-notice-bar` | 通告。`info` 走主色，可关闭，需要时才滚动 |
+| `mq-empty` | 空状态。标记用伪元素，图片和底部用插槽 |
+| `mq-steps` / `mq-step` | 按顺序编号。`active` 之前为完成，当前为进行中 |
+| `mq-collapse` / `mq-collapse-item` | 多选或手风琴。`before-expand` 返回 `false` 时不展开 |
+| `mq-action-sheet` | 底部动作列表，复用弹出层。`select` 为 `{ item, index }` |
+| `mq-search` | 原生输入加文字按钮，不套输入框和按钮组件 |
 | `mq-popup` | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close` |
 | `mq-toast` | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主 |
 | `mq-loading` | 单节点旋转指示，可选 `size`、`color`、`label` |
@@ -144,7 +164,7 @@ mosquito-ui/
 
 ## 致谢
 
-交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮类型、变体和尺寸，单元格与分组，开关、复选、单选、输入框，标签、徽标、分割线和进度条，以及 `v-model` 弹出层、命令式 toast。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。
+交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮类型、变体和尺寸，单元格与分组，开关、复选、单选、输入框，标签、徽标、分割线和进度条，多行输入、滑块、评分、通告、空状态、步骤、折叠、动作面板和搜索，以及 `v-model` 弹出层、命令式 toast。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。滑块这一版只做单值，折叠不做「查看更多」。
 
 目录与性能结构参考了 [cool-unix](https://gitee.com/cool-team-official/cool-unix)（[GitHub](https://github.com/cool-team-official/cool-unix)，MIT）：`components/名称/名称` 的 easycom 习惯、`theme.json` 的明暗令牌拆分、安全区组件、`useUi().showToast` 这种命令式入口，以及 uni-app x 的 `list-view`。本仓库没有引入其 Tailwind、PassThrough 或 `cl-` 组件实现；主题做成 CSS 变量，安全区用 `env(safe-area-inset-bottom)`，toast 不再套一层 popup。
 

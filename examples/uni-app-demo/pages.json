@@ -18,7 +18,18 @@
       "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
       "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
       "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
-      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue"
+      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue",
+      "^mq-textarea$": "@mosquito/ui/components/mq-textarea/MqTextarea.vue",
+      "^mq-slider$": "@mosquito/ui/components/mq-slider/MqSlider.vue",
+      "^mq-rate$": "@mosquito/ui/components/mq-rate/MqRate.vue",
+      "^mq-notice-bar$": "@mosquito/ui/components/mq-notice-bar/MqNoticeBar.vue",
+      "^mq-empty$": "@mosquito/ui/components/mq-empty/MqEmpty.vue",
+      "^mq-steps$": "@mosquito/ui/components/mq-steps/MqSteps.vue",
+      "^mq-step$": "@mosquito/ui/components/mq-step/MqStep.vue",
+      "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
+      "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
+      "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
+      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue"
     }
   },
   "pages": [

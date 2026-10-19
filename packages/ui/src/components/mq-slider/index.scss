@@ -1,0 +1,28 @@
+.mq-slider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px 16px;
+}
+
+.mq-slider.is-disabled {
+  opacity: 0.45;
+}
+
+.mq-slider__control {
+  flex: 1;
+  margin: 0;
+}
+
+.mq-slider.has-edge .mq-slider__control {
+  margin: 0 8px;
+}
+
+.mq-slider__edge {
+  flex: none;
+  min-width: 24px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 12px;
+  text-align: center;
+}

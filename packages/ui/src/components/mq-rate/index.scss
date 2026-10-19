@@ -1,0 +1,38 @@
+.mq-rate {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--mq-rate-off, var(--mq-border, #e6e2da));
+  line-height: 1;
+}
+
+.mq-rate.is-disabled {
+  opacity: 0.45;
+}
+
+.mq-rate__star {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.mq-rate.is-disabled .mq-rate__star,
+.mq-rate.is-readonly .mq-rate__star {
+  cursor: default;
+}
+
+.mq-rate__base,
+.mq-rate__fill {
+  font-size: inherit;
+  line-height: 1;
+}
+
+.mq-rate__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  width: 0;
+  color: var(--mq-rate-on, var(--mq-color-warning, #b86e00));
+  white-space: nowrap;
+}

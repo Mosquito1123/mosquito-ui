@@ -1,0 +1,65 @@
+.mq-notice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 36px;
+  padding: 8px 16px;
+  color: var(--mq-color-warning, #b86e00);
+  background: var(--mq-bg-muted, #f6f1e8);
+  font-size: var(--mq-font-size, 14px);
+}
+
+.mq-notice.is-info {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-notice.is-danger {
+  color: var(--mq-color-danger, #b42318);
+}
+
+.mq-notice__prefix {
+  flex: none;
+  margin-right: 8px;
+}
+
+.mq-notice__body {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.mq-notice__text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mq-notice.is-wrap .mq-notice__text {
+  white-space: normal;
+}
+
+.mq-notice__text.is-scroll {
+  display: inline-block;
+  padding-left: 100%;
+  text-overflow: clip;
+  animation: mq-notice-marquee 12s linear infinite;
+}
+
+.mq-notice__close {
+  flex: none;
+  margin-left: 8px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+@keyframes mq-notice-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
