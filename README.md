@@ -21,6 +21,8 @@ pnpm typecheck
 pnpm test
 ```
 
+`main` 的拉取请求会跑 GitHub Actions：`pnpm typecheck` 和 `pnpm test`。建议把检查项 **typecheck and test** 设成分支保护里的必过项。
+
 业务项目里：
 
 ```bash
