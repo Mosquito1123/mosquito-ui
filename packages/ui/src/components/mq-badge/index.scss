@@ -1,0 +1,61 @@
+.mq-badge {
+  position: relative;
+  display: inline-flex;
+}
+
+.mq-badge__value,
+.mq-badge__dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  background: var(--mq-color-danger, #b42318);
+  color: var(--mq-color-danger-text, #fff6f5);
+  transform: translate(40%, -40%);
+}
+
+.mq-badge__value {
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.mq-badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.mq-badge--square {
+  border-radius: 2px;
+}
+
+.mq-badge--primary {
+  background: var(--mq-color-primary, #0f3d32);
+  color: var(--mq-color-primary-text, #f7f4ee);
+}
+
+.mq-badge--success {
+  background: var(--mq-color-success, #2f7d4a);
+  color: var(--mq-color-success-text, #f4fbf6);
+}
+
+.mq-badge--warning {
+  background: var(--mq-color-warning, #b86e00);
+  color: var(--mq-color-warning-text, #fff8ee);
+}
+
+.mq-badge--danger {
+  background: var(--mq-color-danger, #b42318);
+  color: var(--mq-color-danger-text, #fff6f5);
+}
+
+.mq-badge__value.has-border,
+.mq-badge__dot.has-border {
+  box-shadow: 0 0 0 1px var(--mq-bg, #fffcf7);
+}

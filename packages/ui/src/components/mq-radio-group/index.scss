@@ -1,0 +1,13 @@
+.mq-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mq-radio-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.mq-radio-group--horizontal > .mq-radio {
+  margin-right: 16px;
+}

@@ -1,0 +1,111 @@
+.mq-tag {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  height: 22px;
+  margin: 0 8px 8px 0;
+  padding: 0 8px;
+  border: 1px solid var(--mq-border, #e6e2da);
+  border-radius: 4px;
+  background: var(--mq-bg-muted, #f6f1e8);
+  color: var(--mq-text, #1c1915);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.mq-tag--small {
+  height: 18px;
+  padding: 0 6px;
+  font-size: 10px;
+}
+
+.mq-tag--large {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.mq-tag--primary {
+  border-color: var(--mq-color-primary, #0f3d32);
+  background: var(--mq-color-primary, #0f3d32);
+  color: var(--mq-color-primary-text, #f7f4ee);
+}
+
+.mq-tag--success {
+  border-color: var(--mq-color-success, #2f7d4a);
+  background: var(--mq-color-success, #2f7d4a);
+  color: var(--mq-color-success-text, #f4fbf6);
+}
+
+.mq-tag--warning {
+  border-color: var(--mq-color-warning, #b86e00);
+  background: var(--mq-color-warning, #b86e00);
+  color: var(--mq-color-warning-text, #fff8ee);
+}
+
+.mq-tag--danger {
+  border-color: var(--mq-color-danger, #b42318);
+  background: var(--mq-color-danger, #b42318);
+  color: var(--mq-color-danger-text, #fff6f5);
+}
+
+.mq-tag--plain {
+  background: transparent;
+}
+
+.mq-tag--plain.mq-tag--primary {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-tag--plain.mq-tag--success {
+  color: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-tag--plain.mq-tag--warning {
+  color: var(--mq-color-warning, #b86e00);
+}
+
+.mq-tag--plain.mq-tag--danger {
+  color: var(--mq-color-danger, #b42318);
+}
+
+.mq-tag--light,
+.mq-tag--text {
+  border-color: transparent;
+  background: transparent;
+}
+
+.mq-tag--light.mq-tag--primary,
+.mq-tag--text.mq-tag--primary {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-tag--light.mq-tag--success,
+.mq-tag--text.mq-tag--success {
+  color: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-tag--light.mq-tag--warning,
+.mq-tag--text.mq-tag--warning {
+  color: var(--mq-color-warning, #b86e00);
+}
+
+.mq-tag--light.mq-tag--danger,
+.mq-tag--text.mq-tag--danger {
+  color: var(--mq-color-danger, #b42318);
+}
+
+.mq-tag--light {
+  background: var(--mq-bg-muted, #f6f1e8);
+}
+
+.mq-tag--round {
+  border-radius: 999px;
+}
+
+.mq-tag__close {
+  margin-left: 4px;
+  font-size: 14px;
+  line-height: 1;
+}

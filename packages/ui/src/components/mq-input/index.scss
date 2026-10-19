@@ -1,0 +1,57 @@
+.mq-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--mq-border, #e6e2da);
+  border-radius: var(--mq-radius, 8px);
+  background: var(--mq-bg, #fffcf7);
+  color: var(--mq-text, #1c1915);
+}
+
+.mq-input.is-compact {
+  min-height: 28px;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+}
+
+.mq-input.is-error {
+  border-color: var(--mq-color-danger, #b42318);
+}
+
+.mq-input.is-disabled {
+  opacity: 0.45;
+}
+
+.mq-input__control {
+  flex: 1;
+  min-width: 0;
+  height: 34px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: var(--mq-font-size, 14px);
+}
+
+.mq-input.is-align-right .mq-input__control {
+  text-align: right;
+}
+
+.mq-input__clear,
+.mq-input__toggle,
+.mq-input__count {
+  flex: none;
+  margin-left: 8px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.mq-input__clear {
+  font-size: 16px;
+}

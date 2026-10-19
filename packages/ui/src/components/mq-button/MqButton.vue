@@ -23,7 +23,9 @@ defineOptions({
 
 const props = withDefaults(defineProps<MqButtonProps>(), {
   type: 'default',
+  variant: 'base',
   size: 'medium',
+  round: false,
   block: false,
   disabled: false,
   loading: false,
@@ -35,9 +37,11 @@ const inactive = computed(() => props.disabled || props.loading)
 
 const rootClass = computed(() => [
   `mq-button--${props.type}`,
+  `mq-button--${props.variant}`,
   `mq-button--${props.size}`,
   {
     'mq-button--block': props.block,
+    'mq-button--round': props.round,
     'is-disabled': props.disabled,
     'is-loading': props.loading,
   },

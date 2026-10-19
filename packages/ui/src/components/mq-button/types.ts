@@ -1,12 +1,18 @@
 export type MqButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger'
 
-export type MqButtonSize = 'small' | 'medium' | 'large'
+export type MqButtonVariant = 'base' | 'plain' | 'text'
+
+export type MqButtonSize = 'mini' | 'small' | 'medium' | 'large'
 
 export interface MqButtonProps {
   /** `default` | `primary` | `success` | `warning` | `danger` */
   type?: MqButtonType
-  /** `small` | `medium` | `large` */
+  /** `base` 实心，`plain` 镂空，`text` 无边框。 */
+  variant?: MqButtonVariant
+  /** `mini` | `small` | `medium` | `large` */
   size?: MqButtonSize
+  /** 胶囊圆角。 */
+  round?: boolean
   /** 撑满父级宽度。 */
   block?: boolean
   /** 不可点，不发出 `click`。 */

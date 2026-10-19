@@ -7,7 +7,18 @@
       "^mq-popup$": "@mosquito/ui/components/mq-popup/MqPopup.vue",
       "^mq-toast$": "@mosquito/ui/components/mq-toast/MqToast.vue",
       "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
-      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue"
+      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue",
+      "^mq-cell-group$": "@mosquito/ui/components/mq-cell-group/MqCellGroup.vue",
+      "^mq-switch$": "@mosquito/ui/components/mq-switch/MqSwitch.vue",
+      "^mq-checkbox$": "@mosquito/ui/components/mq-checkbox/MqCheckbox.vue",
+      "^mq-checkbox-group$": "@mosquito/ui/components/mq-checkbox-group/MqCheckboxGroup.vue",
+      "^mq-radio$": "@mosquito/ui/components/mq-radio/MqRadio.vue",
+      "^mq-radio-group$": "@mosquito/ui/components/mq-radio-group/MqRadioGroup.vue",
+      "^mq-input$": "@mosquito/ui/components/mq-input/MqInput.vue",
+      "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
+      "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
+      "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
+      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue"
     }
   },
   "pages": [

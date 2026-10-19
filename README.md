@@ -47,7 +47,18 @@ pnpm add @mosquito/ui
       "^mq-popup$": "@mosquito/ui/components/mq-popup/MqPopup.vue",
       "^mq-toast$": "@mosquito/ui/components/mq-toast/MqToast.vue",
       "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
-      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue"
+      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue",
+      "^mq-cell-group$": "@mosquito/ui/components/mq-cell-group/MqCellGroup.vue",
+      "^mq-switch$": "@mosquito/ui/components/mq-switch/MqSwitch.vue",
+      "^mq-checkbox$": "@mosquito/ui/components/mq-checkbox/MqCheckbox.vue",
+      "^mq-checkbox-group$": "@mosquito/ui/components/mq-checkbox-group/MqCheckboxGroup.vue",
+      "^mq-radio$": "@mosquito/ui/components/mq-radio/MqRadio.vue",
+      "^mq-radio-group$": "@mosquito/ui/components/mq-radio-group/MqRadioGroup.vue",
+      "^mq-input$": "@mosquito/ui/components/mq-input/MqInput.vue",
+      "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
+      "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
+      "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
+      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue"
     }
   }
 }
@@ -65,8 +76,17 @@ import { MqButton, showToast } from '@mosquito/ui'
 
 | 组件 | 能力 |
 | --- | --- |
-| `mq-button` | `type` / `size` / `block` / `disabled` / `loading`，发出 `click`。禁用和加载中不发出 |
-| `mq-cell` | `title` / `value` / `is-link` / `disabled`。`value` 为 `0` 会显示，禁用不发出 `click` |
+| `mq-button` | `type` / `variant` / `size` / `round` / `block` / `disabled` / `loading`。禁用和加载中不发出 `click` |
+| `mq-cell` | `title` / `value` / `label` / `is-link` / `clickable` / `disabled` / `required`。右侧可放插槽 |
+| `mq-cell-group` | 分组标题、分割线和圆角卡片 |
+| `mq-switch` | `v-model`，可换开关值、颜色和尺寸。`before-change` 返回 `false` 时不切换 |
+| `mq-checkbox` / `mq-checkbox-group` | 可单独绑定，也可按组多选，支持 `min` / `max` |
+| `mq-radio` / `mq-radio-group` | 组内单选，`type="button"` 变成按钮，`allow-uncheck` 可取消 |
+| `mq-input` | `v-model`、清空、字数、密码显隐、`compact` 放进单元格 |
+| `mq-tag` | 类型、镂空、浅色、圆角、可关闭 |
+| `mq-badge` | 数字、上限、红点。`0` 默认不显示 |
+| `mq-divider` | 文本位置、虚线、垂直 |
+| `mq-progress` | `percentage` 限制在 0–100，可用 `status` 换色 |
 | `mq-popup` | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close` |
 | `mq-toast` | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主 |
 | `mq-loading` | 单节点旋转指示，可选 `size`、`color`、`label` |
@@ -124,7 +144,7 @@ mosquito-ui/
 
 ## 致谢
 
-交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮类型与尺寸、单元格、`v-model` 弹出层、命令式 toast。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名。
+交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮类型、变体和尺寸，单元格与分组，开关、复选、单选、输入框，标签、徽标、分割线和进度条，以及 `v-model` 弹出层、命令式 toast。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。
 
 目录与性能结构参考了 [cool-unix](https://gitee.com/cool-team-official/cool-unix)（[GitHub](https://github.com/cool-team-official/cool-unix)，MIT）：`components/名称/名称` 的 easycom 习惯、`theme.json` 的明暗令牌拆分、安全区组件、`useUi().showToast` 这种命令式入口，以及 uni-app x 的 `list-view`。本仓库没有引入其 Tailwind、PassThrough 或 `cl-` 组件实现；主题做成 CSS 变量，安全区用 `env(safe-area-inset-bottom)`，toast 不再套一层 popup。
 
