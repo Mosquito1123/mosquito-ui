@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-read-more" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：折叠高度与渐变遮罩后续单独适配。
+defineOptions({
+  name: 'mq-read-more',
+})
+</script>

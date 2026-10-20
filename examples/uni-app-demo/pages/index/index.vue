@@ -22,11 +22,13 @@ import {
   MqDivider,
   MqEmpty,
   MqFloatingPanel,
+  MqFloatView,
   MqGap,
   MqImg,
   MqInput,
   MqInputNumber,
   MqLoading,
+  MqMarquee,
   MqNavbar,
   MqNoticeBar,
   MqNotify,
@@ -36,12 +38,15 @@ import {
   MqRadio,
   MqRadioGroup,
   MqRate,
+  MqReadMore,
   MqSafeBottom,
   MqSearch,
   MqSegmented,
+  MqSelect,
   MqSignature,
   MqSkeleton,
   MqSlider,
+  MqSlideVerify,
   MqStep,
   MqSteps,
   MqSwitch,
@@ -52,13 +57,15 @@ import {
   MqTabs,
   MqTag,
   MqTextarea,
+  MqTimeline,
+  MqTimelineItem,
   MqToast,
   MqUpload,
   hideToast,
   showNotify,
   showToast,
 } from '@mosquito/ui'
-import type { MqCascaderOption, MqTableColumn } from '@mosquito/ui'
+import type { MqCascaderOption, MqSelectOption, MqTableColumn } from '@mosquito/ui'
 
 const centerVisible = ref(false)
 const sheetVisible = ref(false)
@@ -198,6 +205,34 @@ const regionLabel = computed(() => {
 function onSignature(result: { tempFilePath: string }) {
   showToast(result.tempFilePath ? '签名已导出' : '导出失败')
 }
+
+const selectVisible = ref(false)
+const selectValue = ref<string | number>('hz')
+const selectOptions: MqSelectOption[] = [
+  { label: '杭州', value: 'hz' },
+  { label: '宁波', value: 'nb' },
+  { label: '南京', value: 'nj' },
+  { label: '苏州', value: 'sz' },
+]
+const multiVisible = ref(false)
+const multiValue = ref<Array<string | number>>(['hz'])
+const tagOptions: MqSelectOption[] = [
+  { label: '包邮', value: 'free' },
+  { label: '次日达', value: 'next' },
+  { label: '支持退换', value: 'refund' },
+]
+const verified = ref(false)
+
+const selectLabel = computed(
+  () => selectOptions.find((item) => item.value === selectValue.value)?.label || '请选择',
+)
+
+const multiLabel = computed(() => {
+  const labels = multiValue.value
+    .map((value) => tagOptions.find((item) => item.value === value)?.label)
+    .filter(Boolean)
+  return labels.length ? labels.join('、') : '请选择'
+})
 
 const bgChoices = [
   { bg: 'transparent', label: '透明', ink: '#6f675e' },
@@ -423,6 +458,46 @@ function flashNotify() {
       <mq-button block @click="panelOpen = true">打开浮动面板</mq-button>
     </view>
 
+    <mq-divider>时间线、选择和验证</mq-divider>
+
+    <view class="demo__field">
+      <mq-marquee
+        text="今日订单已更新，点击查看配送进度；本周满减活动进行中。"
+        :duration="10"
+        @click="showToast('点了跑马灯')"
+      />
+    </view>
+
+    <mq-cell title="单选城市" :value="selectLabel" is-link @click="selectVisible = true" />
+    <mq-cell title="多选标签" :value="multiLabel" is-link @click="multiVisible = true" />
+
+    <view class="demo__field">
+      <mq-slide-verify
+        v-model="verified"
+        @success="showToast('验证通过')"
+        @fail="showToast('再试一次')"
+      />
+    </view>
+
+    <view class="demo__field">
+      <mq-read-more
+        text="轻量组件库优先保证运行时开销可控：列表只渲染必要节点，弹层复用一个遮罩，动画尽量交给 CSS。长文本默认折叠，展开后再完整显示，避免首屏被一段说明撑高。这里是一段用于演示折叠效果的占位文本，可以替换成协议、商品详情或帮助说明。"
+        :max-height="72"
+      />
+    </view>
+
+    <view class="demo__field">
+      <mq-timeline>
+        <mq-timeline-item title="下单" time="09:20" active>订单已创建，等待支付</mq-timeline-item>
+        <mq-timeline-item title="发货" time="14:05">仓库已出库，运输中</mq-timeline-item>
+        <mq-timeline-item title="签收" time="待定">等待收货</mq-timeline-item>
+      </mq-timeline>
+    </view>
+
+    <mq-float-view :x="300" :y="540" :width="52" :height="52" @click="showToast('点了悬浮窗')">
+      <view class="demo__float">+</view>
+    </mq-float-view>
+
     <mq-divider>反馈和导航</mq-divider>
 
     <view class="demo__field">
@@ -608,6 +683,23 @@ function flashNotify() {
       </view>
     </mq-floating-panel>
 
+    <mq-select
+      v-model="selectValue"
+      v-model:visible="selectVisible"
+      title="选择城市"
+      searchable
+      placeholder="搜索城市"
+      :options="selectOptions"
+    />
+
+    <mq-select
+      v-model="multiValue"
+      v-model:visible="multiVisible"
+      title="选择标签"
+      multiple
+      :options="tagOptions"
+    />
+
     <mq-toast />
     <mq-notify />
 
@@ -714,5 +806,19 @@ function flashNotify() {
   display: block;
   padding: 8px 16px 0;
   font-size: 12px;
+}
+
+.demo__float {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  color: #f7f4ee;
+  font-size: 22px;
+  background: var(--mq-color-primary, #0f3d32);
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(15, 61, 50, 0.32);
 }
 </style>

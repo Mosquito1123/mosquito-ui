@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-slide-verify" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：滑动手势与节点测量后续单独适配。
+defineOptions({
+  name: 'mq-slide-verify',
+})
+</script>

@@ -1,0 +1,34 @@
+.mq-marquee {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  background: var(--mq-bg, #fffcf7);
+}
+
+.mq-marquee__track {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  animation-name: mq-marquee-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.mq-marquee__item {
+  flex-shrink: 0;
+  padding-right: 48px;
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+}
+
+@keyframes mq-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

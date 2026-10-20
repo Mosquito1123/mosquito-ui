@@ -1,0 +1,10 @@
+.mq-timeline {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.mq-timeline.is-reverse {
+  flex-direction: column-reverse;
+}

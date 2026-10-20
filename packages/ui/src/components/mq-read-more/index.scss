@@ -1,0 +1,49 @@
+.mq-read-more {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.mq-read-more__content {
+  position: relative;
+  overflow: hidden;
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.6;
+  transition: max-height 0.2s ease;
+}
+
+.mq-read-more__content.is-collapsed::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 32px;
+  background: linear-gradient(180deg, rgba(255, 252, 247, 0), var(--mq-bg, #fffcf7));
+  content: '';
+  pointer-events: none;
+}
+
+.mq-read-more__toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
+  cursor: pointer;
+}
+
+.mq-read-more__toggle-text {
+  color: var(--mq-color-primary, #0f3d32);
+  font-size: 13px;
+}
+
+.mq-read-more__arrow {
+  margin-left: 2px;
+  color: var(--mq-color-primary, #0f3d32);
+  font-size: 11px;
+}
+
+.mq-read-more.is-disabled .mq-read-more__toggle {
+  opacity: 0.4;
+  pointer-events: none;
+}

@@ -1,0 +1,12 @@
+.mq-float-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  touch-action: none;
+  transition: transform 0.18s ease;
+}
+
+.mq-float-view.is-dragging {
+  transition: none;
+}

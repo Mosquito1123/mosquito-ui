@@ -128,7 +128,14 @@ pnpm add @mosquito/ui
       "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
       "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
       "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
-      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue"
+      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue",
+      "^mq-timeline$": "@mosquito/ui/components/mq-timeline/MqTimeline.vue",
+      "^mq-timeline-item$": "@mosquito/ui/components/mq-timeline-item/MqTimelineItem.vue",
+      "^mq-select$": "@mosquito/ui/components/mq-select/MqSelect.vue",
+      "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
+      "^mq-float-view$": "@mosquito/ui/components/mq-float-view/MqFloatView.vue",
+      "^mq-read-more$": "@mosquito/ui/components/mq-read-more/MqReadMore.vue",
+      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue"
     }
   }
 }
@@ -203,6 +210,12 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-drop-menu` / `mq-drop-menu-item` | 下拉筛选菜单，支持上下展开、蒙层与自定义选项 |
 | `mq-floating-panel` | 可拖动吸附的底部浮动面板 |
 | `mq-signature` | Canvas 签名板，支持撤回、清空和导出图片 |
+| `mq-timeline` / `mq-timeline-item` | 时间线，支持节点标题、时间、高亮和自定义线色 |
+| `mq-select` | 底部弹层选择器，支持单选 / 多选与本地搜索 |
+| `mq-slide-verify` | 滑动验证，阈值可调，支持受控和重置 |
+| `mq-float-view` | 可拖动悬浮窗，自动限制在窗口范围内 |
+| `mq-read-more` | 长文本折叠 / 展开，支持插槽与渐变遮罩 |
+| `mq-marquee` | 文字跑马灯，可调方向和滚动时长 |
 | `mq-config-provider` | 主题与 CSS 变量作用域 |
 | `mq-curtain` | 幕帘公告图 |
 | `mq-index-bar` / `mq-index-anchor` | 索引栏 |
@@ -268,7 +281,7 @@ mosquito-ui/
 
 ## 致谢
 
-交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏、标签栏和宫格用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版补上了日历、日期时间、级联、选择器、上传、表格、下拉菜单、浮动面板、签名、叠层头像和图片，仍不做二维码和图标字体。
+交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏、标签栏和宫格用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版补上了日历、日期时间、级联、选择器、上传、表格、下拉菜单、浮动面板、签名、时间线、滑动验证、悬浮窗、折叠文本、跑马灯、叠层头像和图片，仍不做二维码和图标字体。
 
 目录与性能结构参考了 [cool-unix](https://gitee.com/cool-team-official/cool-unix)（[GitHub](https://github.com/cool-team-official/cool-unix)，MIT）：`components/名称/名称` 的 easycom 习惯、`theme.json` 的明暗令牌拆分、安全区组件、`useUi().showToast` 这种命令式入口，以及 uni-app x 的 `list-view`。本仓库没有引入其 Tailwind、PassThrough 或 `cl-` 组件实现；主题做成 CSS 变量，安全区用 `env(safe-area-inset-bottom)`，toast 不再套一层 popup。
 

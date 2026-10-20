@@ -86,7 +86,14 @@
       "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
       "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
       "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
-      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue"
+      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue",
+      "^mq-timeline$": "@mosquito/ui/components/mq-timeline/MqTimeline.vue",
+      "^mq-timeline-item$": "@mosquito/ui/components/mq-timeline-item/MqTimelineItem.vue",
+      "^mq-select$": "@mosquito/ui/components/mq-select/MqSelect.vue",
+      "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
+      "^mq-float-view$": "@mosquito/ui/components/mq-float-view/MqFloatView.vue",
+      "^mq-read-more$": "@mosquito/ui/components/mq-read-more/MqReadMore.vue",
+      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue"
     }
   },
   "pages": [

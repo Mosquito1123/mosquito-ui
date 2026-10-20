@@ -83,6 +83,13 @@ export { default as MqDropMenu } from './components/mq-drop-menu/MqDropMenu.vue'
 export { default as MqDropMenuItem } from './components/mq-drop-menu-item/MqDropMenuItem.vue'
 export { default as MqFloatingPanel } from './components/mq-floating-panel/MqFloatingPanel.vue'
 export { default as MqSignature } from './components/mq-signature/MqSignature.vue'
+export { default as MqTimeline } from './components/mq-timeline/MqTimeline.vue'
+export { default as MqTimelineItem } from './components/mq-timeline-item/MqTimelineItem.vue'
+export { default as MqSelect } from './components/mq-select/MqSelect.vue'
+export { default as MqSlideVerify } from './components/mq-slide-verify/MqSlideVerify.vue'
+export { default as MqFloatView } from './components/mq-float-view/MqFloatView.vue'
+export { default as MqReadMore } from './components/mq-read-more/MqReadMore.vue'
+export { default as MqMarquee } from './components/mq-marquee/MqMarquee.vue'
 
 export type { MqButtonEmits, MqButtonProps, MqButtonSize, MqButtonType, MqButtonVariant } from './components/mq-button/types'
 export type { MqCellEmits, MqCellProps } from './components/mq-cell/types'
@@ -308,6 +315,33 @@ export type {
 } from './components/mq-signature/types'
 export type { MqDatetimeColumnType, MqDatetimeType } from './utils/datetime'
 export type { MqCascaderOption } from './utils/cascader'
+export type { MqTimelineProps } from './components/mq-timeline/types'
+export type { MqTimelineItemEmits, MqTimelineItemProps } from './components/mq-timeline-item/types'
+export type {
+  MqSelectEmits,
+  MqSelectExpose,
+  MqSelectPayload,
+  MqSelectProps,
+} from './components/mq-select/types'
+export type {
+  MqSlideVerifyChangePayload,
+  MqSlideVerifyEmits,
+  MqSlideVerifyExpose,
+  MqSlideVerifyProps,
+} from './components/mq-slide-verify/types'
+export type {
+  MqFloatViewEmits,
+  MqFloatViewExpose,
+  MqFloatViewPosition,
+  MqFloatViewProps,
+} from './components/mq-float-view/types'
+export type {
+  MqReadMoreEmits,
+  MqReadMoreExpose,
+  MqReadMoreProps,
+} from './components/mq-read-more/types'
+export type { MqMarqueeEmits, MqMarqueeProps } from './components/mq-marquee/types'
+export type { MqSelectOption, MqSelectValue } from './utils/select'
 export type { MqOptionValue } from './utils/model'
 
 export { hideToast, showToast, toastState } from './utils/toast'

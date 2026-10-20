@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-marquee" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：跑马灯依赖 CSS 动画，后续单独适配。
+defineOptions({
+  name: 'mq-marquee',
+})
+</script>
