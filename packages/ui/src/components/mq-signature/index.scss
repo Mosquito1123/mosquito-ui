@@ -1,0 +1,51 @@
+.mq-signature {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  background: var(--mq-bg, #fffcf7);
+  border-radius: var(--mq-radius, 8px);
+}
+
+.mq-signature__stage {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.mq-signature__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mq-signature.is-disabled .mq-signature__stage {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.mq-signature__footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  border-top: 1px solid var(--mq-border-light, #f0ece4);
+}
+
+.mq-signature__action {
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: var(--mq-font-size, 14px);
+  cursor: pointer;
+}
+
+.mq-signature__action.is-confirm {
+  color: var(--mq-color-primary, #0f3d32);
+  font-weight: 600;
+}
+
+.mq-signature__action.is-off {
+  opacity: 0.4;
+  pointer-events: none;
+}

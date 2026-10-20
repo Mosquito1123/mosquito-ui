@@ -98,7 +98,14 @@ pnpm add @mosquito/ui
       "^mq-picker$": "@mosquito/ui/components/mq-picker/MqPicker.vue",
       "^mq-table$": "@mosquito/ui/components/mq-table/MqTable.vue",
       "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
-      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue"
+      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue",
+      "^mq-datetime-picker-view$": "@mosquito/ui/components/mq-datetime-picker-view/MqDatetimePickerView.vue",
+      "^mq-datetime-picker$": "@mosquito/ui/components/mq-datetime-picker/MqDatetimePicker.vue",
+      "^mq-cascader$": "@mosquito/ui/components/mq-cascader/MqCascader.vue",
+      "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
+      "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
+      "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
+      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue"
     }
   },
   "pages": [
@@ -193,6 +200,13 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 | `mq-table` | `data` `columns` `border` `stripe` `size` `row-key` `loading` `empty-text` `align` `header-bg` | `row-click` `cell-click`。插槽 `cell`、`cell-字段名`、`header`、`header-字段名` |
 | `mq-calendar` | `v-model` `mode` `min-date` `max-date` `first-day-of-week` `show-confirm` `disabled-date` `month` | `change` `confirm` `month-change` |
 | `mq-upload` | `v-model` `max-count` `multiple` `accept` `action` `custom-upload` `before-upload` `max-size` `preview` | `change` `success` `error` `remove` `oversize` |
+| `mq-datetime-picker-view` | `v-model` `type` `min-date` `max-date` `use-second` `item-height` `visible-item-count` `formatter` | `change` `pickstart` `pickend`。方法 `getSelectedOptions` `getOriginColumns` `correctValue` |
+| `mq-datetime-picker` | `v-model` `v-model:visible` `type` `title` `before-confirm` `mask-closable` `safe-area` `min-date` `max-date` `use-second` | `confirm` `cancel` `open` `close` `change`。方法 `open` `close` |
+| `mq-cascader` | `v-model` `v-model:visible` `options` `title` `check-strictly` `before-confirm` `mask-closable` `safe-area` | `confirm` `cancel` `open` `close`。方法 `open` `close` |
+| `mq-drop-menu` | `direction` `modal` `close-on-click-modal` `duration` `z-index` | 方法 `close` |
+| `mq-drop-menu-item` | `v-model` `options` `title` `disabled` `placeholder` `before-toggle` `popup-height` | `change` `open` `opened` `close` `closed`。方法 `open` `close` `toggle` `getShowPop` |
+| `mq-floating-panel` | `v-model:height` `anchors` `duration` `content-draggable` `safe-area` `show-scrollbar` | `heightChange`。方法 `moveTo` |
+| `mq-signature` | `pen-color` `line-width` `height` `width` `background-color` `file-type` `quality` `export-scale` `enable-history` `disabled` | `start` `signing` `end` `confirm` `clear`。方法 `init` `confirm` `clear` `revoke` `restore` |
 | `mq-config-provider` | `theme` `theme-vars` | 无 |
 | `mq-curtain` | 幕帘图弹层，`close-position` | `click` `close` |
 | `mq-index-bar` / `mq-index-anchor` | 索引栏，`sticky` | `select` `change` |
@@ -208,7 +222,7 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 
 `mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`variant`：`base` | `plain` | `text`。`size`：`mini` | `small` | `medium` | `large`。
 
-这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏和宫格用 `mark` 文字，悬浮按钮用 `+` / `×`，回到顶部用 `↑`，排序用 `▲`/`▼`。对话框、动作面板、幕帘复用遮罩思路。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数。栅格是 24 列；吸顶走 CSS `position: sticky`。表单校验走轻量 `schema.validate`，不内置 Zod。气泡 / 滑动操作可在页面根节点调用 `closeOutside()`。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
+这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏和宫格用 `mark` 文字，悬浮按钮用 `+` / `×`，回到顶部用 `↑`，排序用 `▲`/`▼`。对话框、动作面板、幕帘复用遮罩思路。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数。栅格是 24 列；吸顶走 CSS `position: sticky`。表单校验走轻量 `schema.validate`，不内置 Zod。气泡 / 下拉菜单 / 滑动操作可在页面根节点调用 `closeOutside()`。日期时间滚轮复用平台 `picker-view`，级联用逐级面板而不是滚轮，签名走 `canvas`。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
 
 ```vue
 <mq-cell-group title="配送" insert border>

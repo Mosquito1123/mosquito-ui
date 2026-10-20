@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-datetime-picker-view" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：滚轮列依赖平台 picker-view 的 uvue 实现，后续单独适配。
+defineOptions({
+  name: 'mq-datetime-picker-view',
+})
+</script>

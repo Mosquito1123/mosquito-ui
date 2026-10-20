@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-floating-panel" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：拖拽手势与滚动容器事件后续单独适配。
+defineOptions({
+  name: 'mq-floating-panel',
+})
+</script>

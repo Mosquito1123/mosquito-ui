@@ -7,6 +7,7 @@ import {
   MqBadge,
   MqButton,
   MqCalendar,
+  MqCascader,
   MqCell,
   MqCellGroup,
   MqCheckbox,
@@ -14,9 +15,13 @@ import {
   MqCollapse,
   MqCollapseItem,
   MqCountdown,
+  MqDatetimePicker,
   MqDialog,
+  MqDropMenu,
+  MqDropMenuItem,
   MqDivider,
   MqEmpty,
+  MqFloatingPanel,
   MqGap,
   MqImg,
   MqInput,
@@ -34,6 +39,7 @@ import {
   MqSafeBottom,
   MqSearch,
   MqSegmented,
+  MqSignature,
   MqSkeleton,
   MqSlider,
   MqStep,
@@ -52,7 +58,7 @@ import {
   showNotify,
   showToast,
 } from '@mosquito/ui'
-import type { MqTableColumn } from '@mosquito/ui'
+import type { MqCascaderOption, MqTableColumn } from '@mosquito/ui'
 
 const centerVisible = ref(false)
 const sheetVisible = ref(false)
@@ -134,6 +140,63 @@ const cityLabel = computed(() => {
 
 function onTableRow(row: Record<string, unknown>) {
   showToast(`${String(row.name)} 行`)
+}
+
+const datetimeVisible = ref(false)
+const datetimeValue = ref(Date.now())
+const cascadeVisible = ref(false)
+const region = ref<string | number>('hz')
+const regionOptions: MqCascaderOption[] = [
+  {
+    value: 'zj',
+    text: '浙江',
+    children: [
+      { value: 'hz', text: '杭州' },
+      { value: 'nb', text: '宁波' },
+    ],
+  },
+  {
+    value: 'js',
+    text: '江苏',
+    children: [
+      { value: 'nj', text: '南京' },
+      { value: 'sz', text: '苏州' },
+    ],
+  },
+]
+const sortValue = ref<string | number>('default')
+const sortOptions = [
+  { label: '默认排序', value: 'default' },
+  { label: '价格从低到高', value: 'price-asc' },
+  { label: '销量优先', value: 'sales' },
+]
+const filter = ref<string | number>('all')
+const filterOptions = [
+  { label: '全部', value: 'all' },
+  { label: '待付款', value: 'unpaid', tip: '下单 30 分钟内' },
+  { label: '已发货', value: 'shipped' },
+]
+const panelHeight = ref(120)
+const panelOpen = ref(false)
+
+const datetimeLabel = computed(() => {
+  const date = new Date(datetimeValue.value)
+  const pad = (value: number) => String(value).padStart(2, '0')
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`
+})
+
+const regionLabel = computed(() => {
+  for (const province of regionOptions) {
+    const city = province.children?.find((item) => item.value === region.value)
+    if (city) {
+      return `${province.text} / ${city.text}`
+    }
+  }
+  return '请选择'
+})
+
+function onSignature(result: { tempFilePath: string }) {
+  showToast(result.tempFilePath ? '签名已导出' : '导出失败')
 }
 
 const bgChoices = [
@@ -335,6 +398,31 @@ function flashNotify() {
       />
     </view>
 
+    <mq-divider>日期、级联和手写</mq-divider>
+
+    <mq-cell title="日期时间" :value="datetimeLabel" is-link @click="datetimeVisible = true" />
+    <mq-cell title="地区" :value="regionLabel" is-link @click="cascadeVisible = true" />
+
+    <view class="demo__field">
+      <mq-drop-menu>
+        <mq-drop-menu-item v-model="filter" title="筛选" :options="filterOptions" />
+        <mq-drop-menu-item v-model="sortValue" title="排序" :options="sortOptions" />
+      </mq-drop-menu>
+    </view>
+
+    <view class="demo__field">
+      <mq-signature
+        :export-scale="2"
+        background-color="#fffcf7"
+        :height="200"
+        @confirm="onSignature"
+      />
+    </view>
+
+    <view class="demo__field">
+      <mq-button block @click="panelOpen = true">打开浮动面板</mq-button>
+    </view>
+
     <mq-divider>反馈和导航</mq-divider>
 
     <view class="demo__field">
@@ -493,6 +581,32 @@ function flashNotify() {
       </view>
       <mq-safe-bottom />
     </mq-popup>
+
+    <mq-datetime-picker
+      v-model="datetimeValue"
+      v-model:visible="datetimeVisible"
+      title="选择日期时间"
+      :use-second="false"
+    />
+
+    <mq-cascader
+      v-model="region"
+      v-model:visible="cascadeVisible"
+      title="选择地区"
+      :options="regionOptions"
+    />
+
+    <mq-floating-panel
+      v-if="panelOpen"
+      v-model:height="panelHeight"
+      :anchors="[120, 320]"
+      safe-area
+    >
+      <view class="demo__field">
+        <text class="demo__note">拖动顶部横条，或直接在内容区下拉。</text>
+        <mq-button size="small" type="primary" @click="panelOpen = false">收起面板</mq-button>
+      </view>
+    </mq-floating-panel>
 
     <mq-toast />
     <mq-notify />

@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-datetime-picker" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：弹窗与滚轮列依赖平台实现，后续单独适配。
+defineOptions({
+  name: 'mq-datetime-picker',
+})
+</script>

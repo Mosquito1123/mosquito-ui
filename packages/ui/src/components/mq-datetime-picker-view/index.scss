@@ -1,0 +1,16 @@
+.mq-datetime-picker-view {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--mq-bg, #fffcf7);
+}
+
+.mq-datetime-picker-view__item {
+  box-sizing: border-box;
+  overflow: hidden;
+  color: var(--mq-text-color, #2f2a24);
+  font-size: 15px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

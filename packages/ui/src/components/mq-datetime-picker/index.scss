@@ -1,0 +1,42 @@
+.mq-datetime-picker__panel {
+  background: var(--mq-bg, #fffcf7);
+}
+
+.mq-datetime-picker__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--mq-border, #e6e2da);
+}
+
+.mq-datetime-picker__action {
+  flex-shrink: 0;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: var(--mq-font-size, 14px);
+  cursor: pointer;
+}
+
+.mq-datetime-picker__action.is-confirm {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-datetime-picker__action.is-pending {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.mq-datetime-picker__title {
+  flex: 1;
+  padding: 0 12px;
+  overflow: hidden;
+  color: var(--mq-text, #1c1915);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-cascader" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：级联面板依赖弹窗与滚动视图，后续单独适配。
+defineOptions({
+  name: 'mq-cascader',
+})
+</script>
