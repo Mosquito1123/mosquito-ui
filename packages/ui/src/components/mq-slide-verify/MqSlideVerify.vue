@@ -89,7 +89,7 @@ function measure() {
     .in(instance?.proxy)
     .select('.mq-slide-verify__track')
     .boundingClientRect((rect) => {
-      trackWidth.value = Number(rect?.width) || 0
+      trackWidth.value = Array.isArray(rect) ? 0 : Number(rect?.width) || 0
     })
     .exec()
 }

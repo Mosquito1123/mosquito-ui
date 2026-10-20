@@ -25,11 +25,21 @@ export interface UniCanvasToTempFilePathOptions {
   fail?: (error: unknown) => void
 }
 
+export interface UniRect {
+  width?: number
+  height?: number
+  top?: number
+  right?: number
+  bottom?: number
+  left?: number
+}
+
 export interface UniSelectorQuery {
   in: (component: unknown) => UniSelectorQuery
   select: (selector: string) => UniSelectorQuery
+  selectAll: (selector: string) => UniSelectorQuery
   boundingClientRect: (
-    callback: (rect?: { width?: number; height?: number }) => void,
+    callback: (rect?: UniRect | UniRect[]) => void,
   ) => UniSelectorQuery
   exec: () => void
 }

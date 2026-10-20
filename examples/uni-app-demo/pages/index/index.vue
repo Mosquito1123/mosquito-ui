@@ -4,6 +4,7 @@ import {
   MqActionSheet,
   MqAvatar,
   MqAvatarGroup,
+  MqBanner,
   MqBadge,
   MqButton,
   MqCalendar,
@@ -17,6 +18,7 @@ import {
   MqCountdown,
   MqDatetimePicker,
   MqDialog,
+  MqDraggable,
   MqDropMenu,
   MqDropMenuItem,
   MqDivider,
@@ -39,6 +41,7 @@ import {
   MqRadioGroup,
   MqRate,
   MqReadMore,
+  MqRollingNumber,
   MqSafeBottom,
   MqSearch,
   MqSegmented,
@@ -60,7 +63,9 @@ import {
   MqTimeline,
   MqTimelineItem,
   MqToast,
+  MqTree,
   MqUpload,
+  MqWaterfall,
   hideToast,
   showNotify,
   showToast,
@@ -222,6 +227,51 @@ const tagOptions: MqSelectOption[] = [
   { label: '支持退换', value: 'refund' },
 ]
 const verified = ref(false)
+
+const treeExpanded = ref<Array<string | number>>(['zj'])
+const treeChecked = ref<Array<string | number>>(['hz'])
+const treeData = [
+  {
+    label: '浙江',
+    value: 'zj',
+    children: [
+      { label: '杭州', value: 'hz' },
+      { label: '宁波', value: 'nb' },
+    ],
+  },
+  {
+    label: '江苏',
+    value: 'js',
+    children: [{ label: '南京', value: 'nj' }],
+  },
+]
+
+const waterfallData = [
+  { title: '运费说明', height: 72 },
+  { title: '包装清单', height: 96 },
+  { title: '配送范围', height: 88 },
+  { title: '退换规则', height: 68 },
+  { title: '发票说明', height: 80 },
+  { title: '常见问题', height: 104 },
+]
+
+const sortList = ref(['打包', '称重', '贴单', '发货'])
+const waterfallHeight = (item: { height: number }) => item.height
+const bannerCurrent = ref(0)
+const bannerData = [
+  { title: '满减活动进行中', image: '' },
+  { title: '新客首单立减', image: '' },
+  { title: '配送提速升级', image: '' },
+]
+const rollingValue = ref(12580.5)
+
+function onSortChange(payload: { from: number; to: number }) {
+  showToast(`第 ${payload.from + 1} 项移到第 ${payload.to + 1} 位`)
+}
+
+function nextRolling() {
+  rollingValue.value = Math.round(Math.random() * 90000 + 10000) / 10
+}
 
 const selectLabel = computed(
   () => selectOptions.find((item) => item.value === selectValue.value)?.label || '请选择',
@@ -497,6 +547,56 @@ function flashNotify() {
     <mq-float-view :x="300" :y="540" :width="52" :height="52" @click="showToast('点了悬浮窗')">
       <view class="demo__float">+</view>
     </mq-float-view>
+
+    <mq-divider>树、瀑布流和拖拽</mq-divider>
+
+    <view class="demo__field">
+      <mq-tree
+        v-model="treeChecked"
+        v-model:expanded="treeExpanded"
+        :data="treeData"
+        checkable
+      />
+      <text class="demo__note">已选 {{ treeChecked.join('、') || '无' }}</text>
+    </view>
+
+    <view class="demo__field">
+      <mq-waterfall
+        :data="waterfallData"
+        :column="2"
+        :gap="10"
+        :estimate-height="waterfallHeight"
+      >
+        <template #default="{ item }">
+          <view class="demo__waterfall-card" :style="{ height: `${item.height}px` }">
+            <text>{{ item.title }}</text>
+          </view>
+        </template>
+      </mq-waterfall>
+    </view>
+
+    <view class="demo__field">
+      <mq-draggable v-model="sortList" @change="onSortChange">
+        <template #default="{ item, index }">
+          <view class="demo__sort-item">
+            <text>{{ index + 1 }}. {{ item }}</text>
+            <text class="demo__sort-tip">按住拖动</text>
+          </view>
+        </template>
+      </mq-draggable>
+    </view>
+
+    <mq-divider>轮播和数字滚动</mq-divider>
+
+    <view class="demo__field">
+      <mq-banner v-model="bannerCurrent" :data="bannerData" :height="140" :radius="10" />
+      <text class="demo__note">第 {{ bannerCurrent + 1 }} 张</text>
+    </view>
+
+    <view class="demo__field">
+      <mq-rolling-number :value="rollingValue" :decimals="1" prefix="¥" :height="30" />
+      <mq-button size="small" @click="nextRolling">换一个数</mq-button>
+    </view>
 
     <mq-divider>反馈和导航</mq-divider>
 
@@ -820,5 +920,32 @@ function flashNotify() {
   background: var(--mq-color-primary, #0f3d32);
   border-radius: 50%;
   box-shadow: 0 6px 18px rgba(15, 61, 50, 0.32);
+}
+
+.demo__waterfall-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  color: var(--mq-text, #1c1915);
+  font-size: 13px;
+  background: var(--mq-fill, #f3efe7);
+  border-radius: 10px;
+}
+
+.demo__sort-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--mq-border-light, #f0ece4);
+}
+
+.demo__sort-tip {
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 12px;
 }
 </style>

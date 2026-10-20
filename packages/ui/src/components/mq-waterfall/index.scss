@@ -1,0 +1,19 @@
+.mq-waterfall {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.mq-waterfall__column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mq-waterfall__item {
+  box-sizing: border-box;
+  width: 100%;
+}
