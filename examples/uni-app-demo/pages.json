@@ -72,7 +72,14 @@
       "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
       "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue",
       "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
-      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue"
+      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue",
+      "^mq-avatar-group$": "@mosquito/ui/components/mq-avatar-group/MqAvatarGroup.vue",
+      "^mq-img$": "@mosquito/ui/components/mq-img/MqImg.vue",
+      "^mq-picker-view$": "@mosquito/ui/components/mq-picker-view/MqPickerView.vue",
+      "^mq-picker$": "@mosquito/ui/components/mq-picker/MqPicker.vue",
+      "^mq-table$": "@mosquito/ui/components/mq-table/MqTable.vue",
+      "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
+      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue"
     }
   },
   "pages": [

@@ -1,0 +1,120 @@
+.mq-upload {
+  display: block;
+  width: 100%;
+}
+
+.mq-upload__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.mq-upload__item,
+.mq-upload__add {
+  position: relative;
+  box-sizing: border-box;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  overflow: visible;
+  border-radius: var(--mq-radius, 8px);
+}
+
+.mq-upload__image,
+.mq-upload__file {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--mq-bg-muted, #f6f1e8);
+  border-radius: var(--mq-radius, 8px);
+}
+
+.mq-upload__file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid var(--mq-border, #e6e2da);
+}
+
+.mq-upload__file-mark {
+  color: var(--mq-color-primary, #0f3d32);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mq-upload__file-name {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  overflow: hidden;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 10px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mq-upload__remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: var(--mq-color-danger-text, #fff6f5);
+  background: var(--mq-color-danger, #b42318);
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mq-upload__item.is-pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mq-bg-muted, #f6f1e8);
+  border: 1px solid var(--mq-border, #e6e2da);
+}
+
+.mq-upload__add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--mq-text-secondary, #6f675e);
+  background: var(--mq-bg-muted, #f6f1e8);
+  border: 1px dashed var(--mq-border, #e6e2da);
+  cursor: pointer;
+}
+
+.mq-upload__add:active {
+  background: var(--mq-bg-active, #ebe4d8);
+}
+
+.mq-upload__plus {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.mq-upload__count {
+  margin-top: 4px;
+  font-size: 10px;
+}
+
+.mq-upload__tip {
+  display: block;
+  margin-top: 2px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mq-upload.is-disabled {
+  opacity: 0.5;
+}

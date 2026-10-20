@@ -69,6 +69,13 @@ export { default as MqSortButton } from './components/mq-sort-button/MqSortButto
 export { default as MqWatermark } from './components/mq-watermark/MqWatermark.vue'
 export { default as MqTooltip } from './components/mq-tooltip/MqTooltip.vue'
 export { default as MqPopover } from './components/mq-popover/MqPopover.vue'
+export { default as MqAvatarGroup } from './components/mq-avatar-group/MqAvatarGroup.vue'
+export { default as MqImg } from './components/mq-img/MqImg.vue'
+export { default as MqPickerView } from './components/mq-picker-view/MqPickerView.vue'
+export { default as MqPicker } from './components/mq-picker/MqPicker.vue'
+export { default as MqTable } from './components/mq-table/MqTable.vue'
+export { default as MqCalendar } from './components/mq-calendar/MqCalendar.vue'
+export { default as MqUpload } from './components/mq-upload/MqUpload.vue'
 
 export type { MqButtonEmits, MqButtonProps, MqButtonSize, MqButtonType, MqButtonVariant } from './components/mq-button/types'
 export type { MqCellEmits, MqCellProps } from './components/mq-cell/types'
@@ -217,6 +224,42 @@ export type {
   MqPopoverPlacement,
   MqPopoverProps,
 } from './components/mq-popover/types'
+export type { MqAvatarGroupCascading, MqAvatarGroupProps } from './components/mq-avatar-group/types'
+export type { MqImgEmits, MqImgProps } from './components/mq-img/types'
+export type {
+  MqPickerChangePayload,
+  MqPickerColumn,
+  MqPickerColumns,
+  MqPickerOption,
+  MqPickerValue,
+  MqPickerViewEmits,
+  MqPickerViewExpose,
+  MqPickerViewProps,
+} from './components/mq-picker-view/types'
+export type {
+  MqPickerConfirmPayload,
+  MqPickerEmits,
+  MqPickerProps,
+} from './components/mq-picker/types'
+export type {
+  MqTableAlign,
+  MqTableColumn,
+  MqTableEmits,
+  MqTableProps,
+  MqTableSize,
+} from './components/mq-table/types'
+export type {
+  MqCalendarEmits,
+  MqCalendarMode,
+  MqCalendarProps,
+  MqCalendarValuePayload,
+} from './components/mq-calendar/types'
+export type {
+  MqUploadAccept,
+  MqUploadEmits,
+  MqUploadFile,
+  MqUploadProps,
+} from './components/mq-upload/types'
 export type { MqOptionValue } from './utils/model'
 
 export { hideToast, showToast, toastState } from './utils/toast'

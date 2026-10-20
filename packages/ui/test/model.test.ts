@@ -18,6 +18,7 @@ import {
   nextSwitchValue,
   pageCount,
   parseTimeData,
+  resolveAvatarSize,
   resolvePx,
   shuffleKeys,
   snapNumber,
@@ -148,4 +149,15 @@ test('sort button cycles asc desc and optional reset', () => {
   assert.equal(nextSortValue(0, { descFirst: true }), -1)
   assert.equal(nextSortValue(-1, { descFirst: true }), 1)
   assert.deepEqual(shuffleKeys([1, 2, 3]).sort(), [1, 2, 3])
+})
+
+test('avatar size maps presets and falls back to pixels', () => {
+  assert.equal(resolveAvatarSize(undefined), 40)
+  assert.equal(resolveAvatarSize('large'), 64)
+  assert.equal(resolveAvatarSize('medium'), 48)
+  assert.equal(resolveAvatarSize('normal'), 40)
+  assert.equal(resolveAvatarSize('small'), 32)
+  assert.equal(resolveAvatarSize(52), 52)
+  assert.equal(resolveAvatarSize('36px'), 36)
+  assert.equal(resolveAvatarSize(0, 24), 24)
 })
