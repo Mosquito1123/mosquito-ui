@@ -90,6 +90,11 @@ export { default as MqSlideVerify } from './components/mq-slide-verify/MqSlideVe
 export { default as MqFloatView } from './components/mq-float-view/MqFloatView.vue'
 export { default as MqReadMore } from './components/mq-read-more/MqReadMore.vue'
 export { default as MqMarquee } from './components/mq-marquee/MqMarquee.vue'
+export { default as MqTree } from './components/mq-tree/MqTree.vue'
+export { default as MqWaterfall } from './components/mq-waterfall/MqWaterfall.vue'
+export { default as MqDraggable } from './components/mq-draggable/MqDraggable.vue'
+export { default as MqBanner } from './components/mq-banner/MqBanner.vue'
+export { default as MqRollingNumber } from './components/mq-rolling-number/MqRollingNumber.vue'
 
 export type { MqButtonEmits, MqButtonProps, MqButtonSize, MqButtonType, MqButtonVariant } from './components/mq-button/types'
 export type { MqCellEmits, MqCellProps } from './components/mq-cell/types'
@@ -342,6 +347,41 @@ export type {
 } from './components/mq-read-more/types'
 export type { MqMarqueeEmits, MqMarqueeProps } from './components/mq-marquee/types'
 export type { MqSelectOption, MqSelectValue } from './utils/select'
+export type {
+  MqTreeCheckPayload,
+  MqTreeEmits,
+  MqTreeExpandPayload,
+  MqTreeExpose,
+  MqTreeModelValue,
+  MqTreeNodeClickPayload,
+  MqTreeProps,
+} from './components/mq-tree/types'
+export type {
+  MqWaterfallClickPayload,
+  MqWaterfallEmits,
+  MqWaterfallProps,
+} from './components/mq-waterfall/types'
+export type { MqTreeNode, MqTreeRow } from './utils/tree'
+export type { MqWaterfallCell, MqWaterfallHeight } from './utils/waterfall'
+export type {
+  MqDraggableChangePayload,
+  MqDraggableEmits,
+  MqDraggableExpose,
+  MqDraggableProps,
+} from './components/mq-draggable/types'
+export type {
+  MqBannerChangePayload,
+  MqBannerEmits,
+  MqBannerExpose,
+  MqBannerItem,
+  MqBannerProps,
+} from './components/mq-banner/types'
+export type {
+  MqRollingNumberEmits,
+  MqRollingNumberExpose,
+  MqRollingNumberProps,
+} from './components/mq-rolling-number/types'
+export type { MqRollingChar } from './utils/rolling-number'
 export type { MqOptionValue } from './utils/model'
 
 export { hideToast, showToast, toastState } from './utils/toast'

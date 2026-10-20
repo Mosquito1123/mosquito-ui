@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-banner" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：轮播依赖平台 swiper，后续单独适配。
+defineOptions({
+  name: 'mq-banner',
+})
+</script>

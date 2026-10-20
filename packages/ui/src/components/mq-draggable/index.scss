@@ -1,0 +1,24 @@
+.mq-draggable {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mq-draggable.is-disabled {
+  opacity: 0.6;
+}
+
+.mq-draggable__item {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--mq-bg, #fffcf7);
+  transition: transform 200ms ease;
+}
+
+.mq-draggable__item.is-active {
+  z-index: 2;
+  box-shadow: 0 6px 16px rgba(28, 25, 21, 0.16);
+}

@@ -135,7 +135,12 @@ pnpm add @mosquito/ui
       "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
       "^mq-float-view$": "@mosquito/ui/components/mq-float-view/MqFloatView.vue",
       "^mq-read-more$": "@mosquito/ui/components/mq-read-more/MqReadMore.vue",
-      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue"
+      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue",
+      "^mq-tree$": "@mosquito/ui/components/mq-tree/MqTree.vue",
+      "^mq-waterfall$": "@mosquito/ui/components/mq-waterfall/MqWaterfall.vue",
+      "^mq-draggable$": "@mosquito/ui/components/mq-draggable/MqDraggable.vue",
+      "^mq-banner$": "@mosquito/ui/components/mq-banner/MqBanner.vue",
+      "^mq-rolling-number$": "@mosquito/ui/components/mq-rolling-number/MqRollingNumber.vue"
     }
   }
 }
@@ -216,6 +221,11 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-float-view` | 可拖动悬浮窗，自动限制在窗口范围内 |
 | `mq-read-more` | 长文本折叠 / 展开，支持插槽与渐变遮罩 |
 | `mq-marquee` | 文字跑马灯，可调方向和滚动时长 |
+| `mq-tree` | 树形选择，支持多选级联、展开集合与全部展开 / 收起 |
+| `mq-waterfall` | 瀑布流分列，可按估算高度自动平衡各列 |
+| `mq-draggable` | 拖拽排序列表，支持长按触发与自定义位移阈值 |
+| `mq-banner` | 轮播图，支持自动播放、指示点和标题叠加 |
+| `mq-rolling-number` | 数字滚动，逐位数字列滚动并可保留小数与千分位 |
 | `mq-config-provider` | 主题与 CSS 变量作用域 |
 | `mq-curtain` | 幕帘公告图 |
 | `mq-index-bar` / `mq-index-anchor` | 索引栏 |

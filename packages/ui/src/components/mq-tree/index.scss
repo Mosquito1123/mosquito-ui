@@ -1,0 +1,88 @@
+.mq-tree {
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--mq-bg, #fffcf7);
+}
+
+.mq-tree__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 44px;
+  padding-right: 12px;
+  border-bottom: 1px solid var(--mq-border-light, #f0ece4);
+  cursor: pointer;
+}
+
+.mq-tree__row.is-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.mq-tree__caret {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 11px;
+}
+
+.mq-tree__caret.is-hidden {
+  visibility: hidden;
+}
+
+.mq-tree__caret.is-expanded {
+  color: var(--mq-text, #1c1915);
+}
+
+.mq-tree__checkbox {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1;
+  background: var(--mq-bg, #fffcf7);
+  border: 1px solid var(--mq-border, #e6e2da);
+  border-radius: 4px;
+}
+
+.mq-tree__checkbox.is-all,
+.mq-tree__checkbox.is-partial {
+  background: var(--mq-color-primary, #0f3d32);
+  border-color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-tree__checkbox.is-partial {
+  opacity: 0.8;
+}
+
+.mq-tree__label {
+  flex: 1;
+  overflow: hidden;
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mq-tree__label.is-selected {
+  color: var(--mq-color-primary, #0f3d32);
+  font-weight: 600;
+}
+
+.mq-tree__empty {
+  padding: 32px 16px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 13px;
+  text-align: center;
+}

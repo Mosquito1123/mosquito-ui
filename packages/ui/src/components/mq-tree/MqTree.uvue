@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-tree" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：树形数据与展开状态后续单独适配。
+defineOptions({
+  name: 'mq-tree',
+})
+</script>
