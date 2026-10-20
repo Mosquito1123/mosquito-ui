@@ -1,0 +1,80 @@
+.mq-number-keyboard {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: calc(var(--mq-z-popup, 1000) + 1);
+  box-sizing: border-box;
+  padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  background: var(--mq-bg-muted, #f6f1e8);
+  transform: translateY(100%);
+  transition: transform var(--mq-duration, 200ms) ease;
+}
+
+.mq-number-keyboard.is-open {
+  transform: translateY(0);
+}
+
+.mq-number-keyboard__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px 10px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 13px;
+}
+
+.mq-number-keyboard__close {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-number-keyboard__body {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.mq-number-keyboard__keys {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.mq-number-keyboard__key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  color: var(--mq-text, #1c1915);
+  background: var(--mq-bg, #fffcf7);
+  border-radius: var(--mq-radius, 8px);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.mq-number-keyboard__key.is-muted {
+  background: transparent;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 14px;
+}
+
+.mq-number-keyboard__key:active {
+  background: var(--mq-bg-active, #ebe4d8);
+}
+
+.mq-number-keyboard__side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 88px;
+}
+
+.mq-number-keyboard__side .mq-number-keyboard__key {
+  flex: 1;
+}
+
+.mq-number-keyboard__side .is-primary {
+  color: var(--mq-color-primary-text, #f7f4ee);
+  background: var(--mq-color-primary, #0f3d32);
+}

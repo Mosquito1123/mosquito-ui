@@ -58,6 +58,17 @@ export { default as MqCircle } from './components/mq-circle/MqCircle.vue'
 export { default as MqCountTo } from './components/mq-count-to/MqCountTo.vue'
 export { default as MqForm } from './components/mq-form/MqForm.vue'
 export { default as MqFormItem } from './components/mq-form-item/MqFormItem.vue'
+export { default as MqAvatar } from './components/mq-avatar/MqAvatar.vue'
+export { default as MqConfigProvider } from './components/mq-config-provider/MqConfigProvider.vue'
+export { default as MqCurtain } from './components/mq-curtain/MqCurtain.vue'
+export { default as MqIndexBar } from './components/mq-index-bar/MqIndexBar.vue'
+export { default as MqIndexAnchor } from './components/mq-index-anchor/MqIndexAnchor.vue'
+export { default as MqPasswordInput } from './components/mq-password-input/MqPasswordInput.vue'
+export { default as MqNumberKeyboard } from './components/mq-number-keyboard/MqNumberKeyboard.vue'
+export { default as MqSortButton } from './components/mq-sort-button/MqSortButton.vue'
+export { default as MqWatermark } from './components/mq-watermark/MqWatermark.vue'
+export { default as MqTooltip } from './components/mq-tooltip/MqTooltip.vue'
+export { default as MqPopover } from './components/mq-popover/MqPopover.vue'
 
 export type { MqButtonEmits, MqButtonProps, MqButtonSize, MqButtonType, MqButtonVariant } from './components/mq-button/types'
 export type { MqCellEmits, MqCellProps } from './components/mq-cell/types'
@@ -173,8 +184,42 @@ export type {
   MqFormValueAlign,
 } from './components/mq-form/types'
 export type { MqFormItemEmits, MqFormItemProps } from './components/mq-form-item/types'
+export type { MqAvatarEmits, MqAvatarProps, MqAvatarShape, MqAvatarSize } from './components/mq-avatar/types'
+export type { MqConfigProviderProps, MqThemeMode } from './components/mq-config-provider/types'
+export type {
+  MqCurtainClosePosition,
+  MqCurtainEmits,
+  MqCurtainProps,
+} from './components/mq-curtain/types'
+export type { MqIndexBarEmits, MqIndexBarProps } from './components/mq-index-bar/types'
+export type { MqIndexAnchorProps } from './components/mq-index-anchor/types'
+export type { MqPasswordInputEmits, MqPasswordInputProps } from './components/mq-password-input/types'
+export type {
+  MqNumberKeyboardEmits,
+  MqNumberKeyboardMode,
+  MqNumberKeyboardProps,
+} from './components/mq-number-keyboard/types'
+export type {
+  MqSortButtonEmits,
+  MqSortButtonProps,
+  MqSortButtonValue,
+} from './components/mq-sort-button/types'
+export type { MqWatermarkLayout, MqWatermarkProps } from './components/mq-watermark/types'
+export type {
+  MqTooltipEmits,
+  MqTooltipPlacement,
+  MqTooltipProps,
+} from './components/mq-tooltip/types'
+export type {
+  MqPopoverEmits,
+  MqPopoverMenuItem,
+  MqPopoverMode,
+  MqPopoverPlacement,
+  MqPopoverProps,
+} from './components/mq-popover/types'
 export type { MqOptionValue } from './utils/model'
 
 export { hideToast, showToast, toastState } from './utils/toast'
 export { hideNotify, showNotify, notifyState } from './utils/notify'
 export { closeSwipeActions } from './utils/swipe'
+export { closeOutside, registerOutsideCloser } from './utils/queue'

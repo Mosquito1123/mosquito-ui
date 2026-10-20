@@ -14,10 +14,12 @@ import {
   nextCollapseValue,
   nextRadioValue,
   nextRateValue,
+  nextSortValue,
   nextSwitchValue,
   pageCount,
   parseTimeData,
   resolvePx,
+  shuffleKeys,
   snapNumber,
   snapSlider,
   toggleCheckedValues,
@@ -137,4 +139,13 @@ test('count-to formats decimals separators and easing', () => {
   assert.ok(easeOutCubic(0) === 0)
   assert.ok(easeOutCubic(1) === 1)
   assert.ok(easeOutCubic(0.5) > 0.5)
+})
+
+test('sort button cycles asc desc and optional reset', () => {
+  assert.equal(nextSortValue(0), 1)
+  assert.equal(nextSortValue(1), -1)
+  assert.equal(nextSortValue(-1, { allowReset: true }), 0)
+  assert.equal(nextSortValue(0, { descFirst: true }), -1)
+  assert.equal(nextSortValue(-1, { descFirst: true }), 1)
+  assert.deepEqual(shuffleKeys([1, 2, 3]).sort(), [1, 2, 3])
 })

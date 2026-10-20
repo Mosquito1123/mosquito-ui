@@ -103,7 +103,18 @@ pnpm add @mosquito/ui
       "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
       "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
       "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
-      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue"
+      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue",
+      "^mq-avatar$": "@mosquito/ui/components/mq-avatar/MqAvatar.vue",
+      "^mq-config-provider$": "@mosquito/ui/components/mq-config-provider/MqConfigProvider.vue",
+      "^mq-curtain$": "@mosquito/ui/components/mq-curtain/MqCurtain.vue",
+      "^mq-index-bar$": "@mosquito/ui/components/mq-index-bar/MqIndexBar.vue",
+      "^mq-index-anchor$": "@mosquito/ui/components/mq-index-anchor/MqIndexAnchor.vue",
+      "^mq-password-input$": "@mosquito/ui/components/mq-password-input/MqPasswordInput.vue",
+      "^mq-number-keyboard$": "@mosquito/ui/components/mq-number-keyboard/MqNumberKeyboard.vue",
+      "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
+      "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue",
+      "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
+      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue"
     }
   }
 }
@@ -167,6 +178,15 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-circle` | 环形进度（SVG） |
 | `mq-count-to` | 数字滚动 |
 | `mq-form` / `mq-form-item` | 表单与校验（轻量 `schema`，不内置 Zod） |
+| `mq-avatar` | 头像：图片 / 文字 / `mark` |
+| `mq-config-provider` | 主题与 CSS 变量作用域 |
+| `mq-curtain` | 幕帘公告图 |
+| `mq-index-bar` / `mq-index-anchor` | 索引栏 |
+| `mq-password-input` | 密码 / 验证码格子 |
+| `mq-number-keyboard` | 数字键盘 |
+| `mq-sort-button` | 排序按钮 |
+| `mq-watermark` | 文字水印 |
+| `mq-tooltip` / `mq-popover` | 提示与菜单气泡；`closeOutside()` |
 | `mq-popup` | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close` |
 | `mq-toast` | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主 |
 | `mq-loading` | 单节点旋转指示，可选 `size`、`color`、`label` |
@@ -224,7 +244,7 @@ mosquito-ui/
 
 ## 致谢
 
-交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏、标签栏和宫格用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版仍不做日历、选择器、上传和图标字体。
+交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏、标签栏和宫格用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版仍不做日历、选择器、上传、二维码、签名和图标字体。
 
 目录与性能结构参考了 [cool-unix](https://gitee.com/cool-team-official/cool-unix)（[GitHub](https://github.com/cool-team-official/cool-unix)，MIT）：`components/名称/名称` 的 easycom 习惯、`theme.json` 的明暗令牌拆分、安全区组件、`useUi().showToast` 这种命令式入口，以及 uni-app x 的 `list-view`。本仓库没有引入其 Tailwind、PassThrough 或 `cl-` 组件实现；主题做成 CSS 变量，安全区用 `env(safe-area-inset-bottom)`，toast 不再套一层 popup。
 

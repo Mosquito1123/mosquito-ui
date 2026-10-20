@@ -61,7 +61,18 @@
       "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
       "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
       "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
-      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue"
+      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue",
+      "^mq-avatar$": "@mosquito/ui/components/mq-avatar/MqAvatar.vue",
+      "^mq-config-provider$": "@mosquito/ui/components/mq-config-provider/MqConfigProvider.vue",
+      "^mq-curtain$": "@mosquito/ui/components/mq-curtain/MqCurtain.vue",
+      "^mq-index-bar$": "@mosquito/ui/components/mq-index-bar/MqIndexBar.vue",
+      "^mq-index-anchor$": "@mosquito/ui/components/mq-index-anchor/MqIndexAnchor.vue",
+      "^mq-password-input$": "@mosquito/ui/components/mq-password-input/MqPasswordInput.vue",
+      "^mq-number-keyboard$": "@mosquito/ui/components/mq-number-keyboard/MqNumberKeyboard.vue",
+      "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
+      "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue",
+      "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
+      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue"
     }
   },
   "pages": [

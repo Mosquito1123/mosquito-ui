@@ -1,0 +1,14 @@
+.mq-index-anchor {
+  box-sizing: border-box;
+  padding: 6px 16px;
+  color: var(--mq-text-secondary, #6f675e);
+  background: var(--mq-bg-muted, #f6f1e8);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mq-index-anchor.is-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

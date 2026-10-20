@@ -1,0 +1,47 @@
+.mq-tooltip {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.mq-tooltip__pop {
+  position: absolute;
+  z-index: 20;
+  min-width: 32px;
+  max-width: 240px;
+  padding: 8px 10px;
+  color: #fff;
+  background: rgba(28, 25, 21, 0.92);
+  border-radius: var(--mq-radius, 8px);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.mq-tooltip__pop.is-top {
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+}
+
+.mq-tooltip__pop.is-bottom {
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translateX(-50%);
+}
+
+.mq-tooltip__pop.is-left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mq-tooltip__pop.is-right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mq-tooltip__close {
+  margin-left: 8px;
+}

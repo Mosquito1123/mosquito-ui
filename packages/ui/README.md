@@ -80,7 +80,18 @@ pnpm add @mosquito/ui
       "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
       "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
       "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
-      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue"
+      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue",
+      "^mq-avatar$": "@mosquito/ui/components/mq-avatar/MqAvatar.vue",
+      "^mq-config-provider$": "@mosquito/ui/components/mq-config-provider/MqConfigProvider.vue",
+      "^mq-curtain$": "@mosquito/ui/components/mq-curtain/MqCurtain.vue",
+      "^mq-index-bar$": "@mosquito/ui/components/mq-index-bar/MqIndexBar.vue",
+      "^mq-index-anchor$": "@mosquito/ui/components/mq-index-anchor/MqIndexAnchor.vue",
+      "^mq-password-input$": "@mosquito/ui/components/mq-password-input/MqPasswordInput.vue",
+      "^mq-number-keyboard$": "@mosquito/ui/components/mq-number-keyboard/MqNumberKeyboard.vue",
+      "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
+      "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue",
+      "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
+      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue"
     }
   },
   "pages": [
@@ -168,6 +179,15 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 | `mq-circle` | `v-model` 进度，`size` `color` `stroke-width` `speed` | 无 |
 | `mq-count-to` | `start-val` `end-val` `duration` `prefix` `suffix` | `finish`。方法 `start` `pause` `reset` |
 | `mq-form` / `mq-form-item` | `model` `schema` `error-type`；项 `prop` `title` | 方法 `validate` `reset` |
+| `mq-avatar` | `src` / `text` / `mark`，`shape` `size` | `click` |
+| `mq-config-provider` | `theme` `theme-vars` | 无 |
+| `mq-curtain` | 幕帘图弹层，`close-position` | `click` `close` |
+| `mq-index-bar` / `mq-index-anchor` | 索引栏，`sticky` | `select` `change` |
+| `mq-password-input` | 密码格，`mask` `length` `focused` | `focus` |
+| `mq-number-keyboard` | 数字键盘，`v-model:visible` | `input` `delete` `close` |
+| `mq-sort-button` | 排序：`1`/`0`/`-1` | `change` |
+| `mq-watermark` | 文字水印，`full-screen` | 无 |
+| `mq-tooltip` / `mq-popover` | 气泡提示 / 菜单；可用 `closeOutside()` | `open` `close` / `menuclick` |
 | `mq-popup` | `v-model` `position` `mask-closable` `duration` `z-index` `title` | `update:modelValue` `open` `close` |
 | `mq-toast` | 无。用 `showToast` / `hideToast` | 页面放一个 `<mq-toast />` 当宿主 |
 | `mq-loading` | `size` `color` `label` | 无。根节点就是指示器 |
@@ -175,7 +195,7 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 
 `mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`variant`：`base` | `plain` | `text`。`size`：`mini` | `small` | `medium` | `large`。
 
-这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏和宫格用 `mark` 文字，悬浮按钮用 `+` / `×`，回到顶部用 `↑`。对话框、动作面板复用已有弹出层。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数。栅格是 24 列；吸顶走 CSS `position: sticky`。表单校验走轻量 `schema.validate`，不内置 Zod。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
+这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏和宫格用 `mark` 文字，悬浮按钮用 `+` / `×`，回到顶部用 `↑`，排序用 `▲`/`▼`。对话框、动作面板、幕帘复用遮罩思路。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数。栅格是 24 列；吸顶走 CSS `position: sticky`。表单校验走轻量 `schema.validate`，不内置 Zod。气泡 / 滑动操作可在页面根节点调用 `closeOutside()`。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
 
 ```vue
 <mq-cell-group title="配送" insert border>

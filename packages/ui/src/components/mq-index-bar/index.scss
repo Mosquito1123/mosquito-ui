@@ -1,0 +1,38 @@
+.mq-index-bar {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mq-index-bar__body {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mq-index-bar__sidebar {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-50%);
+  padding: 4px 0;
+}
+
+.mq-index-bar__tip {
+  min-width: 16px;
+  padding: 2px 0;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.mq-index-bar__tip.is-active {
+  color: var(--mq-index-active, var(--mq-color-primary, #0f3d32));
+  font-weight: 600;
+}
