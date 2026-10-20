@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-float-view" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：悬浮窗依赖拖动手势与窗口尺寸，后续单独适配。
+defineOptions({
+  name: 'mq-float-view',
+})
+</script>

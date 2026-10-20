@@ -25,13 +25,23 @@ export interface UniCanvasToTempFilePathOptions {
   fail?: (error: unknown) => void
 }
 
+export interface UniSelectorQuery {
+  in: (component: unknown) => UniSelectorQuery
+  select: (selector: string) => UniSelectorQuery
+  boundingClientRect: (
+    callback: (rect?: { width?: number; height?: number }) => void,
+  ) => UniSelectorQuery
+  exec: () => void
+}
+
 export interface UniPlatformApi {
-  getSystemInfoSync?: () => { windowHeight?: number }
+  getSystemInfoSync?: () => { windowHeight?: number; windowWidth?: number }
   createCanvasContext?: (canvasId: string, instance?: unknown) => UniCanvasContext
   canvasToTempFilePath?: (
     options: UniCanvasToTempFilePathOptions,
     instance?: unknown,
   ) => void
+  createSelectorQuery?: () => UniSelectorQuery
 }
 
 export function getUni(): UniPlatformApi | undefined {

@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-select" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：弹窗与搜索输入依赖平台实现，后续单独适配。
+defineOptions({
+  name: 'mq-select',
+})
+</script>

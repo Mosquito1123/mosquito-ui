@@ -105,7 +105,14 @@ pnpm add @mosquito/ui
       "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
       "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
       "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
-      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue"
+      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue",
+      "^mq-timeline$": "@mosquito/ui/components/mq-timeline/MqTimeline.vue",
+      "^mq-timeline-item$": "@mosquito/ui/components/mq-timeline-item/MqTimelineItem.vue",
+      "^mq-select$": "@mosquito/ui/components/mq-select/MqSelect.vue",
+      "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
+      "^mq-float-view$": "@mosquito/ui/components/mq-float-view/MqFloatView.vue",
+      "^mq-read-more$": "@mosquito/ui/components/mq-read-more/MqReadMore.vue",
+      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue"
     }
   },
   "pages": [
@@ -207,6 +214,13 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 | `mq-drop-menu-item` | `v-model` `options` `title` `disabled` `placeholder` `before-toggle` `popup-height` | `change` `open` `opened` `close` `closed`。方法 `open` `close` `toggle` `getShowPop` |
 | `mq-floating-panel` | `v-model:height` `anchors` `duration` `content-draggable` `safe-area` `show-scrollbar` | `heightChange`。方法 `moveTo` |
 | `mq-signature` | `pen-color` `line-width` `height` `width` `background-color` `file-type` `quality` `export-scale` `enable-history` `disabled` | `start` `signing` `end` `confirm` `clear`。方法 `init` `confirm` `clear` `revoke` `restore` |
+| `mq-timeline` | `reverse` | - |
+| `mq-timeline-item` | `title` `time` `active` `color` `line-color` `hide-line` | `click` |
+| `mq-select` | `v-model` `v-model:visible` `options` `multiple` `title` `searchable` `placeholder` `mask-closable` `safe-area` | `change` `confirm` `cancel` `open` `close`。方法 `open` `close` |
+| `mq-slide-verify` | `v-model` `text` `success-text` `threshold` `height` `disabled` | `change` `success` `fail`。方法 `reset` |
+| `mq-float-view` | `v-model:x` `v-model:y` `width` `height` `draggable` `z-index` | `move-end` `click`。方法 `reset` |
+| `mq-read-more` | `text` `max-height` `expand-text` `collapse-text` `toggleable` `disabled` | `change`。方法 `toggle` `expand` `collapse` |
+| `mq-marquee` | `text` `duration` `direction` `paused` | `click` |
 | `mq-config-provider` | `theme` `theme-vars` | 无 |
 | `mq-curtain` | 幕帘图弹层，`close-position` | `click` `close` |
 | `mq-index-bar` / `mq-index-anchor` | 索引栏，`sticky` | `select` `change` |
@@ -222,7 +236,7 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 
 `mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`variant`：`base` | `plain` | `text`。`size`：`mini` | `small` | `medium` | `large`。
 
-这些属性对齐的是 wot-ui 的用法，不是它的实现。没有图标字体，也没有 `wd-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏和宫格用 `mark` 文字，悬浮按钮用 `+` / `×`，回到顶部用 `↑`，排序用 `▲`/`▼`。对话框、动作面板、幕帘复用遮罩思路。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数。栅格是 24 列；吸顶走 CSS `position: sticky`。表单校验走轻量 `schema.validate`，不内置 Zod。气泡 / 下拉菜单 / 滑动操作可在页面根节点调用 `closeOutside()`。日期时间滚轮复用平台 `picker-view`，级联用逐级面板而不是滚轮，签名走 `canvas`。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
+这些属性对齐的是 wot-ui / cool-unix 的用法，不是它们的实现。没有图标字体，也没有 `wd-` / `cl-` 前缀。复选和单选的标记画在根节点上；输入框的清空和密码切换用文字，不嵌按钮组件。评分用文字星号，空状态用伪元素，导航栏左侧箭头用 `‹`，标签栏和宫格用 `mark` 文字，悬浮按钮用 `+` / `×`，回到顶部用 `↑`，排序用 `▲`/`▼`。对话框、动作面板、幕帘复用遮罩思路。滑块只做单值，折叠不做「查看更多」，骨架屏先支持主题和行数。栅格是 24 列；吸顶走 CSS `position: sticky`。表单校验走轻量 `schema.validate`，不内置 Zod。气泡 / 下拉菜单 / 滑动操作可在页面根节点调用 `closeOutside()`。日期时间滚轮复用平台 `picker-view`，级联用逐级面板而不是滚轮，签名走 `canvas`，时间线用伪元素画线，滑动验证和悬浮窗走 `touch` 事件，跑马灯用 CSS 动画。通告的 `info` 用主色和弱底，因为主题里没有单独的信息色。
 
 ```vue
 <mq-cell-group title="配送" insert border>
