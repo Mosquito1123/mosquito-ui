@@ -1,0 +1,74 @@
+.mq-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--mq-z-popup, 1000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: var(--mq-mask, rgba(22, 18, 12, 0.45));
+}
+
+.mq-curtain__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mq-curtain__image {
+  display: block;
+  max-width: 80vw;
+  border-radius: var(--mq-radius, 8px);
+}
+
+.mq-curtain__close {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.mq-curtain__close.is-inset {
+  top: 8px;
+  right: 8px;
+}
+
+.mq-curtain__close.is-top {
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mq-curtain__close.is-bottom {
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mq-curtain__close.is-top-left {
+  top: -40px;
+  left: 0;
+}
+
+.mq-curtain__close.is-top-right {
+  top: -40px;
+  right: 0;
+}
+
+.mq-curtain__close.is-bottom-left {
+  bottom: -40px;
+  left: 0;
+}
+
+.mq-curtain__close.is-bottom-right {
+  bottom: -40px;
+  right: 0;
+}

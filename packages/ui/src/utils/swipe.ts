@@ -1,17 +1,12 @@
-export type MqSwipeCloser = () => void
+import { closeOutside, registerOutsideCloser, type MqOutsideCloser } from './queue'
 
-const closers = new Set<MqSwipeCloser>()
+export type MqSwipeCloser = MqOutsideCloser
 
 export function registerSwipeAction(close: MqSwipeCloser): () => void {
-  closers.add(close)
-  return () => {
-    closers.delete(close)
-  }
+  return registerOutsideCloser(close)
 }
 
-/** 关闭页面上所有已展开的滑动操作。可挂在页面根节点 click 上。 */
+/** @deprecated 请优先使用 closeOutside；行为相同。 */
 export function closeSwipeActions() {
-  for (const close of [...closers]) {
-    close()
-  }
+  closeOutside()
 }

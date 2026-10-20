@@ -286,6 +286,39 @@ export function easeOutCubic(t: number): number {
   return 1 - (1 - x) ** 3
 }
 
+/** 排序按钮下一状态。1 升序，0 重置，-1 降序。 */
+export function nextSortValue(
+  current: -1 | 0 | 1 = 0,
+  options: { allowReset?: boolean; descFirst?: boolean } = {},
+): -1 | 0 | 1 {
+  const value = current === 1 || current === -1 || current === 0 ? current : 0
+  if (value === 0) {
+    return options.descFirst ? -1 : 1
+  }
+  if (options.descFirst) {
+    if (value === -1) {
+      return 1
+    }
+    return options.allowReset ? 0 : -1
+  }
+  if (value === 1) {
+    return -1
+  }
+  return options.allowReset ? 0 : 1
+}
+
+/** Fisher–Yates 打乱副本，用于随机键盘。 */
+export function shuffleKeys<T>(list: readonly T[]): T[] {
+  const next = [...list]
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1))
+    const tmp = next[i]
+    next[i] = next[j]
+    next[j] = tmp
+  }
+  return next
+}
+
 export function formatCountToValue(
   value: number,
   options: { decimals?: number; decimal?: string; separator?: string } = {},

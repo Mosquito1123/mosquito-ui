@@ -1,0 +1,27 @@
+.mq-sort-button {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  box-sizing: border-box;
+  padding: 4px 0;
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.2;
+}
+
+.mq-sort-button.is-line {
+  border-bottom: 1px solid var(--mq-border, #e6e2da);
+}
+
+.mq-sort-button__arrows {
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--mq-text-secondary, #6f675e);
+}
+
+.mq-sort-button__arrows .is-on {
+  color: var(--mq-color-primary, #0f3d32);
+}

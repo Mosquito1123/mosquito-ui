@@ -1,0 +1,51 @@
+.mq-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: var(--mq-color-primary-text, #f7f4ee);
+  background: var(--mq-color-primary, #0f3d32);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.mq-avatar.is-round {
+  border-radius: 50%;
+}
+
+.mq-avatar.is-square {
+  border-radius: var(--mq-radius, 8px);
+}
+
+.mq-avatar.is-large {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+}
+
+.mq-avatar.is-medium {
+  width: 48px;
+  height: 48px;
+  font-size: 18px;
+}
+
+.mq-avatar.is-normal {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.mq-avatar.is-small {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+.mq-avatar__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

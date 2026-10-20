@@ -1,0 +1,59 @@
+.mq-password-input {
+  box-sizing: border-box;
+  padding: 12px 16px;
+}
+
+.mq-password-input__cells {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.mq-password-input__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 40px;
+  height: 44px;
+  color: var(--mq-text, #1c1915);
+  background: var(--mq-bg, #fffcf7);
+  border: 1px solid var(--mq-border, #e6e2da);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.mq-password-input__cell.is-focus {
+  border-color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-password-input__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mq-text, #1c1915);
+}
+
+.mq-password-input__cursor {
+  width: 1px;
+  height: 18px;
+  background: var(--mq-color-primary, #0f3d32);
+  animation: mq-password-blink 1s step-end infinite;
+}
+
+.mq-password-input__info {
+  margin-top: 8px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: 12px;
+  text-align: center;
+}
+
+.mq-password-input__info.is-error {
+  color: var(--mq-color-danger, #b42318);
+}
+
+@keyframes mq-password-blink {
+  50% {
+    opacity: 0;
+  }
+}

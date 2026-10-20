@@ -1,0 +1,22 @@
+.mq-watermark {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1100;
+}
+
+.mq-watermark.is-full {
+  position: fixed;
+}
+
+.mq-watermark__tile {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: center;
+  user-select: none;
+}
