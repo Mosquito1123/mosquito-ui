@@ -1,0 +1,21 @@
+.mq-picker-view {
+  display: block;
+  width: 100%;
+  background: var(--mq-bg, #fffcf7);
+}
+
+.mq-picker-view__item {
+  box-sizing: border-box;
+  padding: 0 8px;
+  overflow: hidden;
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mq-picker-view__item.is-disabled {
+  color: var(--mq-text-secondary, #6f675e);
+  opacity: 0.45;
+}

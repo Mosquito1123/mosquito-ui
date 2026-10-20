@@ -91,7 +91,14 @@ pnpm add @mosquito/ui
       "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
       "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue",
       "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
-      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue"
+      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue",
+      "^mq-avatar-group$": "@mosquito/ui/components/mq-avatar-group/MqAvatarGroup.vue",
+      "^mq-img$": "@mosquito/ui/components/mq-img/MqImg.vue",
+      "^mq-picker-view$": "@mosquito/ui/components/mq-picker-view/MqPickerView.vue",
+      "^mq-picker$": "@mosquito/ui/components/mq-picker/MqPicker.vue",
+      "^mq-table$": "@mosquito/ui/components/mq-table/MqTable.vue",
+      "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
+      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue"
     }
   },
   "pages": [
@@ -179,7 +186,13 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 | `mq-circle` | `v-model` 进度，`size` `color` `stroke-width` `speed` | 无 |
 | `mq-count-to` | `start-val` `end-val` `duration` `prefix` `suffix` | `finish`。方法 `start` `pause` `reset` |
 | `mq-form` / `mq-form-item` | `model` `schema` `error-type`；项 `prop` `title` | 方法 `validate` `reset` |
-| `mq-avatar` | `src` / `text` / `mark`，`shape` `size` | `click` |
+| `mq-avatar` / `mq-avatar-group` | 头像 `src` `text` `mark` `shape` `size`；组 `max-count` `total` `cascading` `shape` `size` `vertical` `collapse-text` | 头像 `click` |
+| `mq-img` | `src` `width` `height` `mode` `radius` `round` `lazy-load` `show-loading` `alt` | `click` `load` `error`。插槽 `loading` `error` |
+| `mq-picker-view` | `v-model` `columns` `cascade` `item-height` `visible-item-count` `value-key` `label-key` `children-key` | `change` `pickstart` `pickend`。方法 `getSelectedValues` `getSelectedOptions` `getSelectedIndexes` `resetColumns` |
+| `mq-picker` | `v-model` `v-model:visible` `columns` `cascade` `title` `before-confirm` `mask-closable` `safe-area` | `confirm` `cancel` `open` `close` `change` |
+| `mq-table` | `data` `columns` `border` `stripe` `size` `row-key` `loading` `empty-text` `align` `header-bg` | `row-click` `cell-click`。插槽 `cell`、`cell-字段名`、`header`、`header-字段名` |
+| `mq-calendar` | `v-model` `mode` `min-date` `max-date` `first-day-of-week` `show-confirm` `disabled-date` `month` | `change` `confirm` `month-change` |
+| `mq-upload` | `v-model` `max-count` `multiple` `accept` `action` `custom-upload` `before-upload` `max-size` `preview` | `change` `success` `error` `remove` `oversize` |
 | `mq-config-provider` | `theme` `theme-vars` | 无 |
 | `mq-curtain` | 幕帘图弹层，`close-position` | `click` `close` |
 | `mq-index-bar` / `mq-index-anchor` | 索引栏，`sticky` | `select` `change` |

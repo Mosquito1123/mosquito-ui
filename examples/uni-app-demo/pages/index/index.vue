@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import {
   MqActionSheet,
+  MqAvatar,
+  MqAvatarGroup,
   MqBadge,
   MqButton,
+  MqCalendar,
   MqCell,
   MqCellGroup,
   MqCheckbox,
@@ -15,12 +18,14 @@ import {
   MqDivider,
   MqEmpty,
   MqGap,
+  MqImg,
   MqInput,
   MqInputNumber,
   MqLoading,
   MqNavbar,
   MqNoticeBar,
   MqNotify,
+  MqPicker,
   MqPopup,
   MqProgress,
   MqRadio,
@@ -35,16 +40,19 @@ import {
   MqSteps,
   MqSwitch,
   MqTab,
+  MqTable,
   MqTabbar,
   MqTabbarItem,
   MqTabs,
   MqTag,
   MqTextarea,
   MqToast,
+  MqUpload,
   hideToast,
   showNotify,
   showToast,
 } from '@mosquito/ui'
+import type { MqTableColumn } from '@mosquito/ui'
 
 const centerVisible = ref(false)
 const sheetVisible = ref(false)
@@ -79,6 +87,54 @@ const tabbar = ref('home')
 const segment = ref('评论')
 const skeletonOn = ref(true)
 const segments = ['评论', '点赞', '贡献']
+const pickerVisible = ref(false)
+const calendarVisible = ref(false)
+const date = ref('2026-10-20')
+const city = ref<Array<string | number>>(['zj', 'hz'])
+const cities = [
+  {
+    value: 'zj',
+    label: '浙江',
+    children: [
+      { value: 'hz', label: '杭州' },
+      { value: 'nb', label: '宁波' },
+    ],
+  },
+  {
+    value: 'js',
+    label: '江苏',
+    children: [
+      { value: 'nj', label: '南京' },
+      { value: 'sz', label: '苏州' },
+    ],
+  },
+]
+const uploads = ref<string[]>([])
+const tableColumns: MqTableColumn[] = [
+  { prop: 'name', label: '项目', width: 110 },
+  {
+    prop: 'amount',
+    label: '金额',
+    align: 'right',
+    formatter: (_row, value) => `¥${Number(value).toFixed(2)}`,
+  },
+  { prop: 'state', label: '状态', width: 76, align: 'center' },
+]
+const tableData = [
+  { id: 1, name: '运费', amount: 12, state: '已付' },
+  { id: 2, name: '包装', amount: 3.5, state: '待付' },
+]
+
+const cityLabel = computed(() => {
+  const selected = city.value
+  const group = cities.find((item) => item.value === selected[0])
+  const child = group?.children.find((item) => item.value === selected[1])
+  return group && child ? `${group.label} / ${child.label}` : '请选择'
+})
+
+function onTableRow(row: Record<string, unknown>) {
+  showToast(`${String(row.name)} 行`)
+}
 
 const bgChoices = [
   { bg: 'transparent', label: '透明', ink: '#6f675e' },
@@ -240,6 +296,45 @@ function flashNotify() {
       <mq-button size="small" type="primary" @click="bumpProgress(10)">加十</mq-button>
     </view>
 
+    <mq-divider>图片、选择和数据</mq-divider>
+
+    <view class="demo__row">
+      <mq-avatar-group :max-count="3" :total="8" size="medium">
+        <mq-avatar text="蚊" bg-color="#0f3d32" color="#f7f4ee" />
+        <mq-avatar text="式" />
+        <mq-avatar src="https://picsum.photos/80" alt="图" />
+        <mq-avatar text="UI" />
+      </mq-avatar-group>
+    </view>
+
+    <view class="demo__field">
+      <mq-img
+        src="https://picsum.photos/640/360"
+        height="120"
+        radius="8"
+        alt="网络不可用时会落到这块占位"
+      />
+    </view>
+
+    <mq-cell title="城市" :value="cityLabel" is-link @click="pickerVisible = true" />
+    <mq-cell title="日期" :value="date" is-link @click="calendarVisible = true" />
+
+    <view class="demo__field">
+      <mq-upload v-model="uploads" :max-count="4" tip="选图后先保存在本地路径，接 action 才会上传" />
+    </view>
+
+    <view class="demo__field">
+      <mq-table
+        :data="tableData"
+        :columns="tableColumns"
+        row-key="id"
+        stripe
+        border
+        size="small"
+        @row-click="onTableRow"
+      />
+    </view>
+
     <mq-divider>反馈和导航</mq-divider>
 
     <view class="demo__field">
@@ -382,6 +477,21 @@ function flashNotify() {
           <mq-button block @click="sheetVisible = false">收起</mq-button>
         </mq-safe-bottom>
       </view>
+    </mq-popup>
+
+    <mq-picker
+      v-model="city"
+      v-model:visible="pickerVisible"
+      title="选择城市"
+      :columns="cities"
+      cascade
+    />
+
+    <mq-popup v-model="calendarVisible" position="bottom" title="选择日期">
+      <view class="demo__field">
+        <mq-calendar v-model="date" @confirm="calendarVisible = false" />
+      </view>
+      <mq-safe-bottom />
     </mq-popup>
 
     <mq-toast />

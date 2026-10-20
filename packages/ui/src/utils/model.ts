@@ -53,6 +53,24 @@ export function resolvePx(value: string | number | undefined, fallback: number):
   return fallback
 }
 
+const AVATAR_PRESETS: Record<string, number> = {
+  large: 64,
+  medium: 48,
+  normal: 40,
+  small: 32,
+}
+
+/** 头像尺寸：预设名落到固定像素，其余按 `resolvePx` 处理。 */
+export function resolveAvatarSize(
+  size: string | number | undefined,
+  fallback = 40,
+): number {
+  if (typeof size === 'string' && AVATAR_PRESETS[size]) {
+    return AVATAR_PRESETS[size]
+  }
+  return resolvePx(size, fallback)
+}
+
 export function clampPercent(value: number): number {
   if (typeof value !== 'number' || !Number.isFinite(value)) {
     return 0
