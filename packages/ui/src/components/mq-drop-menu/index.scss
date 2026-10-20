@@ -1,0 +1,15 @@
+.mq-drop-menu {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.mq-drop-menu__bar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--mq-bg, #fffcf7);
+  border-bottom: 1px solid var(--mq-border, #e6e2da);
+}

@@ -1,0 +1,48 @@
+.mq-floating-panel {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--mq-bg, #fffcf7);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -6px 24px rgba(28, 25, 21, 0.12);
+  transition-property: height;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mq-floating-panel__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 8px 0 4px;
+}
+
+.mq-floating-panel__bar {
+  width: 36px;
+  height: 4px;
+  margin-bottom: 4px;
+  background: var(--mq-border, #e6e2da);
+  border-radius: 999px;
+}
+
+.mq-floating-panel__content {
+  flex: 1;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mq-floating-panel.has-safe-area .mq-floating-panel__content {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.mq-floating-panel.is-dragging {
+  user-select: none;
+}

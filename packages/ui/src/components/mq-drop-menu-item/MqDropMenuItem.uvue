@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-drop-menu-item" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：下拉层依赖弹层定位，后续单独适配。
+defineOptions({
+  name: 'mq-drop-menu-item',
+})
+</script>

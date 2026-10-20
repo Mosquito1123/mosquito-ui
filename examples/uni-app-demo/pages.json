@@ -79,7 +79,14 @@
       "^mq-picker$": "@mosquito/ui/components/mq-picker/MqPicker.vue",
       "^mq-table$": "@mosquito/ui/components/mq-table/MqTable.vue",
       "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
-      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue"
+      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue",
+      "^mq-datetime-picker-view$": "@mosquito/ui/components/mq-datetime-picker-view/MqDatetimePickerView.vue",
+      "^mq-datetime-picker$": "@mosquito/ui/components/mq-datetime-picker/MqDatetimePicker.vue",
+      "^mq-cascader$": "@mosquito/ui/components/mq-cascader/MqCascader.vue",
+      "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
+      "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
+      "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
+      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue"
     }
   },
   "pages": [

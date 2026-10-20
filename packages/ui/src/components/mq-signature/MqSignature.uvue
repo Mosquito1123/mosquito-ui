@@ -1,0 +1,10 @@
+<template>
+  <view class="mq-signature" />
+</template>
+
+<script setup lang="ts">
+// uni-app x 占位：Canvas 绘制 API 与 uni-app 不同，后续单独适配。
+defineOptions({
+  name: 'mq-signature',
+})
+</script>
