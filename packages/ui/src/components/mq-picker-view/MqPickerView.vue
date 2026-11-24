@@ -9,10 +9,7 @@
     @pickstart="onPickStart"
     @pickend="onPickEnd"
   >
-    <picker-view-column
-      v-for="(column, columnIndex) in columnsState.columns"
-      :key="columnIndex"
-    >
+    <picker-view-column v-for="(column, columnIndex) in columnsState.columns" :key="columnIndex">
       <view
         v-for="(option, optionIndex) in column"
         :key="`${String(option.value)}-${optionIndex}`"
@@ -38,11 +35,7 @@ import {
   samePickerValues,
 } from '../../utils/picker'
 import type { MqPickerColumn, MqPickerColumns, MqPickerKeys, MqPickerOption } from '../../utils/picker'
-import type {
-  MqPickerChangePayload,
-  MqPickerViewEmits,
-  MqPickerViewProps,
-} from './types'
+import type { MqPickerChangePayload, MqPickerViewEmits, MqPickerViewProps } from './types'
 
 defineOptions({
   name: 'mq-picker-view',
@@ -100,11 +93,7 @@ function treeData(): MqPickerOption[] {
 
 function rebuild(values: readonly (string | number)[] = []) {
   if (props.cascade) {
-    const built = buildCascadeSelection(
-      props.columns as MqPickerColumn,
-      values,
-      keys.value,
-    )
+    const built = buildCascadeSelection(props.columns as MqPickerColumn, values, keys.value)
     columnsState.value = built
     return
   }

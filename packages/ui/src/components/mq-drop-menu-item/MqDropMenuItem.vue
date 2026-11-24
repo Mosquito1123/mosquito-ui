@@ -60,11 +60,7 @@
 import { computed, inject, onBeforeUnmount, onMounted, ref } from 'vue'
 import { registerOutsideCloser } from '../../utils/queue'
 import { dropMenuKey } from '../mq-drop-menu/context'
-import type {
-  MqDropMenuItemEmits,
-  MqDropMenuItemOption,
-  MqDropMenuItemProps,
-} from './types'
+import type { MqDropMenuItemEmits, MqDropMenuItemOption, MqDropMenuItemProps } from './types'
 
 defineOptions({
   name: 'mq-drop-menu-item',

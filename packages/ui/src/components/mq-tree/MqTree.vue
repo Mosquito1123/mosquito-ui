@@ -23,7 +23,9 @@
         class="mq-tree__checkbox"
         :class="`is-${stateOf(row.node)}`"
         role="checkbox"
-        :aria-checked="stateOf(row.node) === 'all' ? 'true' : stateOf(row.node) === 'partial' ? 'mixed' : 'false'"
+        :aria-checked="
+          stateOf(row.node) === 'all' ? 'true' : stateOf(row.node) === 'partial' ? 'mixed' : 'false'
+        "
         @click.stop="toggleCheck(row.node)"
       >
         <text v-if="stateOf(row.node) === 'all'">✓</text>
@@ -47,11 +49,7 @@ import {
   treeSelectionState,
 } from '../../utils/tree'
 import type { MqTreeNode } from '../../utils/tree'
-import type {
-  MqTreeEmits,
-  MqTreeExpandPayload,
-  MqTreeProps,
-} from './types'
+import type { MqTreeEmits, MqTreeExpandPayload, MqTreeProps } from './types'
 
 defineOptions({
   name: 'mq-tree',
@@ -71,11 +69,7 @@ const props = withDefaults(defineProps<MqTreeProps>(), {
 const emit = defineEmits<MqTreeEmits>()
 
 const expandedValues = ref<Array<string | number>>(
-  props.expanded
-    ? [...props.expanded]
-    : props.defaultExpandAll
-      ? collectExpandableValues(props.data)
-      : [],
+  props.expanded ? [...props.expanded] : props.defaultExpandAll ? collectExpandableValues(props.data) : [],
 )
 
 const rows = computed(() => flattenTree(props.data, expandedValues.value))

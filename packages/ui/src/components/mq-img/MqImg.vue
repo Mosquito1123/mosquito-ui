@@ -1,5 +1,10 @@
 <template>
-  <view class="mq-img" :class="{ 'is-round': round, 'is-failed': failed }" :style="rootStyle" @click="onClick">
+  <view
+    class="mq-img"
+    :class="{ 'is-round': round, 'is-failed': failed }"
+    :style="rootStyle"
+    @click="onClick"
+  >
     <slot v-if="slots.default" />
     <template v-else>
       <image

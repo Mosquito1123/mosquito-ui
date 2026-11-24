@@ -1,9 +1,5 @@
 <template>
-  <view
-    class="mq-row"
-    :class="[`is-justify-${justify}`, `is-align-${align}`]"
-    :style="rootStyle"
-  >
+  <view class="mq-row" :class="[`is-justify-${justify}`, `is-align-${align}`]" :style="rootStyle">
     <slot />
   </view>
 </template>

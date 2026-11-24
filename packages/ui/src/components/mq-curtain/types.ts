@@ -1,11 +1,5 @@
 export type MqCurtainClosePosition =
-  | 'inset'
-  | 'top'
-  | 'bottom'
-  | 'top-left'
-  | 'top-right'
-  | 'bottom-left'
-  | 'bottom-right'
+  'inset' | 'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 
 export interface MqCurtainProps {
   modelValue?: boolean

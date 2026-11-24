@@ -7,3 +7,6 @@ unpackage
 *.local
 .idea
 .pnpm-store
+coverage
+docs/.vitepress/cache
+*.tsbuildinfo

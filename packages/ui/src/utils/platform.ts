@@ -38,19 +38,14 @@ export interface UniSelectorQuery {
   in: (component: unknown) => UniSelectorQuery
   select: (selector: string) => UniSelectorQuery
   selectAll: (selector: string) => UniSelectorQuery
-  boundingClientRect: (
-    callback: (rect?: UniRect | UniRect[]) => void,
-  ) => UniSelectorQuery
+  boundingClientRect: (callback: (rect?: UniRect | UniRect[]) => void) => UniSelectorQuery
   exec: () => void
 }
 
 export interface UniPlatformApi {
   getSystemInfoSync?: () => { windowHeight?: number; windowWidth?: number }
   createCanvasContext?: (canvasId: string, instance?: unknown) => UniCanvasContext
-  canvasToTempFilePath?: (
-    options: UniCanvasToTempFilePathOptions,
-    instance?: unknown,
-  ) => void
+  canvasToTempFilePath?: (options: UniCanvasToTempFilePathOptions, instance?: unknown) => void
   createSelectorQuery?: () => UniSelectorQuery
 }
 

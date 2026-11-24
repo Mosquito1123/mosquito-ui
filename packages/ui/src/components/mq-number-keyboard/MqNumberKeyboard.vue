@@ -18,7 +18,9 @@
       </view>
       <view v-if="mode === 'custom'" class="mq-number-keyboard__side">
         <text class="mq-number-keyboard__key is-muted" @click.stop="onKey('delete')">删除</text>
-        <text class="mq-number-keyboard__key is-primary" @click.stop="onClose">{{ closeText || '完成' }}</text>
+        <text class="mq-number-keyboard__key is-primary" @click.stop="onClose">{{
+          closeText || '完成'
+        }}</text>
       </view>
     </view>
   </view>
@@ -51,7 +53,9 @@ const opened = ref(false)
 let leaveTimer: ReturnType<typeof setTimeout> | undefined
 
 const keys = computed(() => {
-  const digits = props.randomKeyOrder ? shuffleKeys(['1', '2', '3', '4', '5', '6', '7', '8', '9']) : ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+  const digits = props.randomKeyOrder
+    ? shuffleKeys(['1', '2', '3', '4', '5', '6', '7', '8', '9'])
+    : ['1', '2', '3', '4', '5', '6', '7', '8', '9']
   if (props.mode === 'custom') {
     return [...digits, props.extraKey || '.', '0', '']
   }

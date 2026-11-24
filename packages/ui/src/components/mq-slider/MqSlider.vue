@@ -51,7 +51,9 @@ const bounds = computed(() => {
   }
 })
 
-const display = computed(() => snapSlider(props.modelValue, bounds.value.min, bounds.value.max, bounds.value.step))
+const display = computed(() =>
+  snapSlider(props.modelValue, bounds.value.min, bounds.value.max, bounds.value.step),
+)
 
 function readNumber(event: Event): number {
   const detail = (event as Event & { detail?: { value?: number | string } }).detail

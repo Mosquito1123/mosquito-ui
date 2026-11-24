@@ -130,14 +130,7 @@ export function parseDatetime(
 }
 
 export function datetimePartsToTimestamp(parts: MqDatetimeParts): number {
-  return new Date(
-    parts.year,
-    parts.month - 1,
-    parts.day,
-    parts.hour,
-    parts.minute,
-    parts.second,
-  ).getTime()
+  return new Date(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute, parts.second).getTime()
 }
 
 /** 把时间戳夹到 min/max 之间。 */
@@ -195,12 +188,8 @@ export function buildDatetimeColumns(
   options: MqDatetimeOptions = {},
 ): MqPickerOption[][] {
   const type = options.type ?? 'datetime'
-  const minDate = new Date(
-    options.minDate !== undefined ? options.minDate : defaultMinDate(),
-  )
-  const maxDate = new Date(
-    options.maxDate !== undefined ? options.maxDate : defaultMaxDate(),
-  )
+  const minDate = new Date(options.minDate !== undefined ? options.minDate : defaultMinDate())
+  const maxDate = new Date(options.maxDate !== undefined ? options.maxDate : defaultMaxDate())
   const columns: MqPickerOption[][] = []
 
   if (type === 'time') {
@@ -250,11 +239,7 @@ export function buildDatetimeColumns(
   return columns
 }
 
-function selectedValues(
-  parts: MqDatetimeParts,
-  type: MqDatetimeType,
-  useSecond = false,
-): number[] {
+function selectedValues(parts: MqDatetimeParts, type: MqDatetimeType, useSecond = false): number[] {
   if (type === 'time') {
     return useSecond ? [parts.hour, parts.minute, parts.second] : [parts.hour, parts.minute]
   }
@@ -310,7 +295,7 @@ export function datetimeFromIndexes(
 
   const parts: MqDatetimeParts = {
     year: picked[0] ?? new Date().getFullYear(),
-    month: type === 'year' ? 1 : picked[1] ?? 1,
+    month: type === 'year' ? 1 : (picked[1] ?? 1),
     day: 1,
     hour: 0,
     minute: 0,
@@ -323,7 +308,7 @@ export function datetimeFromIndexes(
     const offset = type === 'datetime' ? 3 : 0
     parts.hour = picked[offset] ?? 0
     parts.minute = picked[offset + 1] ?? 0
-    parts.second = options.useSecond ? picked[offset + 2] ?? 0 : 0
+    parts.second = options.useSecond ? (picked[offset + 2] ?? 0) : 0
   }
   return clampTimestamp(datetimePartsToTimestamp(parts), options.minDate, options.maxDate)
 }
@@ -336,10 +321,9 @@ export function formatDatetime(
   const type = options.type ?? 'datetime'
   const parts = parseDatetime(value, options)
   if (type === 'time') {
-    const time =
-      options.useSecond
-        ? `${pad2(parts.hour)}:${pad2(parts.minute)}:${pad2(parts.second)}`
-        : `${pad2(parts.hour)}:${pad2(parts.minute)}`
+    const time = options.useSecond
+      ? `${pad2(parts.hour)}:${pad2(parts.minute)}:${pad2(parts.second)}`
+      : `${pad2(parts.hour)}:${pad2(parts.minute)}`
     return time
   }
   const date = formatDate(parts.year, parts.month, parts.day)

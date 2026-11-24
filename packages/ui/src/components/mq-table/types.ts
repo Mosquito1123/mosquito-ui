@@ -10,11 +10,7 @@ export interface MqTableColumn {
   minWidth?: string | number
   align?: MqTableAlign
   ellipsis?: boolean
-  formatter?: (
-    row: Record<string, unknown>,
-    value: unknown,
-    index: number,
-  ) => string
+  formatter?: (row: Record<string, unknown>, value: unknown, index: number) => string
 }
 
 export interface MqTableProps {

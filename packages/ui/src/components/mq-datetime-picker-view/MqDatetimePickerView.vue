@@ -9,10 +9,7 @@
     @pickstart="onPickStart"
     @pickend="onPickEnd"
   >
-    <picker-view-column
-      v-for="(column, columnIndex) in state.columns"
-      :key="columnIndex"
-    >
+    <picker-view-column v-for="(column, columnIndex) in state.columns" :key="columnIndex">
       <view
         v-for="(option, optionIndex) in column"
         :key="`${String(option.value)}-${optionIndex}`"
@@ -36,11 +33,7 @@ import {
 } from '../../utils/datetime'
 import type { MqDatetimeOptions } from '../../utils/datetime'
 import type { MqPickerOption } from '../../utils/picker'
-import type {
-  MqDatetimeChangePayload,
-  MqDatetimePickerViewEmits,
-  MqDatetimePickerViewProps,
-} from './types'
+import type { MqDatetimeChangePayload, MqDatetimePickerViewEmits, MqDatetimePickerViewProps } from './types'
 
 defineOptions({
   name: 'mq-datetime-picker-view',
@@ -118,7 +111,18 @@ function rebuild(value: string | number | undefined) {
 rebuild(props.modelValue)
 
 watch(
-  () => [props.type, props.minDate, props.maxDate, props.useSecond, props.minHour, props.maxHour, props.minMinute, props.maxMinute, props.minSecond, props.maxSecond],
+  () => [
+    props.type,
+    props.minDate,
+    props.maxDate,
+    props.useSecond,
+    props.minHour,
+    props.maxHour,
+    props.minMinute,
+    props.maxMinute,
+    props.minSecond,
+    props.maxSecond,
+  ],
   () => {
     rebuild(props.modelValue ?? state.value.value)
   },

@@ -1,5 +1,8 @@
 <template>
-  <view class="mq-step" :class="[`is-${resolved}`, { 'is-dot': dot, 'is-vertical': vertical, 'is-center': alignCenter }]">
+  <view
+    class="mq-step"
+    :class="[`is-${resolved}`, { 'is-dot': dot, 'is-vertical': vertical, 'is-center': alignCenter }]"
+  >
     <view class="mq-step__head">
       <text class="mq-step__icon">{{ dot ? '' : index + 1 }}</text>
       <view class="mq-step__line" />

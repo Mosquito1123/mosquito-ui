@@ -18,10 +18,15 @@
 ```bash
 pnpm install
 pnpm typecheck
-pnpm test
+pnpm lint
+pnpm test          # Vitest：工具函数 + 组件
+pnpm coverage      # 带覆盖率
+pnpm docs:dev      # VitePress 文档站
 ```
 
-`main` 的拉取请求会跑 GitHub Actions：`pnpm typecheck` 和 `pnpm test`。建议把检查项 **typecheck and test** 设成分支保护里的必过项。
+新增组件后运行 `pnpm sync:easycom`，脚本会按 `src/components/` 的实际目录重写本文件和 `packages/ui/README.md` 里的 easycom 映射。贡献约定见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
+
+`main` 的拉取请求会跑 GitHub Actions：`typecheck`、`lint`、`format:check` 和带覆盖率的测试。建议把检查项 **typecheck, lint and test** 设成分支保护里的必过项。
 
 业务项目里：
 
@@ -39,112 +44,130 @@ pnpm add @mosquito/ui
 
 `pages.json` 按需 easycom（文件名是帕斯卡形式，所以用自定义映射）。映射要指向 `.vue`，不要指向同目录的 `.uvue` 占位：
 
+<!-- easycom:start -->
+
 ```json
 {
   "easycom": {
     "autoscan": true,
     "custom": {
+      "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
+      "^mq-avatar$": "@mosquito/ui/components/mq-avatar/MqAvatar.vue",
+      "^mq-avatar-group$": "@mosquito/ui/components/mq-avatar-group/MqAvatarGroup.vue",
+      "^mq-backtop$": "@mosquito/ui/components/mq-backtop/MqBacktop.vue",
+      "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
+      "^mq-banner$": "@mosquito/ui/components/mq-banner/MqBanner.vue",
+      "^mq-bar-code$": "@mosquito/ui/components/mq-bar-code/MqBarCode.vue",
       "^mq-button$": "@mosquito/ui/components/mq-button/MqButton.vue",
+      "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
+      "^mq-card$": "@mosquito/ui/components/mq-card/MqCard.vue",
+      "^mq-cascader$": "@mosquito/ui/components/mq-cascader/MqCascader.vue",
       "^mq-cell$": "@mosquito/ui/components/mq-cell/MqCell.vue",
-      "^mq-popup$": "@mosquito/ui/components/mq-popup/MqPopup.vue",
-      "^mq-toast$": "@mosquito/ui/components/mq-toast/MqToast.vue",
-      "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
-      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue",
       "^mq-cell-group$": "@mosquito/ui/components/mq-cell-group/MqCellGroup.vue",
-      "^mq-switch$": "@mosquito/ui/components/mq-switch/MqSwitch.vue",
       "^mq-checkbox$": "@mosquito/ui/components/mq-checkbox/MqCheckbox.vue",
       "^mq-checkbox-group$": "@mosquito/ui/components/mq-checkbox-group/MqCheckboxGroup.vue",
-      "^mq-radio$": "@mosquito/ui/components/mq-radio/MqRadio.vue",
-      "^mq-radio-group$": "@mosquito/ui/components/mq-radio-group/MqRadioGroup.vue",
-      "^mq-input$": "@mosquito/ui/components/mq-input/MqInput.vue",
-      "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
-      "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
-      "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
-      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue",
-      "^mq-textarea$": "@mosquito/ui/components/mq-textarea/MqTextarea.vue",
-      "^mq-slider$": "@mosquito/ui/components/mq-slider/MqSlider.vue",
-      "^mq-rate$": "@mosquito/ui/components/mq-rate/MqRate.vue",
-      "^mq-notice-bar$": "@mosquito/ui/components/mq-notice-bar/MqNoticeBar.vue",
-      "^mq-empty$": "@mosquito/ui/components/mq-empty/MqEmpty.vue",
-      "^mq-steps$": "@mosquito/ui/components/mq-steps/MqSteps.vue",
-      "^mq-step$": "@mosquito/ui/components/mq-step/MqStep.vue",
+      "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
+      "^mq-col$": "@mosquito/ui/components/mq-col/MqCol.vue",
       "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
       "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
-      "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
-      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue",
-      "^mq-dialog$": "@mosquito/ui/components/mq-dialog/MqDialog.vue",
-      "^mq-input-number$": "@mosquito/ui/components/mq-input-number/MqInputNumber.vue",
-      "^mq-notify$": "@mosquito/ui/components/mq-notify/MqNotify.vue",
-      "^mq-gap$": "@mosquito/ui/components/mq-gap/MqGap.vue",
-      "^mq-skeleton$": "@mosquito/ui/components/mq-skeleton/MqSkeleton.vue",
+      "^mq-config-provider$": "@mosquito/ui/components/mq-config-provider/MqConfigProvider.vue",
+      "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
       "^mq-countdown$": "@mosquito/ui/components/mq-countdown/MqCountdown.vue",
-      "^mq-segmented$": "@mosquito/ui/components/mq-segmented/MqSegmented.vue",
+      "^mq-curtain$": "@mosquito/ui/components/mq-curtain/MqCurtain.vue",
+      "^mq-datetime-picker$": "@mosquito/ui/components/mq-datetime-picker/MqDatetimePicker.vue",
+      "^mq-datetime-picker-view$": "@mosquito/ui/components/mq-datetime-picker-view/MqDatetimePickerView.vue",
+      "^mq-dialog$": "@mosquito/ui/components/mq-dialog/MqDialog.vue",
+      "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
+      "^mq-draggable$": "@mosquito/ui/components/mq-draggable/MqDraggable.vue",
+      "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
+      "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
+      "^mq-empty$": "@mosquito/ui/components/mq-empty/MqEmpty.vue",
+      "^mq-fab$": "@mosquito/ui/components/mq-fab/MqFab.vue",
+      "^mq-float-view$": "@mosquito/ui/components/mq-float-view/MqFloatView.vue",
+      "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
+      "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
+      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue",
+      "^mq-gap$": "@mosquito/ui/components/mq-gap/MqGap.vue",
+      "^mq-grid$": "@mosquito/ui/components/mq-grid/MqGrid.vue",
+      "^mq-grid-item$": "@mosquito/ui/components/mq-grid-item/MqGridItem.vue",
+      "^mq-icon$": "@mosquito/ui/components/mq-icon/MqIcon.vue",
+      "^mq-image-preview$": "@mosquito/ui/components/mq-image-preview/MqImagePreview.vue",
+      "^mq-img$": "@mosquito/ui/components/mq-img/MqImg.vue",
+      "^mq-img-cropper$": "@mosquito/ui/components/mq-img-cropper/MqImgCropper.vue",
+      "^mq-index-anchor$": "@mosquito/ui/components/mq-index-anchor/MqIndexAnchor.vue",
+      "^mq-index-bar$": "@mosquito/ui/components/mq-index-bar/MqIndexBar.vue",
+      "^mq-input$": "@mosquito/ui/components/mq-input/MqInput.vue",
+      "^mq-input-number$": "@mosquito/ui/components/mq-input-number/MqInputNumber.vue",
+      "^mq-keyboard$": "@mosquito/ui/components/mq-keyboard/MqKeyboard.vue",
+      "^mq-layout$": "@mosquito/ui/components/mq-layout/MqLayout.vue",
+      "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
+      "^mq-loadmore$": "@mosquito/ui/components/mq-loadmore/MqLoadmore.vue",
+      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue",
       "^mq-navbar$": "@mosquito/ui/components/mq-navbar/MqNavbar.vue",
-      "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
+      "^mq-notice-bar$": "@mosquito/ui/components/mq-notice-bar/MqNoticeBar.vue",
+      "^mq-notify$": "@mosquito/ui/components/mq-notify/MqNotify.vue",
+      "^mq-number-keyboard$": "@mosquito/ui/components/mq-number-keyboard/MqNumberKeyboard.vue",
+      "^mq-overlay$": "@mosquito/ui/components/mq-overlay/MqOverlay.vue",
+      "^mq-pagination$": "@mosquito/ui/components/mq-pagination/MqPagination.vue",
+      "^mq-password-input$": "@mosquito/ui/components/mq-password-input/MqPasswordInput.vue",
+      "^mq-picker$": "@mosquito/ui/components/mq-picker/MqPicker.vue",
+      "^mq-picker-view$": "@mosquito/ui/components/mq-picker-view/MqPickerView.vue",
+      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue",
+      "^mq-popup$": "@mosquito/ui/components/mq-popup/MqPopup.vue",
+      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue",
+      "^mq-qr-code$": "@mosquito/ui/components/mq-qr-code/MqQrCode.vue",
+      "^mq-radio$": "@mosquito/ui/components/mq-radio/MqRadio.vue",
+      "^mq-radio-group$": "@mosquito/ui/components/mq-radio-group/MqRadioGroup.vue",
+      "^mq-rate$": "@mosquito/ui/components/mq-rate/MqRate.vue",
+      "^mq-read-more$": "@mosquito/ui/components/mq-read-more/MqReadMore.vue",
+      "^mq-resize$": "@mosquito/ui/components/mq-resize/MqResize.vue",
+      "^mq-rich-text$": "@mosquito/ui/components/mq-rich-text/MqRichText.vue",
+      "^mq-rolling-number$": "@mosquito/ui/components/mq-rolling-number/MqRollingNumber.vue",
+      "^mq-root-portal$": "@mosquito/ui/components/mq-root-portal/MqRootPortal.vue",
+      "^mq-row$": "@mosquito/ui/components/mq-row/MqRow.vue",
+      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue",
+      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue",
+      "^mq-segmented$": "@mosquito/ui/components/mq-segmented/MqSegmented.vue",
+      "^mq-select$": "@mosquito/ui/components/mq-select/MqSelect.vue",
+      "^mq-select-picker$": "@mosquito/ui/components/mq-select-picker/MqSelectPicker.vue",
+      "^mq-sidebar$": "@mosquito/ui/components/mq-sidebar/MqSidebar.vue",
+      "^mq-sidebar-item$": "@mosquito/ui/components/mq-sidebar-item/MqSidebarItem.vue",
+      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue",
+      "^mq-skeleton$": "@mosquito/ui/components/mq-skeleton/MqSkeleton.vue",
+      "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
+      "^mq-slider$": "@mosquito/ui/components/mq-slider/MqSlider.vue",
+      "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
+      "^mq-step$": "@mosquito/ui/components/mq-step/MqStep.vue",
+      "^mq-steps$": "@mosquito/ui/components/mq-steps/MqSteps.vue",
+      "^mq-sticky$": "@mosquito/ui/components/mq-sticky/MqSticky.vue",
+      "^mq-swipe-action$": "@mosquito/ui/components/mq-swipe-action/MqSwipeAction.vue",
+      "^mq-swiper$": "@mosquito/ui/components/mq-swiper/MqSwiper.vue",
+      "^mq-switch$": "@mosquito/ui/components/mq-switch/MqSwitch.vue",
       "^mq-tab$": "@mosquito/ui/components/mq-tab/MqTab.vue",
       "^mq-tabbar$": "@mosquito/ui/components/mq-tabbar/MqTabbar.vue",
       "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue",
-      "^mq-overlay$": "@mosquito/ui/components/mq-overlay/MqOverlay.vue",
-      "^mq-card$": "@mosquito/ui/components/mq-card/MqCard.vue",
-      "^mq-row$": "@mosquito/ui/components/mq-row/MqRow.vue",
-      "^mq-col$": "@mosquito/ui/components/mq-col/MqCol.vue",
-      "^mq-grid$": "@mosquito/ui/components/mq-grid/MqGrid.vue",
-      "^mq-grid-item$": "@mosquito/ui/components/mq-grid-item/MqGridItem.vue",
-      "^mq-loadmore$": "@mosquito/ui/components/mq-loadmore/MqLoadmore.vue",
-      "^mq-sticky$": "@mosquito/ui/components/mq-sticky/MqSticky.vue",
-      "^mq-fab$": "@mosquito/ui/components/mq-fab/MqFab.vue",
-      "^mq-pagination$": "@mosquito/ui/components/mq-pagination/MqPagination.vue",
-      "^mq-transition$": "@mosquito/ui/components/mq-transition/MqTransition.vue",
-      "^mq-backtop$": "@mosquito/ui/components/mq-backtop/MqBacktop.vue",
-      "^mq-text$": "@mosquito/ui/components/mq-text/MqText.vue",
-      "^mq-swipe-action$": "@mosquito/ui/components/mq-swipe-action/MqSwipeAction.vue",
-      "^mq-sidebar$": "@mosquito/ui/components/mq-sidebar/MqSidebar.vue",
-      "^mq-sidebar-item$": "@mosquito/ui/components/mq-sidebar-item/MqSidebarItem.vue",
-      "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
-      "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
-      "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
-      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue",
-      "^mq-avatar$": "@mosquito/ui/components/mq-avatar/MqAvatar.vue",
-      "^mq-config-provider$": "@mosquito/ui/components/mq-config-provider/MqConfigProvider.vue",
-      "^mq-curtain$": "@mosquito/ui/components/mq-curtain/MqCurtain.vue",
-      "^mq-index-bar$": "@mosquito/ui/components/mq-index-bar/MqIndexBar.vue",
-      "^mq-index-anchor$": "@mosquito/ui/components/mq-index-anchor/MqIndexAnchor.vue",
-      "^mq-password-input$": "@mosquito/ui/components/mq-password-input/MqPasswordInput.vue",
-      "^mq-number-keyboard$": "@mosquito/ui/components/mq-number-keyboard/MqNumberKeyboard.vue",
-      "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
-      "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue",
-      "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
-      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue",
-      "^mq-avatar-group$": "@mosquito/ui/components/mq-avatar-group/MqAvatarGroup.vue",
-      "^mq-img$": "@mosquito/ui/components/mq-img/MqImg.vue",
-      "^mq-picker-view$": "@mosquito/ui/components/mq-picker-view/MqPickerView.vue",
-      "^mq-picker$": "@mosquito/ui/components/mq-picker/MqPicker.vue",
       "^mq-table$": "@mosquito/ui/components/mq-table/MqTable.vue",
-      "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
-      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue",
-      "^mq-datetime-picker-view$": "@mosquito/ui/components/mq-datetime-picker-view/MqDatetimePickerView.vue",
-      "^mq-datetime-picker$": "@mosquito/ui/components/mq-datetime-picker/MqDatetimePicker.vue",
-      "^mq-cascader$": "@mosquito/ui/components/mq-cascader/MqCascader.vue",
-      "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
-      "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
-      "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
-      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue",
+      "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
+      "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
+      "^mq-text$": "@mosquito/ui/components/mq-text/MqText.vue",
+      "^mq-textarea$": "@mosquito/ui/components/mq-textarea/MqTextarea.vue",
       "^mq-timeline$": "@mosquito/ui/components/mq-timeline/MqTimeline.vue",
       "^mq-timeline-item$": "@mosquito/ui/components/mq-timeline-item/MqTimelineItem.vue",
-      "^mq-select$": "@mosquito/ui/components/mq-select/MqSelect.vue",
-      "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
-      "^mq-float-view$": "@mosquito/ui/components/mq-float-view/MqFloatView.vue",
-      "^mq-read-more$": "@mosquito/ui/components/mq-read-more/MqReadMore.vue",
-      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue",
+      "^mq-toast$": "@mosquito/ui/components/mq-toast/MqToast.vue",
+      "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
+      "^mq-tour$": "@mosquito/ui/components/mq-tour/MqTour.vue",
+      "^mq-transition$": "@mosquito/ui/components/mq-transition/MqTransition.vue",
       "^mq-tree$": "@mosquito/ui/components/mq-tree/MqTree.vue",
+      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue",
+      "^mq-video-preview$": "@mosquito/ui/components/mq-video-preview/MqVideoPreview.vue",
       "^mq-waterfall$": "@mosquito/ui/components/mq-waterfall/MqWaterfall.vue",
-      "^mq-draggable$": "@mosquito/ui/components/mq-draggable/MqDraggable.vue",
-      "^mq-banner$": "@mosquito/ui/components/mq-banner/MqBanner.vue",
-      "^mq-rolling-number$": "@mosquito/ui/components/mq-rolling-number/MqRollingNumber.vue"
+      "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue"
     }
   }
 }
 ```
+
+<!-- easycom:end -->
 
 若工具链不解析 `exports`，把路径改成 `node_modules/@mosquito/ui/src/components/...`。也可以手动导入：
 
@@ -156,88 +179,100 @@ import { MqButton, showToast } from '@mosquito/ui'
 
 ## 组件
 
-| 组件 | 能力 |
-| --- | --- |
-| `mq-button` | `type` / `variant` / `size` / `round` / `block` / `disabled` / `loading`。禁用和加载中不发出 `click` |
-| `mq-cell` | `title` / `value` / `label` / `is-link` / `clickable` / `disabled` / `required`。右侧可放插槽 |
-| `mq-cell-group` | 分组标题、分割线和圆角卡片 |
-| `mq-switch` | `v-model`，可换开关值、颜色和尺寸。`before-change` 返回 `false` 时不切换 |
-| `mq-checkbox` / `mq-checkbox-group` | 可单独绑定，也可按组多选，支持 `min` / `max` |
-| `mq-radio` / `mq-radio-group` | 组内单选，`type="button"` 变成按钮，`allow-uncheck` 可取消 |
-| `mq-input` | `v-model`、清空、字数、密码显隐、`compact` 放进单元格 |
-| `mq-tag` | 类型、镂空、浅色、圆角、可关闭 |
-| `mq-badge` | 数字、上限、红点。`0` 默认不显示 |
-| `mq-divider` | 文本位置、虚线、垂直 |
-| `mq-progress` | `percentage` 限制在 0–100，可用 `status` 换色 |
-| `mq-textarea` | 多行输入，清空、字数、`auto-height`。`maxlength` 小于 0 时不限制 |
-| `mq-slider` | 单值滑块，`min` / `max` / `step`。`change` 为 `{ value }` |
-| `mq-rate` | 文字星号评分，可半星、可再点清空 |
-| `mq-notice-bar` | 通告。`info` 走主色，可关闭，需要时才滚动 |
-| `mq-empty` | 空状态。标记用伪元素，图片和底部用插槽 |
-| `mq-steps` / `mq-step` | 按顺序编号。`active` 之前为完成，当前为进行中 |
-| `mq-collapse` / `mq-collapse-item` | 多选或手风琴。`before-expand` 返回 `false` 时不展开 |
-| `mq-action-sheet` | 底部动作列表，复用弹出层。`select` 为 `{ item, index }` |
-| `mq-search` | 原生输入加文字按钮，不套输入框和按钮组件 |
-| `mq-dialog` | 受控对话框，复用弹出层。可 `before-confirm` |
-| `mq-input-number` | 加减计数，文字按钮，不使用图标字体 |
-| `mq-notify` | `showNotify` / `hideNotify`，页面挂 `<mq-notify />` |
-| `mq-navbar` | 顶栏。左侧箭头用文字 `‹` |
-| `mq-tabs` / `mq-tab` | 标签页。`v-model` 可为索引或 `name` |
-| `mq-tabbar` / `mq-tabbar-item` | 底栏。用 `mark` 文字标记，可用 `icon` 插槽 |
-| `mq-segmented` | 分段器 |
-| `mq-countdown` | 倒计时。暴露 `start` / `pause` / `reset` |
-| `mq-skeleton` | 骨架占位。`loading` 为 false 时显示插槽 |
-| `mq-gap` | 间隔槽，可开底部安全区 |
-| `mq-overlay` | 遮罩层，`show` 控制显隐 |
-| `mq-card` | 卡片，`title` / `type="rectangle"`，底部 `footer` 插槽 |
-| `mq-row` / `mq-col` | 24 栅格布局 |
-| `mq-grid` / `mq-grid-item` | 宫格。项用 `mark` 文字，不用图标字体 |
-| `mq-loadmore` | 列表底部加载态：`loading` / `finished` / `error` |
-| `mq-sticky` | CSS 吸顶 |
-| `mq-fab` | 悬浮按钮，文字 `+` / `×` 触发 |
-| `mq-pagination` | 分页，`v-model` 当前页 |
-| `mq-transition` | 进入离开过渡：`fade` / `slide-*` / `zoom-*` |
-| `mq-backtop` | 回到顶部，默认文字 `↑` |
-| `mq-text` | 文本：主题色、行数、`price` / `phone` / `name` 模式 |
-| `mq-swipe-action` | 左右滑动操作，`closeSwipeActions()` 可统一收起 |
-| `mq-sidebar` / `mq-sidebar-item` | 侧边导航 |
-| `mq-circle` | 环形进度（SVG） |
-| `mq-count-to` | 数字滚动 |
-| `mq-form` / `mq-form-item` | 表单与校验（轻量 `schema`，不内置 Zod） |
-| `mq-avatar` / `mq-avatar-group` | 头像：图片 / 文字 / `mark`；叠层头像组超出数量收成 `+N` |
-| `mq-img` | 图片：宽高比、圆角、懒加载、加载中与失败插槽 |
-| `mq-picker-view` / `mq-picker` | 滚轮选择器与底部弹出选择器，支持多列和级联 |
-| `mq-table` | 数据表格：列配置、斑马纹、边框、单元格插槽 |
-| `mq-calendar` | 日历：单选、区间、多选，支持最小/最大日期 |
-| `mq-upload` | 图片 / 视频 / 文件选择，接 `uni.uploadFile` 或自定义上传 |
-| `mq-datetime-picker-view` / `mq-datetime-picker` | 日期时间滚轮与底部弹层，支持年 / 年月 / 日期 / 时间 / 完整日期时间 |
-| `mq-cascader` | 级联选择：逐级面板、选中路径 Tab、`check-strictly` |
-| `mq-drop-menu` / `mq-drop-menu-item` | 下拉筛选菜单，支持上下展开、蒙层与自定义选项 |
-| `mq-floating-panel` | 可拖动吸附的底部浮动面板 |
-| `mq-signature` | Canvas 签名板，支持撤回、清空和导出图片 |
-| `mq-timeline` / `mq-timeline-item` | 时间线，支持节点标题、时间、高亮和自定义线色 |
-| `mq-select` | 底部弹层选择器，支持单选 / 多选与本地搜索 |
-| `mq-slide-verify` | 滑动验证，阈值可调，支持受控和重置 |
-| `mq-float-view` | 可拖动悬浮窗，自动限制在窗口范围内 |
-| `mq-read-more` | 长文本折叠 / 展开，支持插槽与渐变遮罩 |
-| `mq-marquee` | 文字跑马灯，可调方向和滚动时长 |
-| `mq-tree` | 树形选择，支持多选级联、展开集合与全部展开 / 收起 |
-| `mq-waterfall` | 瀑布流分列，可按估算高度自动平衡各列 |
-| `mq-draggable` | 拖拽排序列表，支持长按触发与自定义位移阈值 |
-| `mq-banner` | 轮播图，支持自动播放、指示点和标题叠加 |
-| `mq-rolling-number` | 数字滚动，逐位数字列滚动并可保留小数与千分位 |
-| `mq-config-provider` | 主题与 CSS 变量作用域 |
-| `mq-curtain` | 幕帘公告图 |
-| `mq-index-bar` / `mq-index-anchor` | 索引栏 |
-| `mq-password-input` | 密码 / 验证码格子 |
-| `mq-number-keyboard` | 数字键盘 |
-| `mq-sort-button` | 排序按钮 |
-| `mq-watermark` | 文字水印 |
-| `mq-tooltip` / `mq-popover` | 提示与菜单气泡；`closeOutside()` |
-| `mq-popup` | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close` |
-| `mq-toast` | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主 |
-| `mq-loading` | 单节点旋转指示，可选 `size`、`color`、`label` |
-| `mq-safe-bottom` | 底部安全区留白，`bg` 同时写进行内背景和 `--mq-safe-bg`，默认透明 |
+| 组件                                             | 能力                                                                                                 |
+| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `mq-button`                                      | `type` / `variant` / `size` / `round` / `block` / `disabled` / `loading`。禁用和加载中不发出 `click` |
+| `mq-cell`                                        | `title` / `value` / `label` / `is-link` / `clickable` / `disabled` / `required`。右侧可放插槽        |
+| `mq-cell-group`                                  | 分组标题、分割线和圆角卡片                                                                           |
+| `mq-switch`                                      | `v-model`，可换开关值、颜色和尺寸。`before-change` 返回 `false` 时不切换                             |
+| `mq-checkbox` / `mq-checkbox-group`              | 可单独绑定，也可按组多选，支持 `min` / `max`                                                         |
+| `mq-radio` / `mq-radio-group`                    | 组内单选，`type="button"` 变成按钮，`allow-uncheck` 可取消                                           |
+| `mq-input`                                       | `v-model`、清空、字数、密码显隐、`compact` 放进单元格                                                |
+| `mq-tag`                                         | 类型、镂空、浅色、圆角、可关闭                                                                       |
+| `mq-badge`                                       | 数字、上限、红点。`0` 默认不显示                                                                     |
+| `mq-divider`                                     | 文本位置、虚线、垂直                                                                                 |
+| `mq-progress`                                    | `percentage` 限制在 0–100，可用 `status` 换色                                                        |
+| `mq-textarea`                                    | 多行输入，清空、字数、`auto-height`。`maxlength` 小于 0 时不限制                                     |
+| `mq-slider`                                      | 单值滑块，`min` / `max` / `step`。`change` 为 `{ value }`                                            |
+| `mq-rate`                                        | 文字星号评分，可半星、可再点清空                                                                     |
+| `mq-notice-bar`                                  | 通告。`info` 走主色，可关闭，需要时才滚动                                                            |
+| `mq-empty`                                       | 空状态。标记用伪元素，图片和底部用插槽                                                               |
+| `mq-steps` / `mq-step`                           | 按顺序编号。`active` 之前为完成，当前为进行中                                                        |
+| `mq-collapse` / `mq-collapse-item`               | 多选或手风琴。`before-expand` 返回 `false` 时不展开                                                  |
+| `mq-action-sheet`                                | 底部动作列表，复用弹出层。`select` 为 `{ item, index }`                                              |
+| `mq-search`                                      | 原生输入加文字按钮，不套输入框和按钮组件                                                             |
+| `mq-dialog`                                      | 受控对话框，复用弹出层。可 `before-confirm`                                                          |
+| `mq-input-number`                                | 加减计数，文字按钮，不使用图标字体                                                                   |
+| `mq-notify`                                      | `showNotify` / `hideNotify`，页面挂 `<mq-notify />`                                                  |
+| `mq-navbar`                                      | 顶栏。左侧箭头用文字 `‹`                                                                             |
+| `mq-tabs` / `mq-tab`                             | 标签页。`v-model` 可为索引或 `name`                                                                  |
+| `mq-tabbar` / `mq-tabbar-item`                   | 底栏。用 `mark` 文字标记，可用 `icon` 插槽                                                           |
+| `mq-segmented`                                   | 分段器                                                                                               |
+| `mq-countdown`                                   | 倒计时。暴露 `start` / `pause` / `reset`                                                             |
+| `mq-skeleton`                                    | 骨架占位。`loading` 为 false 时显示插槽                                                              |
+| `mq-gap`                                         | 间隔槽，可开底部安全区                                                                               |
+| `mq-overlay`                                     | 遮罩层，`show` 控制显隐                                                                              |
+| `mq-card`                                        | 卡片，`title` / `type="rectangle"`，底部 `footer` 插槽                                               |
+| `mq-row` / `mq-col`                              | 24 栅格布局                                                                                          |
+| `mq-grid` / `mq-grid-item`                       | 宫格。项用 `mark` 文字，不用图标字体                                                                 |
+| `mq-loadmore`                                    | 列表底部加载态：`loading` / `finished` / `error`                                                     |
+| `mq-sticky`                                      | CSS 吸顶                                                                                             |
+| `mq-fab`                                         | 悬浮按钮，文字 `+` / `×` 触发                                                                        |
+| `mq-pagination`                                  | 分页，`v-model` 当前页                                                                               |
+| `mq-transition`                                  | 进入离开过渡：`fade` / `slide-*` / `zoom-*`                                                          |
+| `mq-backtop`                                     | 回到顶部，默认文字 `↑`                                                                               |
+| `mq-text`                                        | 文本：主题色、行数、`price` / `phone` / `name` 模式                                                  |
+| `mq-swipe-action`                                | 左右滑动操作，`closeSwipeActions()` 可统一收起                                                       |
+| `mq-sidebar` / `mq-sidebar-item`                 | 侧边导航                                                                                             |
+| `mq-circle`                                      | 环形进度（SVG）                                                                                      |
+| `mq-count-to`                                    | 数字滚动                                                                                             |
+| `mq-form` / `mq-form-item`                       | 表单与校验（轻量 `schema`，不内置 Zod）                                                              |
+| `mq-avatar` / `mq-avatar-group`                  | 头像：图片 / 文字 / `mark`；叠层头像组超出数量收成 `+N`                                              |
+| `mq-img`                                         | 图片：宽高比、圆角、懒加载、加载中与失败插槽                                                         |
+| `mq-picker-view` / `mq-picker`                   | 滚轮选择器与底部弹出选择器，支持多列和级联                                                           |
+| `mq-table`                                       | 数据表格：列配置、斑马纹、边框、单元格插槽                                                           |
+| `mq-calendar`                                    | 日历：单选、区间、多选，支持最小/最大日期                                                            |
+| `mq-upload`                                      | 图片 / 视频 / 文件选择，接 `uni.uploadFile` 或自定义上传                                             |
+| `mq-datetime-picker-view` / `mq-datetime-picker` | 日期时间滚轮与底部弹层，支持年 / 年月 / 日期 / 时间 / 完整日期时间                                   |
+| `mq-cascader`                                    | 级联选择：逐级面板、选中路径 Tab、`check-strictly`                                                   |
+| `mq-drop-menu` / `mq-drop-menu-item`             | 下拉筛选菜单，支持上下展开、蒙层与自定义选项                                                         |
+| `mq-floating-panel`                              | 可拖动吸附的底部浮动面板                                                                             |
+| `mq-signature`                                   | Canvas 签名板，支持撤回、清空和导出图片                                                              |
+| `mq-timeline` / `mq-timeline-item`               | 时间线，支持节点标题、时间、高亮和自定义线色                                                         |
+| `mq-select`                                      | 底部弹层选择器，支持单选 / 多选与本地搜索                                                            |
+| `mq-slide-verify`                                | 滑动验证，阈值可调，支持受控和重置                                                                   |
+| `mq-float-view`                                  | 可拖动悬浮窗，自动限制在窗口范围内                                                                   |
+| `mq-read-more`                                   | 长文本折叠 / 展开，支持插槽与渐变遮罩                                                                |
+| `mq-marquee`                                     | 文字跑马灯，可调方向和滚动时长                                                                       |
+| `mq-tree`                                        | 树形选择，支持多选级联、展开集合与全部展开 / 收起                                                    |
+| `mq-waterfall`                                   | 瀑布流分列，可按估算高度自动平衡各列                                                                 |
+| `mq-draggable`                                   | 拖拽排序列表，支持长按触发与自定义位移阈值                                                           |
+| `mq-banner`                                      | 轮播图，支持自动播放、指示点和标题叠加                                                               |
+| `mq-rolling-number`                              | 数字滚动，逐位数字列滚动并可保留小数与千分位                                                         |
+| `mq-config-provider`                             | 主题与 CSS 变量作用域                                                                                |
+| `mq-curtain`                                     | 幕帘公告图                                                                                           |
+| `mq-index-bar` / `mq-index-anchor`               | 索引栏                                                                                               |
+| `mq-password-input`                              | 密码 / 验证码格子                                                                                    |
+| `mq-number-keyboard`                             | 数字键盘                                                                                             |
+| `mq-sort-button`                                 | 排序按钮                                                                                             |
+| `mq-watermark`                                   | 文字水印                                                                                             |
+| `mq-tooltip` / `mq-popover`                      | 提示与菜单气泡；`closeOutside()`                                                                     |
+| `mq-popup`                                       | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close`                        |
+| `mq-toast`                                       | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主                                        |
+| `mq-loading`                                     | 单节点旋转指示，可选 `size`、`color`、`label`                                                        |
+| `mq-safe-bottom`                                 | 底部安全区留白，`bg` 同时写进行内背景和 `--mq-safe-bg`，默认透明                                     |
+| `mq-icon`                                        | 内置 unicode 字形与 `name`、`size`、`color`；插槽优先，不引入图标字体                                |
+| `mq-layout`                                      | flex 容器：`direction` / `wrap` / `justify` / `align` / `gutter`                                     |
+| `mq-resize`                                      | 元素尺寸监听，`resize` 事件与 `measure()`；优先 `ResizeObserver`，回退 `uni.createSelectorQuery()`   |
+| `mq-root-portal`                                 | 传送到页面根节点，`to` / `disabled`；不支持 Teleport 时原位渲染                                      |
+| `mq-rich-text`                                   | 不用 `v-html` 的富文本节点渲染，支持常见标签与递归节点                                               |
+| `mq-keyboard`                                    | 字母 / 数字 / 符号三页键盘，`input` / `delete` / `confirm` / `close`                                 |
+| `mq-select-picker`                               | 轻量单选弹层，`options` 支持原始值或 `{ label, value, disabled }`                                    |
+| `mq-tour`                                        | 新手引导，`steps` + 高亮框，支持 `next` / `prev` / `finish`                                          |
+| `mq-swiper`                                      | 平台 `swiper` 封装，支持垂直、指示点颜色、前后边距与 `switchTo()`                                    |
+| `mq-image-preview` / `mq-video-preview`          | 全屏预览，既可由 props 受控，也可由 `showImagePreview` / `showVideoPreview` 驱动                     |
+| `mq-img-cropper`                                 | canvas 裁剪，比例、旋转、导出质量；暴露 `chooseImage` / `crop` / `rotate` / `reset`                  |
+| `mq-bar-code` / `mq-qr-code`                     | CODE128 条形码与二维码（L/M/Q/H），canvas 无可用上下文时降级为文字占位                               |
 
 ```vue
 <script setup lang="ts">
@@ -261,6 +296,30 @@ const visible = ref(false)
 
 `showToast` 返回一个只关闭这一条的函数。`duration` 默认 2000，传 `0` 则不自动关闭；空白文案会被忽略。调用时如果宿主还没挂上，会等到这一轮渲染结束再决定：有 `<mq-toast />` 就走组件，否则在运行环境里存在 `uni` 时改走 `uni.showToast`（`icon: 'none'`）。没有宿主且 `duration` 为 `0` 时，原生提示用 10 分钟托住，`hideToast()` 仍可关掉。属性表和 `pages.json` 全文见 [packages/ui/README.md](packages/ui/README.md)。
 
+## 组合式函数
+
+从 `@mosquito/ui` 或 `@mosquito/ui/composables` 导入。每个函数的完整 API 见对应文档。
+
+| 组合式函数          | 能力                                                                     |
+| ------------------- | ------------------------------------------------------------------------ |
+| `useToast`          | `show` / `hide` / `success` / `error` / `info` / `warning`，预设互不影响 |
+| `useNotify`         | 顶层通知，预设类型与 `show` / `hide`                                     |
+| `useDialog`         | 受控对话框状态，`show` / `confirm` / `cancel`，支持异步 `beforeConfirm`  |
+| `useCountDown`      | 倒计时，`start` / `pause` / `reset` / `update`，无 rAF 时回退定时器      |
+| `useUpload`         | 选择、校验、上传与进度，`choose` / `upload` / `remove` / `validate`      |
+| `useConfigProvider` | 共享主题与 CSS 变量，`setTheme` / `setThemeVar` / `reset`                |
+| `useImagePreview`   | 与 `<mq-image-preview />` 共享全局预览状态                               |
+| `useVideoPreview`   | 与 `<mq-video-preview />` 共享全局预览状态                               |
+
+## 文档
+
+```bash
+pnpm docs:dev     # 本地 VitePress 文档站
+pnpm docs:build   # 静态产物到 docs/.vitepress/dist
+```
+
+逐组件文档在 `docs/component/`，指南在 `docs/guide/`。新增组件后运行 `pnpm sync:easycom` 和 `pnpm sync:exports`，避免文档与入口漏登记。
+
 ## 性能原则
 
 少层级、列表虚拟化、列表里不套深组件、条件编译、easycom 按需引入。细节见 [docs/PERFORMANCE.md](docs/PERFORMANCE.md)。
@@ -273,7 +332,7 @@ const visible = ref(false)
 
 ## 示例
 
-[examples/uni-app-demo](examples/uni-app-demo) 是一份可拷进 HBuilderX 或 `create-uni` / `uni-preset-vue` 的薄页面，不含完整 `@dcloudio` 依赖。运行方式写在该目录的 README。
+[examples/uni-app-demo](examples/uni-app-demo) 是一份可拷进 HBuilderX 或 `create-uni` / `uni-preset-vue` 的薄页面，不含完整 `@dcloudio` 依赖。入口页会跳转到 basic / form / feedback / display / nav / advanced / composables 七个分类演示页。运行方式写在该目录的 README。
 
 ```bash
 pnpm --filter @mosquito/uni-app-demo dev
@@ -283,15 +342,18 @@ pnpm --filter @mosquito/uni-app-demo dev
 
 ```
 mosquito-ui/
-  packages/ui/          @mosquito/ui
-  examples/uni-app-demo
-  docs/PERFORMANCE.md
-  docs/UNIAPPX.md
+  packages/ui/            @mosquito/ui（组件、工具函数、组合式函数）
+  examples/uni-app-demo   分类演示页
+  docs/component/         逐组件文档
+  docs/guide/             安装、主题、FAQ
+  docs/.vitepress/        VitePress 站点配置
+  tests/                  组件与组合式函数测试
+  scripts/                easycom / 入口导出同步脚本
 ```
 
 ## 致谢
 
-交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏、标签栏和宫格用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版补上了日历、日期时间、级联、选择器、上传、表格、下拉菜单、浮动面板、签名、时间线、滑动验证、悬浮窗、折叠文本、跑马灯、叠层头像和图片，仍不做二维码和图标字体。
+交互与属性形态参考了 [wot-ui](https://github.com/wot-ui/wot-ui)（MIT）：按钮、单元格、表单、标记、反馈、导航和布局中的常用组件，以及 `v-model` 弹出层、命令式 toast / notify。本仓库没有复制它的源码树，也不使用 `wot` / `wd-` 命名，不带图标字体。导航栏、标签栏和宫格用文字箭头或 `mark`，对话框和动作面板复用已有弹出层。这一版补上了日历、日期时间、级联、选择器、上传、表格、下拉菜单、浮动面板、签名、时间线、滑动验证、悬浮窗、折叠文本、跑马灯、叠层头像和图片；这一版又补上图标、布局、尺寸监听、根节点传送、富文本、完整键盘、单选弹层、新手引导、轮播、图片/视频预览、图片裁剪、条形码和二维码，以及 8 个组合式函数。图标不使用字体文件，二维码算法沿用 wot-ui 的 MIT 实现并保留署名。
 
 目录与性能结构参考了 [cool-unix](https://gitee.com/cool-team-official/cool-unix)（[GitHub](https://github.com/cool-team-official/cool-unix)，MIT）：`components/名称/名称` 的 easycom 习惯、`theme.json` 的明暗令牌拆分、安全区组件、`useUi().showToast` 这种命令式入口，以及 uni-app x 的 `list-view`。本仓库没有引入其 Tailwind、PassThrough 或 `cl-` 组件实现；主题做成 CSS 变量，安全区用 `env(safe-area-inset-bottom)`，toast 不再套一层 popup。
 

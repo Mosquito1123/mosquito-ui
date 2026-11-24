@@ -1,8 +1,5 @@
 <template>
-  <view
-    class="mq-avatar-group"
-    :class="[`is-${cascading}`, { 'is-vertical': vertical }]"
-  >
+  <view class="mq-avatar-group" :class="[`is-${cascading}`, { 'is-vertical': vertical }]">
     <slot />
     <view
       v-if="showCollapse"

@@ -34,13 +34,7 @@
       </view>
 
       <view v-if="searchable" class="mq-select__search">
-        <mq-input
-          v-model="query"
-          compact
-          clearable
-          :placeholder="placeholder"
-          confirm-type="search"
-        />
+        <mq-input v-model="query" compact clearable :placeholder="placeholder" confirm-type="search" />
       </view>
 
       <scroll-view class="mq-select__options" scroll-y>
@@ -68,11 +62,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import {
-  filterSelectOptions,
-  normalizeSelectValue,
-  toggleSelectValue,
-} from '../../utils/select'
+import { filterSelectOptions, normalizeSelectValue, toggleSelectValue } from '../../utils/select'
 import type { MqSelectOption } from '../../utils/select'
 import MqInput from '../mq-input/MqInput.vue'
 import MqPopup from '../mq-popup/MqPopup.vue'

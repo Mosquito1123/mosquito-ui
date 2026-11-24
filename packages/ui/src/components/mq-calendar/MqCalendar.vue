@@ -25,11 +25,7 @@
     </view>
 
     <view class="mq-calendar__weekdays">
-      <text
-        v-for="day in weekdays"
-        :key="day"
-        class="mq-calendar__weekday"
-      >
+      <text v-for="day in weekdays" :key="day" class="mq-calendar__weekday">
         {{ day }}
       </text>
     </view>
@@ -85,18 +81,13 @@ import {
   buildCalendarDays,
   formatDateSummary,
   isDateBetween,
-  normalizeDate,
   normalizeDateList,
   nextDateSelection,
   parseDate,
   todayString,
 } from '../../utils/date'
 import type { MqCalendarCell } from '../../utils/date'
-import type {
-  MqCalendarEmits,
-  MqCalendarProps,
-  MqCalendarValuePayload,
-} from './types'
+import type { MqCalendarEmits, MqCalendarProps, MqCalendarValuePayload } from './types'
 
 defineOptions({
   name: 'mq-calendar',
@@ -134,9 +125,7 @@ const weekdays = computed(() => {
   const base = ['日', '一', '二', '三', '四', '五', '六']
   return props.firstDayOfWeek === 1 ? [...base.slice(1), base[0]] : base
 })
-const cells = computed(() =>
-  buildCalendarDays(viewYear.value, viewMonth.value, props.firstDayOfWeek),
-)
+const cells = computed(() => buildCalendarDays(viewYear.value, viewMonth.value, props.firstDayOfWeek))
 const summary = computed(() => formatDateSummary(draft.value, props.mode))
 
 watch(
@@ -183,12 +172,7 @@ function isSelected(date: string): boolean {
 }
 
 function isInRange(date: string): boolean {
-  return (
-    props.mode === 'range' &&
-    draft.value.length > 1 &&
-    date > draft.value[0] &&
-    date < draft.value[1]
-  )
+  return props.mode === 'range' && draft.value.length > 1 && date > draft.value[0] && date < draft.value[1]
 }
 
 function cellClass(cell: MqCalendarCell) {
@@ -210,7 +194,7 @@ function dayClass(cell: MqCalendarCell) {
 }
 
 function publish(next: string[], kind: 'change' | 'confirm') {
-  const value = props.mode === 'single' ? next[0] ?? '' : [...next]
+  const value = props.mode === 'single' ? (next[0] ?? '') : [...next]
   const payload: MqCalendarValuePayload = { value, mode: props.mode }
   lastPublished = [...next]
   if (kind === 'confirm') {

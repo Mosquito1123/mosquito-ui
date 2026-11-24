@@ -97,7 +97,9 @@ function prefersHalf(event: Event): boolean {
     return false
   }
   const mouse = event as MouseEvent
-  const target = event.currentTarget as { getBoundingClientRect?: () => { left: number; width: number } } | null
+  const target = event.currentTarget as {
+    getBoundingClientRect?: () => { left: number; width: number }
+  } | null
   if (typeof mouse.clientX !== 'number' || !target?.getBoundingClientRect) {
     return false
   }

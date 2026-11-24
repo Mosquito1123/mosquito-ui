@@ -7,18 +7,12 @@ export interface MqRollingChar {
 }
 
 /** 千分位 + 固定小数位，保留负号。 */
-export function formatRollingNumber(
-  value: number,
-  decimals = 0,
-  separator = ',',
-): string {
+export function formatRollingNumber(value: number, decimals = 0, separator = ','): string {
   const number = Number.isFinite(value) ? value : 0
   const places = Math.min(6, Math.max(0, Math.floor(Number(decimals)) || 0))
   const fixed = Math.abs(number).toFixed(places)
   const [integer, fraction] = fixed.split('.')
-  const grouped = separator
-    ? integer.replace(/\B(?=(\d{3})+(?!\d))/g, separator)
-    : integer
+  const grouped = separator ? integer.replace(/\B(?=(\d{3})+(?!\d))/g, separator) : integer
   const sign = number < 0 ? '-' : ''
   return fraction ? `${sign}${grouped}.${fraction}` : `${sign}${grouped}`
 }

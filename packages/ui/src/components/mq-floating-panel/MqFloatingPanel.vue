@@ -1,5 +1,9 @@
 <template>
-  <view class="mq-floating-panel" :class="{ 'is-dragging': dragging, 'has-safe-area': safeArea }" :style="rootStyle">
+  <view
+    class="mq-floating-panel"
+    :class="{ 'is-dragging': dragging, 'has-safe-area': safeArea }"
+    :style="rootStyle"
+  >
     <view
       class="mq-floating-panel__header"
       @touchstart="onTouchStart"
@@ -105,13 +109,17 @@ watch(
 )
 
 function nearestAnchor(value: number): number {
-  return anchors.value.reduce((best, item) =>
-    Math.abs(item - value) < Math.abs(best - value) ? item : best,
-  anchors.value[0])
+  return anchors.value.reduce(
+    (best, item) => (Math.abs(item - value) < Math.abs(best - value) ? item : best),
+    anchors.value[0],
+  )
 }
 
 function touchY(event: Event): number {
-  const detail = event as Event & { touches?: Array<{ clientY?: number }>; changedTouches?: Array<{ clientY?: number }> }
+  const detail = event as Event & {
+    touches?: Array<{ clientY?: number }>
+    changedTouches?: Array<{ clientY?: number }>
+  }
   const touch = detail.touches?.[0] ?? detail.changedTouches?.[0]
   return Number(touch?.clientY) || 0
 }

@@ -25,7 +25,9 @@
         @keydown.enter.prevent="onSelect(item, index)"
         @keydown.space.prevent="onSelect(item, index)"
       >
-        <text class="mq-action-sheet__name" :style="item.color ? { color: item.color } : undefined">{{ item.name }}</text>
+        <text class="mq-action-sheet__name" :style="item.color ? { color: item.color } : undefined">{{
+          item.name
+        }}</text>
         <text v-if="item.description" class="mq-action-sheet__desc">{{ item.description }}</text>
       </view>
       <view

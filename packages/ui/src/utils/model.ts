@@ -61,10 +61,7 @@ const AVATAR_PRESETS: Record<string, number> = {
 }
 
 /** 头像尺寸：预设名落到固定像素，其余按 `resolvePx` 处理。 */
-export function resolveAvatarSize(
-  size: string | number | undefined,
-  fallback = 40,
-): number {
+export function resolveAvatarSize(size: string | number | undefined, fallback = 40): number {
   if (typeof size === 'string' && AVATAR_PRESETS[size]) {
     return AVATAR_PRESETS[size]
   }
@@ -341,9 +338,10 @@ export function formatCountToValue(
   value: number,
   options: { decimals?: number; decimal?: string; separator?: string } = {},
 ): string {
-  const decimals = Number.isFinite(options.decimals) && (options.decimals as number) >= 0
-    ? Math.floor(options.decimals as number)
-    : 0
+  const decimals =
+    Number.isFinite(options.decimals) && (options.decimals as number) >= 0
+      ? Math.floor(options.decimals as number)
+      : 0
   const decimal = options.decimal || '.'
   const separator = options.separator ?? ','
   const raw = typeof value === 'number' && Number.isFinite(value) ? value : 0

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { test } from 'node:test'
+import { test } from 'vitest'
 import {
   addMonths,
   buildCalendarDays,
@@ -82,28 +82,15 @@ test('normalizeDateList dedupes and drops invalid entries', () => {
 
 test('single and multiple selection replace or toggle', () => {
   assert.deepEqual(nextDateSelection(['2026-10-01'], '2026-10-05', 'single'), ['2026-10-05'])
-  assert.deepEqual(nextDateSelection(['2026-10-01'], '2026-10-05', 'multiple'), [
-    '2026-10-01',
-    '2026-10-05',
-  ])
-  assert.deepEqual(nextDateSelection(['2026-10-01', '2026-10-05'], '2026-10-01', 'multiple'), [
-    '2026-10-05',
-  ])
+  assert.deepEqual(nextDateSelection(['2026-10-01'], '2026-10-05', 'multiple'), ['2026-10-01', '2026-10-05'])
+  assert.deepEqual(nextDateSelection(['2026-10-01', '2026-10-05'], '2026-10-01', 'multiple'), ['2026-10-05'])
 })
 
 test('range selection needs two clicks and restarts after a full range', () => {
   assert.deepEqual(nextDateSelection([], '2026-10-10', 'range'), ['2026-10-10'])
-  assert.deepEqual(nextDateSelection(['2026-10-10'], '2026-10-15', 'range'), [
-    '2026-10-10',
-    '2026-10-15',
-  ])
-  assert.deepEqual(nextDateSelection(['2026-10-10'], '2026-10-05', 'range'), [
-    '2026-10-05',
-    '2026-10-10',
-  ])
-  assert.deepEqual(nextDateSelection(['2026-10-05', '2026-10-10'], '2026-10-20', 'range'), [
-    '2026-10-20',
-  ])
+  assert.deepEqual(nextDateSelection(['2026-10-10'], '2026-10-15', 'range'), ['2026-10-10', '2026-10-15'])
+  assert.deepEqual(nextDateSelection(['2026-10-10'], '2026-10-05', 'range'), ['2026-10-05', '2026-10-10'])
+  assert.deepEqual(nextDateSelection(['2026-10-05', '2026-10-10'], '2026-10-20', 'range'), ['2026-10-20'])
 })
 
 test('summary text covers single, range and multiple', () => {

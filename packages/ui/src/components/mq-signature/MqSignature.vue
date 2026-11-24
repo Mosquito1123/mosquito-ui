@@ -35,12 +35,7 @@
         >
           {{ undoText }}
         </text>
-        <text
-          class="mq-signature__action is-confirm"
-          role="button"
-          tabindex="0"
-          @click="confirm"
-        >
+        <text class="mq-signature__action is-confirm" role="button" tabindex="0" @click="confirm">
           {{ confirmText }}
         </text>
       </slot>

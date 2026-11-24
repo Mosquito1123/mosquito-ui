@@ -33,9 +33,7 @@ export function toggleSelectValue(
   if (!multiple) {
     return [value]
   }
-  return values.includes(value)
-    ? values.filter((item) => item !== value)
-    : [...values, value]
+  return values.includes(value) ? values.filter((item) => item !== value) : [...values, value]
 }
 
 /** 按文案做大小写不敏感的包含搜索。 */
@@ -44,7 +42,9 @@ export function filterSelectOptions(
   query: string,
   labelKey = 'label',
 ): MqSelectOption[] {
-  const keyword = String(query ?? '').trim().toLowerCase()
+  const keyword = String(query ?? '')
+    .trim()
+    .toLowerCase()
   if (!keyword) {
     return [...options]
   }

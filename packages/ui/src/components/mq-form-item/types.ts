@@ -1,8 +1,4 @@
-import type {
-  MqFormAsteriskPosition,
-  MqFormLayout,
-  MqFormValueAlign,
-} from '../mq-form/types'
+import type { MqFormAsteriskPosition, MqFormLayout, MqFormValueAlign } from '../mq-form/types'
 
 export interface MqFormItemProps {
   prop?: string

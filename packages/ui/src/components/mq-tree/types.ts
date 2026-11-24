@@ -1,11 +1,6 @@
 import type { MqTreeNode } from '../../utils/tree'
 
-export type MqTreeModelValue =
-  | string
-  | number
-  | Array<string | number>
-  | null
-  | undefined
+export type MqTreeModelValue = string | number | Array<string | number> | null | undefined
 
 export interface MqTreeProps {
   data?: MqTreeNode[]

@@ -29,12 +29,7 @@
         </text>
       </view>
 
-      <view
-        v-for="item in pending"
-        :key="item.id"
-        class="mq-upload__item is-pending"
-        :style="itemStyle"
-      >
+      <view v-for="item in pending" :key="item.id" class="mq-upload__item is-pending" :style="itemStyle">
         <mq-loading :size="18" />
       </view>
 

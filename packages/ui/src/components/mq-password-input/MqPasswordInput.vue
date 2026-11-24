@@ -50,9 +50,7 @@ const chars = computed(() => value.value.split(''))
 
 const cellStyle = computed(() => {
   const gutter =
-    typeof props.gutter === 'number'
-      ? props.gutter
-      : Number.parseFloat(String(props.gutter || '0')) || 0
+    typeof props.gutter === 'number' ? props.gutter : Number.parseFloat(String(props.gutter || '0')) || 0
   if (gutter <= 0) {
     return { marginLeft: '-1px' }
   }

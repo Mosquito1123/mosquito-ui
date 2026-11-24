@@ -43,9 +43,7 @@ const props = withDefaults(defineProps<MqPopoverProps>(), {
 const emit = defineEmits<MqPopoverEmits>()
 
 const textContent = computed(() => (typeof props.content === 'string' ? props.content : ''))
-const menuItems = computed<MqPopoverMenuItem[]>(() =>
-  Array.isArray(props.content) ? props.content : [],
-)
+const menuItems = computed<MqPopoverMenuItem[]>(() => (Array.isArray(props.content) ? props.content : []))
 
 function setOpen(next: boolean) {
   if (props.disabled || next === props.modelValue) {

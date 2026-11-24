@@ -1,10 +1,5 @@
 <template>
-  <view
-    class="mq-loadmore"
-    :class="state ? `is-${state}` : undefined"
-    role="status"
-    @click.stop="onReload"
-  >
+  <view class="mq-loadmore" :class="state ? `is-${state}` : undefined" role="status" @click.stop="onReload">
     <slot v-if="state === 'loading'" name="loading">
       <view class="mq-loadmore__spin" aria-hidden="true" />
       <text>{{ loadingText }}</text>

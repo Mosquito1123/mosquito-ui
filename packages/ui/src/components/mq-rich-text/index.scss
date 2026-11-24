@@ -1,0 +1,31 @@
+.mq-rich-text {
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.6;
+  user-select: none;
+}
+
+.mq-rich-text.is-selectable,
+.mq-rich-text.is-user-select {
+  user-select: text;
+}
+
+.mq-rich-text__node.mq-rich-text__img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.mq-rich-text__node.mq-rich-text__a {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-rich-text__node.mq-rich-text__h1,
+.mq-rich-text__node.mq-rich-text__h2,
+.mq-rich-text__node.mq-rich-text__h3,
+.mq-rich-text__node.mq-rich-text__h4,
+.mq-rich-text__node.mq-rich-text__h5,
+.mq-rich-text__node.mq-rich-text__h6 {
+  font-weight: 700;
+}

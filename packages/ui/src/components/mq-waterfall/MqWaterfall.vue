@@ -38,9 +38,7 @@ const props = withDefaults(defineProps<MqWaterfallProps<unknown>>(), {
 
 const emit = defineEmits<MqWaterfallEmits<unknown>>()
 
-const columns = computed(() =>
-  splitWaterfall(props.data, props.column, props.estimateHeight),
-)
+const columns = computed(() => splitWaterfall(props.data, props.column, props.estimateHeight))
 
 const gapValue = computed(() => {
   if (typeof props.gap === 'number') {

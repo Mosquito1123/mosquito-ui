@@ -1,11 +1,5 @@
 <template>
-  <view
-    v-if="rendered"
-    class="mq-overlay"
-    :class="{ 'is-open': opened }"
-    :style="rootStyle"
-    @click="onClick"
-  >
+  <view v-if="rendered" class="mq-overlay" :class="{ 'is-open': opened }" :style="rootStyle" @click="onClick">
     <slot />
   </view>
 </template>

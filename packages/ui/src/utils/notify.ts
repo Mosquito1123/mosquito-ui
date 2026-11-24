@@ -40,9 +40,16 @@ function resolveDuration(value: number | undefined): number {
   return value
 }
 
-function normalize(input: MqNotifyInput): Required<
-  Pick<MqNotifyOptions, 'message' | 'type' | 'position' | 'duration' | 'color' | 'background' | 'closable'>
-> | undefined {
+function normalize(
+  input: MqNotifyInput,
+):
+  | Required<
+      Pick<
+        MqNotifyOptions,
+        'message' | 'type' | 'position' | 'duration' | 'color' | 'background' | 'closable'
+      >
+    >
+  | undefined {
   const options: MqNotifyOptions | undefined = typeof input === 'string' ? { message: input } : input
   if (!options || typeof options.message !== 'string') {
     return undefined

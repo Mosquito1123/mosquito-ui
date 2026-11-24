@@ -3,7 +3,12 @@
     <view v-if="expandable" class="mq-fab__actions">
       <slot />
     </view>
-    <view class="mq-fab__trigger" role="button" :aria-expanded="active ? 'true' : 'false'" @click.stop="onTrigger">
+    <view
+      class="mq-fab__trigger"
+      role="button"
+      :aria-expanded="active ? 'true' : 'false'"
+      @click.stop="onTrigger"
+    >
       <slot name="trigger">{{ active ? activeMark : inactiveMark }}</slot>
     </view>
   </view>

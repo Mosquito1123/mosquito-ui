@@ -49,7 +49,9 @@ const props = withDefaults(defineProps<MqPaginationProps>(), {
 
 const emit = defineEmits<MqPaginationEmits>()
 
-const safeTotal = computed(() => (Number.isFinite(props.total) && props.total > 0 ? Math.floor(props.total) : 0))
+const safeTotal = computed(() =>
+  Number.isFinite(props.total) && props.total > 0 ? Math.floor(props.total) : 0,
+)
 const pages = computed(() => pageCount(props.total, props.pageSize))
 const current = computed(() => clampPage(props.modelValue, pages.value))
 

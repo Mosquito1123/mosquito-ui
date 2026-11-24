@@ -65,10 +65,7 @@
             <text v-if="option.tip" class="mq-cascader__option-tip">{{ option.tip }}</text>
           </view>
           <text v-if="isActive(option)" class="mq-cascader__check">✓</text>
-          <text
-            v-else-if="option.children?.length && option.isLeaf !== true"
-            class="mq-cascader__more"
-          >
+          <text v-else-if="option.children?.length && option.isLeaf !== true" class="mq-cascader__more">
             ›
           </text>
         </view>

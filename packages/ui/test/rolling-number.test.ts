@@ -1,9 +1,6 @@
 import assert from 'node:assert/strict'
-import { test } from 'node:test'
-import {
-  formatRollingNumber,
-  toRollingChars,
-} from '../src/utils/rolling-number.ts'
+import { test } from 'vitest'
+import { formatRollingNumber, toRollingChars } from '../src/utils/rolling-number.ts'
 
 test('rolling number formats thousands and decimals', () => {
   assert.equal(formatRollingNumber(1234567), '1,234,567')
@@ -23,5 +20,8 @@ test('rolling number splits digits from separators', () => {
     chars.map((item) => item.digit),
     [true, false, true, true, true, false, true],
   )
-  assert.deepEqual(toRollingChars('-12').map((item) => item.digit), [false, true, true])
+  assert.deepEqual(
+    toRollingChars('-12').map((item) => item.digit),
+    [false, true, true],
+  )
 })

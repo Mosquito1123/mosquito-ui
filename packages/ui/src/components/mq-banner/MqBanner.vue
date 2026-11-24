@@ -17,13 +17,7 @@
         @click="onItemClick(item, index)"
       >
         <slot :item="item" :index="index">
-          <mq-img
-            :src="item.image"
-            width="100%"
-            height="100%"
-            mode="aspectFill"
-            :radius="radius"
-          />
+          <mq-img :src="item.image" width="100%" height="100%" mode="aspectFill" :radius="radius" />
         </slot>
         <view v-if="showTitle && item.title" class="mq-banner__title">
           <text class="mq-banner__title-text">{{ item.title }}</text>

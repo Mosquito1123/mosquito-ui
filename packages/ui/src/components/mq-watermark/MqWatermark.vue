@@ -1,11 +1,6 @@
 <template>
   <view class="mq-watermark" :class="{ 'is-full': fullScreen }" :style="rootStyle">
-    <text
-      v-for="tile in tiles"
-      :key="tile.key"
-      class="mq-watermark__tile"
-      :style="tile.style"
-    >
+    <text v-for="tile in tiles" :key="tile.key" class="mq-watermark__tile" :style="tile.style">
       {{ content }}
     </text>
   </view>

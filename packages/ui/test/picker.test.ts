@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { test } from 'node:test'
+import { test } from 'vitest'
 import {
   buildCascadeSelection,
   cascadeColumnsFromIndexes,
@@ -29,18 +29,33 @@ const tree = [
 test('flat columns become a single column', () => {
   const columns = normalizePickerColumns(['苹果', '梨'])
   assert.equal(columns.length, 1)
-  assert.deepEqual(columns[0].map((item) => item.value), ['苹果', '梨'])
-  assert.deepEqual(columns[0].map((item) => item.label), ['苹果', '梨'])
+  assert.deepEqual(
+    columns[0].map((item) => item.value),
+    ['苹果', '梨'],
+  )
+  assert.deepEqual(
+    columns[0].map((item) => item.label),
+    ['苹果', '梨'],
+  )
 })
 
 test('two-dimensional input becomes multiple columns', () => {
   const columns = normalizePickerColumns([
-    [{ value: 1, label: '一' }, { value: 2, label: '二' }],
+    [
+      { value: 1, label: '一' },
+      { value: 2, label: '二' },
+    ],
     ['甲', '乙'],
   ])
   assert.equal(columns.length, 2)
-  assert.deepEqual(columns[0].map((item) => item.label), ['一', '二'])
-  assert.deepEqual(columns[1].map((item) => item.value), ['甲', '乙'])
+  assert.deepEqual(
+    columns[0].map((item) => item.label),
+    ['一', '二'],
+  )
+  assert.deepEqual(
+    columns[1].map((item) => item.value),
+    ['甲', '乙'],
+  )
 })
 
 test('custom value and label keys are respected', () => {
@@ -53,8 +68,14 @@ test('custom value and label keys are respected', () => {
     ],
     { valueKey: 'id', labelKey: 'name' },
   )
-  assert.deepEqual(columns[0].map((item) => item.value), ['a', 'b'])
-  assert.deepEqual(columns[0].map((item) => item.label), ['选项 A', '选项 B'])
+  assert.deepEqual(
+    columns[0].map((item) => item.value),
+    ['a', 'b'],
+  )
+  assert.deepEqual(
+    columns[0].map((item) => item.label),
+    ['选项 A', '选项 B'],
+  )
 })
 
 test('empty input yields no columns', () => {
@@ -113,7 +134,10 @@ test('cascade columns rebuild from an index chain', () => {
   const switched = cascadeColumnsFromIndexes(tree, [1])
   assert.equal(switched.columns.length, 2)
   assert.deepEqual(switched.indexes, [1, 0])
-  assert.deepEqual(switched.columns[1].map((item) => item.value), ['nj'])
+  assert.deepEqual(
+    switched.columns[1].map((item) => item.value),
+    ['nj'],
+  )
 })
 
 test('samePickerValues compares by value and order', () => {

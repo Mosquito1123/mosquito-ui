@@ -107,6 +107,48 @@
       "style": {
         "navigationBarTitleText": "蚊式组件"
       }
+    },
+    {
+      "path": "pages/basic/index",
+      "style": {
+        "navigationBarTitleText": "基础组件"
+      }
+    },
+    {
+      "path": "pages/form/index",
+      "style": {
+        "navigationBarTitleText": "表单组件"
+      }
+    },
+    {
+      "path": "pages/feedback/index",
+      "style": {
+        "navigationBarTitleText": "反馈组件"
+      }
+    },
+    {
+      "path": "pages/display/index",
+      "style": {
+        "navigationBarTitleText": "展示组件"
+      }
+    },
+    {
+      "path": "pages/nav/index",
+      "style": {
+        "navigationBarTitleText": "导航组件"
+      }
+    },
+    {
+      "path": "pages/advanced/index",
+      "style": {
+        "navigationBarTitleText": "进阶组件"
+      }
+    },
+    {
+      "path": "pages/composables/index",
+      "style": {
+        "navigationBarTitleText": "组合式函数"
+      }
     }
   ],
   "globalStyle": {

@@ -1,12 +1,7 @@
 /** 拖拽排序的纯计算：目标下标、让位位移和重排后的列表。 */
 
 /** 根据拖拽位移推算落点下标。 */
-export function resolveDragTarget(
-  from: number,
-  offset: number,
-  size: number,
-  length: number,
-): number {
+export function resolveDragTarget(from: number, offset: number, size: number, length: number): number {
   const total = Math.max(0, Math.floor(Number(length)) || 0)
   if (!total) {
     return 0
@@ -19,12 +14,7 @@ export function resolveDragTarget(
 }
 
 /** 非拖拽项的让位位移，把空档让给拖拽项。 */
-export function draggableOffset(
-  from: number,
-  to: number,
-  index: number,
-  size: number,
-): number {
+export function draggableOffset(from: number, to: number, index: number, size: number): number {
   const step = Number.isFinite(size) ? size : 0
   if (from === to || index === from) {
     return 0

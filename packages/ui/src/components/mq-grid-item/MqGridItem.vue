@@ -1,11 +1,5 @@
 <template>
-  <view
-    class="mq-grid-item"
-    :class="rootClass"
-    :style="itemStyle"
-    role="listitem"
-    @click.stop="onClick"
-  >
+  <view class="mq-grid-item" :class="rootClass" :style="itemStyle" role="listitem" @click.stop="onClick">
     <view class="mq-grid-item__content">
       <slot>
         <view v-if="slots.icon || mark" class="mq-grid-item__mark">
@@ -28,7 +22,7 @@ defineOptions({
   name: 'mq-grid-item',
 })
 
-const props = withDefaults(defineProps<MqGridItemProps>(), {
+withDefaults(defineProps<MqGridItemProps>(), {
   text: '',
   mark: '',
   ellipsis: false,

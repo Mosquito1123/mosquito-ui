@@ -31,10 +31,7 @@ export interface MqPickerProps {
   itemHeight?: number
   visibleItemCount?: number
   /** 确认前校验。返回 `false` 时留在面板里。 */
-  beforeConfirm?: (
-    value: MqPickerValue[],
-    payload: MqPickerChangePayload,
-  ) => boolean | Promise<boolean>
+  beforeConfirm?: (value: MqPickerValue[], payload: MqPickerChangePayload) => boolean | Promise<boolean>
   maskClosable?: boolean
   zIndex?: number
   duration?: number

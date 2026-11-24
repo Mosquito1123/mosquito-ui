@@ -52,13 +52,7 @@
             :value="row[column.prop]"
             :index="rowIndex"
           >
-            <slot
-              name="cell"
-              :row="row"
-              :column="column"
-              :value="row[column.prop]"
-              :index="rowIndex"
-            >
+            <slot name="cell" :row="row" :column="column" :value="row[column.prop]" :index="rowIndex">
               <text class="mq-table__text" :class="{ 'is-ellipsis': column.ellipsis }">
                 {{ displayCell(row, column, rowIndex) }}
               </text>
@@ -139,11 +133,7 @@ function rowIdentity(row: Record<string, unknown>, index: number): string {
   return String(index)
 }
 
-function displayCell(
-  row: Record<string, unknown>,
-  column: MqTableColumn,
-  index: number,
-): string {
+function displayCell(row: Record<string, unknown>, column: MqTableColumn, index: number): string {
   const value = row[column.prop]
   if (column.formatter) {
     return column.formatter(row, value, index)
@@ -155,11 +145,7 @@ function onRowClick(row: Record<string, unknown>, index: number) {
   emit('rowClick', row, index)
 }
 
-function onCellClick(
-  row: Record<string, unknown>,
-  column: MqTableColumn,
-  index: number,
-) {
+function onCellClick(row: Record<string, unknown>, column: MqTableColumn, index: number) {
   emit('cellClick', row, column, index)
 }
 </script>

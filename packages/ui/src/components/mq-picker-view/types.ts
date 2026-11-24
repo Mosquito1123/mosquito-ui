@@ -1,9 +1,4 @@
-import type {
-  MqPickerColumn,
-  MqPickerColumns,
-  MqPickerOption,
-  MqPickerValue,
-} from '../../utils/picker'
+import type { MqPickerColumn, MqPickerColumns, MqPickerOption, MqPickerValue } from '../../utils/picker'
 
 export type { MqPickerColumn, MqPickerColumns, MqPickerOption, MqPickerValue }
 
