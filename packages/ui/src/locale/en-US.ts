@@ -51,6 +51,9 @@ export const enUS: MqMessageMap = {
   'common.imagePreview': 'Image preview',
   'common.videoPreview': 'Video preview',
 
+  'messageBox.inputPlaceholder': 'Please enter',
+  'messageBox.inputError': 'Invalid input',
+
   'calendar.prevMonth': 'Previous month',
   'calendar.nextMonth': 'Next month',
   'calendar.year': '',
@@ -68,6 +71,8 @@ export const enUS: MqMessageMap = {
   'calendar.weekdays.thursday': 'Thu',
   'calendar.weekdays.friday': 'Fri',
   'calendar.weekdays.saturday': 'Sat',
+  'calendar.sameDay': 'Start and end must be different days',
+  'calendar.maxRange': 'Cannot select more than {{count}} days',
 
   'datetime.year': '',
   'datetime.month': '',

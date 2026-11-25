@@ -3,7 +3,9 @@ import { computed, reactive, ref } from 'vue'
 import {
   MqButton,
   MqCalendar,
+  MqCalendarView,
   MqCascader,
+  MqColPicker,
   MqCell,
   MqCheckbox,
   MqCheckboxGroup,
@@ -29,7 +31,40 @@ import {
   MqUpload,
   showToast,
 } from '@mosquito/ui'
-import type { MqCascaderOption, MqFormSchema, MqSelectOption } from '@mosquito/ui'
+import type {
+  MqCascaderOption,
+  MqColPickerColumnChangePayload,
+  MqFormSchema,
+  MqSelectOption,
+} from '@mosquito/ui'
+
+const inlineDate = ref('2026-11-20')
+const colValue = ref<Array<string | number>>(['zj'])
+const colColumns = [
+  [
+    { value: 'zj', label: '浙江' },
+    { value: 'js', label: '江苏' },
+  ],
+]
+const colChildren: Record<string, Array<{ value: string; label: string }>> = {
+  zj: [
+    { value: 'hz', label: '杭州' },
+    { value: 'nb', label: '宁波' },
+  ],
+  js: [
+    { value: 'nj', label: '南京' },
+    { value: 'sz', label: '苏州' },
+  ],
+}
+
+function onColChange({ selectedItem, resolve, finish }: MqColPickerColumnChangePayload) {
+  const children = colChildren[String(selectedItem.value)]
+  if (children?.length) {
+    resolve(children)
+  } else {
+    finish()
+  }
+}
 
 const nickname = ref('')
 const memo = ref('')
@@ -298,6 +333,18 @@ function onSearch(payload: { value: string }) {
       multiple
       :options="tagOptions"
     />
+
+    <mq-divider>CalendarView 内联日历</mq-divider>
+    <view class="demo__field">
+      <mq-calendar-view v-model="inlineDate" type="date" :panel-height="300" />
+      <text class="demo__note">已选 {{ inlineDate || '无' }}</text>
+    </view>
+
+    <mq-divider>ColPicker 多列联动选择</mq-divider>
+    <view class="demo__field">
+      <mq-col-picker v-model="colValue" label="地区" :columns="colColumns" :column-change="onColChange" />
+      <text class="demo__note">已选 {{ colValue.join(' / ') }}</text>
+    </view>
 
     <text class="demo__foot">表单组件演示结束</text>
   </view>

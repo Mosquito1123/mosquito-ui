@@ -10,6 +10,7 @@ import {
   MqProgress,
   MqStep,
   MqSteps,
+  MqStatusTip,
   MqTable,
   MqTimeline,
   MqTimelineItem,
@@ -165,6 +166,11 @@ function onTableRow(row: Record<string, unknown>) {
           </view>
         </template>
       </mq-waterfall>
+    </view>
+
+    <mq-divider>StatusTip 缺省提示</mq-divider>
+    <view class="demo__field">
+      <mq-status-tip image="search" tip="没有找到相关订单" />
     </view>
 
     <mq-gap :height="12" />

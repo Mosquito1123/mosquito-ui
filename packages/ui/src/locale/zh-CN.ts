@@ -51,6 +51,9 @@ export const zhCN: MqMessageMap = {
   'common.imagePreview': '图片预览',
   'common.videoPreview': '视频预览',
 
+  'messageBox.inputPlaceholder': '请输入内容',
+  'messageBox.inputError': '输入的数据不合法',
+
   'calendar.prevMonth': '上个月',
   'calendar.nextMonth': '下个月',
   'calendar.year': '年',
@@ -68,6 +71,8 @@ export const zhCN: MqMessageMap = {
   'calendar.weekdays.thursday': '四',
   'calendar.weekdays.friday': '五',
   'calendar.weekdays.saturday': '六',
+  'calendar.sameDay': '起止日期不能是同一天',
+  'calendar.maxRange': '选择天数不能超过 {{count}} 天',
 
   'datetime.year': '年',
   'datetime.month': '月',

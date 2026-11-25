@@ -7,6 +7,7 @@ import {
   MqDivider,
   MqGap,
   MqLoading,
+  MqMessageBox,
   MqNotify,
   MqPopup,
   MqSafeBottom,
@@ -15,7 +16,10 @@ import {
   hideToast,
   showNotify,
   showToast,
+  useMessage,
 } from '@mosquito/ui'
+
+const message = useMessage()
 
 const centerVisible = ref(false)
 const sheetVisible = ref(false)
@@ -36,6 +40,17 @@ function onAction(payload: { item: { name: string } }) {
 
 function onDialogConfirm() {
   showToast('已确认')
+}
+
+function onMessageBoxConfirm() {
+  message.confirm({ title: '确认操作', msg: '这次真的要继续吗？' }).catch(() => showToast('已取消'))
+}
+
+function onMessageBoxPrompt() {
+  message
+    .prompt({ title: '输入备注', inputPlaceholder: '写点什么' })
+    .then((value) => showToast(value || '空内容'))
+    .catch(() => showToast('已取消'))
 }
 
 function holdToast() {
@@ -144,6 +159,14 @@ function onCenterClose() {
         </mq-safe-bottom>
       </view>
     </mq-popup>
+
+    <mq-divider>MessageBox 命令式弹框</mq-divider>
+    <view class="demo__row">
+      <mq-button size="small" @click="message.alert('操作成功')">alert</mq-button>
+      <mq-button size="small" @click="onMessageBoxConfirm">confirm</mq-button>
+      <mq-button size="small" @click="onMessageBoxPrompt">prompt</mq-button>
+    </view>
+    <mq-message-box />
 
     <mq-toast />
     <mq-notify />

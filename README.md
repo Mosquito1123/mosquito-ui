@@ -61,6 +61,7 @@ pnpm add @mosquito/ui
       "^mq-bar-code$": "@mosquito/ui/components/mq-bar-code/MqBarCode.vue",
       "^mq-button$": "@mosquito/ui/components/mq-button/MqButton.vue",
       "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
+      "^mq-calendar-view$": "@mosquito/ui/components/mq-calendar-view/MqCalendarView.vue",
       "^mq-card$": "@mosquito/ui/components/mq-card/MqCard.vue",
       "^mq-cascader$": "@mosquito/ui/components/mq-cascader/MqCascader.vue",
       "^mq-cell$": "@mosquito/ui/components/mq-cell/MqCell.vue",
@@ -69,6 +70,7 @@ pnpm add @mosquito/ui
       "^mq-checkbox-group$": "@mosquito/ui/components/mq-checkbox-group/MqCheckboxGroup.vue",
       "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
       "^mq-col$": "@mosquito/ui/components/mq-col/MqCol.vue",
+      "^mq-col-picker$": "@mosquito/ui/components/mq-col-picker/MqColPicker.vue",
       "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
       "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
       "^mq-config-provider$": "@mosquito/ui/components/mq-config-provider/MqConfigProvider.vue",
@@ -104,6 +106,7 @@ pnpm add @mosquito/ui
       "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
       "^mq-loadmore$": "@mosquito/ui/components/mq-loadmore/MqLoadmore.vue",
       "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue",
+      "^mq-message-box$": "@mosquito/ui/components/mq-message-box/MqMessageBox.vue",
       "^mq-navbar$": "@mosquito/ui/components/mq-navbar/MqNavbar.vue",
       "^mq-notice-bar$": "@mosquito/ui/components/mq-notice-bar/MqNoticeBar.vue",
       "^mq-notify$": "@mosquito/ui/components/mq-notify/MqNotify.vue",
@@ -138,6 +141,7 @@ pnpm add @mosquito/ui
       "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
       "^mq-slider$": "@mosquito/ui/components/mq-slider/MqSlider.vue",
       "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
+      "^mq-status-tip$": "@mosquito/ui/components/mq-status-tip/MqStatusTip.vue",
       "^mq-step$": "@mosquito/ui/components/mq-step/MqStep.vue",
       "^mq-steps$": "@mosquito/ui/components/mq-steps/MqSteps.vue",
       "^mq-sticky$": "@mosquito/ui/components/mq-sticky/MqSticky.vue",
@@ -198,11 +202,13 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-rate`                                        | 文字星号评分，可半星、可再点清空                                                                     |
 | `mq-notice-bar`                                  | 通告。`info` 走主色，可关闭，需要时才滚动                                                            |
 | `mq-empty`                                       | 空状态。标记用伪元素，图片和底部用插槽                                                               |
+| `mq-status-tip`                                  | 缺省提示。7 种内置文字符号、自定义图片 URL、底部插槽，不依赖外链图标                                 |
 | `mq-steps` / `mq-step`                           | 按顺序编号。`active` 之前为完成，当前为进行中                                                        |
 | `mq-collapse` / `mq-collapse-item`               | 多选或手风琴。`before-expand` 返回 `false` 时不展开                                                  |
 | `mq-action-sheet`                                | 底部动作列表，复用弹出层。`select` 为 `{ item, index }`                                              |
 | `mq-search`                                      | 原生输入加文字按钮，不套输入框和按钮组件                                                             |
 | `mq-dialog`                                      | 受控对话框，复用弹出层。可 `before-confirm`                                                          |
+| `mq-message-box`                                 | 命令式 alert / confirm / prompt，配合 `useMessage`，Promise 返回，`selector` 可隔离多个宿主          |
 | `mq-input-number`                                | 加减计数，文字按钮，不使用图标字体                                                                   |
 | `mq-notify`                                      | `showNotify` / `hideNotify`，页面挂 `<mq-notify />`                                                  |
 | `mq-navbar`                                      | 顶栏。左侧箭头用文字 `‹`                                                                             |
@@ -231,8 +237,10 @@ import { MqButton, showToast } from '@mosquito/ui'
 | `mq-avatar` / `mq-avatar-group`                  | 头像：图片 / 文字 / `mark`；叠层头像组超出数量收成 `+N`                                              |
 | `mq-img`                                         | 图片：宽高比、圆角、懒加载、加载中与失败插槽                                                         |
 | `mq-picker-view` / `mq-picker`                   | 滚轮选择器与底部弹出选择器，支持多列和级联                                                           |
+| `mq-col-picker`                                  | 多列联动选择，`column-change` 同步/异步补列，`finish(false)` 可取消                                  |
 | `mq-table`                                       | 数据表格：列配置、斑马纹、边框、单元格插槽                                                           |
 | `mq-calendar`                                    | 日历：单选、区间、多选，支持最小/最大日期                                                            |
+| `mq-calendar-view`                               | 内联可滚动日历面板：日期/区间/日期时间、最大区间、同日限制，`scrollIntoView()`                       |
 | `mq-upload`                                      | 图片 / 视频 / 文件选择，接 `uni.uploadFile` 或自定义上传                                             |
 | `mq-datetime-picker-view` / `mq-datetime-picker` | 日期时间滚轮与底部弹层，支持年 / 年月 / 日期 / 时间 / 完整日期时间                                   |
 | `mq-cascader`                                    | 级联选择：逐级面板、选中路径 Tab、`check-strictly`                                                   |
@@ -306,6 +314,7 @@ const visible = ref(false)
 | `useToast`          | `show` / `hide` / `success` / `error` / `info` / `warning`，预设互不影响 |
 | `useNotify`         | 顶层通知，预设类型与 `show` / `hide`                                     |
 | `useDialog`         | 受控对话框状态，`show` / `confirm` / `cancel`，支持异步 `beforeConfirm`  |
+| `useMessage`        | 命令式 `alert` / `confirm` / `prompt`，Promise 结果与 `selector` 隔离    |
 | `useCountDown`      | 倒计时，`start` / `pause` / `reset` / `update`，无 rAF 时回退定时器      |
 | `useUpload`         | 选择、校验、上传与进度，`choose` / `upload` / `remove` / `validate`      |
 | `useConfigProvider` | 共享主题与 CSS 变量，`setTheme` / `setThemeVar` / `reset`                |

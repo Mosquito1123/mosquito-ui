@@ -5,6 +5,11 @@ const newDocs = [
   { path: '/component/icon', title: 'MqIcon', body: 'unicode', api: true },
   { path: '/component/qr-code', title: 'MqQrCode', body: 'canvas', api: true },
   { path: '/component/use-toast', title: 'useToast', body: 'showToast', api: true },
+  { path: '/component/calendar-view', title: 'MqCalendarView', body: 'scrollIntoView', api: true },
+  { path: '/component/col-picker', title: 'MqColPicker', body: 'column-change', api: true },
+  { path: '/component/message-box', title: 'MqMessageBox', body: 'Promise', api: true },
+  { path: '/component/status-tip', title: 'MqStatusTip', body: '兜底占位展示', api: true },
+  { path: '/component/use-message', title: 'useMessage', body: 'selector', api: true },
 ] as const
 
 for (const docInfo of newDocs) {

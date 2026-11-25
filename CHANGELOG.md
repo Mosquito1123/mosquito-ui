@@ -6,6 +6,10 @@
 
 ### Added
 
+- 新增组件 `mq-calendar-view`：内联可滚动日历，支持日期 / 区间 / 日期时间、区间天数与同日限制、`scrollIntoView()`。
+- 新增组件 `mq-col-picker`：多列联动选择，`column-change` 支持同步 / 异步补列、`finish(false)` 取消、`autoComplete` 自动补全。
+- 新增组件 `mq-message-box` 与 `useMessage`：Promise 风格的 alert / confirm / prompt，支持输入校验、`beforeConfirm` 与 `selector` 隔离。
+- 新增组件 `mq-status-tip`：7 种内置文字符号缺省图、自定义图片 URL 与底部插槽，不依赖外链图标资源。
 - CD：`deploy-docs.yml` 在推送到 `main` 后构建 VitePress 站点并部署到 GitHub Pages；文档 base 路径可通过 `VITE_DOCS_BASE` 覆盖，本地与 CI 仍用根路径。
 - CD：`release.yml` 在推送 `v*` 标签时校验标签与包版本一致，通过后发布 `@mosquito/ui` 到 npm（需配置 `NPM_TOKEN` secret）。
 

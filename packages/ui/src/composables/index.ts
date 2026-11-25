@@ -7,6 +7,9 @@ export type { UseNotifyPreset, UseNotifyReturn } from './use-notify'
 export { useDialog } from './use-dialog'
 export type { UseDialogOptions, UseDialogReturn } from './use-dialog'
 
+export { useMessage } from './use-message'
+export type { UseMessageInput, UseMessageReturn } from './use-message'
+
 export { useCountDown } from './use-count-down'
 export type { UseCountDownOptions, UseCountDownReturn } from './use-count-down'
 

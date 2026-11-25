@@ -1,0 +1,36 @@
+.mq-message-box__body {
+  box-sizing: border-box;
+  padding: 8px 0;
+}
+
+.mq-message-box__msg {
+  display: block;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: var(--mq-font-size, 14px);
+  line-height: 1.6;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.mq-message-box__input-wrap {
+  margin-top: 12px;
+}
+
+.mq-message-box__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--mq-border, #e6e2da);
+  border-radius: var(--mq-radius, 8px);
+  background: var(--mq-bg, #fffcf7);
+  color: var(--mq-text, #1c1915);
+  font-size: var(--mq-font-size, 14px);
+}
+
+.mq-message-box__error {
+  display: block;
+  margin-top: 6px;
+  color: var(--mq-color-danger, #c0392b);
+  font-size: 12px;
+}

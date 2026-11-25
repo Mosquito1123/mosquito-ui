@@ -4,6 +4,7 @@ import {
   MqConfigProvider,
   MqDialog,
   MqDivider,
+  MqMessageBox,
   MqGap,
   MqNotify,
   MqTag,
@@ -13,6 +14,7 @@ import {
   useConfigProvider,
   useCountDown,
   useDialog,
+  useMessage,
   useNotify,
   useToast,
   useUpload,
@@ -21,6 +23,7 @@ import {
 const toast = useToast({ duration: 1500 })
 const notify = useNotify({ position: 'top', duration: 2500 })
 const dialog = useDialog({ title: '确认操作', message: '记在这一页，不会连到支付。' })
+const message = useMessage()
 const dialogVisible = dialog.visible
 const timer = useCountDown({ time: 90 * 1000, format: 'mm分ss秒' })
 const uploader = useUpload({ accept: 'image', maxCount: 3 })
@@ -129,6 +132,23 @@ async function onUpload() {
         </view>
       </mq-config-provider>
     </view>
+
+    <mq-divider>useMessage 命令式弹框</mq-divider>
+    <view class="demo__row">
+      <mq-button size="small" @click="message.alert('操作成功')">alert</mq-button>
+      <mq-button
+        size="small"
+        @click="
+          message
+            .confirm('确定继续吗')
+            .then(() => toast.show('已确认'))
+            .catch(() => toast.show('已取消'))
+        "
+      >
+        confirm
+      </mq-button>
+    </view>
+    <mq-message-box />
 
     <mq-toast />
     <mq-notify />

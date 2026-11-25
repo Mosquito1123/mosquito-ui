@@ -41,6 +41,7 @@ const utilLines = [
   "export { hideNotify, showNotify, notifyState } from './utils/notify'",
   "export { closeSwipeActions } from './utils/swipe'",
   "export { closeOutside, registerOutsideCloser } from './utils/queue'",
+  "export { showMessageBox, closeMessageBox, currentMessageBox } from './utils/message-box'",
 ]
 
 const utilTypeLines = [

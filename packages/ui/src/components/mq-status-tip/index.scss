@@ -1,0 +1,39 @@
+.mq-status-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 28px 16px;
+  color: var(--mq-text-secondary, #6f675e);
+}
+
+.mq-status-tip__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 64px;
+  height: 48px;
+  border: 1.5px solid currentColor;
+  border-radius: var(--mq-radius, 8px);
+  opacity: 0.6;
+}
+
+.mq-status-tip__symbol {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.mq-status-tip__image {
+  max-width: 100%;
+}
+
+.mq-status-tip__tip {
+  margin-top: 12px;
+  font-size: var(--mq-font-size, 14px);
+  text-align: center;
+}
+
+.mq-status-tip__bottom {
+  margin-top: 16px;
+}
