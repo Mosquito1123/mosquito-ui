@@ -27,7 +27,7 @@ pnpm docs:dev      # VitePress 文档站
 
 新增组件后运行 `pnpm sync:easycom`，脚本会按 `src/components/` 的实际目录重写本文件和 `packages/ui/README.md` 里的 easycom 映射。贡献约定见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
 
-`main` 的拉取请求会跑 GitHub Actions：`typecheck`、`lint`、`format:check` 和带覆盖率的测试。建议把检查项 **typecheck, lint and test** 设成分支保护里的必过项。
+`main` 的拉取请求会跑 GitHub Actions：`typecheck`、`lint`、`format:check`、带覆盖率的测试、文档构建与 E2E 冒烟测试。建议把检查项 **typecheck, lint and test** 设成分支保护里的必过项。CI/CD 配置见下方「CI/CD」。
 
 业务项目里：
 
@@ -342,6 +342,20 @@ pnpm test:e2e     # 文档站 E2E（使用本机 Chrome）
 ```
 
 逐组件文档在 `docs/component/`，指南在 `docs/guide/`。新增组件后运行 `pnpm sync:easycom`、`pnpm sync:exports` 和 `pnpm docs:gen`，避免入口与文档漏登记。
+
+## CI/CD
+
+`.github/workflows/` 里三个工作流：
+
+| 工作流            | 触发                        | 作用                                                                             |
+| ----------------- | --------------------------- | -------------------------------------------------------------------------------- |
+| `ci.yml`          | 推送 / PR 到 `main`         | typecheck、lint、格式检查、覆盖率测试、文档构建、E2E 冒烟                        |
+| `deploy-docs.yml` | 推送到 `main`（或手动触发） | 构建 VitePress 站点并部署到 GitHub Pages                                         |
+| `release.yml`     | 推送 `v*` 标签              | 校验标签与 `packages/ui/package.json` 版本一致，通过后发布 `@mosquito/ui` 到 npm |
+
+首次启用 Pages：仓库 Settings → Pages → Build and deployment → Source 选 **GitHub Actions**。文档部署在 `https://<owner>.github.io/mosquito-ui/`（部署工作流通过 `VITE_DOCS_BASE` 注入 base 路径；本地与 CI 构建仍使用根路径，保证 E2E 的绝对路径断言有效）。
+
+发布前在仓库 Settings → Secrets and variables → Actions 添加 `NPM_TOKEN`（有发布权限的 npm access token），并先把 `packages/ui/package.json` 的版本更新为待发布版本，再推送同名 `v<version>` 标签（如 `v0.12.0`）。未配置 `NPM_TOKEN` 时，标签发布会在 npm 步骤失败，不影响日常 CI 与文档部署。
 
 ## 性能原则
 

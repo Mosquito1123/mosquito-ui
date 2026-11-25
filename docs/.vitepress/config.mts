@@ -155,6 +155,9 @@ function componentItems(names: string[]) {
 export default defineConfig({
   title: 'mosquito-ui',
   description: '面向 uni-app（Vue 3）的轻量组件库，前缀 mq-。',
+  // 本地与 CI 保持根路径（E2E 断言使用 /guide/... 等绝对路径）；
+  // 部署到 GitHub Pages 项目站点时由 deploy-docs 工作流注入 /mosquito-ui/。
+  base: process.env.VITE_DOCS_BASE || '/',
   lang: 'zh-CN',
   head: [['meta', { name: 'theme-color', content: '#0f3d32' }]],
   themeConfig: {

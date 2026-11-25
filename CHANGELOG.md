@@ -2,6 +2,13 @@
 
 本文件记录 `@mosquito/ui` 的用户可见变更。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)。
 
+## [Unreleased]
+
+### Added
+
+- CD：`deploy-docs.yml` 在推送到 `main` 后构建 VitePress 站点并部署到 GitHub Pages；文档 base 路径可通过 `VITE_DOCS_BASE` 覆盖，本地与 CI 仍用根路径。
+- CD：`release.yml` 在推送 `v*` 标签时校验标签与包版本一致，通过后发布 `@mosquito/ui` 到 npm（需配置 `NPM_TOKEN` secret）。
+
 ## [0.12.0] - 2026-11-25
 
 ### Added
