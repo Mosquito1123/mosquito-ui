@@ -1,9 +1,5 @@
 import type { MqPickerOption } from '../../utils/picker'
-import type {
-  MqDatetimeFormatter,
-  MqDatetimeOptions,
-  MqDatetimeType,
-} from '../../utils/datetime'
+import type { MqDatetimeFormatter, MqDatetimeOptions, MqDatetimeType } from '../../utils/datetime'
 
 export interface MqDatetimePickerViewProps {
   /** `time` 类型用 `HH:mm(:ss)` 字符串，其余类型用时间戳。 */

@@ -8,13 +8,7 @@
     :aria-label="alt || text || mark || 'avatar'"
     @click.stop="onClick"
   >
-    <image
-      v-if="showImage"
-      class="mq-avatar__img"
-      :src="src"
-      mode="aspectFill"
-      @error="failed = true"
-    />
+    <image v-if="showImage" class="mq-avatar__img" :src="src" mode="aspectFill" @error="failed = true" />
     <text v-else>{{ text || mark || '?' }}</text>
   </view>
 </template>
@@ -52,7 +46,7 @@ const shape = computed(() => props.shape ?? group?.shape.value ?? 'round')
 const preset = computed(() =>
   size.value === 'large' || size.value === 'medium' || size.value === 'normal' || size.value === 'small'
     ? size.value
-    : ''
+    : '',
 )
 
 const index = computed(() => (group ? group.items.value.indexOf(id) : -1))
@@ -63,10 +57,7 @@ const hidden = computed(() => {
 
 const showImage = computed(() => Boolean(props.src) && !failed.value)
 
-const rootClass = computed(() => [
-  `is-${shape.value}`,
-  preset.value ? `is-${preset.value}` : undefined,
-])
+const rootClass = computed(() => [`is-${shape.value}`, preset.value ? `is-${preset.value}` : undefined])
 
 const rootStyle = computed(() => {
   const style: Record<string, string> = {}

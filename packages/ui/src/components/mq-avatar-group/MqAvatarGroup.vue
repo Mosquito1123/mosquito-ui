@@ -1,15 +1,12 @@
 <template>
-  <view
-    class="mq-avatar-group"
-    :class="[`is-${cascading}`, { 'is-vertical': vertical }]"
-  >
+  <view class="mq-avatar-group" :class="[`is-${cascading}`, { 'is-vertical': vertical }]">
     <slot />
     <view
       v-if="showCollapse"
       class="mq-avatar-group__collapse"
       :class="{ 'is-square': shape === 'square' }"
       :style="collapseStyle"
-      :aria-label="`还有 ${collapsedCount} 个头像`"
+      :aria-label="t('common.moreAvatars', { count: collapsedCount })"
     >
       <slot name="collapse">{{ collapseLabel }}</slot>
     </view>
@@ -18,6 +15,7 @@
 
 <script setup lang="ts">
 import { computed, provide, ref } from 'vue'
+import { t } from '../../locale'
 import { resolveAvatarSize } from '../../utils/model'
 import { avatarGroupKey } from './context'
 import type { MqAvatarGroupProps } from './types'

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { test } from 'node:test'
+import { test } from 'vitest'
 import {
   collectExpandableValues,
   collectTreeValues,
@@ -26,7 +26,10 @@ const tree: MqTreeNode[] = [
 ]
 
 test('tree flattens only expanded branches', () => {
-  assert.deepEqual(flattenTree(tree).map((row) => row.node.value), ['zj', 'js'])
+  assert.deepEqual(
+    flattenTree(tree).map((row) => row.node.value),
+    ['zj', 'js'],
+  )
   assert.deepEqual(
     flattenTree(tree, ['zj']).map((row) => `${row.depth}-${row.node.value}`),
     ['0-zj', '1-hz', '1-nb', '0-js'],

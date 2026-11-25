@@ -17,13 +17,7 @@
         @click="onItemClick(item, index)"
       >
         <slot :item="item" :index="index">
-          <mq-img
-            :src="item.image"
-            width="100%"
-            height="100%"
-            mode="aspectFill"
-            :radius="radius"
-          />
+          <mq-img :src="item.image" width="100%" height="100%" mode="aspectFill" :radius="radius" />
         </slot>
         <view v-if="showTitle && item.title" class="mq-banner__title">
           <text class="mq-banner__title-text">{{ item.title }}</text>
@@ -43,7 +37,7 @@
 
     <view v-if="!data.length" class="mq-banner__empty">
       <slot name="empty">
-        <text class="mq-banner__empty-text">暂无数据</text>
+        <text class="mq-banner__empty-text">{{ t('common.noData') }}</text>
       </slot>
     </view>
   </view>
@@ -51,6 +45,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import MqImg from '../mq-img/MqImg.vue'
 import type { MqBannerEmits, MqBannerItem, MqBannerProps } from './types'
 

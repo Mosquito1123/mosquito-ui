@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import type { MqLoadingProps } from './types'
 
 defineOptions({
@@ -18,10 +19,9 @@ defineOptions({
 
 const props = withDefaults(defineProps<MqLoadingProps>(), {
   size: 20,
-  label: '加载中',
 })
 
-const resolvedLabel = computed(() => props.label.trim() || '加载中')
+const resolvedLabel = computed(() => props.label?.trim() || t('common.loading'))
 
 const rootStyle = computed(() => {
   const style: Record<string, string> = {

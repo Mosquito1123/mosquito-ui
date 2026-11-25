@@ -4,12 +4,7 @@
     <template v-for="(item, index) in chars" :key="index">
       <view v-if="item.digit" class="mq-rolling-number__digit" :style="digitStyle">
         <view class="mq-rolling-number__column" :style="columnStyle(item.char)">
-          <text
-            v-for="line in 10"
-            :key="line"
-            class="mq-rolling-number__value"
-            :style="digitStyle"
-          >
+          <text v-for="line in 10" :key="line" class="mq-rolling-number__value" :style="digitStyle">
             {{ line - 1 }}
           </text>
         </view>

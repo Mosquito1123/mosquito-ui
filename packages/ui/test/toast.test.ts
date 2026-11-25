@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { afterEach, test } from 'node:test'
+import { afterEach, beforeEach, test } from 'vitest'
 import { nextTick } from 'vue'
 import { attachToastHost, hideToast, showToast, toastState } from '../src/utils/toast.ts'
 
@@ -15,6 +15,11 @@ const g = globalThis as typeof globalThis & {
     hideToast: () => void
   }
 }
+
+beforeEach(() => {
+  // setup.ts 默认提供一个 uni 兼容层；这里要测「无 uni」分支，先移除它。
+  delete g.uni
+})
 
 afterEach(() => {
   hideToast()

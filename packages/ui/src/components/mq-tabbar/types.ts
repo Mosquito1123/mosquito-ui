@@ -1,6 +1,4 @@
-export type MqTabbarBeforeChange = (
-  value: string | number,
-) => boolean | Promise<boolean | void> | void
+export type MqTabbarBeforeChange = (value: string | number) => boolean | Promise<boolean | void> | void
 
 export interface MqTabbarProps {
   modelValue?: string | number

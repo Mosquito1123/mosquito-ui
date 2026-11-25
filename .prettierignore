@@ -1,0 +1,8 @@
+node_modules
+coverage
+dist
+unpackage
+pnpm-lock.yaml
+*.uvue
+docs/.vitepress/cache
+docs/.vitepress/dist

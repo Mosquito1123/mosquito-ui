@@ -1,6 +1,4 @@
-export type MqSidebarBeforeChange = (
-  value: string | number,
-) => boolean | Promise<boolean | void> | void
+export type MqSidebarBeforeChange = (value: string | number) => boolean | Promise<boolean | void> | void
 
 export interface MqSidebarProps {
   modelValue?: string | number

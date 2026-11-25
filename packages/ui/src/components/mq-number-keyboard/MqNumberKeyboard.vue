@@ -13,12 +13,14 @@
           :class="{ 'is-muted': key === 'delete' || key === extraKey }"
           @click.stop="onKey(key)"
         >
-          {{ key === 'delete' ? '删除' : key }}
+          {{ key === 'delete' ? t('common.delete') : key }}
         </text>
       </view>
       <view v-if="mode === 'custom'" class="mq-number-keyboard__side">
-        <text class="mq-number-keyboard__key is-muted" @click.stop="onKey('delete')">删除</text>
-        <text class="mq-number-keyboard__key is-primary" @click.stop="onClose">{{ closeText || '完成' }}</text>
+        <text class="mq-number-keyboard__key is-muted" @click.stop="onKey('delete')">{{
+          t('common.delete')
+        }}</text>
+        <text class="mq-number-keyboard__key is-primary" @click.stop="onClose">{{ closeLabel }}</text>
       </view>
     </view>
   </view>
@@ -26,6 +28,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { t } from '../../locale'
 import { shuffleKeys } from '../../utils/model'
 import type { MqNumberKeyboardEmits, MqNumberKeyboardProps } from './types'
 
@@ -46,12 +49,16 @@ const props = withDefaults(defineProps<MqNumberKeyboardProps>(), {
 
 const emit = defineEmits<MqNumberKeyboardEmits>()
 
+const closeLabel = computed(() => props.closeText?.trim() || t('common.done'))
+
 const rendered = ref(false)
 const opened = ref(false)
 let leaveTimer: ReturnType<typeof setTimeout> | undefined
 
 const keys = computed(() => {
-  const digits = props.randomKeyOrder ? shuffleKeys(['1', '2', '3', '4', '5', '6', '7', '8', '9']) : ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+  const digits = props.randomKeyOrder
+    ? shuffleKeys(['1', '2', '3', '4', '5', '6', '7', '8', '9'])
+    : ['1', '2', '3', '4', '5', '6', '7', '8', '9']
   if (props.mode === 'custom') {
     return [...digits, props.extraKey || '.', '0', '']
   }

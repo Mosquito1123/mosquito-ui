@@ -1,12 +1,19 @@
 <template>
   <view class="mq-form-item" :class="rootClass" @click.stop="onClick">
     <view v-if="title || label || showRequired" class="mq-form-item__title" :style="titleStyle">
-      <text v-if="showRequired && asteriskPosition === 'start'" class="mq-form-item__star" aria-hidden="true">*</text>
+      <text v-if="showRequired && asteriskPosition === 'start'" class="mq-form-item__star" aria-hidden="true"
+        >*</text
+      >
       <view>
         <text>{{ title }}</text>
         <text v-if="label" class="mq-form-item__label">{{ label }}</text>
       </view>
-      <text v-if="showRequired && asteriskPosition === 'end'" class="mq-form-item__star is-end" aria-hidden="true">*</text>
+      <text
+        v-if="showRequired && asteriskPosition === 'end'"
+        class="mq-form-item__star is-end"
+        aria-hidden="true"
+        >*</text
+      >
     </view>
     <view class="mq-form-item__body" :class="`is-${valueAlign}`">
       <slot>
@@ -53,9 +60,7 @@ const border = computed(() => props.border ?? form?.border.value ?? false)
 const center = computed(() => props.center ?? form?.center.value ?? false)
 const layout = computed(() => props.layout ?? form?.layout.value ?? 'horizontal')
 const valueAlign = computed(() => props.valueAlign ?? form?.valueAlign.value ?? 'left')
-const asteriskPosition = computed(
-  () => props.asteriskPosition ?? form?.asteriskPosition.value ?? 'start',
-)
+const asteriskPosition = computed(() => props.asteriskPosition ?? form?.asteriskPosition.value ?? 'start')
 const hideAsterisk = computed(() => props.hideAsterisk ?? form?.hideAsterisk.value ?? false)
 
 const schemaRequired = computed(() => {

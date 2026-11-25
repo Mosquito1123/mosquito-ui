@@ -1,10 +1,6 @@
 import assert from 'node:assert/strict'
-import { test } from 'node:test'
-import {
-  draggableOffset,
-  reorderList,
-  resolveDragTarget,
-} from '../src/utils/draggable.ts'
+import { test } from 'vitest'
+import { draggableOffset, reorderList, resolveDragTarget } from '../src/utils/draggable.ts'
 
 test('draggable resolves the drop target from the drag distance', () => {
   assert.equal(resolveDragTarget(0, 0, 50, 4), 0)

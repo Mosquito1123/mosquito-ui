@@ -25,7 +25,9 @@
         @keydown.enter.prevent="onSelect(item, index)"
         @keydown.space.prevent="onSelect(item, index)"
       >
-        <text class="mq-action-sheet__name" :style="item.color ? { color: item.color } : undefined">{{ item.name }}</text>
+        <text class="mq-action-sheet__name" :style="item.color ? { color: item.color } : undefined">{{
+          item.name
+        }}</text>
         <text v-if="item.description" class="mq-action-sheet__desc">{{ item.description }}</text>
       </view>
       <view
@@ -47,6 +49,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import MqPopup from '../mq-popup/MqPopup.vue'
 import MqSafeBottom from '../mq-safe-bottom/MqSafeBottom.vue'
 import type { MqActionSheetEmits, MqActionSheetItem, MqActionSheetProps } from './types'
@@ -59,7 +62,6 @@ const props = withDefaults(defineProps<MqActionSheetProps>(), {
   modelValue: false,
   actions: () => [],
   title: '',
-  cancelText: '取消',
   maskClosable: true,
   duration: 200,
 })
@@ -67,8 +69,8 @@ const props = withDefaults(defineProps<MqActionSheetProps>(), {
 const emit = defineEmits<MqActionSheetEmits>()
 
 const titleText = computed(() => props.title.trim())
-const cancelLabel = computed(() => props.cancelText.trim())
-const dialogLabel = computed(() => titleText.value || '操作')
+const cancelLabel = computed(() => props.cancelText?.trim() || t('common.cancel'))
+const dialogLabel = computed(() => titleText.value || t('common.operation'))
 
 function onVisible(value: boolean) {
   emit('update:modelValue', value)

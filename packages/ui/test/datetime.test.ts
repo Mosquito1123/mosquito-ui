@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { test } from 'node:test'
+import { test } from 'vitest'
 import {
   buildDatetimeColumns,
   clampTimestamp,
@@ -39,7 +39,10 @@ test('datetime day column follows leap years', () => {
 
 test('year-month and year types drop lower columns', () => {
   const value = new Date(2026, 9, 20).getTime()
-  assert.equal(buildDatetimeColumns(parseDatetime(value, { type: 'year-month' }), { type: 'year-month' }).length, 2)
+  assert.equal(
+    buildDatetimeColumns(parseDatetime(value, { type: 'year-month' }), { type: 'year-month' }).length,
+    2,
+  )
   assert.equal(buildDatetimeColumns(parseDatetime(value, { type: 'year' }), { type: 'year' }).length, 1)
   assert.equal(buildDatetimeColumns(parseDatetime(value, { type: 'date' }), { type: 'date' }).length, 3)
 })
@@ -56,7 +59,10 @@ test('time type round trips strings and honours seconds', () => {
   const short = { type: 'time' as const }
   const shortParts = parseDatetime('09:05', short)
   const shortColumns = buildDatetimeColumns(shortParts, short)
-  assert.equal(datetimeFromIndexes(datetimeIndexes(shortParts, shortColumns, short), shortColumns, short), '09:05')
+  assert.equal(
+    datetimeFromIndexes(datetimeIndexes(shortParts, shortColumns, short), shortColumns, short),
+    '09:05',
+  )
 })
 
 test('datetime value is clamped to min and max', () => {

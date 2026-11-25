@@ -1,11 +1,5 @@
 export type MqTransitionName =
-  | 'fade'
-  | 'slide-up'
-  | 'slide-down'
-  | 'slide-left'
-  | 'slide-right'
-  | 'zoom-in'
-  | 'zoom-out'
+  'fade' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom-in' | 'zoom-out'
 
 export interface MqTransitionProps {
   show?: boolean

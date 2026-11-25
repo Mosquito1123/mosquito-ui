@@ -37,7 +37,9 @@ const mergedType = computed(() => props.type ?? group?.type.value ?? 'circle')
 const mergedDisabled = computed(() => props.disabled ?? group?.disabled.value ?? false)
 const mergedReadonly = computed(() => props.readonly ?? group?.readonly.value ?? false)
 const mergedPlacement = computed(() => props.placement ?? group?.placement.value ?? 'left')
-const checked = computed(() => group != null && props.value !== undefined && group.current.value === props.value)
+const checked = computed(
+  () => group != null && props.value !== undefined && group.current.value === props.value,
+)
 
 const rootStyle = computed(() => {
   const style: Record<string, string> = {}

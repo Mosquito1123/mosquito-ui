@@ -5,7 +5,7 @@
     :class="`is-${shape}`"
     :style="rootStyle"
     role="button"
-    aria-label="回到顶部"
+    :aria-label="t('common.backToTop')"
     @click.stop="onClick"
   >
     <slot>{{ text || '↑' }}</slot>
@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import type { MqBacktopEmits, MqBacktopProps } from './types'
 
 defineOptions({

@@ -23,7 +23,9 @@
         class="mq-tree__checkbox"
         :class="`is-${stateOf(row.node)}`"
         role="checkbox"
-        :aria-checked="stateOf(row.node) === 'all' ? 'true' : stateOf(row.node) === 'partial' ? 'mixed' : 'false'"
+        :aria-checked="
+          stateOf(row.node) === 'all' ? 'true' : stateOf(row.node) === 'partial' ? 'mixed' : 'false'
+        "
         @click.stop="toggleCheck(row.node)"
       >
         <text v-if="stateOf(row.node) === 'all'">✓</text>
@@ -33,12 +35,13 @@
         {{ row.node.label }}
       </text>
     </view>
-    <view v-if="!rows.length" class="mq-tree__empty">{{ emptyText }}</view>
+    <view v-if="!rows.length" class="mq-tree__empty">{{ emptyLabel }}</view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import {
   collectExpandableValues,
   flattenTree,
@@ -47,11 +50,7 @@ import {
   treeSelectionState,
 } from '../../utils/tree'
 import type { MqTreeNode } from '../../utils/tree'
-import type {
-  MqTreeEmits,
-  MqTreeExpandPayload,
-  MqTreeProps,
-} from './types'
+import type { MqTreeEmits, MqTreeExpandPayload, MqTreeProps } from './types'
 
 defineOptions({
   name: 'mq-tree',
@@ -64,18 +63,15 @@ const props = withDefaults(defineProps<MqTreeProps>(), {
   defaultExpandAll: false,
   expanded: undefined,
   indent: 18,
-  emptyText: '暂无数据',
   disabled: false,
 })
 
 const emit = defineEmits<MqTreeEmits>()
 
+const emptyLabel = computed(() => props.emptyText?.trim() || t('common.noData'))
+
 const expandedValues = ref<Array<string | number>>(
-  props.expanded
-    ? [...props.expanded]
-    : props.defaultExpandAll
-      ? collectExpandableValues(props.data)
-      : [],
+  props.expanded ? [...props.expanded] : props.defaultExpandAll ? collectExpandableValues(props.data) : [],
 )
 
 const rows = computed(() => flattenTree(props.data, expandedValues.value))

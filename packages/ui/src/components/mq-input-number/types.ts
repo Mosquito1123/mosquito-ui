@@ -1,6 +1,4 @@
-export type MqInputNumberBeforeChange = (
-  value: number,
-) => boolean | Promise<boolean | void> | void
+export type MqInputNumberBeforeChange = (value: number) => boolean | Promise<boolean | void> | void
 
 export interface MqInputNumberProps {
   modelValue?: number

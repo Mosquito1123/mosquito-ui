@@ -61,14 +61,10 @@ export function weekdayOf(year: number, month: number, day: number): number {
 }
 
 /** 月份偏移，自动处理跨年。 */
-export function addMonths(
-  year: number,
-  month: number,
-  delta: number,
-): { year: number; month: number } {
+export function addMonths(year: number, month: number, delta: number): { year: number; month: number } {
   const base = year * 12 + (month - 1) + (Number.isFinite(delta) ? Math.trunc(delta) : 0)
   const nextYear = Math.floor(base / 12)
-  const nextMonth = (base % 12 + 12) % 12 + 1
+  const nextMonth = (((base % 12) + 12) % 12) + 1
   return { year: nextYear, month: nextMonth }
 }
 
@@ -99,11 +95,7 @@ export function isDateBetween(date: string, min?: string, max?: string): boolean
 }
 
 /** 固定 42 格，前后补上相邻月份的日期，让六行高度稳定。 */
-export function buildCalendarDays(
-  year: number,
-  month: number,
-  firstDayOfWeek: 0 | 1 = 0,
-): MqCalendarCell[] {
+export function buildCalendarDays(year: number, month: number, firstDayOfWeek: 0 | 1 = 0): MqCalendarCell[] {
   const lead = (weekdayOf(year, month, 1) - firstDayOfWeek + 7) % 7
   const total = daysInMonth(year, month)
   const previous = addMonths(year, month, -1)
@@ -138,9 +130,7 @@ export function buildCalendarDays(
 }
 
 /** 把外部值收成日期数组。单选用长度为 0 或 1 的数组表示。 */
-export function normalizeDateList(
-  value: string | readonly string[] | null | undefined,
-): string[] {
+export function normalizeDateList(value: string | readonly string[] | null | undefined): string[] {
   const list = Array.isArray(value) ? value : typeof value === 'string' ? [value] : []
   const unique: string[] = []
   for (const item of list) {
@@ -158,11 +148,7 @@ export function normalizeDateList(
  * - multiple：切换
  * - range：第一次记起点，第二次按先后顺序补成区间，第三次重新开始
  */
-export function nextDateSelection(
-  current: readonly string[],
-  date: string,
-  mode: MqCalendarMode,
-): string[] {
+export function nextDateSelection(current: readonly string[], date: string, mode: MqCalendarMode): string[] {
   const target = normalizeDate(date)
   if (!target) {
     return [...current]
@@ -174,9 +160,7 @@ export function nextDateSelection(
   }
 
   if (mode === 'multiple') {
-    return list.includes(target)
-      ? list.filter((item) => item !== target)
-      : [...list, target].sort()
+    return list.includes(target) ? list.filter((item) => item !== target) : [...list, target].sort()
   }
 
   if (list.length === 0 || list.length >= 2) {

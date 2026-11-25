@@ -1,5 +1,10 @@
 <template>
-  <view class="mq-img" :class="{ 'is-round': round, 'is-failed': failed }" :style="rootStyle" @click="onClick">
+  <view
+    class="mq-img"
+    :class="{ 'is-round': round, 'is-failed': failed }"
+    :style="rootStyle"
+    @click="onClick"
+  >
     <slot v-if="slots.default" />
     <template v-else>
       <image
@@ -18,7 +23,7 @@
       </view>
       <view v-else-if="failed" class="mq-img__mask is-error">
         <slot name="error">
-          <text class="mq-img__alt">{{ alt || '暂无图片' }}</text>
+          <text class="mq-img__alt">{{ alt || t('common.imageEmpty') }}</text>
         </slot>
       </view>
     </template>
@@ -27,6 +32,7 @@
 
 <script setup lang="ts">
 import { computed, ref, useSlots, watch } from 'vue'
+import { t } from '../../locale'
 import MqLoading from '../mq-loading/MqLoading.vue'
 import type { MqImgEmits, MqImgProps } from './types'
 

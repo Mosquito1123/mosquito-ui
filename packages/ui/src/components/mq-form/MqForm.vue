@@ -63,14 +63,9 @@ async function validate(prop?: string | string[]): Promise<MqFormValidateResult>
     }))
     .filter((item) => item.prop && item.message)
 
-  const filter =
-    prop == null
-      ? null
-      : new Set(Array.isArray(prop) ? prop : [prop])
+  const filter = prop == null ? null : new Set(Array.isArray(prop) ? prop : [prop])
 
-  const selected = filter
-    ? mapped.filter((item) => filter.has(item.prop))
-    : mapped
+  const selected = filter ? mapped.filter((item) => filter.has(item.prop)) : mapped
 
   if (filter) {
     for (const key of filter) {

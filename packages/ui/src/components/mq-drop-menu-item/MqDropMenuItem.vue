@@ -49,7 +49,9 @@
           </view>
           <text v-if="isSelected(option)" class="mq-drop-menu-item__check">✓</text>
         </view>
-        <view v-if="!normalizedOptions.length" class="mq-drop-menu-item__empty">暂无可选项</view>
+        <view v-if="!normalizedOptions.length" class="mq-drop-menu-item__empty">{{
+          t('common.noOptions')
+        }}</view>
       </scroll-view>
       <slot />
     </view>
@@ -58,13 +60,10 @@
 
 <script setup lang="ts">
 import { computed, inject, onBeforeUnmount, onMounted, ref } from 'vue'
+import { t } from '../../locale'
 import { registerOutsideCloser } from '../../utils/queue'
 import { dropMenuKey } from '../mq-drop-menu/context'
-import type {
-  MqDropMenuItemEmits,
-  MqDropMenuItemOption,
-  MqDropMenuItemProps,
-} from './types'
+import type { MqDropMenuItemEmits, MqDropMenuItemOption, MqDropMenuItemProps } from './types'
 
 defineOptions({
   name: 'mq-drop-menu-item',
@@ -75,7 +74,6 @@ const props = withDefaults(defineProps<MqDropMenuItemProps>(), {
   disabled: false,
   options: () => [],
   title: '',
-  placeholder: '请选择',
   valueKey: 'value',
   labelKey: 'label',
   tipKey: 'tip',
@@ -109,7 +107,9 @@ const selectedItem = computed<MqDropMenuItemOption | undefined>(() =>
   normalizedOptions.value.find((item) => String(item.value) === String(props.modelValue)),
 )
 
-const displayLabel = computed(() => props.title || selectedItem.value?.label || props.placeholder)
+const displayLabel = computed(
+  () => props.title || selectedItem.value?.label || props.placeholder?.trim() || t('common.select'),
+)
 
 const panelStyle = computed(() => {
   const style: Record<string, string> = {}

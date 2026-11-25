@@ -13,12 +13,15 @@
     <view class="mq-notice__body">
       <text class="mq-notice__text" :class="{ 'is-scroll': scrolling }">{{ text }}</text>
     </view>
-    <text v-if="closable" class="mq-notice__close" aria-label="关闭" @click.stop="onClose">×</text>
+    <text v-if="closable" class="mq-notice__close" :aria-label="t('common.close')" @click.stop="onClose"
+      >×</text
+    >
   </view>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, useSlots } from 'vue'
+import { t } from '../../locale'
 import type { MqNoticeBarEmits, MqNoticeBarProps } from './types'
 
 defineOptions({

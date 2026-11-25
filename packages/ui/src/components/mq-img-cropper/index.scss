@@ -1,0 +1,98 @@
+.mq-img-cropper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--mq-cropper-gutter, 16px);
+  background: var(--mq-cropper-bg, var(--mq-bg, #fffcf7));
+  color: var(--mq-cropper-color, var(--mq-text, #1c1915));
+}
+
+.mq-img-cropper.is-disabled {
+  opacity: var(--mq-cropper-disabled-opacity, 0.5);
+  pointer-events: none;
+}
+
+.mq-img-cropper__stage {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  background: var(--mq-cropper-stage-bg, rgba(0, 0, 0, 0.06));
+}
+
+.mq-img-cropper__frame {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  border: var(--mq-cropper-frame-border, 1px dashed var(--mq-primary, #0f3d32));
+  pointer-events: none;
+}
+
+.mq-img-cropper__grid::before,
+.mq-img-cropper__grid::after {
+  content: '';
+  position: absolute;
+  background: var(--mq-cropper-grid, rgba(255, 255, 255, 0.5));
+}
+
+.mq-img-cropper__grid::before {
+  top: 33.33%;
+  bottom: 33.33%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--mq-cropper-grid, rgba(255, 255, 255, 0.5));
+  border-bottom: 1px solid var(--mq-cropper-grid, rgba(255, 255, 255, 0.5));
+}
+
+.mq-img-cropper__grid::after {
+  top: 0;
+  bottom: 0;
+  left: 33.33%;
+  right: 33.33%;
+  border-left: 1px solid var(--mq-cropper-grid, rgba(255, 255, 255, 0.5));
+  border-right: 1px solid var(--mq-cropper-grid, rgba(255, 255, 255, 0.5));
+}
+
+.mq-img-cropper__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--mq-cropper-duration, 200ms) ease;
+}
+
+.mq-img-cropper__canvas {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 200px;
+  height: 200px;
+}
+
+.mq-img-cropper__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--mq-cropper-gutter, 16px);
+}
+
+.mq-img-cropper__action {
+  min-width: var(--mq-cropper-action-size, 56px);
+  padding: var(--mq-cropper-action-padding, 8px 10px);
+  margin: 0 var(--mq-cropper-action-gap, 4px);
+  border-radius: var(--mq-radius, 8px);
+  text-align: center;
+  font-size: var(--mq-cropper-font-size, 14px);
+  color: var(--mq-cropper-action-color, var(--mq-text-secondary, #6f675e));
+  background: var(--mq-cropper-action-bg, var(--mq-bg-muted, #f6f1e8));
+}
+
+.mq-img-cropper__action.is-confirm {
+  color: var(--mq-cropper-confirm-color, #fff);
+  background: var(--mq-primary, #0f3d32);
+}

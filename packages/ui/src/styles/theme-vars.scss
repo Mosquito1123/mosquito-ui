@@ -1,0 +1,103 @@
+// 由 scripts/build-theme-vars.mjs 从 theme-tokens.json 生成，请勿手动编辑。
+// 令牌唯一数据源：packages/ui/src/styles/theme-tokens.json
+// 运行时 CSS 变量仍由 variables.scss 定义，本文件只提供构建期 map 与组件可用的片段。
+
+// 亮色令牌 map。
+$mq-theme-vars: (
+  'color-primary': #0f3d32,
+  'color-primary-text': #f7f4ee,
+  'color-success': #2f7d4a,
+  'color-success-text': #f4fbf6,
+  'color-warning': #b86e00,
+  'color-warning-text': #fff8ee,
+  'color-danger': #b42318,
+  'color-danger-text': #fff6f5,
+  'text': #1c1915,
+  'text-secondary': #6f675e,
+  'bg': #fffcf7,
+  'bg-muted': #f6f1e8,
+  'bg-active': #ebe4d8,
+  'border': #e6e2da,
+  'mask': rgba(22, 18, 12, 0.45),
+  'radius': 8px,
+  'font-size': 14px,
+  'duration': 200ms,
+  'z-popup': 1000,
+  'z-toast': 1100,
+  'safe-bg': transparent,
+);
+
+// 暗色令牌 map；明暗同值的令牌（尺寸/层级等）两项一致。
+$mq-theme-vars-dark: (
+  'color-primary': #8fd0b4,
+  'color-primary-text': #10211b,
+  'color-success': #8fd0a4,
+  'color-success-text': #102117,
+  'color-warning': #f0c27a,
+  'color-warning-text': #2a1c08,
+  'color-danger': #f0a8a2,
+  'color-danger-text': #2a100e,
+  'text': #f6f3ee,
+  'text-secondary': #c2b8aa,
+  'bg': #161411,
+  'bg-muted': #241f1a,
+  'bg-active': #2e2822,
+  'border': #3a332c,
+  'mask': rgba(0, 0, 0, 0.55),
+  'radius': 8px,
+  'font-size': 14px,
+  'duration': 200ms,
+  'z-popup': 1000,
+  'z-toast': 1100,
+  'safe-bg': transparent,
+);
+
+// CSS 变量片段：在容器上 @include 即可声明全部 --mq-* 变量（亮色）。
+@mixin mq-theme-vars-light {
+  --mq-color-primary: #0f3d32;
+  --mq-color-primary-text: #f7f4ee;
+  --mq-color-success: #2f7d4a;
+  --mq-color-success-text: #f4fbf6;
+  --mq-color-warning: #b86e00;
+  --mq-color-warning-text: #fff8ee;
+  --mq-color-danger: #b42318;
+  --mq-color-danger-text: #fff6f5;
+  --mq-text: #1c1915;
+  --mq-text-secondary: #6f675e;
+  --mq-bg: #fffcf7;
+  --mq-bg-muted: #f6f1e8;
+  --mq-bg-active: #ebe4d8;
+  --mq-border: #e6e2da;
+  --mq-mask: rgba(22, 18, 12, 0.45);
+  --mq-radius: 8px;
+  --mq-font-size: 14px;
+  --mq-duration: 200ms;
+  --mq-z-popup: 1000;
+  --mq-z-toast: 1100;
+  --mq-safe-bg: transparent;
+}
+
+// CSS 变量片段：暗色值，配合 .mq-theme-dark / [data-mq-theme='dark'] 使用。
+@mixin mq-theme-vars-dark {
+  --mq-color-primary: #8fd0b4;
+  --mq-color-primary-text: #10211b;
+  --mq-color-success: #8fd0a4;
+  --mq-color-success-text: #102117;
+  --mq-color-warning: #f0c27a;
+  --mq-color-warning-text: #2a1c08;
+  --mq-color-danger: #f0a8a2;
+  --mq-color-danger-text: #2a100e;
+  --mq-text: #f6f3ee;
+  --mq-text-secondary: #c2b8aa;
+  --mq-bg: #161411;
+  --mq-bg-muted: #241f1a;
+  --mq-bg-active: #2e2822;
+  --mq-border: #3a332c;
+  --mq-mask: rgba(0, 0, 0, 0.55);
+  --mq-radius: 8px;
+  --mq-font-size: 14px;
+  --mq-duration: 200ms;
+  --mq-z-popup: 1000;
+  --mq-z-toast: 1100;
+  --mq-safe-bg: transparent;
+}

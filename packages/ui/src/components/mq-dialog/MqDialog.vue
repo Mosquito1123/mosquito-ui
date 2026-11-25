@@ -3,7 +3,7 @@
     class="mq-dialog"
     :model-value="modelValue"
     position="center"
-    :title="titleText || '对话框'"
+    :title="titleText || t('common.dialog')"
     :mask-closable="maskClosable"
     :duration="duration"
     :z-index="zIndex"
@@ -47,6 +47,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { t } from '../../locale'
 import MqPopup from '../mq-popup/MqPopup.vue'
 import type { MqDialogEmits, MqDialogProps } from './types'
 
@@ -59,8 +60,6 @@ const props = withDefaults(defineProps<MqDialogProps>(), {
   title: '',
   message: '',
   showCancel: true,
-  confirmText: '确定',
-  cancelText: '取消',
   maskClosable: false,
   duration: 200,
 })
@@ -69,8 +68,8 @@ const emit = defineEmits<MqDialogEmits>()
 const pending = ref(false)
 
 const titleText = computed(() => props.title.trim())
-const confirmLabel = computed(() => props.confirmText.trim() || '确定')
-const cancelLabel = computed(() => props.cancelText.trim() || '取消')
+const confirmLabel = computed(() => props.confirmText?.trim() || t('common.confirm'))
+const cancelLabel = computed(() => props.cancelText?.trim() || t('common.cancel'))
 
 function onVisible(value: boolean) {
   emit('update:modelValue', value)

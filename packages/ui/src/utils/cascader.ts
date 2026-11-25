@@ -85,7 +85,7 @@ export function selectCascaderOption(
   path: readonly MqCascaderOption[],
   activeIndex: number,
   option: MqCascaderOption,
-  checkStrictly = false,
+  _checkStrictly = false,
 ): { path: MqCascaderOption[]; activeIndex: number } {
   const next = [...path.slice(0, Math.max(0, activeIndex)), option]
   const expandable = Boolean(option.children?.length) && option.isLeaf !== true
@@ -102,10 +102,7 @@ export function cascaderValue(path: readonly MqCascaderOption[]): string | numbe
 }
 
 /** 确认前的合法性：路径最后一项必须可选。 */
-export function isCascaderComplete(
-  path: readonly MqCascaderOption[],
-  checkStrictly = false,
-): boolean {
+export function isCascaderComplete(path: readonly MqCascaderOption[], checkStrictly = false): boolean {
   const last = path[path.length - 1]
   if (!last) {
     return false

@@ -62,7 +62,9 @@
   overflow: hidden;
   background: var(--mq-bg, #fffcf7);
   box-shadow: 0 8px 24px rgba(28, 25, 21, 0.12);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .mq-drop-menu-item__panel.is-down {

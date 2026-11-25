@@ -12,7 +12,11 @@
     >
       <slot />
     </view>
-    <view v-if="fixed && placeholder" class="mq-tabbar__placeholder" :class="{ 'is-safe': safeAreaInsetBottom }" />
+    <view
+      v-if="fixed && placeholder"
+      class="mq-tabbar__placeholder"
+      :class="{ 'is-safe': safeAreaInsetBottom }"
+    />
   </view>
 </template>
 

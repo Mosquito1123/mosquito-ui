@@ -1,10 +1,7 @@
 import type { MqCascaderOption } from '../../utils/cascader'
 
 export interface MqCascaderBeforeConfirm {
-  (
-    value: string | number | undefined,
-    selectedOptions: MqCascaderOption[],
-  ): boolean | Promise<boolean>
+  (value: string | number | undefined, selectedOptions: MqCascaderOption[]): boolean | Promise<boolean>
 }
 
 export interface MqCascaderProps {

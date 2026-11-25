@@ -1,0 +1,107 @@
+{
+  "color-primary": {
+    "light": "#0f3d32",
+    "dark": "#8fd0b4",
+    "description": "主色"
+  },
+  "color-primary-text": {
+    "light": "#f7f4ee",
+    "dark": "#10211b",
+    "description": "主色上的文字"
+  },
+  "color-success": {
+    "light": "#2f7d4a",
+    "dark": "#8fd0a4",
+    "description": "成功色"
+  },
+  "color-success-text": {
+    "light": "#f4fbf6",
+    "dark": "#102117",
+    "description": "成功色上的文字"
+  },
+  "color-warning": {
+    "light": "#b86e00",
+    "dark": "#f0c27a",
+    "description": "警告色"
+  },
+  "color-warning-text": {
+    "light": "#fff8ee",
+    "dark": "#2a1c08",
+    "description": "警告色上的文字"
+  },
+  "color-danger": {
+    "light": "#b42318",
+    "dark": "#f0a8a2",
+    "description": "危险色"
+  },
+  "color-danger-text": {
+    "light": "#fff6f5",
+    "dark": "#2a100e",
+    "description": "危险色上的文字"
+  },
+  "text": {
+    "light": "#1c1915",
+    "dark": "#f6f3ee",
+    "description": "正文文字"
+  },
+  "text-secondary": {
+    "light": "#6f675e",
+    "dark": "#c2b8aa",
+    "description": "次要文字"
+  },
+  "bg": {
+    "light": "#fffcf7",
+    "dark": "#161411",
+    "description": "页面背景"
+  },
+  "bg-muted": {
+    "light": "#f6f1e8",
+    "dark": "#241f1a",
+    "description": "弱化背景"
+  },
+  "bg-active": {
+    "light": "#ebe4d8",
+    "dark": "#2e2822",
+    "description": "按压态背景"
+  },
+  "border": {
+    "light": "#e6e2da",
+    "dark": "#3a332c",
+    "description": "边框颜色"
+  },
+  "mask": {
+    "light": "rgba(22, 18, 12, 0.45)",
+    "dark": "rgba(0, 0, 0, 0.55)",
+    "description": "遮罩颜色"
+  },
+  "radius": {
+    "light": "8px",
+    "dark": "8px",
+    "description": "统一圆角"
+  },
+  "font-size": {
+    "light": "14px",
+    "dark": "14px",
+    "description": "基础字号"
+  },
+  "duration": {
+    "light": "200ms",
+    "dark": "200ms",
+    "description": "过渡时长"
+  },
+  "z-popup": {
+    "light": "1000",
+    "dark": "1000",
+    "description": "弹出层层级"
+  },
+  "z-toast": {
+    "light": "1100",
+    "dark": "1100",
+    "description": "轻提示层级"
+  },
+  "safe-bg": {
+    "light": "transparent",
+    "dark": "transparent",
+    "description": "安全区底色"
+  }
+}

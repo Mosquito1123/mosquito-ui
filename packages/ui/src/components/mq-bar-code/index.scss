@@ -1,0 +1,29 @@
+.mq-bar-code {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--mq-bg, #fffcf7);
+  border-radius: var(--mq-radius, 8px);
+}
+
+.mq-bar-code__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mq-bar-code__fallback {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: var(--mq-font-size, 14px);
+  text-align: center;
+  word-break: break-all;
+}

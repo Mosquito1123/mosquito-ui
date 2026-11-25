@@ -153,12 +153,7 @@ function onTouchMove(event: Event) {
     return
   }
   offset.value = distance
-  targetIndex.value = resolveDragTarget(
-    activeIndex.value,
-    distance,
-    itemSize.value,
-    props.modelValue.length,
-  )
+  targetIndex.value = resolveDragTarget(activeIndex.value, distance, itemSize.value, props.modelValue.length)
 }
 
 function onTouchEnd() {
@@ -190,12 +185,7 @@ function itemStyle(index: number): Record<string, string> | undefined {
     style.zIndex = '2'
     return style
   }
-  const shift = draggableOffset(
-    activeIndex.value,
-    targetIndex.value,
-    index,
-    itemSize.value,
-  )
+  const shift = draggableOffset(activeIndex.value, targetIndex.value, index, itemSize.value)
   if (!shift) {
     return undefined
   }

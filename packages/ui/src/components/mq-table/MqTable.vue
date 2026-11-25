@@ -22,11 +22,11 @@
 
     <view v-if="loading" class="mq-table__state" role="status">
       <slot name="loading">
-        <mq-loading :size="20" label="加载中" />
+        <mq-loading :size="20" :label="t('common.loading')" />
       </slot>
     </view>
     <view v-else-if="!data.length" class="mq-table__state">
-      <slot name="empty">{{ emptyText }}</slot>
+      <slot name="empty">{{ emptyLabel }}</slot>
     </view>
     <view v-else class="mq-table__body">
       <view
@@ -52,13 +52,7 @@
             :value="row[column.prop]"
             :index="rowIndex"
           >
-            <slot
-              name="cell"
-              :row="row"
-              :column="column"
-              :value="row[column.prop]"
-              :index="rowIndex"
-            >
+            <slot name="cell" :row="row" :column="column" :value="row[column.prop]" :index="rowIndex">
               <text class="mq-table__text" :class="{ 'is-ellipsis': column.ellipsis }">
                 {{ displayCell(row, column, rowIndex) }}
               </text>
@@ -72,6 +66,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import MqLoading from '../mq-loading/MqLoading.vue'
 import type { MqTableColumn, MqTableEmits, MqTableProps } from './types'
 
@@ -86,13 +81,14 @@ const props = withDefaults(defineProps<MqTableProps>(), {
   stripe: false,
   size: 'medium',
   rowKey: '',
-  emptyText: '暂无数据',
   loading: false,
   align: 'left',
   headerBg: '',
 })
 
 const emit = defineEmits<MqTableEmits>()
+
+const emptyLabel = computed(() => props.emptyText?.trim() || t('common.noData'))
 
 const rootStyle = computed(() => {
   const style: Record<string, string> = {}
@@ -139,11 +135,7 @@ function rowIdentity(row: Record<string, unknown>, index: number): string {
   return String(index)
 }
 
-function displayCell(
-  row: Record<string, unknown>,
-  column: MqTableColumn,
-  index: number,
-): string {
+function displayCell(row: Record<string, unknown>, column: MqTableColumn, index: number): string {
   const value = row[column.prop]
   if (column.formatter) {
     return column.formatter(row, value, index)
@@ -155,11 +147,7 @@ function onRowClick(row: Record<string, unknown>, index: number) {
   emit('rowClick', row, index)
 }
 
-function onCellClick(
-  row: Record<string, unknown>,
-  column: MqTableColumn,
-  index: number,
-) {
+function onCellClick(row: Record<string, unknown>, column: MqTableColumn, index: number) {
   emit('cellClick', row, column, index)
 }
 </script>

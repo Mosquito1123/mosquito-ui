@@ -5,7 +5,7 @@
       type="text"
       confirm-type="search"
       :value="text"
-      :placeholder="placeholder"
+      :placeholder="placeholderText"
       :disabled="disabled"
       :maxlength="maxlength >= 0 ? maxlength : -1"
       @input="onInput"
@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import type { MqSearchEmits, MqSearchProps } from './types'
 
 defineOptions({
@@ -26,17 +27,18 @@ defineOptions({
 
 const props = withDefaults(defineProps<MqSearchProps>(), {
   modelValue: '',
-  placeholder: '搜索',
   disabled: false,
   maxlength: -1,
   clearable: false,
-  actionText: '搜索',
 })
 
 const emit = defineEmits<MqSearchEmits>()
 
 const text = computed(() => (props.modelValue == null ? '' : String(props.modelValue)))
-const label = computed(() => props.actionText.trim())
+const placeholderText = computed(() =>
+  props.placeholder === undefined ? t('common.search') : props.placeholder.trim(),
+)
+const label = computed(() => (props.actionText === undefined ? t('common.search') : props.actionText.trim()))
 const showClear = computed(() => props.clearable && !props.disabled && text.value !== '')
 
 function readValue(event: Event): string {

@@ -16,108 +16,124 @@ pnpm add @mosquito/ui
 
 组件文件是帕斯卡形式，所以用自定义映射，并且**指向 `.vue`**：
 
+<!-- easycom:start -->
+
 ```json
 {
   "easycom": {
     "autoscan": true,
     "custom": {
+      "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
+      "^mq-avatar$": "@mosquito/ui/components/mq-avatar/MqAvatar.vue",
+      "^mq-avatar-group$": "@mosquito/ui/components/mq-avatar-group/MqAvatarGroup.vue",
+      "^mq-backtop$": "@mosquito/ui/components/mq-backtop/MqBacktop.vue",
+      "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
+      "^mq-banner$": "@mosquito/ui/components/mq-banner/MqBanner.vue",
+      "^mq-bar-code$": "@mosquito/ui/components/mq-bar-code/MqBarCode.vue",
       "^mq-button$": "@mosquito/ui/components/mq-button/MqButton.vue",
+      "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
+      "^mq-card$": "@mosquito/ui/components/mq-card/MqCard.vue",
+      "^mq-cascader$": "@mosquito/ui/components/mq-cascader/MqCascader.vue",
       "^mq-cell$": "@mosquito/ui/components/mq-cell/MqCell.vue",
-      "^mq-popup$": "@mosquito/ui/components/mq-popup/MqPopup.vue",
-      "^mq-toast$": "@mosquito/ui/components/mq-toast/MqToast.vue",
-      "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
-      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue",
       "^mq-cell-group$": "@mosquito/ui/components/mq-cell-group/MqCellGroup.vue",
-      "^mq-switch$": "@mosquito/ui/components/mq-switch/MqSwitch.vue",
       "^mq-checkbox$": "@mosquito/ui/components/mq-checkbox/MqCheckbox.vue",
       "^mq-checkbox-group$": "@mosquito/ui/components/mq-checkbox-group/MqCheckboxGroup.vue",
-      "^mq-radio$": "@mosquito/ui/components/mq-radio/MqRadio.vue",
-      "^mq-radio-group$": "@mosquito/ui/components/mq-radio-group/MqRadioGroup.vue",
-      "^mq-input$": "@mosquito/ui/components/mq-input/MqInput.vue",
-      "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
-      "^mq-badge$": "@mosquito/ui/components/mq-badge/MqBadge.vue",
-      "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
-      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue",
-      "^mq-textarea$": "@mosquito/ui/components/mq-textarea/MqTextarea.vue",
-      "^mq-slider$": "@mosquito/ui/components/mq-slider/MqSlider.vue",
-      "^mq-rate$": "@mosquito/ui/components/mq-rate/MqRate.vue",
-      "^mq-notice-bar$": "@mosquito/ui/components/mq-notice-bar/MqNoticeBar.vue",
-      "^mq-empty$": "@mosquito/ui/components/mq-empty/MqEmpty.vue",
-      "^mq-steps$": "@mosquito/ui/components/mq-steps/MqSteps.vue",
-      "^mq-step$": "@mosquito/ui/components/mq-step/MqStep.vue",
+      "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
+      "^mq-col$": "@mosquito/ui/components/mq-col/MqCol.vue",
       "^mq-collapse$": "@mosquito/ui/components/mq-collapse/MqCollapse.vue",
       "^mq-collapse-item$": "@mosquito/ui/components/mq-collapse-item/MqCollapseItem.vue",
-      "^mq-action-sheet$": "@mosquito/ui/components/mq-action-sheet/MqActionSheet.vue",
-      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue",
-      "^mq-dialog$": "@mosquito/ui/components/mq-dialog/MqDialog.vue",
-      "^mq-input-number$": "@mosquito/ui/components/mq-input-number/MqInputNumber.vue",
-      "^mq-notify$": "@mosquito/ui/components/mq-notify/MqNotify.vue",
-      "^mq-gap$": "@mosquito/ui/components/mq-gap/MqGap.vue",
-      "^mq-skeleton$": "@mosquito/ui/components/mq-skeleton/MqSkeleton.vue",
+      "^mq-config-provider$": "@mosquito/ui/components/mq-config-provider/MqConfigProvider.vue",
+      "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
       "^mq-countdown$": "@mosquito/ui/components/mq-countdown/MqCountdown.vue",
-      "^mq-segmented$": "@mosquito/ui/components/mq-segmented/MqSegmented.vue",
+      "^mq-curtain$": "@mosquito/ui/components/mq-curtain/MqCurtain.vue",
+      "^mq-datetime-picker$": "@mosquito/ui/components/mq-datetime-picker/MqDatetimePicker.vue",
+      "^mq-datetime-picker-view$": "@mosquito/ui/components/mq-datetime-picker-view/MqDatetimePickerView.vue",
+      "^mq-dialog$": "@mosquito/ui/components/mq-dialog/MqDialog.vue",
+      "^mq-divider$": "@mosquito/ui/components/mq-divider/MqDivider.vue",
+      "^mq-draggable$": "@mosquito/ui/components/mq-draggable/MqDraggable.vue",
+      "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
+      "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
+      "^mq-empty$": "@mosquito/ui/components/mq-empty/MqEmpty.vue",
+      "^mq-fab$": "@mosquito/ui/components/mq-fab/MqFab.vue",
+      "^mq-float-view$": "@mosquito/ui/components/mq-float-view/MqFloatView.vue",
+      "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
+      "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
+      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue",
+      "^mq-gap$": "@mosquito/ui/components/mq-gap/MqGap.vue",
+      "^mq-grid$": "@mosquito/ui/components/mq-grid/MqGrid.vue",
+      "^mq-grid-item$": "@mosquito/ui/components/mq-grid-item/MqGridItem.vue",
+      "^mq-icon$": "@mosquito/ui/components/mq-icon/MqIcon.vue",
+      "^mq-image-preview$": "@mosquito/ui/components/mq-image-preview/MqImagePreview.vue",
+      "^mq-img$": "@mosquito/ui/components/mq-img/MqImg.vue",
+      "^mq-img-cropper$": "@mosquito/ui/components/mq-img-cropper/MqImgCropper.vue",
+      "^mq-index-anchor$": "@mosquito/ui/components/mq-index-anchor/MqIndexAnchor.vue",
+      "^mq-index-bar$": "@mosquito/ui/components/mq-index-bar/MqIndexBar.vue",
+      "^mq-input$": "@mosquito/ui/components/mq-input/MqInput.vue",
+      "^mq-input-number$": "@mosquito/ui/components/mq-input-number/MqInputNumber.vue",
+      "^mq-keyboard$": "@mosquito/ui/components/mq-keyboard/MqKeyboard.vue",
+      "^mq-layout$": "@mosquito/ui/components/mq-layout/MqLayout.vue",
+      "^mq-loading$": "@mosquito/ui/components/mq-loading/MqLoading.vue",
+      "^mq-loadmore$": "@mosquito/ui/components/mq-loadmore/MqLoadmore.vue",
+      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue",
       "^mq-navbar$": "@mosquito/ui/components/mq-navbar/MqNavbar.vue",
-      "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
+      "^mq-notice-bar$": "@mosquito/ui/components/mq-notice-bar/MqNoticeBar.vue",
+      "^mq-notify$": "@mosquito/ui/components/mq-notify/MqNotify.vue",
+      "^mq-number-keyboard$": "@mosquito/ui/components/mq-number-keyboard/MqNumberKeyboard.vue",
+      "^mq-overlay$": "@mosquito/ui/components/mq-overlay/MqOverlay.vue",
+      "^mq-pagination$": "@mosquito/ui/components/mq-pagination/MqPagination.vue",
+      "^mq-password-input$": "@mosquito/ui/components/mq-password-input/MqPasswordInput.vue",
+      "^mq-picker$": "@mosquito/ui/components/mq-picker/MqPicker.vue",
+      "^mq-picker-view$": "@mosquito/ui/components/mq-picker-view/MqPickerView.vue",
+      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue",
+      "^mq-popup$": "@mosquito/ui/components/mq-popup/MqPopup.vue",
+      "^mq-progress$": "@mosquito/ui/components/mq-progress/MqProgress.vue",
+      "^mq-qr-code$": "@mosquito/ui/components/mq-qr-code/MqQrCode.vue",
+      "^mq-radio$": "@mosquito/ui/components/mq-radio/MqRadio.vue",
+      "^mq-radio-group$": "@mosquito/ui/components/mq-radio-group/MqRadioGroup.vue",
+      "^mq-rate$": "@mosquito/ui/components/mq-rate/MqRate.vue",
+      "^mq-read-more$": "@mosquito/ui/components/mq-read-more/MqReadMore.vue",
+      "^mq-resize$": "@mosquito/ui/components/mq-resize/MqResize.vue",
+      "^mq-rich-text$": "@mosquito/ui/components/mq-rich-text/MqRichText.vue",
+      "^mq-rolling-number$": "@mosquito/ui/components/mq-rolling-number/MqRollingNumber.vue",
+      "^mq-root-portal$": "@mosquito/ui/components/mq-root-portal/MqRootPortal.vue",
+      "^mq-row$": "@mosquito/ui/components/mq-row/MqRow.vue",
+      "^mq-safe-bottom$": "@mosquito/ui/components/mq-safe-bottom/MqSafeBottom.vue",
+      "^mq-search$": "@mosquito/ui/components/mq-search/MqSearch.vue",
+      "^mq-segmented$": "@mosquito/ui/components/mq-segmented/MqSegmented.vue",
+      "^mq-select$": "@mosquito/ui/components/mq-select/MqSelect.vue",
+      "^mq-select-picker$": "@mosquito/ui/components/mq-select-picker/MqSelectPicker.vue",
+      "^mq-sidebar$": "@mosquito/ui/components/mq-sidebar/MqSidebar.vue",
+      "^mq-sidebar-item$": "@mosquito/ui/components/mq-sidebar-item/MqSidebarItem.vue",
+      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue",
+      "^mq-skeleton$": "@mosquito/ui/components/mq-skeleton/MqSkeleton.vue",
+      "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
+      "^mq-slider$": "@mosquito/ui/components/mq-slider/MqSlider.vue",
+      "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
+      "^mq-step$": "@mosquito/ui/components/mq-step/MqStep.vue",
+      "^mq-steps$": "@mosquito/ui/components/mq-steps/MqSteps.vue",
+      "^mq-sticky$": "@mosquito/ui/components/mq-sticky/MqSticky.vue",
+      "^mq-swipe-action$": "@mosquito/ui/components/mq-swipe-action/MqSwipeAction.vue",
+      "^mq-swiper$": "@mosquito/ui/components/mq-swiper/MqSwiper.vue",
+      "^mq-switch$": "@mosquito/ui/components/mq-switch/MqSwitch.vue",
       "^mq-tab$": "@mosquito/ui/components/mq-tab/MqTab.vue",
       "^mq-tabbar$": "@mosquito/ui/components/mq-tabbar/MqTabbar.vue",
       "^mq-tabbar-item$": "@mosquito/ui/components/mq-tabbar-item/MqTabbarItem.vue",
-      "^mq-overlay$": "@mosquito/ui/components/mq-overlay/MqOverlay.vue",
-      "^mq-card$": "@mosquito/ui/components/mq-card/MqCard.vue",
-      "^mq-row$": "@mosquito/ui/components/mq-row/MqRow.vue",
-      "^mq-col$": "@mosquito/ui/components/mq-col/MqCol.vue",
-      "^mq-grid$": "@mosquito/ui/components/mq-grid/MqGrid.vue",
-      "^mq-grid-item$": "@mosquito/ui/components/mq-grid-item/MqGridItem.vue",
-      "^mq-loadmore$": "@mosquito/ui/components/mq-loadmore/MqLoadmore.vue",
-      "^mq-sticky$": "@mosquito/ui/components/mq-sticky/MqSticky.vue",
-      "^mq-fab$": "@mosquito/ui/components/mq-fab/MqFab.vue",
-      "^mq-pagination$": "@mosquito/ui/components/mq-pagination/MqPagination.vue",
-      "^mq-transition$": "@mosquito/ui/components/mq-transition/MqTransition.vue",
-      "^mq-backtop$": "@mosquito/ui/components/mq-backtop/MqBacktop.vue",
-      "^mq-text$": "@mosquito/ui/components/mq-text/MqText.vue",
-      "^mq-swipe-action$": "@mosquito/ui/components/mq-swipe-action/MqSwipeAction.vue",
-      "^mq-sidebar$": "@mosquito/ui/components/mq-sidebar/MqSidebar.vue",
-      "^mq-sidebar-item$": "@mosquito/ui/components/mq-sidebar-item/MqSidebarItem.vue",
-      "^mq-circle$": "@mosquito/ui/components/mq-circle/MqCircle.vue",
-      "^mq-count-to$": "@mosquito/ui/components/mq-count-to/MqCountTo.vue",
-      "^mq-form$": "@mosquito/ui/components/mq-form/MqForm.vue",
-      "^mq-form-item$": "@mosquito/ui/components/mq-form-item/MqFormItem.vue",
-      "^mq-avatar$": "@mosquito/ui/components/mq-avatar/MqAvatar.vue",
-      "^mq-config-provider$": "@mosquito/ui/components/mq-config-provider/MqConfigProvider.vue",
-      "^mq-curtain$": "@mosquito/ui/components/mq-curtain/MqCurtain.vue",
-      "^mq-index-bar$": "@mosquito/ui/components/mq-index-bar/MqIndexBar.vue",
-      "^mq-index-anchor$": "@mosquito/ui/components/mq-index-anchor/MqIndexAnchor.vue",
-      "^mq-password-input$": "@mosquito/ui/components/mq-password-input/MqPasswordInput.vue",
-      "^mq-number-keyboard$": "@mosquito/ui/components/mq-number-keyboard/MqNumberKeyboard.vue",
-      "^mq-sort-button$": "@mosquito/ui/components/mq-sort-button/MqSortButton.vue",
-      "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue",
-      "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
-      "^mq-popover$": "@mosquito/ui/components/mq-popover/MqPopover.vue",
-      "^mq-avatar-group$": "@mosquito/ui/components/mq-avatar-group/MqAvatarGroup.vue",
-      "^mq-img$": "@mosquito/ui/components/mq-img/MqImg.vue",
-      "^mq-picker-view$": "@mosquito/ui/components/mq-picker-view/MqPickerView.vue",
-      "^mq-picker$": "@mosquito/ui/components/mq-picker/MqPicker.vue",
       "^mq-table$": "@mosquito/ui/components/mq-table/MqTable.vue",
-      "^mq-calendar$": "@mosquito/ui/components/mq-calendar/MqCalendar.vue",
-      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue",
-      "^mq-datetime-picker-view$": "@mosquito/ui/components/mq-datetime-picker-view/MqDatetimePickerView.vue",
-      "^mq-datetime-picker$": "@mosquito/ui/components/mq-datetime-picker/MqDatetimePicker.vue",
-      "^mq-cascader$": "@mosquito/ui/components/mq-cascader/MqCascader.vue",
-      "^mq-drop-menu$": "@mosquito/ui/components/mq-drop-menu/MqDropMenu.vue",
-      "^mq-drop-menu-item$": "@mosquito/ui/components/mq-drop-menu-item/MqDropMenuItem.vue",
-      "^mq-floating-panel$": "@mosquito/ui/components/mq-floating-panel/MqFloatingPanel.vue",
-      "^mq-signature$": "@mosquito/ui/components/mq-signature/MqSignature.vue",
+      "^mq-tabs$": "@mosquito/ui/components/mq-tabs/MqTabs.vue",
+      "^mq-tag$": "@mosquito/ui/components/mq-tag/MqTag.vue",
+      "^mq-text$": "@mosquito/ui/components/mq-text/MqText.vue",
+      "^mq-textarea$": "@mosquito/ui/components/mq-textarea/MqTextarea.vue",
       "^mq-timeline$": "@mosquito/ui/components/mq-timeline/MqTimeline.vue",
       "^mq-timeline-item$": "@mosquito/ui/components/mq-timeline-item/MqTimelineItem.vue",
-      "^mq-select$": "@mosquito/ui/components/mq-select/MqSelect.vue",
-      "^mq-slide-verify$": "@mosquito/ui/components/mq-slide-verify/MqSlideVerify.vue",
-      "^mq-float-view$": "@mosquito/ui/components/mq-float-view/MqFloatView.vue",
-      "^mq-read-more$": "@mosquito/ui/components/mq-read-more/MqReadMore.vue",
-      "^mq-marquee$": "@mosquito/ui/components/mq-marquee/MqMarquee.vue",
+      "^mq-toast$": "@mosquito/ui/components/mq-toast/MqToast.vue",
+      "^mq-tooltip$": "@mosquito/ui/components/mq-tooltip/MqTooltip.vue",
+      "^mq-tour$": "@mosquito/ui/components/mq-tour/MqTour.vue",
+      "^mq-transition$": "@mosquito/ui/components/mq-transition/MqTransition.vue",
       "^mq-tree$": "@mosquito/ui/components/mq-tree/MqTree.vue",
+      "^mq-upload$": "@mosquito/ui/components/mq-upload/MqUpload.vue",
+      "^mq-video-preview$": "@mosquito/ui/components/mq-video-preview/MqVideoPreview.vue",
       "^mq-waterfall$": "@mosquito/ui/components/mq-waterfall/MqWaterfall.vue",
-      "^mq-draggable$": "@mosquito/ui/components/mq-draggable/MqDraggable.vue",
-      "^mq-banner$": "@mosquito/ui/components/mq-banner/MqBanner.vue",
-      "^mq-rolling-number$": "@mosquito/ui/components/mq-rolling-number/MqRollingNumber.vue"
+      "^mq-watermark$": "@mosquito/ui/components/mq-watermark/MqWatermark.vue"
     }
   },
   "pages": [
@@ -130,6 +146,8 @@ pnpm add @mosquito/ui
   ]
 }
 ```
+
+<!-- easycom:end -->
 
 若工具链不解析 `exports`，把路径改成 `node_modules/@mosquito/ui/src/components/mq-button/MqButton.vue`，其余组件同样换成对应文件名。
 
@@ -151,98 +169,98 @@ import { MqButton, showNotify, showToast } from '@mosquito/ui'
 
 ## 组件
 
-| 组件 | 属性 | 事件 |
-| --- | --- | --- |
-| `mq-button` | `type` `variant` `size` `round` `block` `disabled` `loading` | `click`。禁用或加载中不发出 |
-| `mq-cell` | `title` `value` `label` `placeholder` `is-link` `clickable` `disabled` `required` `border` `ellipsis` | `click`。禁用不发出。`value` 为 `0` 会显示 |
-| `mq-cell-group` | `title` `value` `border` `insert` | 无 |
-| `mq-switch` | `v-model` `active-value` `inactive-value` `active-color` `inactive-color` `size` `shape` `loading` `disabled` `before-change` | `change`，参数 `{ value }` |
-| `mq-checkbox` | 单独用 `v-model`；组内用 `name`。`type` 为 `circle` / `square` / `button` | 单独使用时 `change` |
-| `mq-checkbox-group` | `v-model` 数组，`min` `max` `direction` `disabled` | `change`，参数 `{ value }` |
-| `mq-radio` | `value`，样式可从组继承 | 无。点选交给组 |
-| `mq-radio-group` | `v-model` `type` `direction` `allow-uncheck` `disabled` | `change`，参数 `{ value }` |
-| `mq-input` | `v-model` `type` `clearable` `show-password` `maxlength` `show-word-limit` `error` `compact` | `input` `focus` `blur` `clear` `confirm` |
-| `mq-tag` | `type` `variant` `size` `round` `closable` `color` `bg-color` | `close` |
-| `mq-badge` | `value` `max` `is-dot` `show-zero` `hidden` `type` | 无 |
-| `mq-divider` | `content-position` `dashed` `vertical` `hairline` `color` | 无 |
-| `mq-progress` | `percentage` `hide-text` `color` `status` | 无 |
-| `mq-textarea` | `v-model` `maxlength` `clearable` `show-word-limit` `auto-height` `error` `compact` | `input` `focus` `blur` `clear` `confirm` |
-| `mq-slider` | `v-model` `min` `max` `step` `disabled` `show-extreme-value` `active-color` | `change` `dragstart` `dragmove` `dragend`，参数都是 `{ value }` |
-| `mq-rate` | `v-model` `num` `allow-half` `clearable` `readonly` `disabled` `size` `space` | `change`，参数 `{ value }` |
-| `mq-notice-bar` | `text` `type` `closable` `scrollable` `wrapable` `color` `background`。前缀用 `prefix` 插槽 | `click` `close` |
-| `mq-empty` | `tip`。`image` 插槽替换标记，默认插槽放在底部 | 无 |
-| `mq-steps` | `active` `vertical` `dot` `align-center` | 无 |
-| `mq-step` | `title` `description` `status` | 无。序号按渲染顺序 |
-| `mq-collapse` | `v-model` `accordion` `disabled` | `change`，参数 `{ value }` |
-| `mq-collapse-item` | `name` `title` `disabled` `before-expand` | 无。点标题切换 |
-| `mq-action-sheet` | `v-model` `actions` `title` `cancel-text` `mask-closable` | `select` 参数 `{ item, index }`，`close` |
-| `mq-search` | `v-model` `placeholder` `clearable` `action-text` `maxlength` | `input` `search` `clear` |
-| `mq-dialog` | `v-model` `title` `message` `show-cancel` `confirm-text` `cancel-text` `before-confirm` `mask-closable` | `confirm` `cancel` `close` |
-| `mq-input-number` | `v-model` `min` `max` `step` `precision` `step-strictly` `disabled` `before-change` | `change`，参数 `{ value }` |
-| `mq-notify` | 无。用 `showNotify` / `hideNotify` | 页面放一个 `<mq-notify />` |
-| `mq-navbar` | `title` `left-text` `right-text` `left-arrow` `fixed` `placeholder` `safe-area-inset-top` | `click-left` `click-right` |
-| `mq-tabs` | `v-model` `color` `inactive-color` | `change` `click` `disabled`，参数 `{ index, name }` |
-| `mq-tab` | `title` `name` `disabled` | 无 |
-| `mq-tabbar` | `v-model` `fixed` `bordered` `safe-area-inset-bottom` `placeholder` `before-change` | `change`，参数 `{ value }` |
-| `mq-tabbar-item` | `title` `name` `mark` `value` `is-dot` `max`。`icon` 插槽可自定义标记 | 无 |
-| `mq-segmented` | `v-model` `options` `disabled` `theme` | `change`，参数 `{ value }` |
-| `mq-countdown` | `time` `format` `auto-start` `millisecond` | `change` `finish`。方法 `start` `pause` `reset` |
-| `mq-skeleton` | `theme` `loading` `animation` `rows` | 无 |
-| `mq-gap` | `height` `bg` `safe-area-bottom` | 无 |
-| `mq-overlay` | `show` `duration` `z-index` | `click` |
-| `mq-card` | `title` `type`。插槽 `title` `footer` | 无 |
-| `mq-row` / `mq-col` | `gutter` `justify` `align`；`span` `offset`（24 栅格） | 无 |
-| `mq-grid` / `mq-grid-item` | `column` `border` `gutter` `square` `clickable`；项用 `mark`/`text` | 项 `click` |
-| `mq-loadmore` | `state` `loading-text` `finished-text` `error-text` | `reload` |
-| `mq-sticky` | `offset-top` `z-index`（CSS sticky） | 无 |
-| `mq-fab` | `v-model:active` `type` `position` `direction` `expandable` | `click` `change` |
-| `mq-pagination` | `v-model` `total` `page-size` `show-message` | `change`，参数 `{ value }` |
-| `mq-transition` | `show` `name` `duration` | `after-enter` `after-leave` |
-| `mq-backtop` | `scroll-top` `top` `text` `shape` `bottom` `right` | `click` |
-| `mq-text` | `text` `type` `mode` `size` `bold` `lines` `decoration` | `click` |
-| `mq-swipe-action` | `v-model` `left`/`right`/`close`，`before-close` | `click`。可用 `closeSwipeActions()` |
-| `mq-sidebar` / `mq-sidebar-item` | `v-model` `before-change`；项 `label` `value` `badge` | `change` |
-| `mq-circle` | `v-model` 进度，`size` `color` `stroke-width` `speed` | 无 |
-| `mq-count-to` | `start-val` `end-val` `duration` `prefix` `suffix` | `finish`。方法 `start` `pause` `reset` |
-| `mq-form` / `mq-form-item` | `model` `schema` `error-type`；项 `prop` `title` | 方法 `validate` `reset` |
-| `mq-avatar` / `mq-avatar-group` | 头像 `src` `text` `mark` `shape` `size`；组 `max-count` `total` `cascading` `shape` `size` `vertical` `collapse-text` | 头像 `click` |
-| `mq-img` | `src` `width` `height` `mode` `radius` `round` `lazy-load` `show-loading` `alt` | `click` `load` `error`。插槽 `loading` `error` |
-| `mq-picker-view` | `v-model` `columns` `cascade` `item-height` `visible-item-count` `value-key` `label-key` `children-key` | `change` `pickstart` `pickend`。方法 `getSelectedValues` `getSelectedOptions` `getSelectedIndexes` `resetColumns` |
-| `mq-picker` | `v-model` `v-model:visible` `columns` `cascade` `title` `before-confirm` `mask-closable` `safe-area` | `confirm` `cancel` `open` `close` `change` |
-| `mq-table` | `data` `columns` `border` `stripe` `size` `row-key` `loading` `empty-text` `align` `header-bg` | `row-click` `cell-click`。插槽 `cell`、`cell-字段名`、`header`、`header-字段名` |
-| `mq-calendar` | `v-model` `mode` `min-date` `max-date` `first-day-of-week` `show-confirm` `disabled-date` `month` | `change` `confirm` `month-change` |
-| `mq-upload` | `v-model` `max-count` `multiple` `accept` `action` `custom-upload` `before-upload` `max-size` `preview` | `change` `success` `error` `remove` `oversize` |
-| `mq-datetime-picker-view` | `v-model` `type` `min-date` `max-date` `use-second` `item-height` `visible-item-count` `formatter` | `change` `pickstart` `pickend`。方法 `getSelectedOptions` `getOriginColumns` `correctValue` |
-| `mq-datetime-picker` | `v-model` `v-model:visible` `type` `title` `before-confirm` `mask-closable` `safe-area` `min-date` `max-date` `use-second` | `confirm` `cancel` `open` `close` `change`。方法 `open` `close` |
-| `mq-cascader` | `v-model` `v-model:visible` `options` `title` `check-strictly` `before-confirm` `mask-closable` `safe-area` | `confirm` `cancel` `open` `close`。方法 `open` `close` |
-| `mq-drop-menu` | `direction` `modal` `close-on-click-modal` `duration` `z-index` | 方法 `close` |
-| `mq-drop-menu-item` | `v-model` `options` `title` `disabled` `placeholder` `before-toggle` `popup-height` | `change` `open` `opened` `close` `closed`。方法 `open` `close` `toggle` `getShowPop` |
-| `mq-floating-panel` | `v-model:height` `anchors` `duration` `content-draggable` `safe-area` `show-scrollbar` | `heightChange`。方法 `moveTo` |
-| `mq-signature` | `pen-color` `line-width` `height` `width` `background-color` `file-type` `quality` `export-scale` `enable-history` `disabled` | `start` `signing` `end` `confirm` `clear`。方法 `init` `confirm` `clear` `revoke` `restore` |
-| `mq-timeline` | `reverse` | - |
-| `mq-timeline-item` | `title` `time` `active` `color` `line-color` `hide-line` | `click` |
-| `mq-select` | `v-model` `v-model:visible` `options` `multiple` `title` `searchable` `placeholder` `mask-closable` `safe-area` | `change` `confirm` `cancel` `open` `close`。方法 `open` `close` |
-| `mq-slide-verify` | `v-model` `text` `success-text` `threshold` `height` `disabled` | `change` `success` `fail`。方法 `reset` |
-| `mq-float-view` | `v-model:x` `v-model:y` `width` `height` `draggable` `z-index` | `move-end` `click`。方法 `reset` |
-| `mq-read-more` | `text` `max-height` `expand-text` `collapse-text` `toggleable` `disabled` | `change`。方法 `toggle` `expand` `collapse` |
-| `mq-marquee` | `text` `duration` `direction` `paused` | `click` |
-| `mq-tree` | `data` `v-model` `checkable` `default-expand-all` `v-model:expanded` `indent` `empty-text` | `node-click` `check` `expand`。方法 `expandAll` `collapseAll` |
-| `mq-waterfall` | `data` `column` `gap` `estimate-height` | `click`。插槽 `default` 拿到 `item` `index` `column` |
-| `mq-draggable` | `v-model`（列表）`disabled` `long-press` `duration` `threshold` | `change` `drag-start` `drag-end`。方法 `measure` |
-| `mq-banner` | `data` `v-model`（下标）`height` `autoplay` `interval` `duration` `circular` `indicator` `radius` `show-title` | `change` `click`。方法 `switchTo` |
-| `mq-rolling-number` | `value` `decimals` `separator` `prefix` `suffix` `height` `duration` `color` `autoplay` | `finish`。方法 `finish` |
-| `mq-config-provider` | `theme` `theme-vars` | 无 |
-| `mq-curtain` | 幕帘图弹层，`close-position` | `click` `close` |
-| `mq-index-bar` / `mq-index-anchor` | 索引栏，`sticky` | `select` `change` |
-| `mq-password-input` | 密码格，`mask` `length` `focused` | `focus` |
-| `mq-number-keyboard` | 数字键盘，`v-model:visible` | `input` `delete` `close` |
-| `mq-sort-button` | 排序：`1`/`0`/`-1` | `change` |
-| `mq-watermark` | 文字水印，`full-screen` | 无 |
-| `mq-tooltip` / `mq-popover` | 气泡提示 / 菜单；可用 `closeOutside()` | `open` `close` / `menuclick` |
-| `mq-popup` | `v-model` `position` `mask-closable` `duration` `z-index` `title` | `update:modelValue` `open` `close` |
-| `mq-toast` | 无。用 `showToast` / `hideToast` | 页面放一个 `<mq-toast />` 当宿主 |
-| `mq-loading` | `size` `color` `label` | 无。根节点就是指示器 |
-| `mq-safe-bottom` | `bg` | 无。见下方背景说明 |
+| 组件                               | 属性                                                                                                                          | 事件                                                                                                              |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `mq-button`                        | `type` `variant` `size` `round` `block` `disabled` `loading`                                                                  | `click`。禁用或加载中不发出                                                                                       |
+| `mq-cell`                          | `title` `value` `label` `placeholder` `is-link` `clickable` `disabled` `required` `border` `ellipsis`                         | `click`。禁用不发出。`value` 为 `0` 会显示                                                                        |
+| `mq-cell-group`                    | `title` `value` `border` `insert`                                                                                             | 无                                                                                                                |
+| `mq-switch`                        | `v-model` `active-value` `inactive-value` `active-color` `inactive-color` `size` `shape` `loading` `disabled` `before-change` | `change`，参数 `{ value }`                                                                                        |
+| `mq-checkbox`                      | 单独用 `v-model`；组内用 `name`。`type` 为 `circle` / `square` / `button`                                                     | 单独使用时 `change`                                                                                               |
+| `mq-checkbox-group`                | `v-model` 数组，`min` `max` `direction` `disabled`                                                                            | `change`，参数 `{ value }`                                                                                        |
+| `mq-radio`                         | `value`，样式可从组继承                                                                                                       | 无。点选交给组                                                                                                    |
+| `mq-radio-group`                   | `v-model` `type` `direction` `allow-uncheck` `disabled`                                                                       | `change`，参数 `{ value }`                                                                                        |
+| `mq-input`                         | `v-model` `type` `clearable` `show-password` `maxlength` `show-word-limit` `error` `compact`                                  | `input` `focus` `blur` `clear` `confirm`                                                                          |
+| `mq-tag`                           | `type` `variant` `size` `round` `closable` `color` `bg-color`                                                                 | `close`                                                                                                           |
+| `mq-badge`                         | `value` `max` `is-dot` `show-zero` `hidden` `type`                                                                            | 无                                                                                                                |
+| `mq-divider`                       | `content-position` `dashed` `vertical` `hairline` `color`                                                                     | 无                                                                                                                |
+| `mq-progress`                      | `percentage` `hide-text` `color` `status`                                                                                     | 无                                                                                                                |
+| `mq-textarea`                      | `v-model` `maxlength` `clearable` `show-word-limit` `auto-height` `error` `compact`                                           | `input` `focus` `blur` `clear` `confirm`                                                                          |
+| `mq-slider`                        | `v-model` `min` `max` `step` `disabled` `show-extreme-value` `active-color`                                                   | `change` `dragstart` `dragmove` `dragend`，参数都是 `{ value }`                                                   |
+| `mq-rate`                          | `v-model` `num` `allow-half` `clearable` `readonly` `disabled` `size` `space`                                                 | `change`，参数 `{ value }`                                                                                        |
+| `mq-notice-bar`                    | `text` `type` `closable` `scrollable` `wrapable` `color` `background`。前缀用 `prefix` 插槽                                   | `click` `close`                                                                                                   |
+| `mq-empty`                         | `tip`。`image` 插槽替换标记，默认插槽放在底部                                                                                 | 无                                                                                                                |
+| `mq-steps`                         | `active` `vertical` `dot` `align-center`                                                                                      | 无                                                                                                                |
+| `mq-step`                          | `title` `description` `status`                                                                                                | 无。序号按渲染顺序                                                                                                |
+| `mq-collapse`                      | `v-model` `accordion` `disabled`                                                                                              | `change`，参数 `{ value }`                                                                                        |
+| `mq-collapse-item`                 | `name` `title` `disabled` `before-expand`                                                                                     | 无。点标题切换                                                                                                    |
+| `mq-action-sheet`                  | `v-model` `actions` `title` `cancel-text` `mask-closable`                                                                     | `select` 参数 `{ item, index }`，`close`                                                                          |
+| `mq-search`                        | `v-model` `placeholder` `clearable` `action-text` `maxlength`                                                                 | `input` `search` `clear`                                                                                          |
+| `mq-dialog`                        | `v-model` `title` `message` `show-cancel` `confirm-text` `cancel-text` `before-confirm` `mask-closable`                       | `confirm` `cancel` `close`                                                                                        |
+| `mq-input-number`                  | `v-model` `min` `max` `step` `precision` `step-strictly` `disabled` `before-change`                                           | `change`，参数 `{ value }`                                                                                        |
+| `mq-notify`                        | 无。用 `showNotify` / `hideNotify`                                                                                            | 页面放一个 `<mq-notify />`                                                                                        |
+| `mq-navbar`                        | `title` `left-text` `right-text` `left-arrow` `fixed` `placeholder` `safe-area-inset-top`                                     | `click-left` `click-right`                                                                                        |
+| `mq-tabs`                          | `v-model` `color` `inactive-color`                                                                                            | `change` `click` `disabled`，参数 `{ index, name }`                                                               |
+| `mq-tab`                           | `title` `name` `disabled`                                                                                                     | 无                                                                                                                |
+| `mq-tabbar`                        | `v-model` `fixed` `bordered` `safe-area-inset-bottom` `placeholder` `before-change`                                           | `change`，参数 `{ value }`                                                                                        |
+| `mq-tabbar-item`                   | `title` `name` `mark` `value` `is-dot` `max`。`icon` 插槽可自定义标记                                                         | 无                                                                                                                |
+| `mq-segmented`                     | `v-model` `options` `disabled` `theme`                                                                                        | `change`，参数 `{ value }`                                                                                        |
+| `mq-countdown`                     | `time` `format` `auto-start` `millisecond`                                                                                    | `change` `finish`。方法 `start` `pause` `reset`                                                                   |
+| `mq-skeleton`                      | `theme` `loading` `animation` `rows`                                                                                          | 无                                                                                                                |
+| `mq-gap`                           | `height` `bg` `safe-area-bottom`                                                                                              | 无                                                                                                                |
+| `mq-overlay`                       | `show` `duration` `z-index`                                                                                                   | `click`                                                                                                           |
+| `mq-card`                          | `title` `type`。插槽 `title` `footer`                                                                                         | 无                                                                                                                |
+| `mq-row` / `mq-col`                | `gutter` `justify` `align`；`span` `offset`（24 栅格）                                                                        | 无                                                                                                                |
+| `mq-grid` / `mq-grid-item`         | `column` `border` `gutter` `square` `clickable`；项用 `mark`/`text`                                                           | 项 `click`                                                                                                        |
+| `mq-loadmore`                      | `state` `loading-text` `finished-text` `error-text`                                                                           | `reload`                                                                                                          |
+| `mq-sticky`                        | `offset-top` `z-index`（CSS sticky）                                                                                          | 无                                                                                                                |
+| `mq-fab`                           | `v-model:active` `type` `position` `direction` `expandable`                                                                   | `click` `change`                                                                                                  |
+| `mq-pagination`                    | `v-model` `total` `page-size` `show-message`                                                                                  | `change`，参数 `{ value }`                                                                                        |
+| `mq-transition`                    | `show` `name` `duration`                                                                                                      | `after-enter` `after-leave`                                                                                       |
+| `mq-backtop`                       | `scroll-top` `top` `text` `shape` `bottom` `right`                                                                            | `click`                                                                                                           |
+| `mq-text`                          | `text` `type` `mode` `size` `bold` `lines` `decoration`                                                                       | `click`                                                                                                           |
+| `mq-swipe-action`                  | `v-model` `left`/`right`/`close`，`before-close`                                                                              | `click`。可用 `closeSwipeActions()`                                                                               |
+| `mq-sidebar` / `mq-sidebar-item`   | `v-model` `before-change`；项 `label` `value` `badge`                                                                         | `change`                                                                                                          |
+| `mq-circle`                        | `v-model` 进度，`size` `color` `stroke-width` `speed`                                                                         | 无                                                                                                                |
+| `mq-count-to`                      | `start-val` `end-val` `duration` `prefix` `suffix`                                                                            | `finish`。方法 `start` `pause` `reset`                                                                            |
+| `mq-form` / `mq-form-item`         | `model` `schema` `error-type`；项 `prop` `title`                                                                              | 方法 `validate` `reset`                                                                                           |
+| `mq-avatar` / `mq-avatar-group`    | 头像 `src` `text` `mark` `shape` `size`；组 `max-count` `total` `cascading` `shape` `size` `vertical` `collapse-text`         | 头像 `click`                                                                                                      |
+| `mq-img`                           | `src` `width` `height` `mode` `radius` `round` `lazy-load` `show-loading` `alt`                                               | `click` `load` `error`。插槽 `loading` `error`                                                                    |
+| `mq-picker-view`                   | `v-model` `columns` `cascade` `item-height` `visible-item-count` `value-key` `label-key` `children-key`                       | `change` `pickstart` `pickend`。方法 `getSelectedValues` `getSelectedOptions` `getSelectedIndexes` `resetColumns` |
+| `mq-picker`                        | `v-model` `v-model:visible` `columns` `cascade` `title` `before-confirm` `mask-closable` `safe-area`                          | `confirm` `cancel` `open` `close` `change`                                                                        |
+| `mq-table`                         | `data` `columns` `border` `stripe` `size` `row-key` `loading` `empty-text` `align` `header-bg`                                | `row-click` `cell-click`。插槽 `cell`、`cell-字段名`、`header`、`header-字段名`                                   |
+| `mq-calendar`                      | `v-model` `mode` `min-date` `max-date` `first-day-of-week` `show-confirm` `disabled-date` `month`                             | `change` `confirm` `month-change`                                                                                 |
+| `mq-upload`                        | `v-model` `max-count` `multiple` `accept` `action` `custom-upload` `before-upload` `max-size` `preview`                       | `change` `success` `error` `remove` `oversize`                                                                    |
+| `mq-datetime-picker-view`          | `v-model` `type` `min-date` `max-date` `use-second` `item-height` `visible-item-count` `formatter`                            | `change` `pickstart` `pickend`。方法 `getSelectedOptions` `getOriginColumns` `correctValue`                       |
+| `mq-datetime-picker`               | `v-model` `v-model:visible` `type` `title` `before-confirm` `mask-closable` `safe-area` `min-date` `max-date` `use-second`    | `confirm` `cancel` `open` `close` `change`。方法 `open` `close`                                                   |
+| `mq-cascader`                      | `v-model` `v-model:visible` `options` `title` `check-strictly` `before-confirm` `mask-closable` `safe-area`                   | `confirm` `cancel` `open` `close`。方法 `open` `close`                                                            |
+| `mq-drop-menu`                     | `direction` `modal` `close-on-click-modal` `duration` `z-index`                                                               | 方法 `close`                                                                                                      |
+| `mq-drop-menu-item`                | `v-model` `options` `title` `disabled` `placeholder` `before-toggle` `popup-height`                                           | `change` `open` `opened` `close` `closed`。方法 `open` `close` `toggle` `getShowPop`                              |
+| `mq-floating-panel`                | `v-model:height` `anchors` `duration` `content-draggable` `safe-area` `show-scrollbar`                                        | `heightChange`。方法 `moveTo`                                                                                     |
+| `mq-signature`                     | `pen-color` `line-width` `height` `width` `background-color` `file-type` `quality` `export-scale` `enable-history` `disabled` | `start` `signing` `end` `confirm` `clear`。方法 `init` `confirm` `clear` `revoke` `restore`                       |
+| `mq-timeline`                      | `reverse`                                                                                                                     | -                                                                                                                 |
+| `mq-timeline-item`                 | `title` `time` `active` `color` `line-color` `hide-line`                                                                      | `click`                                                                                                           |
+| `mq-select`                        | `v-model` `v-model:visible` `options` `multiple` `title` `searchable` `placeholder` `mask-closable` `safe-area`               | `change` `confirm` `cancel` `open` `close`。方法 `open` `close`                                                   |
+| `mq-slide-verify`                  | `v-model` `text` `success-text` `threshold` `height` `disabled`                                                               | `change` `success` `fail`。方法 `reset`                                                                           |
+| `mq-float-view`                    | `v-model:x` `v-model:y` `width` `height` `draggable` `z-index`                                                                | `move-end` `click`。方法 `reset`                                                                                  |
+| `mq-read-more`                     | `text` `max-height` `expand-text` `collapse-text` `toggleable` `disabled`                                                     | `change`。方法 `toggle` `expand` `collapse`                                                                       |
+| `mq-marquee`                       | `text` `duration` `direction` `paused`                                                                                        | `click`                                                                                                           |
+| `mq-tree`                          | `data` `v-model` `checkable` `default-expand-all` `v-model:expanded` `indent` `empty-text`                                    | `node-click` `check` `expand`。方法 `expandAll` `collapseAll`                                                     |
+| `mq-waterfall`                     | `data` `column` `gap` `estimate-height`                                                                                       | `click`。插槽 `default` 拿到 `item` `index` `column`                                                              |
+| `mq-draggable`                     | `v-model`（列表）`disabled` `long-press` `duration` `threshold`                                                               | `change` `drag-start` `drag-end`。方法 `measure`                                                                  |
+| `mq-banner`                        | `data` `v-model`（下标）`height` `autoplay` `interval` `duration` `circular` `indicator` `radius` `show-title`                | `change` `click`。方法 `switchTo`                                                                                 |
+| `mq-rolling-number`                | `value` `decimals` `separator` `prefix` `suffix` `height` `duration` `color` `autoplay`                                       | `finish`。方法 `finish`                                                                                           |
+| `mq-config-provider`               | `theme` `theme-vars`                                                                                                          | 无                                                                                                                |
+| `mq-curtain`                       | 幕帘图弹层，`close-position`                                                                                                  | `click` `close`                                                                                                   |
+| `mq-index-bar` / `mq-index-anchor` | 索引栏，`sticky`                                                                                                              | `select` `change`                                                                                                 |
+| `mq-password-input`                | 密码格，`mask` `length` `focused`                                                                                             | `focus`                                                                                                           |
+| `mq-number-keyboard`               | 数字键盘，`v-model:visible`                                                                                                   | `input` `delete` `close`                                                                                          |
+| `mq-sort-button`                   | 排序：`1`/`0`/`-1`                                                                                                            | `change`                                                                                                          |
+| `mq-watermark`                     | 文字水印，`full-screen`                                                                                                       | 无                                                                                                                |
+| `mq-tooltip` / `mq-popover`        | 气泡提示 / 菜单；可用 `closeOutside()`                                                                                        | `open` `close` / `menuclick`                                                                                      |
+| `mq-popup`                         | `v-model` `position` `mask-closable` `duration` `z-index` `title`                                                             | `update:modelValue` `open` `close`                                                                                |
+| `mq-toast`                         | 无。用 `showToast` / `hideToast`                                                                                              | 页面放一个 `<mq-toast />` 当宿主                                                                                  |
+| `mq-loading`                       | `size` `color` `label`                                                                                                        | 无。根节点就是指示器                                                                                              |
+| `mq-safe-bottom`                   | `bg`                                                                                                                          | 无。见下方背景说明                                                                                                |
 
 `mq-button` 的 `type`：`default` | `primary` | `success` | `warning` | `danger`。`variant`：`base` | `plain` | `text`。`size`：`mini` | `small` | `medium` | `large`。
 

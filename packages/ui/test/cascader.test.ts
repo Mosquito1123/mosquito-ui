@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { test } from 'node:test'
+import { test } from 'vitest'
 import {
   cascaderLabel,
   cascaderLevels,
@@ -35,7 +35,10 @@ const options: MqCascaderOption[] = [
 
 test('cascader finds a leaf path by value', () => {
   const path = findCascaderPath(options, 'hz')
-  assert.deepEqual(path.map((item) => item.value), ['zj', 'hz'])
+  assert.deepEqual(
+    path.map((item) => item.value),
+    ['zj', 'hz'],
+  )
   assert.equal(findCascaderPath(options, 'missing').length, 0)
 })
 
@@ -50,19 +53,28 @@ test('cascader levels follow the selected path', () => {
   const path = findCascaderPath(options, 'hz')
   const levels = cascaderLevels(options, path)
   assert.equal(levels.length, 2)
-  assert.deepEqual(levels[1].map((item) => item.value), ['hz', 'nb'])
+  assert.deepEqual(
+    levels[1].map((item) => item.value),
+    ['hz', 'nb'],
+  )
 })
 
 test('selecting a parent expands the next level', () => {
   const result = selectCascaderOption([], 0, options[0])
-  assert.deepEqual(result.path.map((item) => item.value), ['zj'])
+  assert.deepEqual(
+    result.path.map((item) => item.value),
+    ['zj'],
+  )
   assert.equal(result.activeIndex, 1)
 })
 
 test('selecting a leaf keeps the current level', () => {
   const path = findCascaderPath(options, 'zj').slice(0, 1)
   const result = selectCascaderOption(path, 1, options[0].children![0])
-  assert.deepEqual(result.path.map((item) => item.value), ['zj', 'hz'])
+  assert.deepEqual(
+    result.path.map((item) => item.value),
+    ['zj', 'hz'],
+  )
   assert.equal(result.activeIndex, 1)
   assert.equal(isCascaderComplete(result.path), true)
   assert.equal(isCascaderComplete(path), false)

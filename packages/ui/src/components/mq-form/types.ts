@@ -4,9 +4,7 @@ export interface MqFormSchemaIssue {
 }
 
 export interface MqFormSchema {
-  validate: (
-    model: Record<string, unknown>,
-  ) => MqFormSchemaIssue[] | Promise<MqFormSchemaIssue[]>
+  validate: (model: Record<string, unknown>) => MqFormSchemaIssue[] | Promise<MqFormSchemaIssue[]>
   isRequired?: (path: string) => boolean | undefined
 }
 

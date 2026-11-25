@@ -64,9 +64,7 @@ export function normalizePickerOption(
         : String(value)
   const rawChildren = item[childrenKey]
   const children = Array.isArray(rawChildren)
-    ? rawChildren.map((child) =>
-        normalizePickerOption(child as string | number | MqPickerOption, keys),
-      )
+    ? rawChildren.map((child) => normalizePickerOption(child as string | number | MqPickerOption, keys))
     : undefined
   return {
     ...item,
@@ -107,10 +105,7 @@ export function firstEnabledIndex(column: readonly MqPickerOption[]): number {
   return index >= 0 ? index : 0
 }
 
-export function findPickerIndex(
-  column: readonly MqPickerOption[],
-  value: MqPickerValue,
-): number {
+export function findPickerIndex(column: readonly MqPickerOption[], value: MqPickerValue): number {
   return column.findIndex((item) => item.value === value)
 }
 
@@ -142,7 +137,9 @@ export function pickerSelection(
       return
     }
     const raw = indexes[index]
-    const current = Number.isInteger(raw) ? Math.min(column.length - 1, Math.max(0, raw as number)) : firstEnabledIndex(column)
+    const current = Number.isInteger(raw)
+      ? Math.min(column.length - 1, Math.max(0, raw as number))
+      : firstEnabledIndex(column)
     const option = column[current]
     selectedIndexes.push(current)
     selectedValues.push(option.value)
@@ -202,9 +199,6 @@ export function cascadeColumnsFromIndexes(
   return { columns, indexes: nextIndexes }
 }
 
-export function samePickerValues(
-  a: readonly MqPickerValue[],
-  b: readonly MqPickerValue[],
-): boolean {
+export function samePickerValues(a: readonly MqPickerValue[], b: readonly MqPickerValue[]): boolean {
   return a.length === b.length && a.every((item, index) => item === b[index])
 }

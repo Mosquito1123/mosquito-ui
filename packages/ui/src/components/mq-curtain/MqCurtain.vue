@@ -1,10 +1,5 @@
 <template>
-  <view
-    v-if="modelValue"
-    class="mq-curtain"
-    :style="rootStyle"
-    @click="onModal"
-  >
+  <view v-if="modelValue" class="mq-curtain" :style="rootStyle" @click="onModal">
     <view class="mq-curtain__panel" @click.stop>
       <image
         v-if="src"

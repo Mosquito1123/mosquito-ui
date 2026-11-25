@@ -1,5 +1,12 @@
 <template>
-  <view class="mq-circle" :style="rootStyle" role="progressbar" :aria-valuenow="display" aria-valuemin="0" aria-valuemax="100">
+  <view
+    class="mq-circle"
+    :style="rootStyle"
+    role="progressbar"
+    :aria-valuenow="display"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
     <svg class="mq-circle__svg" :class="{ 'is-reverse': !clockwise }" :viewBox="`0 0 ${size} ${size}`">
       <circle
         class="mq-circle__layer"

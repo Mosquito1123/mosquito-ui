@@ -42,7 +42,11 @@
         </slot>
       </view>
     </view>
-    <view v-if="fixed && placeholder" class="mq-navbar__placeholder" :class="{ 'is-safe': safeAreaInsetTop }" />
+    <view
+      v-if="fixed && placeholder"
+      class="mq-navbar__placeholder"
+      :class="{ 'is-safe': safeAreaInsetTop }"
+    />
   </view>
 </template>
 

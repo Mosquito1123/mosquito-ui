@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { test } from 'node:test'
+import { test } from 'vitest'
 import {
   filterSelectOptions,
   isSelectValueEqual,
@@ -31,7 +31,10 @@ test('select toggles values in multiple mode', () => {
 
 test('select filters options by label', () => {
   assert.equal(filterSelectOptions(options, '').length, 4)
-  assert.deepEqual(filterSelectOptions(options, '南').map((item) => item.value), ['nj'])
+  assert.deepEqual(
+    filterSelectOptions(options, '南').map((item) => item.value),
+    ['nj'],
+  )
   assert.deepEqual(filterSelectOptions(options, '  ').length, 4)
 })
 

@@ -47,9 +47,7 @@ export function collectTreeValues(node: MqTreeNode): Array<string | number> {
 }
 
 /** 所有含子节点的值，用于默认全部展开。 */
-export function collectExpandableValues(
-  nodes: readonly MqTreeNode[],
-): Array<string | number> {
+export function collectExpandableValues(nodes: readonly MqTreeNode[]): Array<string | number> {
   const values: Array<string | number> = []
   for (const node of nodes) {
     if (hasTreeChildren(node)) {
