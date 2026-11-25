@@ -29,6 +29,7 @@ const props = withDefaults(defineProps<MqButtonProps>(), {
   block: false,
   disabled: false,
   loading: false,
+  hairline: false,
 })
 
 const emit = defineEmits<MqButtonEmits>()
@@ -42,6 +43,7 @@ const rootClass = computed(() => [
   {
     'mq-button--block': props.block,
     'mq-button--round': props.round,
+    'is-hairline': props.hairline,
     'is-disabled': props.disabled,
     'is-loading': props.loading,
   },

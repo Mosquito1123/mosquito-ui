@@ -2,7 +2,7 @@
 
 # MqActionSheet `mq-action-sheet`
 
-底部动作列表，复用弹出层。`select` 为 `{ item, index }`
+底部动作列表，复用弹出层。`select` 为 `{ item, index }`；支持 `cancel`、`close-on-click-action`、加载中选项
 
 ## 何时使用
 
@@ -18,21 +18,23 @@
 
 ### Props
 
-| 名称           | 类型                  | 必填 | 说明                     |
-| -------------- | --------------------- | ---- | ------------------------ |
-| `modelValue`   | `boolean`             | 否   | —                        |
-| `actions`      | `MqActionSheetItem[]` | 否   | —                        |
-| `title`        | `string`              | 否   | —                        |
-| `cancelText`   | `string`              | 否   | 传空字符串则不显示取消。 |
-| `maskClosable` | `boolean`             | 否   | —                        |
-| `duration`     | `number`              | 否   | —                        |
-| `zIndex`       | `number`              | 否   | —                        |
+| 名称                 | 类型                  | 必填 | 说明                       |
+| -------------------- | --------------------- | ---- | -------------------------- |
+| `modelValue`         | `boolean`             | 否   | —                          |
+| `actions`            | `MqActionSheetItem[]` | 否   | —                          |
+| `title`              | `string`              | 否   | —                          |
+| `cancelText`         | `string`              | 否   | 传空字符串则不显示取消。   |
+| `closeOnClickAction` | `boolean`             | 否   | 选中操作项后是否自动关闭。 |
+| `maskClosable`       | `boolean`             | 否   | —                          |
+| `duration`           | `number`              | 否   | —                          |
+| `zIndex`             | `number`              | 否   | —                          |
 
 ### Events
 
 | 事件 | 参数 | 说明 |
 | --- | --- | --- | --- |
 | `select` | `[payload: { item: MqActionSheetItem` | — |
+| `cancel` | `[]` | — |
 | `close` | `[]` | — |
 
 ### 插槽与方法

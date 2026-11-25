@@ -2,7 +2,7 @@
 
 # MqBadge `mq-badge`
 
-数字、上限、红点。`0` 默认不显示
+数字、上限、红点。`0` 默认不显示；`top` / `right` 偏移、`type="info"`、`shape="bubble"`
 
 ## 何时使用
 
@@ -18,17 +18,19 @@
 
 ### Props
 
-| 名称       | 类型                       | 必填 | 说明                              |
-| ---------- | -------------------------- | ---- | --------------------------------- |
-| `value`    | `string \| number \| null` | 否   | —                                 |
-| `max`      | `number`                   | 否   | 超过后显示 `max+`。只对数字生效。 |
-| `isDot`    | `boolean`                  | 否   | 不显示数字，只显示一个点。        |
-| `showZero` | `boolean`                  | 否   | `value` 为 0 时仍然显示。         |
-| `hidden`   | `boolean`                  | 否   | —                                 |
-| `type`     | `MqBadgeType`              | 否   | —                                 |
-| `bgColor`  | `string`                   | 否   | —                                 |
-| `shape`    | `MqBadgeShape`             | 否   | —                                 |
-| `border`   | `boolean`                  | 否   | 给徽标加一圈页面底色。            |
+| 名称       | 类型                       | 必填 | 说明                                  |
+| ---------- | -------------------------- | ---- | ------------------------------------- |
+| `value`    | `string \| number \| null` | 否   | —                                     |
+| `max`      | `number`                   | 否   | 超过后显示 `max+`。只对数字生效。     |
+| `isDot`    | `boolean`                  | 否   | 不显示数字，只显示一个点。            |
+| `showZero` | `boolean`                  | 否   | `value` 为 0 时仍然显示。             |
+| `hidden`   | `boolean`                  | 否   | —                                     |
+| `type`     | `MqBadgeType`              | 否   | —                                     |
+| `bgColor`  | `string`                   | 否   | —                                     |
+| `shape`    | `MqBadgeShape`             | 否   | —                                     |
+| `border`   | `boolean`                  | 否   | 给徽标加一圈页面底色。                |
+| `top`      | `string \| number`         | 否   | 徽标相对右上角的纵向偏移；数字按 px。 |
+| `right`    | `string \| number`         | 否   | 徽标相对右上角的横向偏移；数字按 px。 |
 
 ### Events
 

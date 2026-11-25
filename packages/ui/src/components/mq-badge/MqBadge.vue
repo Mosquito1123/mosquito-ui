@@ -41,11 +41,30 @@ const markClass = computed(() => [
 ])
 
 const markStyle = computed(() => {
-  if (!props.bgColor) {
-    return undefined
+  const style: Record<string, string> = {}
+  if (props.bgColor) {
+    style.backgroundColor = props.bgColor
   }
-  return { backgroundColor: props.bgColor }
+  const top = normalizeOffset(props.top)
+  if (top) {
+    style.top = top
+  }
+  const right = normalizeOffset(props.right)
+  if (right) {
+    style.right = right
+  }
+  return Object.keys(style).length > 0 ? style : undefined
 })
+
+function normalizeOffset(offset: string | number | undefined): string {
+  if (typeof offset === 'number') {
+    return Number.isFinite(offset) ? `${offset}px` : ''
+  }
+  if (typeof offset === 'string') {
+    return offset.trim()
+  }
+  return ''
+}
 </script>
 
 <style lang="scss">

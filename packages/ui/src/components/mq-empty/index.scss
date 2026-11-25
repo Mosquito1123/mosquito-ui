@@ -38,6 +38,19 @@
   opacity: 0.4;
 }
 
+.mq-empty__icon {
+  color: var(--mq-color-primary, #0f3d32);
+  font-size: var(--mq-empty-icon-size, 48px);
+  line-height: 1;
+}
+
+.mq-empty__icon--image {
+  width: 64px;
+  height: 64px;
+  opacity: 0.8;
+  object-fit: contain;
+}
+
 .mq-empty__tip {
   margin-top: 12px;
   font-size: var(--mq-font-size, 14px);

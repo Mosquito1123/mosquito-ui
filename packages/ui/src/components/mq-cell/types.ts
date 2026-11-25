@@ -1,3 +1,9 @@
+export type MqCellArrowDirection = 'left' | 'up' | 'down' | 'right'
+
+export type MqCellValueAlign = 'left' | 'right' | 'center'
+
+export type MqCellSize = 'normal' | 'large'
+
 export interface MqCellProps {
   title?: string
   /** 右侧说明。数字 `0` 会显示；`null`、`undefined` 和空字符串不显示。 */
@@ -18,6 +24,20 @@ export interface MqCellProps {
   border?: boolean
   /** 右侧说明过长时省略。 */
   ellipsis?: boolean
+  /** 可点击时跳转到该地址：使用 `uni.navigateTo` 或 `uni.redirectTo`，同时仍发出 `click`。 */
+  to?: string
+  /** 跳转时使用 `uni.redirectTo` 替代 `uni.navigateTo`。 */
+  replace?: boolean
+  /** 箭头朝向：`left` | `up` | `down` | `right`。 */
+  arrowDirection?: MqCellArrowDirection
+  /** 垂直居中内容。 */
+  center?: boolean
+  /** 右侧说明的水平对齐方式。 */
+  valueAlign?: MqCellValueAlign
+  /** 标题宽度，数字按 px 处理。 */
+  titleWidth?: string | number
+  /** 单元格尺寸：`normal` | `large`。 */
+  size?: MqCellSize
 }
 
 export interface MqCellEmits {

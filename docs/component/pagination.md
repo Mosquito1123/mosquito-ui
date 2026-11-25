@@ -2,7 +2,7 @@
 
 # MqPagination `mq-pagination`
 
-分页，`v-model` 当前页
+分页，`v-model` 当前页；`total-page`、`hide-if-one-page`，插槽含 `total` / `page-size`
 
 ## 何时使用
 
@@ -18,14 +18,16 @@
 
 ### Props
 
-| 名称          | 类型      | 必填 | 说明 |
-| ------------- | --------- | ---- | ---- |
-| `modelValue`  | `number`  | 否   | —    |
-| `total`       | `number`  | 否   | —    |
-| `pageSize`    | `number`  | 否   | —    |
-| `showMessage` | `boolean` | 否   | —    |
-| `prevText`    | `string`  | 否   | —    |
-| `nextText`    | `string`  | 否   | —    |
+| 名称            | 类型      | 必填 | 说明                                                 |
+| --------------- | --------- | ---- | ---------------------------------------------------- |
+| `modelValue`    | `number`  | 否   | —                                                    |
+| `total`         | `number`  | 否   | —                                                    |
+| `pageSize`      | `number`  | 否   | —                                                    |
+| `totalPage`     | `number`  | 否   | 手动指定总页数；提供后不再按 total / pageSize 计算。 |
+| `showMessage`   | `boolean` | 否   | —                                                    |
+| `hideIfOnePage` | `boolean` | 否   | 总页数不超过 1 时不渲染根节点。                      |
+| `prevText`      | `string`  | 否   | —                                                    |
+| `nextText`      | `string`  | 否   | —                                                    |
 
 ### Events
 

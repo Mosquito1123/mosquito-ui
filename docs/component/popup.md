@@ -2,7 +2,7 @@
 
 # MqPopup `mq-popup`
 
-`v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close`
+`v-model` 受控显隐，五方位 `position`，`modal` / `closable`，`click-modal` 与过渡阶段事件
 
 ## 何时使用
 
@@ -22,6 +22,8 @@
 | -------------- | ----------------- | ---- | ------------------------------------------------ |
 | `modelValue`   | `boolean`         | 否   | 受控显隐，配合 `v-model`。                       |
 | `position`     | `MqPopupPosition` | 否   | —                                                |
+| `modal`        | `boolean`         | 否   | 是否渲染遮罩。为 `false` 时不渲染遮罩节点。      |
+| `closable`     | `boolean`         | 否   | 是否在面板内显示文字关闭按钮。                   |
 | `maskClosable` | `boolean`         | 否   | 点击遮罩是否关闭。为 `false` 时 Esc 同样不关闭。 |
 | `duration`     | `number`          | 否   | 过渡时长，毫秒。非法或负数时按 200。             |
 | `zIndex`       | `number`          | 否   | 覆盖根节点 `z-index`，默认走 `--mq-z-popup`。    |
@@ -33,6 +35,8 @@
 | --- | --- | --- | --- |
 | `open` | `[]` | `modelValue` 变为 `true` 时发出。 |
 | `close` | `[]` | `modelValue` 从打开变为关闭时发出，包含遮罩、Esc 和外部改值。 |
+| `enter` | `[]` | 进场动画各阶段。 |
+| `leave` | `[]` | 离场动画各阶段。 |
 
 ### 插槽与方法
 

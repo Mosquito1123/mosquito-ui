@@ -71,19 +71,23 @@
   background: transparent;
 }
 
-.mq-button--plain.mq-button--primary {
+.mq-button--plain.mq-button--primary,
+.mq-button--dashed.mq-button--primary {
   color: var(--mq-color-primary, #0f3d32);
 }
 
-.mq-button--plain.mq-button--success {
+.mq-button--plain.mq-button--success,
+.mq-button--dashed.mq-button--success {
   color: var(--mq-color-success, #2f7d4a);
 }
 
-.mq-button--plain.mq-button--warning {
+.mq-button--plain.mq-button--warning,
+.mq-button--dashed.mq-button--warning {
   color: var(--mq-color-warning, #b86e00);
 }
 
-.mq-button--plain.mq-button--danger {
+.mq-button--plain.mq-button--danger,
+.mq-button--dashed.mq-button--danger {
   color: var(--mq-color-danger, #b42318);
 }
 
@@ -108,6 +112,65 @@
 
 .mq-button--text.mq-button--danger {
   color: var(--mq-color-danger, #b42318);
+}
+
+.mq-button--dashed {
+  border-style: dashed;
+  background: transparent;
+}
+
+.mq-button--soft {
+  border-color: transparent;
+  background: var(--mq-bg-soft, var(--mq-bg-muted, #f6f1e8));
+  color: var(--mq-text, #1c1915);
+}
+
+.mq-button--soft.mq-button--primary {
+  background: var(--mq-color-primary-soft, #e7efeb);
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-button--soft.mq-button--success {
+  background: var(--mq-color-success-soft, #e9f4ed);
+  color: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-button--soft.mq-button--warning {
+  background: var(--mq-color-warning-soft, #fbf0df);
+  color: var(--mq-color-warning, #b86e00);
+}
+
+.mq-button--soft.mq-button--danger {
+  background: var(--mq-color-danger-soft, #fbeae8);
+  color: var(--mq-color-danger, #b42318);
+}
+
+.mq-button--subtle {
+  height: auto;
+  padding: 0 6px;
+  border-color: transparent;
+  background: transparent;
+  color: var(--mq-text-secondary, #6f675e);
+}
+
+.mq-button--subtle.mq-button--primary {
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-button--subtle.mq-button--success {
+  color: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-button--subtle.mq-button--warning {
+  color: var(--mq-color-warning, #b86e00);
+}
+
+.mq-button--subtle.mq-button--danger {
+  color: var(--mq-color-danger, #b42318);
+}
+
+.mq-button.is-hairline {
+  border: 1px solid var(--mq-hairline, rgba(28, 25, 21, 0.16));
 }
 
 .mq-button--round {

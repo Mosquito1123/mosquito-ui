@@ -16,6 +16,13 @@ export interface MqCheckboxGroupProps {
   uncheckedColor?: string
 }
 
+export interface MqCheckboxGroupToggleAllOptions {
+  /** 指定目标状态；缺省时逐个取反。 */
+  checked?: boolean
+  /** 为 true 时保留禁用 / 只读子项的原状态。 */
+  skipDisabled?: boolean
+}
+
 export interface MqCheckboxGroupEmits {
   'update:modelValue': [value: MqOptionValue[]]
   change: [payload: { value: MqOptionValue[] }]

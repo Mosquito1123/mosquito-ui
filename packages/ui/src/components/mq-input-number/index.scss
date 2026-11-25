@@ -15,6 +15,10 @@
   opacity: 0.45;
 }
 
+.mq-input-number.is-without-input .mq-input-number__btn + .mq-input-number__btn {
+  border-left: 1px solid var(--mq-border, #e6e2da);
+}
+
 .mq-input-number__btn {
   flex: none;
   width: 32px;

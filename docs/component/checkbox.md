@@ -2,7 +2,7 @@
 
 # MqCheckbox `mq-checkbox`
 
-可单独绑定，也可按组多选，支持 `min` / `max`
+可单独绑定，也可按组多选，支持 `min` / `max`；组暴露 `toggleAll`，单项支持 `indeterminate` 与 `dot`
 
 ## 何时使用
 
@@ -30,6 +30,7 @@
 | `placement`      | `'left' \| 'right'` | 否   | —                                       |
 | `checkedColor`   | `string`            | 否   | —                                       |
 | `uncheckedColor` | `string`            | 否   | —                                       |
+| `indeterminate`  | `boolean`           | 否   | 半选状态，样式优先级高于选中态。        |
 
 ### Events
 

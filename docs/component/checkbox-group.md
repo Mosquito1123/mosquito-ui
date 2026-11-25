@@ -43,7 +43,7 @@
 
 ### 导出类型
 
-`MqCheckboxGroupProps`、`MqCheckboxGroupEmits`。
+`MqCheckboxGroupProps`、`MqCheckboxGroupToggleAllOptions`、`MqCheckboxGroupEmits`。
 
 ## 主题变量
 

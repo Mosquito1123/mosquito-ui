@@ -1,12 +1,21 @@
 <template>
-  <view class="mq-tag" :class="rootClass" :style="rootStyle">
-    <text class="mq-tag__text"><slot /></text>
+  <view class="mq-tag" :class="rootClass" :style="rootStyle" @click="onClick">
+    <input
+      v-if="dynamic"
+      class="mq-tag__input"
+      :value="inputValue"
+      :disabled="disabled"
+      @input="onInput"
+      @confirm="onConfirm"
+      @keydown.enter="onConfirm"
+    />
+    <text v-else class="mq-tag__text"><slot /></text>
     <text v-if="closable" class="mq-tag__close" aria-hidden="true" @click.stop="onClose">×</text>
   </view>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { MqTagEmits, MqTagProps } from './types'
 
 defineOptions({
@@ -19,11 +28,15 @@ const props = withDefaults(defineProps<MqTagProps>(), {
   size: 'medium',
   round: false,
   closable: false,
+  disabled: false,
+  dynamic: false,
   color: '',
   bgColor: '',
 })
 
 const emit = defineEmits<MqTagEmits>()
+
+const inputValue = ref('')
 
 const rootClass = computed(() => [
   `mq-tag--${props.type}`,
@@ -45,6 +58,26 @@ const rootStyle = computed(() => {
   }
   return style
 })
+
+function onClick(event: MouseEvent) {
+  if (props.disabled) {
+    return
+  }
+  emit('click', event)
+}
+
+function onInput(event?: Event) {
+  const target = event?.target as HTMLInputElement | null
+  inputValue.value = typeof target?.value === 'string' ? target.value : ''
+}
+
+function onConfirm(event?: Event) {
+  const detail = (event as CustomEvent<{ value?: string }> | undefined)?.detail?.value
+  const target = event?.target as HTMLInputElement | null
+  const value =
+    typeof detail === 'string' ? detail : typeof target?.value === 'string' ? target.value : inputValue.value
+  emit('confirm', { value })
+}
 
 function onClose(event: Event) {
   emit('close', event)

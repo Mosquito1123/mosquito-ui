@@ -2,14 +2,18 @@
   <view
     v-if="rendered"
     class="mq-popup"
-    :class="[`mq-popup--${position}`, { 'is-open': opened }]"
+    :class="[`mq-popup--${position}`, { 'is-open': opened, 'is-modal': modal }]"
     :style="rootStyle"
     role="dialog"
-    aria-modal="true"
+    :aria-modal="modal ? 'true' : undefined"
     :aria-label="dialogLabel"
     @click="onMask"
   >
+    <view v-if="modal" class="mq-popup__mask" @click.stop="onMask" />
     <view class="mq-popup__panel" @click.stop>
+      <text v-if="closable" class="mq-popup__close" role="button" aria-label="关闭" @click.stop="requestClose"
+        >×</text
+      >
       <slot />
     </view>
   </view>
@@ -26,6 +30,8 @@ defineOptions({
 const props = withDefaults(defineProps<MqPopupProps>(), {
   modelValue: false,
   position: 'center',
+  modal: true,
+  closable: false,
   maskClosable: true,
   duration: 200,
   title: '',
@@ -96,8 +102,10 @@ watch(
   () => props.modelValue,
   async (visible) => {
     if (visible) {
+      emit('before-enter')
       clearLeave()
       rendered.value = true
+      emit('enter')
       emit('open')
       await nextTick()
       if (!props.modelValue) {
@@ -105,6 +113,7 @@ watch(
       }
       opened.value = true
       bindEscape()
+      emit('after-enter')
       return
     }
 
@@ -113,9 +122,12 @@ watch(
     if (!rendered.value) {
       return
     }
+    emit('before-leave')
     clearLeave()
+    emit('leave')
     leaveTimer = setTimeout(() => {
       rendered.value = false
+      emit('after-leave')
       leaveTimer = undefined
     }, durationMs.value)
     emit('close')
@@ -136,6 +148,10 @@ function requestClose() {
 }
 
 function onMask() {
+  if (!props.modal) {
+    return
+  }
+  emit('click-modal')
   if (!props.maskClosable) {
     return
   }

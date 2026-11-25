@@ -2,7 +2,7 @@
 
 # MqSearch `mq-search`
 
-原生输入加文字按钮，不套输入框和按钮组件
+原生输入加文字按钮，不套输入框和按钮组件；支持 `type`、`hide-cancel`、`cancel` / `focus` / `blur`
 
 ## 何时使用
 
@@ -26,6 +26,8 @@
 | `maxlength`   | `number`           | 否   | —                                |
 | `clearable`   | `boolean`          | 否   | —                                |
 | `actionText`  | `string`           | 否   | 右侧文字按钮。空字符串则不显示。 |
+| `type`        | `string`           | 否   | 原生 `input` 的 `type`。         |
+| `hideCancel`  | `boolean`          | 否   | 隐藏右侧文字按钮。               |
 
 ### Events
 
@@ -34,6 +36,9 @@
 | `input` | `[payload: MqSearchPayload]` | — |
 | `search` | `[payload: MqSearchPayload]` | — |
 | `clear` | `[]` | — |
+| `cancel` | `[payload: MqSearchPayload]` | — |
+| `focus` | `[payload: MqSearchPayload]` | — |
+| `blur` | `[payload: MqSearchPayload]` | — |
 
 ### 插槽与方法
 

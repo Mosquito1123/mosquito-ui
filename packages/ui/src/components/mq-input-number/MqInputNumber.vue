@@ -1,5 +1,5 @@
 <template>
-  <view class="mq-input-number" :class="{ 'is-disabled': disabled }">
+  <view class="mq-input-number" :class="{ 'is-disabled': disabled, 'is-without-input': withoutInput }">
     <text
       class="mq-input-number__btn"
       :class="{ 'is-disabled': minusDisabled }"
@@ -10,11 +10,15 @@
       −
     </text>
     <input
+      v-if="!withoutInput"
       class="mq-input-number__control"
       type="digit"
       :value="String(display)"
+      :style="inputStyle"
+      :placeholder="placeholder"
       :disabled="disabled || disableInput"
       @input="onInput"
+      @focus="onFocus"
       @blur="onBlur"
     />
     <text
@@ -49,21 +53,45 @@ const props = withDefaults(defineProps<MqInputNumberProps>(), {
   disableInput: false,
   disableMinus: false,
   disablePlus: false,
+  withoutInput: false,
+  allowNull: false,
+  immediateChange: true,
+  inputWidth: undefined,
+  placeholder: '',
 })
 
 const emit = defineEmits<MqInputNumberEmits>()
 const pending = ref(false)
 
-const display = computed(() =>
-  snapNumber(props.modelValue, props.min, props.max, props.step, props.precision, props.stepStrictly),
+function modelNumber(): number {
+  const value = props.modelValue
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value
+  }
+  return Number.isFinite(props.min) ? props.min : 0
+}
+
+const display = computed<number | ''>(() =>
+  props.allowNull && props.modelValue === ''
+    ? ''
+    : snapNumber(modelNumber(), props.min, props.max, props.step, props.precision, props.stepStrictly),
 )
 
+const current = computed(() => (display.value === '' ? modelNumber() : display.value))
+
 const minusDisabled = computed(
-  () => props.disabled || props.disableMinus || pending.value || display.value <= props.min,
+  () => props.disabled || props.disableMinus || pending.value || current.value <= props.min,
 )
 const plusDisabled = computed(
-  () => props.disabled || props.disablePlus || pending.value || display.value >= props.max,
+  () => props.disabled || props.disablePlus || pending.value || current.value >= props.max,
 )
+
+const inputStyle = computed(() => {
+  if (props.inputWidth === undefined) {
+    return undefined
+  }
+  return { width: typeof props.inputWidth === 'number' ? `${props.inputWidth}px` : props.inputWidth }
+})
 
 async function commit(next: number) {
   const value = snapNumber(next, props.min, props.max, props.step, props.precision, props.stepStrictly)
@@ -90,17 +118,29 @@ async function commit(next: number) {
   emit('change', { value })
 }
 
+function commitEmpty() {
+  if (!props.allowNull || props.disabled || props.disableInput || props.modelValue === '') {
+    return
+  }
+  emit('update:modelValue', '')
+  emit('change', { value: '' })
+}
+
 function onStep(direction: 1 | -1) {
   if ((direction < 0 && minusDisabled.value) || (direction > 0 && plusDisabled.value)) {
     return
   }
   const stride = Number.isFinite(props.step) && props.step > 0 ? props.step : 1
-  void commit(display.value + direction * stride)
+  void commit(current.value + direction * stride)
+}
+
+function readRaw(event: Event): string | number | undefined {
+  const detail = (event as Event & { detail?: { value?: string | number } }).detail
+  return detail?.value ?? (event.target as { value?: string } | null)?.value ?? undefined
 }
 
 function readNumber(event: Event): number | undefined {
-  const detail = (event as Event & { detail?: { value?: string | number } }).detail
-  const raw = detail?.value ?? (event.target as { value?: string } | null)?.value
+  const raw = readRaw(event)
   if (raw == null || raw === '') {
     return undefined
   }
@@ -108,8 +148,21 @@ function readNumber(event: Event): number | undefined {
   return Number.isFinite(parsed) ? parsed : undefined
 }
 
+function eventValue(event: Event): number | string {
+  const raw = readRaw(event)
+  if (raw == null || raw === '') {
+    return props.allowNull && raw === '' ? '' : display.value
+  }
+  const parsed = typeof raw === 'number' ? raw : Number.parseFloat(String(raw))
+  return Number.isFinite(parsed) ? parsed : String(raw)
+}
+
 function onInput(event: Event) {
-  if (props.disabled || props.disableInput) {
+  if (props.disabled || props.disableInput || !props.immediateChange) {
+    return
+  }
+  if (props.allowNull && readRaw(event) === '') {
+    commitEmpty()
     return
   }
   const parsed = readNumber(event)
@@ -119,12 +172,21 @@ function onInput(event: Event) {
   void commit(parsed)
 }
 
+function onFocus(event: Event) {
+  emit('focus', { value: eventValue(event) })
+}
+
 function onBlur(event: Event) {
+  emit('blur', { value: eventValue(event) })
   if (props.disabled || props.disableInput) {
     return
   }
+  if (props.allowNull && readRaw(event) === '') {
+    commitEmpty()
+    return
+  }
   const parsed = readNumber(event)
-  void commit(parsed === undefined ? display.value : parsed)
+  void commit(parsed === undefined ? current.value : parsed)
 }
 </script>
 

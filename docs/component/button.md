@@ -2,7 +2,7 @@
 
 # MqButton `mq-button`
 
-`type` / `variant` / `size` / `round` / `block` / `disabled` / `loading`。禁用和加载中不发出 `click`
+`type` / `variant` / `size` / `round` / `block` / `disabled` / `loading`。禁用和加载中不发出 `click`；`variant` 支持 `dashed` / `soft` / `subtle`，`hairline` 细分边框
 
 ## 何时使用
 
@@ -18,15 +18,16 @@
 
 ### Props
 
-| 名称       | 类型              | 必填 | 说明                                                         |
-| ---------- | ----------------- | ---- | ------------------------------------------------------------ |
-| `type`     | `MqButtonType`    | 否   | `default` \| `primary` \| `success` \| `warning` \| `danger` |
-| `variant`  | `MqButtonVariant` | 否   | `base` 实心，`plain` 镂空，`text` 无边框。                   |
-| `size`     | `MqButtonSize`    | 否   | `mini` \| `small` \| `medium` \| `large`                     |
-| `round`    | `boolean`         | 否   | 胶囊圆角。                                                   |
-| `block`    | `boolean`         | 否   | 撑满父级宽度。                                               |
-| `disabled` | `boolean`         | 否   | 不可点，不发出 `click`。                                     |
-| `loading`  | `boolean`         | 否   | 进行中。不发出 `click`，并带 `aria-busy`。不额外加节点。     |
+| 名称       | 类型              | 必填 | 说明                                                                                  |
+| ---------- | ----------------- | ---- | ------------------------------------------------------------------------------------- |
+| `type`     | `MqButtonType`    | 否   | `default` \| `primary` \| `success` \| `warning` \| `danger`                          |
+| `variant`  | `MqButtonVariant` | 否   | `base` 实心，`plain` 镂空，`text` 无边框，`dashed` 虚线，`soft` 浅底，`subtle` 弱化。 |
+| `size`     | `MqButtonSize`    | 否   | `mini` \| `small` \| `medium` \| `large`                                              |
+| `round`    | `boolean`         | 否   | 胶囊圆角。                                                                            |
+| `block`    | `boolean`         | 否   | 撑满父级宽度。                                                                        |
+| `disabled` | `boolean`         | 否   | 不可点，不发出 `click`。                                                              |
+| `loading`  | `boolean`         | 否   | 进行中。不发出 `click`，并带 `aria-busy`。不额外加节点。                              |
+| `hairline` | `boolean`         | 否   | 叠加一条 1px 细描边，适合无边框变体。                                                 |
 
 ### Events
 

@@ -2,7 +2,7 @@
 
 # MqLoading `mq-loading`
 
-单节点旋转指示，可选 `size`、`color`、`label`
+单节点指示，可选 `size`、`color`、`label`；`type` 支持 `circular` / `spinner` / `dots` / `wave`，`text` 与默认插槽
 
 ## 何时使用
 
@@ -18,11 +18,14 @@
 
 ### Props
 
-| 名称    | 类型               | 必填 | 说明                                        |
-| ------- | ------------------ | ---- | ------------------------------------------- |
-| `size`  | `string \| number` | 否   | 直径。数字按 px。小于等于 0 或非法时用 20。 |
-| `color` | `string`           | 否   | 顶部描边颜色，写到 `border-top-color`。     |
-| `label` | `string`           | 否   | 无障碍名称。默认「加载中」。                |
+| 名称        | 类型                 | 必填 | 说明                                        |
+| ----------- | -------------------- | ---- | ------------------------------------------- |
+| `size`      | `string \| number`   | 否   | 直径。数字按 px。小于等于 0 或非法时用 20。 |
+| `color`     | `string`             | 否   | 顶部描边颜色，写到 `border-top-color`。     |
+| `label`     | `string`             | 否   | 无障碍名称。默认「加载中」。                |
+| `type`      | `MqLoadingType`      | 否   | 指示器样式。                                |
+| `text`      | `string`             | 否   | 指示器旁的文字；默认插槽优先。              |
+| `direction` | `MqLoadingDirection` | 否   | 文字与指示器的排列方向。                    |
 
 ### Events
 
@@ -34,7 +37,7 @@
 
 ### 导出类型
 
-`MqLoadingProps`。
+`MqLoadingType`、`MqLoadingDirection`、`MqLoadingProps`。
 
 ## 主题变量
 

@@ -6,7 +6,6 @@
   bottom: 0;
   z-index: var(--mq-z-popup, 1000);
   display: flex;
-  background: var(--mq-mask, rgba(22, 18, 12, 0.45));
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--mq-popup-duration, var(--mq-duration, 200ms)) linear;
@@ -17,9 +16,41 @@
   pointer-events: auto;
 }
 
+.mq-popup__mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--mq-mask, rgba(22, 18, 12, 0.45));
+}
+
+.mq-popup:not(.is-modal) {
+  pointer-events: none;
+}
+
+.mq-popup:not(.is-modal) .mq-popup__panel {
+  pointer-events: auto;
+}
+
 .mq-popup--bottom {
   align-items: stretch;
   justify-content: flex-end;
+}
+
+.mq-popup--top {
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.mq-popup--right {
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+.mq-popup--left {
+  align-items: stretch;
+  justify-content: flex-start;
 }
 
 .mq-popup--center {
@@ -28,8 +59,20 @@
 }
 
 .mq-popup__panel {
+  position: relative;
+  z-index: 1;
   background: var(--mq-bg, #fffcf7);
   transition: transform var(--mq-popup-duration, var(--mq-duration, 200ms)) ease-out;
+}
+
+.mq-popup__close {
+  position: absolute;
+  top: var(--mq-popup-close-top, 4px);
+  right: var(--mq-popup-close-right, 8px);
+  z-index: 2;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: var(--mq-font-size-lg, 20px);
+  line-height: 1;
 }
 
 .mq-popup--bottom .mq-popup__panel {
@@ -40,6 +83,36 @@
 
 .mq-popup--bottom.is-open .mq-popup__panel {
   transform: translateY(0);
+}
+
+.mq-popup--top .mq-popup__panel {
+  width: 100%;
+  border-radius: 0 0 var(--mq-radius, 8px) var(--mq-radius, 8px);
+  transform: translateY(-100%);
+}
+
+.mq-popup--top.is-open .mq-popup__panel {
+  transform: translateY(0);
+}
+
+.mq-popup--right .mq-popup__panel {
+  height: 100%;
+  border-radius: var(--mq-radius, 8px) 0 0 var(--mq-radius, 8px);
+  transform: translateX(100%);
+}
+
+.mq-popup--right.is-open .mq-popup__panel {
+  transform: translateX(0);
+}
+
+.mq-popup--left .mq-popup__panel {
+  height: 100%;
+  border-radius: 0 var(--mq-radius, 8px) var(--mq-radius, 8px) 0;
+  transform: translateX(-100%);
+}
+
+.mq-popup--left.is-open .mq-popup__panel {
+  transform: translateX(0);
 }
 
 .mq-popup--center .mq-popup__panel {

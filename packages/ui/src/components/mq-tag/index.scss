@@ -100,8 +100,48 @@
   background: var(--mq-bg-muted, #f6f1e8);
 }
 
+.mq-tag--dashed {
+  border-style: dashed;
+  background: transparent;
+}
+
+.mq-tag--dashed.mq-tag--primary {
+  border-color: var(--mq-color-primary, #0f3d32);
+  color: var(--mq-color-primary, #0f3d32);
+}
+
+.mq-tag--dashed.mq-tag--success {
+  border-color: var(--mq-color-success, #2f7d4a);
+  color: var(--mq-color-success, #2f7d4a);
+}
+
+.mq-tag--dashed.mq-tag--warning {
+  border-color: var(--mq-color-warning, #b86e00);
+  color: var(--mq-color-warning, #b86e00);
+}
+
+.mq-tag--dashed.mq-tag--danger {
+  border-color: var(--mq-color-danger, #b42318);
+  color: var(--mq-color-danger, #b42318);
+}
+
 .mq-tag--round {
   border-radius: 999px;
+}
+
+.mq-tag__input {
+  width: 60px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--mq-text, #1c1915);
+  font: inherit;
+  line-height: 1;
+}
+
+.mq-tag__input:disabled {
+  color: var(--mq-text-secondary, #6f675e);
 }
 
 .mq-tag__close {

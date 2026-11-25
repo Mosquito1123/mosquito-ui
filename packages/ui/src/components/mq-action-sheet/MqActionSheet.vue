@@ -16,11 +16,11 @@
         v-for="(item, index) in actions"
         :key="index"
         class="mq-action-sheet__row"
-        :class="{ 'is-disabled': item.disabled }"
+        :class="{ 'is-disabled': item.disabled, 'is-loading': item.loading }"
         role="button"
-        :aria-disabled="item.disabled ? 'true' : undefined"
-        :tabindex="item.disabled ? undefined : 0"
-        :hover-class="item.disabled ? 'none' : 'mq-action-sheet__row--pressed'"
+        :aria-disabled="item.disabled || item.loading ? 'true' : undefined"
+        :tabindex="item.disabled || item.loading ? undefined : 0"
+        :hover-class="item.disabled || item.loading ? 'none' : 'mq-action-sheet__row--pressed'"
         @click.stop="onSelect(item, index)"
         @keydown.enter.prevent="onSelect(item, index)"
         @keydown.space.prevent="onSelect(item, index)"
@@ -29,6 +29,7 @@
           item.name
         }}</text>
         <text v-if="item.description" class="mq-action-sheet__desc">{{ item.description }}</text>
+        <text v-if="item.loading" class="mq-action-sheet__loading" aria-hidden="true">…</text>
       </view>
       <view
         v-if="cancelLabel"
@@ -63,6 +64,7 @@ const props = withDefaults(defineProps<MqActionSheetProps>(), {
   actions: () => [],
   title: '',
   maskClosable: true,
+  closeOnClickAction: true,
   duration: 200,
 })
 
@@ -81,15 +83,18 @@ function onClose() {
 }
 
 function onCancel() {
+  emit('cancel')
   emit('update:modelValue', false)
 }
 
 function onSelect(item: MqActionSheetItem, index: number) {
-  if (item.disabled) {
+  if (item.disabled || item.loading) {
     return
   }
   emit('select', { item, index })
-  emit('update:modelValue', false)
+  if (props.closeOnClickAction) {
+    emit('update:modelValue', false)
+  }
 }
 </script>
 

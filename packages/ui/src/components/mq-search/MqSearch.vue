@@ -2,7 +2,7 @@
   <view class="mq-search" :class="{ 'is-disabled': disabled }" role="search">
     <input
       class="mq-search__control"
-      type="text"
+      :type="type"
       confirm-type="search"
       :value="text"
       :placeholder="placeholderText"
@@ -10,9 +10,11 @@
       :maxlength="maxlength >= 0 ? maxlength : -1"
       @input="onInput"
       @confirm="onSearch"
+      @focus="onFocus"
+      @blur="onBlur"
     />
     <text v-if="showClear" class="mq-search__clear" @click.stop="onClear">×</text>
-    <text v-if="label" class="mq-search__action" @click.stop="onSearch">{{ label }}</text>
+    <text v-if="label && !hideCancel" class="mq-search__action" @click.stop="onAction">{{ label }}</text>
   </view>
 </template>
 
@@ -30,6 +32,8 @@ const props = withDefaults(defineProps<MqSearchProps>(), {
   disabled: false,
   maxlength: -1,
   clearable: false,
+  type: 'text',
+  hideCancel: false,
 })
 
 const emit = defineEmits<MqSearchEmits>()
@@ -64,6 +68,28 @@ function onSearch() {
     return
   }
   emit('search', { value: text.value })
+}
+
+function onAction() {
+  onSearch()
+  if (props.disabled) {
+    return
+  }
+  emit('cancel', { value: text.value })
+}
+
+function onFocus(event: Event) {
+  if (props.disabled) {
+    return
+  }
+  emit('focus', { value: readValue(event) })
+}
+
+function onBlur(event: Event) {
+  if (props.disabled) {
+    return
+  }
+  emit('blur', { value: readValue(event) })
 }
 
 function onClear() {

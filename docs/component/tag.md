@@ -2,7 +2,7 @@
 
 # MqTag `mq-tag`
 
-类型、镂空、浅色、圆角、可关闭
+类型、镂空、浅色、圆角、可关闭；`dynamic` 输入，`click` / `confirm` 事件
 
 ## 何时使用
 
@@ -18,21 +18,25 @@
 
 ### Props
 
-| 名称       | 类型           | 必填 | 说明                         |
-| ---------- | -------------- | ---- | ---------------------------- |
-| `type`     | `MqTagType`    | 否   | —                            |
-| `variant`  | `MqTagVariant` | 否   | —                            |
-| `size`     | `MqTagSize`    | 否   | —                            |
-| `round`    | `boolean`      | 否   | —                            |
-| `closable` | `boolean`      | 否   | —                            |
-| `color`    | `string`       | 否   | 文字颜色。                   |
-| `bgColor`  | `string`       | 否   | 实心时作背景，镂空时作边框。 |
+| 名称       | 类型           | 必填 | 说明                                       |
+| ---------- | -------------- | ---- | ------------------------------------------ |
+| `type`     | `MqTagType`    | 否   | —                                          |
+| `variant`  | `MqTagVariant` | 否   | —                                          |
+| `size`     | `MqTagSize`    | 否   | —                                          |
+| `round`    | `boolean`      | 否   | —                                          |
+| `closable` | `boolean`      | 否   | —                                          |
+| `disabled` | `boolean`      | 否   | 禁用时不发出 click，输入框也不可编辑。     |
+| `dynamic`  | `boolean`      | 否   | 渲染为可输入标签，回车确认时发出 confirm。 |
+| `color`    | `string`       | 否   | 文字颜色。                                 |
+| `bgColor`  | `string`       | 否   | 实心时作背景，镂空时作边框。               |
 
 ### Events
 
 | 事件 | 参数 | 说明 |
 | --- | --- | --- | --- |
 | `close` | `[event: Event]` | — |
+| `click` | `[event: MouseEvent]` | — |
+| `confirm` | `[payload: { value: string }]` | — |
 
 ### 插槽与方法
 

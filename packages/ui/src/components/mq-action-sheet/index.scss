@@ -21,6 +21,17 @@
   opacity: 0.45;
 }
 
+.mq-action-sheet__row.is-loading {
+  opacity: 0.7;
+}
+
+.mq-action-sheet__loading {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--mq-text-secondary, #6f675e);
+  font-size: var(--mq-font-size, 14px);
+}
+
 .mq-action-sheet__row--pressed {
   background: var(--mq-bg-active, #ebe4d8);
 }

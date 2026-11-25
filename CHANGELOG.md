@@ -13,6 +13,14 @@
 - CD：`deploy-docs.yml` 在推送到 `main` 后构建 VitePress 站点并部署到 GitHub Pages；文档 base 路径可通过 `VITE_DOCS_BASE` 覆盖，本地与 CI 仍用根路径。
 - CD：`release.yml` 在推送 `v*` 标签时校验标签与包版本一致，通过后发布 `@mosquito/ui` 到 npm（需配置 `NPM_TOKEN` secret）。
 
+### Changed
+
+- API 对齐 wot-ui：`mq-popup` 支持五方位、`modal` / `closable`、`click-modal` 与过渡阶段事件；`mq-action-sheet` 支持 `cancel`、`close-on-click-action` 与加载中选项。
+- API 对齐 wot-ui：`mq-checkbox-group` 暴露 `toggleAll` / `clear`，`mq-checkbox` 支持 `indeterminate` / `dot` 与 `toggle()`；`mq-input-number` 支持焦点事件、`without-input`、`allow-null` 等。
+- API 对齐 wot-ui：`mq-button` 新增 `dashed` / `soft` / `subtle` 与 `hairline`；`mq-cell` 支持 `to` / `replace` 与布局属性；`mq-search` 支持 `type`、`hide-cancel` 与焦点/取消事件。
+- API 对齐 wot-ui：`mq-pagination` 支持 `total-page` / `hide-if-one-page`；`mq-loading` 支持四种形态与文本插槽；`mq-badge`、`mq-empty`、`mq-tag` 补齐偏移、图标与动态标签 API。
+- 逐组件文档按类型定义重新生成，并补充以上新增 API 的测试（新增 12 个组件测试文件）。
+
 ## [0.12.0] - 2026-11-25
 
 ### Added

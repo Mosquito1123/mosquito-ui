@@ -5,6 +5,7 @@
       `mq-checkbox--${mergedType}`,
       {
         'is-checked': checked,
+        'is-indeterminate': indeterminate,
         'is-disabled': mergedDisabled,
         'is-readonly': mergedReadonly,
         'is-placement-right': mergedPlacement === 'right' && mergedType !== 'button',
@@ -12,7 +13,7 @@
     ]"
     :style="rootStyle"
     role="checkbox"
-    :aria-checked="checked ? 'true' : 'false'"
+    :aria-checked="indeterminate ? 'mixed' : checked ? 'true' : 'false'"
     :aria-disabled="mergedDisabled ? 'true' : undefined"
     @click.stop="onClick"
     @keydown.enter.prevent="onClick"
@@ -23,8 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from 'vue'
+import { computed, inject, onUnmounted, watch } from 'vue'
 import { checkboxGroupKey } from './context'
+import type { MqCheckboxGroupChildState } from './context'
 import type { MqCheckboxEmits, MqCheckboxProps } from './types'
 
 defineOptions({
@@ -35,6 +37,7 @@ const props = withDefaults(defineProps<MqCheckboxProps>(), {
   modelValue: false,
   trueValue: true,
   falseValue: false,
+  indeterminate: false,
 })
 
 const emit = defineEmits<MqCheckboxEmits>()
@@ -67,7 +70,7 @@ const rootStyle = computed(() => {
   return style
 })
 
-function onClick() {
+function toggle() {
   if (mergedDisabled.value || mergedReadonly.value) {
     return
   }
@@ -82,6 +85,38 @@ function onClick() {
   emit('update:modelValue', next)
   emit('change', { value: next })
 }
+
+function onClick() {
+  toggle()
+}
+
+// 组内注册，供父级的 toggleAll / clear 判断哪些子项参与批量切换。
+const childState: MqCheckboxGroupChildState = {
+  name: () => props.name,
+  disabled: () => mergedDisabled.value || mergedReadonly.value,
+}
+let registered = false
+function syncRegistration() {
+  if (!group) {
+    return
+  }
+  if (props.name !== undefined && !registered) {
+    group.register(childState)
+    registered = true
+  } else if (props.name === undefined && registered) {
+    group.unregister(childState)
+    registered = false
+  }
+}
+syncRegistration()
+watch(() => props.name, syncRegistration)
+onUnmounted(() => {
+  if (registered) {
+    group?.unregister(childState)
+  }
+})
+
+defineExpose({ toggle })
 </script>
 
 <style lang="scss">

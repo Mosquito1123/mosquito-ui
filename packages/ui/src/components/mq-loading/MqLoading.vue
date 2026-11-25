@@ -1,15 +1,19 @@
 <template>
   <view
     class="mq-loading"
+    :class="[`mq-loading--${type}`, `mq-loading--${direction}`]"
     role="progressbar"
     aria-busy="true"
     :aria-label="resolvedLabel"
     :style="rootStyle"
-  />
+  >
+    <slot v-if="slots.default" />
+    <text v-else-if="text" class="mq-loading__text">{{ text }}</text>
+  </view>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
 import { t } from '../../locale'
 import type { MqLoadingProps } from './types'
 
@@ -19,7 +23,12 @@ defineOptions({
 
 const props = withDefaults(defineProps<MqLoadingProps>(), {
   size: 20,
+  type: 'circular',
+  text: '',
+  direction: 'horizontal',
 })
+
+const slots = useSlots()
 
 const resolvedLabel = computed(() => props.label?.trim() || t('common.loading'))
 

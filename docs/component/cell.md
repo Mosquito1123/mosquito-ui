@@ -2,7 +2,7 @@
 
 # MqCell `mq-cell`
 
-`title` / `value` / `label` / `is-link` / `clickable` / `disabled` / `required`。右侧可放插槽
+`title` / `value` / `label` / `is-link` / `clickable` / `disabled` / `required`。右侧可放插槽；支持 `to` / `replace` 跳转、`center`、`value-align`、`title-width`、`arrow-direction`
 
 ## 何时使用
 
@@ -18,18 +18,25 @@
 
 ### Props
 
-| 名称          | 类型                       | 必填 | 说明                                                              |
-| ------------- | -------------------------- | ---- | ----------------------------------------------------------------- |
-| `title`       | `string`                   | 否   | —                                                                 |
-| `value`       | `string \| number \| null` | 否   | 右侧说明。数字 `0` 会显示；`null`、`undefined` 和空字符串不显示。 |
-| `label`       | `string`                   | 否   | 标题下方的一行说明。                                              |
-| `placeholder` | `string`                   | 否   | `value` 为空时显示的占位。                                        |
-| `isLink`      | `boolean`                  | 否   | 显示箭头，并把根节点暴露成按钮。                                  |
-| `clickable`   | `boolean`                  | 否   | 没有箭头也显示按压态，并把根节点暴露成按钮。                      |
-| `disabled`    | `boolean`                  | 否   | 不发出 `click`，也不显示按压态。                                  |
-| `required`    | `boolean`                  | 否   | 标题前显示必填星号。                                              |
-| `border`      | `boolean`                  | 否   | 底部分割线。                                                      |
-| `ellipsis`    | `boolean`                  | 否   | 右侧说明过长时省略。                                              |
+| 名称             | 类型                       | 必填 | 说明                                                                                  |
+| ---------------- | -------------------------- | ---- | ------------------------------------------------------------------------------------- |
+| `title`          | `string`                   | 否   | —                                                                                     |
+| `value`          | `string \| number \| null` | 否   | 右侧说明。数字 `0` 会显示；`null`、`undefined` 和空字符串不显示。                     |
+| `label`          | `string`                   | 否   | 标题下方的一行说明。                                                                  |
+| `placeholder`    | `string`                   | 否   | `value` 为空时显示的占位。                                                            |
+| `isLink`         | `boolean`                  | 否   | 显示箭头，并把根节点暴露成按钮。                                                      |
+| `clickable`      | `boolean`                  | 否   | 没有箭头也显示按压态，并把根节点暴露成按钮。                                          |
+| `disabled`       | `boolean`                  | 否   | 不发出 `click`，也不显示按压态。                                                      |
+| `required`       | `boolean`                  | 否   | 标题前显示必填星号。                                                                  |
+| `border`         | `boolean`                  | 否   | 底部分割线。                                                                          |
+| `ellipsis`       | `boolean`                  | 否   | 右侧说明过长时省略。                                                                  |
+| `to`             | `string`                   | 否   | 可点击时跳转到该地址：使用 `uni.navigateTo` 或 `uni.redirectTo`，同时仍发出 `click`。 |
+| `replace`        | `boolean`                  | 否   | 跳转时使用 `uni.redirectTo` 替代 `uni.navigateTo`。                                   |
+| `arrowDirection` | `MqCellArrowDirection`     | 否   | 箭头朝向：`left` \| `up` \| `down` \| `right`。                                       |
+| `center`         | `boolean`                  | 否   | 垂直居中内容。                                                                        |
+| `valueAlign`     | `MqCellValueAlign`         | 否   | 右侧说明的水平对齐方式。                                                              |
+| `titleWidth`     | `string \| number`         | 否   | 标题宽度，数字按 px 处理。                                                            |
+| `size`           | `MqCellSize`               | 否   | 单元格尺寸：`normal` \| `large`。                                                     |
 
 ### Events
 
@@ -43,7 +50,7 @@
 
 ### 导出类型
 
-`MqCellProps`、`MqCellEmits`。
+`MqCellArrowDirection`、`MqCellValueAlign`、`MqCellSize`、`MqCellProps`、`MqCellEmits`。
 
 ## 主题变量
 

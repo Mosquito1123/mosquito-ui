@@ -184,104 +184,104 @@ import { MqButton, showToast } from '@mosquito/ui'
 
 ## 组件
 
-| 组件                                             | 能力                                                                                                 |
-| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| `mq-button`                                      | `type` / `variant` / `size` / `round` / `block` / `disabled` / `loading`。禁用和加载中不发出 `click` |
-| `mq-cell`                                        | `title` / `value` / `label` / `is-link` / `clickable` / `disabled` / `required`。右侧可放插槽        |
-| `mq-cell-group`                                  | 分组标题、分割线和圆角卡片                                                                           |
-| `mq-switch`                                      | `v-model`，可换开关值、颜色和尺寸。`before-change` 返回 `false` 时不切换                             |
-| `mq-checkbox` / `mq-checkbox-group`              | 可单独绑定，也可按组多选，支持 `min` / `max`                                                         |
-| `mq-radio` / `mq-radio-group`                    | 组内单选，`type="button"` 变成按钮，`allow-uncheck` 可取消                                           |
-| `mq-input`                                       | `v-model`、清空、字数、密码显隐、`compact` 放进单元格                                                |
-| `mq-tag`                                         | 类型、镂空、浅色、圆角、可关闭                                                                       |
-| `mq-badge`                                       | 数字、上限、红点。`0` 默认不显示                                                                     |
-| `mq-divider`                                     | 文本位置、虚线、垂直                                                                                 |
-| `mq-progress`                                    | `percentage` 限制在 0–100，可用 `status` 换色                                                        |
-| `mq-textarea`                                    | 多行输入，清空、字数、`auto-height`。`maxlength` 小于 0 时不限制                                     |
-| `mq-slider`                                      | 单值滑块，`min` / `max` / `step`。`change` 为 `{ value }`                                            |
-| `mq-rate`                                        | 文字星号评分，可半星、可再点清空                                                                     |
-| `mq-notice-bar`                                  | 通告。`info` 走主色，可关闭，需要时才滚动                                                            |
-| `mq-empty`                                       | 空状态。标记用伪元素，图片和底部用插槽                                                               |
-| `mq-status-tip`                                  | 缺省提示。7 种内置文字符号、自定义图片 URL、底部插槽，不依赖外链图标                                 |
-| `mq-steps` / `mq-step`                           | 按顺序编号。`active` 之前为完成，当前为进行中                                                        |
-| `mq-collapse` / `mq-collapse-item`               | 多选或手风琴。`before-expand` 返回 `false` 时不展开                                                  |
-| `mq-action-sheet`                                | 底部动作列表，复用弹出层。`select` 为 `{ item, index }`                                              |
-| `mq-search`                                      | 原生输入加文字按钮，不套输入框和按钮组件                                                             |
-| `mq-dialog`                                      | 受控对话框，复用弹出层。可 `before-confirm`                                                          |
-| `mq-message-box`                                 | 命令式 alert / confirm / prompt，配合 `useMessage`，Promise 返回，`selector` 可隔离多个宿主          |
-| `mq-input-number`                                | 加减计数，文字按钮，不使用图标字体                                                                   |
-| `mq-notify`                                      | `showNotify` / `hideNotify`，页面挂 `<mq-notify />`                                                  |
-| `mq-navbar`                                      | 顶栏。左侧箭头用文字 `‹`                                                                             |
-| `mq-tabs` / `mq-tab`                             | 标签页。`v-model` 可为索引或 `name`                                                                  |
-| `mq-tabbar` / `mq-tabbar-item`                   | 底栏。用 `mark` 文字标记，可用 `icon` 插槽                                                           |
-| `mq-segmented`                                   | 分段器                                                                                               |
-| `mq-countdown`                                   | 倒计时。暴露 `start` / `pause` / `reset`                                                             |
-| `mq-skeleton`                                    | 骨架占位。`loading` 为 false 时显示插槽                                                              |
-| `mq-gap`                                         | 间隔槽，可开底部安全区                                                                               |
-| `mq-overlay`                                     | 遮罩层，`show` 控制显隐                                                                              |
-| `mq-card`                                        | 卡片，`title` / `type="rectangle"`，底部 `footer` 插槽                                               |
-| `mq-row` / `mq-col`                              | 24 栅格布局                                                                                          |
-| `mq-grid` / `mq-grid-item`                       | 宫格。项用 `mark` 文字，不用图标字体                                                                 |
-| `mq-loadmore`                                    | 列表底部加载态：`loading` / `finished` / `error`                                                     |
-| `mq-sticky`                                      | CSS 吸顶                                                                                             |
-| `mq-fab`                                         | 悬浮按钮，文字 `+` / `×` 触发                                                                        |
-| `mq-pagination`                                  | 分页，`v-model` 当前页                                                                               |
-| `mq-transition`                                  | 进入离开过渡：`fade` / `slide-*` / `zoom-*`                                                          |
-| `mq-backtop`                                     | 回到顶部，默认文字 `↑`                                                                               |
-| `mq-text`                                        | 文本：主题色、行数、`price` / `phone` / `name` 模式                                                  |
-| `mq-swipe-action`                                | 左右滑动操作，`closeSwipeActions()` 可统一收起                                                       |
-| `mq-sidebar` / `mq-sidebar-item`                 | 侧边导航                                                                                             |
-| `mq-circle`                                      | 环形进度（SVG）                                                                                      |
-| `mq-count-to`                                    | 数字滚动                                                                                             |
-| `mq-form` / `mq-form-item`                       | 表单与校验（轻量 `schema`，不内置 Zod）                                                              |
-| `mq-avatar` / `mq-avatar-group`                  | 头像：图片 / 文字 / `mark`；叠层头像组超出数量收成 `+N`                                              |
-| `mq-img`                                         | 图片：宽高比、圆角、懒加载、加载中与失败插槽                                                         |
-| `mq-picker-view` / `mq-picker`                   | 滚轮选择器与底部弹出选择器，支持多列和级联                                                           |
-| `mq-col-picker`                                  | 多列联动选择，`column-change` 同步/异步补列，`finish(false)` 可取消                                  |
-| `mq-table`                                       | 数据表格：列配置、斑马纹、边框、单元格插槽                                                           |
-| `mq-calendar`                                    | 日历：单选、区间、多选，支持最小/最大日期                                                            |
-| `mq-calendar-view`                               | 内联可滚动日历面板：日期/区间/日期时间、最大区间、同日限制，`scrollIntoView()`                       |
-| `mq-upload`                                      | 图片 / 视频 / 文件选择，接 `uni.uploadFile` 或自定义上传                                             |
-| `mq-datetime-picker-view` / `mq-datetime-picker` | 日期时间滚轮与底部弹层，支持年 / 年月 / 日期 / 时间 / 完整日期时间                                   |
-| `mq-cascader`                                    | 级联选择：逐级面板、选中路径 Tab、`check-strictly`                                                   |
-| `mq-drop-menu` / `mq-drop-menu-item`             | 下拉筛选菜单，支持上下展开、蒙层与自定义选项                                                         |
-| `mq-floating-panel`                              | 可拖动吸附的底部浮动面板                                                                             |
-| `mq-signature`                                   | Canvas 签名板，支持撤回、清空和导出图片                                                              |
-| `mq-timeline` / `mq-timeline-item`               | 时间线，支持节点标题、时间、高亮和自定义线色                                                         |
-| `mq-select`                                      | 底部弹层选择器，支持单选 / 多选与本地搜索                                                            |
-| `mq-slide-verify`                                | 滑动验证，阈值可调，支持受控和重置                                                                   |
-| `mq-float-view`                                  | 可拖动悬浮窗，自动限制在窗口范围内                                                                   |
-| `mq-read-more`                                   | 长文本折叠 / 展开，支持插槽与渐变遮罩                                                                |
-| `mq-marquee`                                     | 文字跑马灯，可调方向和滚动时长                                                                       |
-| `mq-tree`                                        | 树形选择，支持多选级联、展开集合与全部展开 / 收起                                                    |
-| `mq-waterfall`                                   | 瀑布流分列，可按估算高度自动平衡各列                                                                 |
-| `mq-draggable`                                   | 拖拽排序列表，支持长按触发与自定义位移阈值                                                           |
-| `mq-banner`                                      | 轮播图，支持自动播放、指示点和标题叠加                                                               |
-| `mq-rolling-number`                              | 数字滚动，逐位数字列滚动并可保留小数与千分位                                                         |
-| `mq-config-provider`                             | 主题与 CSS 变量作用域                                                                                |
-| `mq-curtain`                                     | 幕帘公告图                                                                                           |
-| `mq-index-bar` / `mq-index-anchor`               | 索引栏                                                                                               |
-| `mq-password-input`                              | 密码 / 验证码格子                                                                                    |
-| `mq-number-keyboard`                             | 数字键盘                                                                                             |
-| `mq-sort-button`                                 | 排序按钮                                                                                             |
-| `mq-watermark`                                   | 文字水印                                                                                             |
-| `mq-tooltip` / `mq-popover`                      | 提示与菜单气泡；`closeOutside()`                                                                     |
-| `mq-popup`                                       | `v-model` 受控显隐，`position` 为 `bottom` 或 `center`，发出 `open` / `close`                        |
-| `mq-toast`                                       | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主                                        |
-| `mq-loading`                                     | 单节点旋转指示，可选 `size`、`color`、`label`                                                        |
-| `mq-safe-bottom`                                 | 底部安全区留白，`bg` 同时写进行内背景和 `--mq-safe-bg`，默认透明                                     |
-| `mq-icon`                                        | 内置 unicode 字形与 `name`、`size`、`color`；插槽优先，不引入图标字体                                |
-| `mq-layout`                                      | flex 容器：`direction` / `wrap` / `justify` / `align` / `gutter`                                     |
-| `mq-resize`                                      | 元素尺寸监听，`resize` 事件与 `measure()`；优先 `ResizeObserver`，回退 `uni.createSelectorQuery()`   |
-| `mq-root-portal`                                 | 传送到页面根节点，`to` / `disabled`；不支持 Teleport 时原位渲染                                      |
-| `mq-rich-text`                                   | 不用 `v-html` 的富文本节点渲染，支持常见标签与递归节点                                               |
-| `mq-keyboard`                                    | 字母 / 数字 / 符号三页键盘，`input` / `delete` / `confirm` / `close`                                 |
-| `mq-select-picker`                               | 轻量单选弹层，`options` 支持原始值或 `{ label, value, disabled }`                                    |
-| `mq-tour`                                        | 新手引导，`steps` + 高亮框，支持 `next` / `prev` / `finish`                                          |
-| `mq-swiper`                                      | 平台 `swiper` 封装，支持垂直、指示点颜色、前后边距与 `switchTo()`                                    |
-| `mq-image-preview` / `mq-video-preview`          | 全屏预览，既可由 props 受控，也可由 `showImagePreview` / `showVideoPreview` 驱动                     |
-| `mq-img-cropper`                                 | canvas 裁剪，比例、旋转、导出质量；暴露 `chooseImage` / `crop` / `rotate` / `reset`                  |
-| `mq-bar-code` / `mq-qr-code`                     | CODE128 条形码与二维码（L/M/Q/H），canvas 无可用上下文时降级为文字占位                               |
+| 组件                                             | 能力                                                                                                                                                                                 |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `mq-button`                                      | `type` / `variant` / `size` / `round` / `block` / `disabled` / `loading`。禁用和加载中不发出 `click`；`variant` 支持 `dashed` / `soft` / `subtle`，`hairline` 细分边框               |
+| `mq-cell`                                        | `title` / `value` / `label` / `is-link` / `clickable` / `disabled` / `required`。右侧可放插槽；支持 `to` / `replace` 跳转、`center`、`value-align`、`title-width`、`arrow-direction` |
+| `mq-cell-group`                                  | 分组标题、分割线和圆角卡片                                                                                                                                                           |
+| `mq-switch`                                      | `v-model`，可换开关值、颜色和尺寸。`before-change` 返回 `false` 时不切换                                                                                                             |
+| `mq-checkbox` / `mq-checkbox-group`              | 可单独绑定，也可按组多选，支持 `min` / `max`；组暴露 `toggleAll`，单项支持 `indeterminate` 与 `dot`                                                                                  |
+| `mq-radio` / `mq-radio-group`                    | 组内单选，`type="button"` 变成按钮，`allow-uncheck` 可取消                                                                                                                           |
+| `mq-input`                                       | `v-model`、清空、字数、密码显隐、`compact` 放进单元格                                                                                                                                |
+| `mq-tag`                                         | 类型、镂空、浅色、圆角、可关闭；`dynamic` 输入，`click` / `confirm` 事件                                                                                                             |
+| `mq-badge`                                       | 数字、上限、红点。`0` 默认不显示；`top` / `right` 偏移、`type="info"`、`shape="bubble"`                                                                                              |
+| `mq-divider`                                     | 文本位置、虚线、垂直                                                                                                                                                                 |
+| `mq-progress`                                    | `percentage` 限制在 0–100，可用 `status` 换色                                                                                                                                        |
+| `mq-textarea`                                    | 多行输入，清空、字数、`auto-height`。`maxlength` 小于 0 时不限制                                                                                                                     |
+| `mq-slider`                                      | 单值滑块，`min` / `max` / `step`。`change` 为 `{ value }`                                                                                                                            |
+| `mq-rate`                                        | 文字星号评分，可半星、可再点清空                                                                                                                                                     |
+| `mq-notice-bar`                                  | 通告。`info` 走主色，可关闭，需要时才滚动                                                                                                                                            |
+| `mq-empty`                                       | 空状态。标记用伪元素，图片和底部用插槽；支持 `icon` / `icon-size`                                                                                                                    |
+| `mq-status-tip`                                  | 缺省提示。7 种内置文字符号、自定义图片 URL、底部插槽，不依赖外链图标                                                                                                                 |
+| `mq-steps` / `mq-step`                           | 按顺序编号。`active` 之前为完成，当前为进行中                                                                                                                                        |
+| `mq-collapse` / `mq-collapse-item`               | 多选或手风琴。`before-expand` 返回 `false` 时不展开                                                                                                                                  |
+| `mq-action-sheet`                                | 底部动作列表，复用弹出层。`select` 为 `{ item, index }`；支持 `cancel`、`close-on-click-action`、加载中选项                                                                          |
+| `mq-search`                                      | 原生输入加文字按钮，不套输入框和按钮组件；支持 `type`、`hide-cancel`、`cancel` / `focus` / `blur`                                                                                    |
+| `mq-dialog`                                      | 受控对话框，复用弹出层。可 `before-confirm`                                                                                                                                          |
+| `mq-message-box`                                 | 命令式 alert / confirm / prompt，配合 `useMessage`，Promise 返回，`selector` 可隔离多个宿主                                                                                          |
+| `mq-input-number`                                | 加减计数，文字按钮，不使用图标字体；支持 `focus` / `blur`、`without-input`、`allow-null`                                                                                             |
+| `mq-notify`                                      | `showNotify` / `hideNotify`，页面挂 `<mq-notify />`                                                                                                                                  |
+| `mq-navbar`                                      | 顶栏。左侧箭头用文字 `‹`                                                                                                                                                             |
+| `mq-tabs` / `mq-tab`                             | 标签页。`v-model` 可为索引或 `name`                                                                                                                                                  |
+| `mq-tabbar` / `mq-tabbar-item`                   | 底栏。用 `mark` 文字标记，可用 `icon` 插槽                                                                                                                                           |
+| `mq-segmented`                                   | 分段器                                                                                                                                                                               |
+| `mq-countdown`                                   | 倒计时。暴露 `start` / `pause` / `reset`                                                                                                                                             |
+| `mq-skeleton`                                    | 骨架占位。`loading` 为 false 时显示插槽                                                                                                                                              |
+| `mq-gap`                                         | 间隔槽，可开底部安全区                                                                                                                                                               |
+| `mq-overlay`                                     | 遮罩层，`show` 控制显隐                                                                                                                                                              |
+| `mq-card`                                        | 卡片，`title` / `type="rectangle"`，底部 `footer` 插槽                                                                                                                               |
+| `mq-row` / `mq-col`                              | 24 栅格布局                                                                                                                                                                          |
+| `mq-grid` / `mq-grid-item`                       | 宫格。项用 `mark` 文字，不用图标字体                                                                                                                                                 |
+| `mq-loadmore`                                    | 列表底部加载态：`loading` / `finished` / `error`                                                                                                                                     |
+| `mq-sticky`                                      | CSS 吸顶                                                                                                                                                                             |
+| `mq-fab`                                         | 悬浮按钮，文字 `+` / `×` 触发                                                                                                                                                        |
+| `mq-pagination`                                  | 分页，`v-model` 当前页；`total-page`、`hide-if-one-page`，插槽含 `total` / `page-size`                                                                                               |
+| `mq-transition`                                  | 进入离开过渡：`fade` / `slide-*` / `zoom-*`                                                                                                                                          |
+| `mq-backtop`                                     | 回到顶部，默认文字 `↑`                                                                                                                                                               |
+| `mq-text`                                        | 文本：主题色、行数、`price` / `phone` / `name` 模式                                                                                                                                  |
+| `mq-swipe-action`                                | 左右滑动操作，`closeSwipeActions()` 可统一收起                                                                                                                                       |
+| `mq-sidebar` / `mq-sidebar-item`                 | 侧边导航                                                                                                                                                                             |
+| `mq-circle`                                      | 环形进度（SVG）                                                                                                                                                                      |
+| `mq-count-to`                                    | 数字滚动                                                                                                                                                                             |
+| `mq-form` / `mq-form-item`                       | 表单与校验（轻量 `schema`，不内置 Zod）                                                                                                                                              |
+| `mq-avatar` / `mq-avatar-group`                  | 头像：图片 / 文字 / `mark`；叠层头像组超出数量收成 `+N`                                                                                                                              |
+| `mq-img`                                         | 图片：宽高比、圆角、懒加载、加载中与失败插槽                                                                                                                                         |
+| `mq-picker-view` / `mq-picker`                   | 滚轮选择器与底部弹出选择器，支持多列和级联                                                                                                                                           |
+| `mq-col-picker`                                  | 多列联动选择，`column-change` 同步/异步补列，`finish(false)` 可取消                                                                                                                  |
+| `mq-table`                                       | 数据表格：列配置、斑马纹、边框、单元格插槽                                                                                                                                           |
+| `mq-calendar`                                    | 日历：单选、区间、多选，支持最小/最大日期                                                                                                                                            |
+| `mq-calendar-view`                               | 内联可滚动日历面板：日期/区间/日期时间、最大区间、同日限制，`scrollIntoView()`                                                                                                       |
+| `mq-upload`                                      | 图片 / 视频 / 文件选择，接 `uni.uploadFile` 或自定义上传                                                                                                                             |
+| `mq-datetime-picker-view` / `mq-datetime-picker` | 日期时间滚轮与底部弹层，支持年 / 年月 / 日期 / 时间 / 完整日期时间                                                                                                                   |
+| `mq-cascader`                                    | 级联选择：逐级面板、选中路径 Tab、`check-strictly`                                                                                                                                   |
+| `mq-drop-menu` / `mq-drop-menu-item`             | 下拉筛选菜单，支持上下展开、蒙层与自定义选项                                                                                                                                         |
+| `mq-floating-panel`                              | 可拖动吸附的底部浮动面板                                                                                                                                                             |
+| `mq-signature`                                   | Canvas 签名板，支持撤回、清空和导出图片                                                                                                                                              |
+| `mq-timeline` / `mq-timeline-item`               | 时间线，支持节点标题、时间、高亮和自定义线色                                                                                                                                         |
+| `mq-select`                                      | 底部弹层选择器，支持单选 / 多选与本地搜索                                                                                                                                            |
+| `mq-slide-verify`                                | 滑动验证，阈值可调，支持受控和重置                                                                                                                                                   |
+| `mq-float-view`                                  | 可拖动悬浮窗，自动限制在窗口范围内                                                                                                                                                   |
+| `mq-read-more`                                   | 长文本折叠 / 展开，支持插槽与渐变遮罩                                                                                                                                                |
+| `mq-marquee`                                     | 文字跑马灯，可调方向和滚动时长                                                                                                                                                       |
+| `mq-tree`                                        | 树形选择，支持多选级联、展开集合与全部展开 / 收起                                                                                                                                    |
+| `mq-waterfall`                                   | 瀑布流分列，可按估算高度自动平衡各列                                                                                                                                                 |
+| `mq-draggable`                                   | 拖拽排序列表，支持长按触发与自定义位移阈值                                                                                                                                           |
+| `mq-banner`                                      | 轮播图，支持自动播放、指示点和标题叠加                                                                                                                                               |
+| `mq-rolling-number`                              | 数字滚动，逐位数字列滚动并可保留小数与千分位                                                                                                                                         |
+| `mq-config-provider`                             | 主题与 CSS 变量作用域                                                                                                                                                                |
+| `mq-curtain`                                     | 幕帘公告图                                                                                                                                                                           |
+| `mq-index-bar` / `mq-index-anchor`               | 索引栏                                                                                                                                                                               |
+| `mq-password-input`                              | 密码 / 验证码格子                                                                                                                                                                    |
+| `mq-number-keyboard`                             | 数字键盘                                                                                                                                                                             |
+| `mq-sort-button`                                 | 排序按钮                                                                                                                                                                             |
+| `mq-watermark`                                   | 文字水印                                                                                                                                                                             |
+| `mq-tooltip` / `mq-popover`                      | 提示与菜单气泡；`closeOutside()`                                                                                                                                                     |
+| `mq-popup`                                       | `v-model` 受控显隐，五方位 `position`，`modal` / `closable`，`click-modal` 与过渡阶段事件                                                                                            |
+| `mq-toast`                                       | `showToast` / `hideToast`；页面放一个 `<mq-toast />` 作为宿主                                                                                                                        |
+| `mq-loading`                                     | 单节点指示，可选 `size`、`color`、`label`；`type` 支持 `circular` / `spinner` / `dots` / `wave`，`text` 与默认插槽                                                                   |
+| `mq-safe-bottom`                                 | 底部安全区留白，`bg` 同时写进行内背景和 `--mq-safe-bg`，默认透明                                                                                                                     |
+| `mq-icon`                                        | 内置 unicode 字形与 `name`、`size`、`color`；插槽优先，不引入图标字体                                                                                                                |
+| `mq-layout`                                      | flex 容器：`direction` / `wrap` / `justify` / `align` / `gutter`                                                                                                                     |
+| `mq-resize`                                      | 元素尺寸监听，`resize` 事件与 `measure()`；优先 `ResizeObserver`，回退 `uni.createSelectorQuery()`                                                                                   |
+| `mq-root-portal`                                 | 传送到页面根节点，`to` / `disabled`；不支持 Teleport 时原位渲染                                                                                                                      |
+| `mq-rich-text`                                   | 不用 `v-html` 的富文本节点渲染，支持常见标签与递归节点                                                                                                                               |
+| `mq-keyboard`                                    | 字母 / 数字 / 符号三页键盘，`input` / `delete` / `confirm` / `close`                                                                                                                 |
+| `mq-select-picker`                               | 轻量单选弹层，`options` 支持原始值或 `{ label, value, disabled }`                                                                                                                    |
+| `mq-tour`                                        | 新手引导，`steps` + 高亮框，支持 `next` / `prev` / `finish`                                                                                                                          |
+| `mq-swiper`                                      | 平台 `swiper` 封装，支持垂直、指示点颜色、前后边距与 `switchTo()`                                                                                                                    |
+| `mq-image-preview` / `mq-video-preview`          | 全屏预览，既可由 props 受控，也可由 `showImagePreview` / `showVideoPreview` 驱动                                                                                                     |
+| `mq-img-cropper`                                 | canvas 裁剪，比例、旋转、导出质量；暴露 `chooseImage` / `crop` / `rotate` / `reset`                                                                                                  |
+| `mq-bar-code` / `mq-qr-code`                     | CODE128 条形码与二维码（L/M/Q/H），canvas 无可用上下文时降级为文字占位                                                                                                               |
 
 ```vue
 <script setup lang="ts">
