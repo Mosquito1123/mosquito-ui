@@ -10,8 +10,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  # configure-pages 的 enablement 需要它来首次启用 Pages；启用后可按需移除。
-  administration: write
 
 concurrency:
   group: pages
@@ -49,8 +47,6 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3

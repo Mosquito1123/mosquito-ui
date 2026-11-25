@@ -362,7 +362,7 @@ pnpm test:e2e     # 文档站 E2E（使用本机 Chrome）
 | `deploy-docs.yml` | 推送到 `main`（或手动触发） | 构建 VitePress 站点并部署到 GitHub Pages                                         |
 | `release.yml`     | 推送 `v*` 标签              | 校验标签与 `packages/ui/package.json` 版本一致，通过后发布 `@mosquito/ui` 到 npm |
 
-首次推送时 `configure-pages` 会自动把 Pages 源设为 **GitHub Actions**（需要 `administration: write` 权限，启用后可从工作流移除）；也可手动在 Settings → Pages → Build and deployment 确认。文档部署在 `https://<owner>.github.io/mosquito-ui/`（部署工作流通过 `VITE_DOCS_BASE` 注入 base 路径；本地与 CI 构建仍使用根路径，保证 E2E 的绝对路径断言有效）。
+首次启用 Pages：仓库 Settings → Pages → Build and deployment → Source 选 **GitHub Actions**。文档部署在 `https://<owner>.github.io/mosquito-ui/`（部署工作流通过 `VITE_DOCS_BASE` 注入 base 路径；本地与 CI 构建仍使用根路径，保证 E2E 的绝对路径断言有效）。
 
 发布前在仓库 Settings → Secrets and variables → Actions 添加 `NPM_TOKEN`（有发布权限的 npm access token），并先把 `packages/ui/package.json` 的版本更新为待发布版本，再推送同名 `v<version>` 标签（如 `v0.12.0`）。未配置 `NPM_TOKEN` 时，标签发布会在 npm 步骤失败，不影响日常 CI 与文档部署。
 
