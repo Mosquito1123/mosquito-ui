@@ -24,6 +24,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { useLocale } from '../../composables/use-locale'
 import {
   buildDatetimeColumns,
   correctDatetime,
@@ -58,6 +59,32 @@ const props = withDefaults(defineProps<MqDatetimePickerViewProps>(), {
 })
 
 const emit = defineEmits<MqDatetimePickerViewEmits>()
+const { t, locale } = useLocale()
+
+/** 日期列的标签由 utils 生成（如「2026年」），这里只替换其中的中文后缀。 */
+const suffixKeys: Array<[string, string]> = [
+  ['年', 'datetime.year'],
+  ['月', 'datetime.month'],
+  ['日', 'datetime.day'],
+  ['时', 'datetime.hour'],
+  ['分', 'datetime.minute'],
+  ['秒', 'datetime.second'],
+]
+
+function localizeLabels(columns: MqPickerOption[][]): MqPickerOption[][] {
+  return columns.map((column) =>
+    column.map((option) => {
+      let label = String(option.label)
+      for (const [suffix, key] of suffixKeys) {
+        if (label.endsWith(suffix)) {
+          label = `${label.slice(0, -suffix.length)}${t(key)}`
+          break
+        }
+      }
+      return label === option.label ? option : { ...option, label }
+    }),
+  )
+}
 
 const state = ref<{ columns: MqPickerOption[][]; indexes: number[]; value: string | number }>({
   columns: [],
@@ -103,12 +130,16 @@ const itemStyle = computed(() => ({
 function rebuild(value: string | number | undefined) {
   const corrected = correctDatetime(value, options.value)
   const parts = parseDatetime(corrected, options.value)
-  const columns = buildDatetimeColumns(parts, options.value)
+  const columns = localizeLabels(buildDatetimeColumns(parts, options.value))
   const indexes = datetimeIndexes(parts, columns, options.value)
   state.value = { columns, indexes, value: corrected }
 }
 
 rebuild(props.modelValue)
+
+watch(locale, () => {
+  rebuild(props.modelValue ?? state.value.value)
+})
 
 watch(
   () => [

@@ -19,7 +19,7 @@
           @click="onCancel"
           @keydown.enter.prevent="onCancel"
         >
-          {{ cancelText }}
+          {{ cancelLabel }}
         </text>
         <text class="mq-select__title">{{ title }}</text>
         <text
@@ -29,12 +29,12 @@
           @click="onConfirm"
           @keydown.enter.prevent="onConfirm"
         >
-          {{ confirmText }}
+          {{ confirmLabel }}
         </text>
       </view>
 
       <view v-if="searchable" class="mq-select__search">
-        <mq-input v-model="query" compact clearable :placeholder="placeholder" confirm-type="search" />
+        <mq-input v-model="query" compact clearable :placeholder="placeholderText" confirm-type="search" />
       </view>
 
       <scroll-view class="mq-select__options" scroll-y>
@@ -52,7 +52,7 @@
           <text class="mq-select__option-label">{{ option.label }}</text>
           <text v-if="isSelected(option)" class="mq-select__check">✓</text>
         </view>
-        <view v-if="!filteredOptions.length" class="mq-select__empty">没有匹配的选项</view>
+        <view v-if="!filteredOptions.length" class="mq-select__empty">{{ t('common.noMatch') }}</view>
       </scroll-view>
 
       <mq-safe-bottom v-if="safeArea" />
@@ -62,6 +62,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import { filterSelectOptions, normalizeSelectValue, toggleSelectValue } from '../../utils/select'
 import type { MqSelectOption } from '../../utils/select'
 import MqInput from '../mq-input/MqInput.vue'
@@ -79,10 +80,7 @@ const props = withDefaults(defineProps<MqSelectProps>(), {
   options: () => [],
   multiple: false,
   title: '',
-  placeholder: '搜索',
   searchable: false,
-  cancelText: '取消',
-  confirmText: '确定',
   maskClosable: true,
   zIndex: undefined,
   duration: 200,
@@ -95,7 +93,10 @@ const draft = ref<Array<string | number>>([])
 const query = ref('')
 let cancelPending = false
 
-const popupTitle = computed(() => props.title || '请选择')
+const cancelLabel = computed(() => props.cancelText?.trim() || t('common.cancel'))
+const confirmLabel = computed(() => props.confirmText?.trim() || t('common.confirm'))
+const placeholderText = computed(() => props.placeholder?.trim() || t('common.search'))
+const popupTitle = computed(() => props.title?.trim() || t('common.select'))
 
 const filteredOptions = computed(() =>
   props.searchable ? filterSelectOptions(props.options, query.value) : props.options,

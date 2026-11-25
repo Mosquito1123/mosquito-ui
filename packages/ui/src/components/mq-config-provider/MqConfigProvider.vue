@@ -5,7 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
+import { setLocale } from '../../locale'
 import type { MqConfigProviderProps } from './types'
 
 defineOptions({
@@ -16,6 +17,17 @@ const props = withDefaults(defineProps<MqConfigProviderProps>(), {
   theme: 'light',
   themeVars: () => ({}),
 })
+
+// 全局语言：只跟随 prop 更新，卸载时不回滚（语言是应用级状态）。
+watch(
+  () => props.locale,
+  (locale) => {
+    if (locale) {
+      setLocale(locale)
+    }
+  },
+  { immediate: true },
+)
 
 const themeClass = computed(() => (props.theme === 'dark' ? 'mq-theme-dark' : 'mq-theme-light'))
 

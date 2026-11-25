@@ -171,6 +171,8 @@ export default defineConfig({
           { text: '开始使用', link: '/guide/getting-started' },
           { text: '安装', link: '/guide/installation' },
           { text: '主题', link: '/guide/theming' },
+          { text: '主题令牌', link: '/guide/theme-vars' },
+          { text: '国际化', link: '/guide/i18n' },
           { text: '常见问题', link: '/guide/faq' },
         ],
       },

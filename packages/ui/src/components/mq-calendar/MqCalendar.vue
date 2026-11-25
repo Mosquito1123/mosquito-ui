@@ -5,7 +5,7 @@
         class="mq-calendar__nav"
         role="button"
         tabindex="0"
-        aria-label="上个月"
+        :aria-label="t('calendar.prevMonth')"
         @click="prevMonth"
         @keydown.enter.prevent="prevMonth"
       >
@@ -16,7 +16,7 @@
         class="mq-calendar__nav"
         role="button"
         tabindex="0"
-        aria-label="下个月"
+        :aria-label="t('calendar.nextMonth')"
         @click="nextMonth"
         @keydown.enter.prevent="nextMonth"
       >
@@ -57,7 +57,7 @@
           @click="onClear"
           @keydown.enter.prevent="onClear"
         >
-          {{ clearText }}
+          {{ clearLabel }}
         </text>
         <text
           v-if="showConfirm"
@@ -67,7 +67,7 @@
           @click="onConfirm"
           @keydown.enter.prevent="onConfirm"
         >
-          {{ confirmText }}
+          {{ confirmLabel }}
         </text>
       </view>
     </view>
@@ -76,10 +76,10 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import {
   addMonths,
   buildCalendarDays,
-  formatDateSummary,
   isDateBetween,
   normalizeDateList,
   nextDateSelection,
@@ -101,8 +101,6 @@ const props = withDefaults(defineProps<MqCalendarProps>(), {
   firstDayOfWeek: 0,
   showConfirm: true,
   showClear: true,
-  confirmText: '确定',
-  clearText: '清除',
   disabledDate: undefined,
   month: '',
 })
@@ -120,13 +118,29 @@ const viewMonth = ref(initial?.month ?? new Date().getMonth() + 1)
 const draft = ref<string[]>(normalizeDateList(props.modelValue))
 let lastPublished: string[] = []
 
-const monthLabel = computed(() => `${viewYear.value}年${viewMonth.value}月`)
+const confirmLabel = computed(() => props.confirmText?.trim() || t('common.confirm'))
+const clearLabel = computed(() => props.clearText?.trim() || t('common.clearDate'))
+const monthLabel = computed(() => t('calendar.monthTitle', { year: viewYear.value, month: viewMonth.value }))
 const weekdays = computed(() => {
-  const base = ['日', '一', '二', '三', '四', '五', '六']
+  const base = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'].map((day) =>
+    t(`calendar.weekdays.${day}`),
+  )
   return props.firstDayOfWeek === 1 ? [...base.slice(1), base[0]] : base
 })
 const cells = computed(() => buildCalendarDays(viewYear.value, viewMonth.value, props.firstDayOfWeek))
-const summary = computed(() => formatDateSummary(draft.value, props.mode))
+const summary = computed(() => {
+  const values = draft.value
+  if (props.mode === 'multiple') {
+    return values.length ? t('calendar.selectedDays', { count: values.length }) : t('calendar.selectDate')
+  }
+  if (props.mode === 'range') {
+    if (!values.length) {
+      return t('calendar.selectDate')
+    }
+    return values.length > 1 ? `${values[0]} ~ ${values[1]}` : `${values[0]} ~ ${t('calendar.rangeEnd')}`
+  }
+  return values[0] || t('calendar.selectDate')
+})
 
 watch(
   () => props.modelValue,

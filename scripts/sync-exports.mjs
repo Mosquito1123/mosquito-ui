@@ -54,6 +54,16 @@ const utilTypeLines = [
   "export { attachToastHost } from './utils/toast'",
 ]
 
+const localeLines = [
+  "export { localeState, t, setLocale, addMessages, zhCN, enUS, DEFAULT_LOCALE, FALLBACK_LOCALE } from './locale'",
+  "export type { MqLocaleState, MqLocaleMessages, MqMessageMap, MqTranslate, MqTranslateParams, UseLocaleReturn } from './locale'",
+]
+
+const themeLines = [
+  "export { mqThemeVars } from './styles/theme-vars'",
+  "export type { MqThemeVarName } from './styles/theme-vars'",
+]
+
 const previewLines = [
   "export { showImagePreview, hideImagePreview, imagePreviewState } from './utils/image-preview'",
   "export { showVideoPreview, hideVideoPreview, videoPreviewState } from './utils/video-preview'",
@@ -73,6 +83,12 @@ const content = [
   '',
   '// 媒体预览',
   ...previewLines,
+  '',
+  '// 国际化',
+  ...localeLines,
+  '',
+  '// 主题令牌',
+  ...themeLines,
   '',
   '// 组合式函数',
   "export * from './composables'",

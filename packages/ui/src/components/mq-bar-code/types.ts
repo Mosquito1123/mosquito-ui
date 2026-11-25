@@ -7,7 +7,7 @@ export type MqBarCodeTextPosition = 'top' | 'bottom'
 export interface MqBarCodeProps {
   /** 条码内容。为空或含非法字符时发出 `error` 事件并显示文字占位。 */
   text?: string
-  /** 条码格式。当前仅实现 `CODE128`，其余格式会发出 `error` 事件。默认 `CODE128`。 */
+  /** 条码格式：`CODE128` / `EAN13` / `EAN8` / `UPC-A` / `CODE39`。非法输入会发出 `error` 事件。默认 `CODE128`。 */
   format?: BarCodeFormat
   /** 画布宽度，单位 px。大于 0 时模块按宽度缩放；为 0 时按 `lineWidth` 自动计算。默认 `0`。 */
   width?: number

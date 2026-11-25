@@ -12,7 +12,7 @@
       @click="toggle"
       @keydown.enter.prevent="toggle"
     >
-      <text class="mq-read-more__toggle-text">{{ expanded ? collapseText : expandText }}</text>
+      <text class="mq-read-more__toggle-text">{{ expanded ? collapseLabel : expandLabel }}</text>
       <text class="mq-read-more__arrow">{{ expanded ? '▴' : '▾' }}</text>
     </view>
   </view>
@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import { computed, ref, useSlots } from 'vue'
+import { t } from '../../locale'
 import type { MqReadMoreEmits, MqReadMoreProps } from './types'
 
 defineOptions({
@@ -29,8 +30,6 @@ defineOptions({
 const props = withDefaults(defineProps<MqReadMoreProps>(), {
   text: '',
   maxHeight: 120,
-  expandText: '展开',
-  collapseText: '收起',
   disabled: false,
   toggleable: undefined,
 })
@@ -39,6 +38,9 @@ const emit = defineEmits<MqReadMoreEmits>()
 const slots = useSlots()
 
 const expanded = ref(false)
+
+const expandLabel = computed(() => props.expandText?.trim() || t('common.expand'))
+const collapseLabel = computed(() => props.collapseText?.trim() || t('common.collapse'))
 
 const showToggle = computed(() => {
   if (props.toggleable !== undefined) {

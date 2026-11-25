@@ -1,6 +1,6 @@
 # 主题
 
-主题令牌全部是 CSS 变量，定义在 `packages/ui/src/styles/variables.scss`。组件不再读取 JS 主题对象；换肤只改自定义属性。
+主题令牌全部是 CSS 变量，运行时定义在 `packages/ui/src/styles/variables.scss`。令牌的唯一数据源是 `packages/ui/src/styles/theme-tokens.json`，SCSS/TS 产物由 `pnpm build:theme-vars` 生成。组件不再读取 JS 主题对象；换肤只改自定义属性。完整令牌表见 [主题变量](./theme-vars.md)。
 
 ## 令牌
 
@@ -30,19 +30,30 @@
 | `--mq-z-toast`            | `1100`                   | 提示层级       |
 | `--mq-safe-bg`            | `transparent`            | 安全区底色     |
 
-组件里使用变量时都带回退值，例如 `var(--mq-color-primary, #0f3d32)`。
+组件里使用变量时都带回退值，例如 `var(--mq-color-primary, #0f3d32)`。`theme-vars.ts` 提供对应常量（如 `mqThemeVars.colorPrimary`），可直接用于内联样式。
+
+## 令牌生成流水线
+
+- 唯一数据源：`packages/ui/src/styles/theme-tokens.json`，逐项记录亮色、暗色与用途。
+- 运行 `pnpm build:theme-vars` 生成 `theme-vars.scss` 与 `theme-vars.ts`；脚本可重复运行，输出始终一致，不要手动编辑生成文件。
+- `theme-vars.scss` 提供 `$mq-theme-vars` / `$mq-theme-vars-dark` 两个 SCSS map，以及 `@mixin mq-theme-vars-light` / `@mixin mq-theme-vars-dark` 两个 CSS 变量片段，可在子树内局部声明令牌。
+- 新增或改名令牌时只改 JSON，再跑生成脚本，并同步检查 `variables.scss` 与 [令牌表](./theme-vars.md)。
 
 ## 明暗两套
 
-变量写在 `page`、`:root` 和 `.mq-theme-light` 上。系统偏好深色时，`@media (prefers-color-scheme: dark)` 会切换到暗色值；也可以给祖先节点加 `mq-theme-dark`：
+变量写在 `page`、`:root` 和 `.mq-theme-light` 上。系统偏好深色时，`@media (prefers-color-scheme: dark)` 会切换到暗色值；也可以给祖先节点加 `mq-theme-dark` 类，或设置 `data-mq-theme="dark"`，两者作用于同一组变量：
 
 ```html
 <view class="mq-theme-dark">
   <!-- 这片区域的 --mq-* 走暗色 -->
 </view>
+
+<view data-mq-theme="dark">
+  <!-- 等价写法：适合宿主页面在非组件节点上切暗色 -->
+</view>
 ```
 
-暗色值（部分）：`--mq-color-primary: #8fd0b4`、`--mq-text: #f6f3ee`、`--mq-bg: #161411`、`--mq-bg-muted: #241f1a`、`--mq-border: #3a332c`、`--mq-mask: rgba(0, 0, 0, 0.55)`。完整列表见 `styles/variables.scss`。
+暗色值（部分）：`--mq-color-primary: #8fd0b4`、`--mq-text: #f6f3ee`、`--mq-bg: #161411`、`--mq-bg-muted: #241f1a`、`--mq-border: #3a332c`、`--mq-mask: rgba(0, 0, 0, 0.55)`。完整对照见 [主题变量](./theme-vars.md)。
 
 ## 局部覆盖
 
@@ -76,4 +87,5 @@ H5 要生效，视口需要 `viewport-fit=cover`，示例工程已带上。
 
 - 颜色、圆角、字号、时长、层级统一走 `--mq-*`，组件不为换肤做 JS 计算。
 - 只在 `App.vue` 引入一次 `@mosquito/ui/styles/index.scss`；不要写进 `uni.scss`。
+- 新增令牌先改 `theme-tokens.json`，再运行 `pnpm build:theme-vars`；不要直接编辑生成的 `theme-vars.scss` / `theme-vars.ts`。
 - 样式动画只用 `transform` 和 `opacity`，弹出层关闭后等过渡结束再卸载。

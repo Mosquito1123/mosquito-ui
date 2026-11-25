@@ -19,7 +19,7 @@
           @click="onCancel"
           @keydown.enter.prevent="onCancel"
         >
-          {{ cancelText }}
+          {{ cancelLabel }}
         </text>
         <text class="mq-datetime-picker__title">{{ title }}</text>
         <text
@@ -30,7 +30,7 @@
           @click="onConfirm"
           @keydown.enter.prevent="onConfirm"
         >
-          {{ confirmText }}
+          {{ confirmLabel }}
         </text>
       </view>
       <mq-datetime-picker-view
@@ -59,6 +59,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import MqPopup from '../mq-popup/MqPopup.vue'
 import MqSafeBottom from '../mq-safe-bottom/MqSafeBottom.vue'
 import MqDatetimePickerView from '../mq-datetime-picker-view/MqDatetimePickerView.vue'
@@ -74,8 +75,6 @@ const props = withDefaults(defineProps<MqDatetimePickerProps>(), {
   visible: false,
   type: 'datetime',
   title: '',
-  cancelText: '取消',
-  confirmText: '确定',
   maskClosable: true,
   safeArea: true,
   itemHeight: 44,
@@ -102,7 +101,9 @@ const draft = ref<string | number>('')
 const pending = ref(false)
 let cancelPending = false
 
-const popupTitle = computed(() => props.title || '选择日期')
+const cancelLabel = computed(() => props.cancelText?.trim() || t('common.cancel'))
+const confirmLabel = computed(() => props.confirmText?.trim() || t('common.confirm'))
+const popupTitle = computed(() => props.title?.trim() || t('common.selectDate'))
 
 const currentValue = computed(() => {
   if (props.modelValue !== undefined) {

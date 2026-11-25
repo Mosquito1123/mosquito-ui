@@ -17,7 +17,7 @@
           @click="onCancel"
           @keydown.enter.prevent="onCancel"
         >
-          取消
+          {{ t('common.cancel') }}
         </text>
         <text class="mq-select-picker__title">{{ title }}</text>
         <text
@@ -27,7 +27,7 @@
           @click="onConfirm"
           @keydown.enter.prevent="onConfirm"
         >
-          确定
+          {{ t('common.confirm') }}
         </text>
       </view>
       <scroll-view class="mq-select-picker__options" scroll-y>
@@ -45,7 +45,9 @@
           <text class="mq-select-picker__label">{{ option.label }}</text>
           <text v-if="option.value === draft" class="mq-select-picker__check">✓</text>
         </view>
-        <view v-if="!normalizedOptions.length" class="mq-select-picker__empty">暂无选项</view>
+        <view v-if="!normalizedOptions.length" class="mq-select-picker__empty">{{
+          t('common.noSelectOptions')
+        }}</view>
       </scroll-view>
       <view v-if="safeArea" class="mq-select-picker__safe-bottom" />
     </view>
@@ -54,6 +56,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import MqPopup from '../mq-popup/MqPopup.vue'
 import type {
   MqSelectPickerEmits,
@@ -86,7 +89,7 @@ const draft = ref<MqSelectPickerValue>(props.modelValue)
 let cancelSent = false
 let closeSent = false
 
-const popupTitle = computed(() => props.title || '请选择')
+const popupTitle = computed(() => props.title?.trim() || t('common.select'))
 
 const normalizedOptions = computed<MqSelectPickerNormalizedOption[]>(() =>
   props.options.map((raw) => normalizeOption(raw, props.valueKey, props.labelKey)),

@@ -1,7 +1,7 @@
 {
   "name": "mosquito-ui",
   "private": true,
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "面向 uni-app 的轻量组件库 @mosquito/ui。运行时性能优先，并为 uni-app x 预留双文件结构。",
   "packageManager": "pnpm@9.15.9",
   "engines": {
@@ -19,6 +19,9 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
+    "docs:gen": "node scripts/build-component-docs.mjs",
+    "build:theme-vars": "node scripts/build-theme-vars.mjs",
+    "test:e2e": "playwright test",
     "lint": "eslint --ext .ts,.vue,.js .",
     "lint:fix": "eslint --fix --ext .ts,.vue,.js .",
     "format": "prettier --write \"**/*.{ts,vue,js,json,scss,md}\"",
@@ -28,6 +31,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
+    "@playwright/test": "^1.58.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-vue": "^5.2.4",

@@ -8,7 +8,7 @@
         :aria-disabled="current <= 1 ? 'true' : undefined"
         @click.stop="go(-1)"
       >
-        <slot name="prev" :model-value="current">{{ prevText }}</slot>
+        <slot name="prev" :model-value="current">{{ prevLabel }}</slot>
       </text>
       <text class="mq-pagination__size">
         <slot name="size" :model-value="current" :total-page-num="pages">{{ current }} / {{ pages }}</slot>
@@ -20,17 +20,20 @@
         :aria-disabled="current >= pages ? 'true' : undefined"
         @click.stop="go(1)"
       >
-        <slot name="next" :model-value="current" :total-page-num="pages">{{ nextText }}</slot>
+        <slot name="next" :model-value="current" :total-page-num="pages">{{ nextLabel }}</slot>
       </text>
     </view>
     <text v-if="showMessage" class="mq-pagination__message">
-      <slot name="message" :model-value="current" :total-page-num="pages">共 {{ safeTotal }} 条</slot>
+      <slot name="message" :model-value="current" :total-page-num="pages">{{
+        t('common.total', { total: safeTotal })
+      }}</slot>
     </text>
   </view>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import { pageCount, clampPage } from '../../utils/model'
 import type { MqPaginationEmits, MqPaginationProps } from './types'
 
@@ -43,11 +46,12 @@ const props = withDefaults(defineProps<MqPaginationProps>(), {
   total: 0,
   pageSize: 10,
   showMessage: false,
-  prevText: '上一页',
-  nextText: '下一页',
 })
 
 const emit = defineEmits<MqPaginationEmits>()
+
+const prevLabel = computed(() => props.prevText?.trim() || t('common.prevPage'))
+const nextLabel = computed(() => props.nextText?.trim() || t('common.nextPage'))
 
 const safeTotal = computed(() =>
   Number.isFinite(props.total) && props.total > 0 ? Math.floor(props.total) : 0,

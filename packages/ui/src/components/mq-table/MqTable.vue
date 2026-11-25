@@ -22,11 +22,11 @@
 
     <view v-if="loading" class="mq-table__state" role="status">
       <slot name="loading">
-        <mq-loading :size="20" label="加载中" />
+        <mq-loading :size="20" :label="t('common.loading')" />
       </slot>
     </view>
     <view v-else-if="!data.length" class="mq-table__state">
-      <slot name="empty">{{ emptyText }}</slot>
+      <slot name="empty">{{ emptyLabel }}</slot>
     </view>
     <view v-else class="mq-table__body">
       <view
@@ -66,6 +66,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import MqLoading from '../mq-loading/MqLoading.vue'
 import type { MqTableColumn, MqTableEmits, MqTableProps } from './types'
 
@@ -80,13 +81,14 @@ const props = withDefaults(defineProps<MqTableProps>(), {
   stripe: false,
   size: 'medium',
   rowKey: '',
-  emptyText: '暂无数据',
   loading: false,
   align: 'left',
   headerBg: '',
 })
 
 const emit = defineEmits<MqTableEmits>()
+
+const emptyLabel = computed(() => props.emptyText?.trim() || t('common.noData'))
 
 const rootStyle = computed(() => {
   const style: Record<string, string> = {}

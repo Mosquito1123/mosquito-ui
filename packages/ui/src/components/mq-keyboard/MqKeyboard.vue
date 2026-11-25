@@ -36,7 +36,7 @@
         @touchend.stop.prevent="onTouchKey('confirm')"
         @click.stop="onClickKey('confirm')"
       >
-        {{ confirmText }}
+        {{ confirmLabel }}
       </text>
     </view>
   </view>
@@ -44,6 +44,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
+import { t } from '../../locale'
 import { shuffleKeys } from '../../utils/model'
 import type { MqKeyboardEmits, MqKeyboardMode, MqKeyboardProps } from './types'
 
@@ -54,7 +55,6 @@ defineOptions({
 const props = withDefaults(defineProps<MqKeyboardProps>(), {
   visible: false,
   mode: 'abc',
-  confirmText: '完成',
   showConfirm: false,
   randomOrder: false,
   maxlength: -1,
@@ -80,11 +80,13 @@ const SYMBOL_ROWS: string[][] = [
   ['￥', '%', '&', '^', '~', '|', '·'],
 ]
 
-const tabs: Array<{ mode: MqKeyboardMode; label: string }> = [
-  { mode: 'abc', label: '字母' },
-  { mode: 'num', label: '数字' },
-  { mode: 'symbol', label: '符号' },
-]
+const tabs = computed<Array<{ mode: MqKeyboardMode; label: string }>>(() => [
+  { mode: 'abc', label: t('keyboard.letters') },
+  { mode: 'num', label: t('keyboard.numbers') },
+  { mode: 'symbol', label: t('keyboard.symbols') },
+])
+
+const confirmLabel = computed(() => props.confirmText?.trim() || t('common.done'))
 
 const CONTROL_KEYS = new Set(['shift', 'delete', 'space', 'to-abc', 'to-num', 'to-symbol', 'back', 'confirm'])
 
@@ -112,16 +114,16 @@ const rows = computed<Key[][]>(() => {
 function keyLabel(key: Key): string {
   if (key.startsWith('tab:')) {
     const mode = key.slice(4) as MqKeyboardMode
-    return tabs.find((tab) => tab.mode === mode)?.label ?? ''
+    return tabs.value.find((tab) => tab.mode === mode)?.label ?? ''
   }
   const labels: Record<string, string> = {
     shift: 'Shift',
-    delete: '删除',
-    space: '空格',
+    delete: t('keyboard.delete'),
+    space: t('keyboard.space'),
     'to-abc': 'ABC',
     'to-num': '123',
-    'to-symbol': '符号',
-    back: '返回',
+    'to-symbol': t('keyboard.symbols'),
+    back: t('keyboard.back'),
   }
   const label = labels[key]
   if (label) {

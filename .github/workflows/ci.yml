@@ -47,3 +47,9 @@ jobs:
 
       - name: Test with coverage
         run: pnpm coverage
+
+      - name: Build docs
+        run: pnpm docs:build
+
+      - name: E2E smoke tests
+        run: pnpm test:e2e

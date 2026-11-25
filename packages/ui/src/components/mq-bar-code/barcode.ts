@@ -1,16 +1,22 @@
 /**
- * 紧凑的 CODE128 编码器（不依赖第三方打包产物）。
+ * 紧凑的一维条码编码器（不依赖第三方打包产物）。
  *
- * CODE128 的 107 个条码符号图案是标准码表（三个启动符 + 103 个数据符 + 停止符），
- * 下表按符号索引存放 11 位二进制条空序列；停止符为 13 位，末尾补 2 位终止黑条。
+ * 支持 CODE128（自动选集 A/B/C）、EAN13、EAN8、UPC-A 与 CODE39。
+ * 所有格式共用同一套「模块宽度」约定：bars 下标为偶数表示黑条，奇数表示白条，
+ * 首尾均为黑条；需要补校验位时由编码器内部计算并写入 bars。
  */
 
 export type BarCodeFormat = 'CODE128' | 'EAN13' | 'EAN8' | 'UPC-A' | 'CODE39'
 
+export interface BarCodeOptions {
+  /** CODE39 是否追加 mod43 校验字符。默认 `false`。 */
+  mod43?: boolean
+}
+
 export interface BarCodeResult {
   /** 模块宽度序列：下标为偶数表示黑条，奇数表示白条。首尾必为黑条。 */
   bars: number[]
-  /** 实际用于显示的文本。 */
+  /** 实际用于显示的文本（EAN/UPC 含校验位，CODE39 不含 `*` 起止符）。 */
   text: string
 }
 
@@ -59,6 +65,10 @@ function toBars(bits: string): number[] {
   return bars
 }
 
+function fromBits(bits: string, text: string): BarCodeResult {
+  return { bars: toBars(bits), text }
+}
+
 /** CODE128 校验位：起始符权重为 1，之后第 n 个数据符权重为 n。 */
 export function getCode128CheckDigit(values: number[]): number {
   let sum = 0
@@ -97,36 +107,309 @@ function valuesFor(text: string, set: CodeSet): number[] {
   return values
 }
 
-/**
- * 编码条码。目前支持 CODE128（自动在 A/B/C 子集间选择），其他格式给出明确错误。
- *
- * @param text 条码内容
- * @param format 条码格式，默认 `CODE128`
- */
-export function encodeBarCode(text: string, format: BarCodeFormat = 'CODE128'): BarCodeResult {
-  if (format !== 'CODE128') {
-    throw new Error(`暂不支持条码格式 ${format}，当前仅支持 CODE128`)
-  }
+function code128Values(text: string): number[] {
   if (!text) {
     throw new Error('条码内容不能为空')
   }
-
   const set = codeSetFor(text)
   const start = set === 'A' ? START_A : set === 'B' ? START_B : START_C
-  const values = [start, ...valuesFor(text, set)]
+  return [start, ...valuesFor(text, set)]
+}
+
+function encodeCode128(text: string): BarCodeResult {
+  const values = code128Values(text)
   const check = getCode128CheckDigit(values)
   const bits = [...values, check, STOP].map((index) => pattern(index)).join('') + '11'
-  const bars = toBars(bits)
+  return fromBits(bits, text)
+}
 
-  return { bars, text }
+/* ------------------------------------------------------------------ *
+ * EAN13 / EAN8 / UPC-A
+ * ------------------------------------------------------------------ */
+
+/** L 码（左奇编码，数字 0-9）。 */
+const EAN_L = [
+  '0001101',
+  '0011001',
+  '0010011',
+  '0111101',
+  '0100011',
+  '0110001',
+  '0101111',
+  '0111011',
+  '0110111',
+  '0001011',
+]
+
+/** G 码（左偶编码，数字 0-9）。 */
+const EAN_G = [
+  '0100111',
+  '0110011',
+  '0011011',
+  '0100001',
+  '0011101',
+  '0111001',
+  '0000101',
+  '0010001',
+  '0001001',
+  '0010111',
+]
+
+/** R 码（右侧编码，数字 0-9）。 */
+const EAN_R = [
+  '1110010',
+  '1100110',
+  '1101100',
+  '1000010',
+  '1011100',
+  '1001110',
+  '1010000',
+  '1000100',
+  '1001000',
+  '1110100',
+]
+
+/** EAN13 首位数字决定的左侧六位奇偶规则。 */
+const EAN13_PARITY = [
+  'LLLLLL',
+  'LLGLGG',
+  'LLGGLG',
+  'LLGGGL',
+  'LGLLGG',
+  'LGGLLG',
+  'LGGGLL',
+  'LGLGLG',
+  'LGLGGL',
+  'LGGLGL',
+]
+
+const EAN_START = '101'
+const EAN_MIDDLE = '01010'
+
+function isDigits(text: string, lengths: number[]): boolean {
+  return lengths.includes(text.length) && Array.from(text).every((char) => char >= '0' && char <= '9')
+}
+
+/**
+ * EAN13 / EAN8 / UPC-A 通用校验位：从最右侧数据位开始，权重按 3、1、3、1… 交替。
+ * UPC-A 前置 0 后即为 EAN13，因此同一公式对三种格式都成立。
+ */
+function eanCheckDigit(prefix: string): number {
+  let sum = 0
+  let weight = 3
+  for (let index = prefix.length - 1; index >= 0; index -= 1) {
+    sum += Number(prefix[index]) * weight
+    weight = weight === 3 ? 1 : 3
+  }
+  return (10 - (sum % 10)) % 10
+}
+
+/** 校验长度与数字字符，返回带校验位的完整码；13/8/12 位输入会校验已有校验位。 */
+function normalizeEan(text: string, prefixLength: number, format: BarCodeFormat): string {
+  if (!isDigits(text, [prefixLength, prefixLength + 1])) {
+    throw new Error(`${format} 需要 ${prefixLength} 位（补校验位）或 ${prefixLength + 1} 位（含校验位）数字`)
+  }
+  const prefix = text.slice(0, prefixLength)
+  const check = eanCheckDigit(prefix)
+  if (text.length === prefixLength + 1 && Number(text[prefixLength]) !== check) {
+    throw new Error(`${format} 校验位错误，应为 ${check}`)
+  }
+  return prefix + check
+}
+
+/** 仅供校验位 API 使用：不校验已有校验位，只取数字前缀。 */
+function eanPrefix(text: string, prefixLength: number, format: BarCodeFormat): string {
+  if (!isDigits(text, [prefixLength, prefixLength + 1])) {
+    throw new Error(`${format} 需要 ${prefixLength} 位数字前缀`)
+  }
+  return text.slice(0, prefixLength)
+}
+
+function ean13Bits(code: string): string {
+  const digits = Array.from(code, Number)
+  const parity = EAN13_PARITY[digits[0]]
+  let bits = EAN_START
+  for (let index = 1; index <= 6; index += 1) {
+    bits += (parity[index - 1] === 'L' ? EAN_L : EAN_G)[digits[index]]
+  }
+  bits += EAN_MIDDLE
+  for (let index = 7; index <= 12; index += 1) {
+    bits += EAN_R[digits[index]]
+  }
+  return bits + EAN_START
+}
+
+function ean8Bits(code: string): string {
+  const digits = Array.from(code, Number)
+  let bits = EAN_START
+  for (let index = 0; index < 4; index += 1) {
+    bits += EAN_L[digits[index]]
+  }
+  bits += EAN_MIDDLE
+  for (let index = 4; index < 8; index += 1) {
+    bits += EAN_R[digits[index]]
+  }
+  return bits + EAN_START
+}
+
+/* ------------------------------------------------------------------ *
+ * CODE39
+ * ------------------------------------------------------------------ */
+
+/** 标准 CODE39 字符集；`*` 只作起止符，不参与数据。 */
+const CODE39_CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%*'
+const CODE39_START_INDEX = CODE39_CHARS.indexOf('*')
+
+/**
+ * 每个元素按「窄 1 模块 / 宽 3 模块」展开后的模块位串（1 黑 0 白）。
+ * 数据符为 15 模块（5 条 4 空 + 3 个宽元素），`*` 为 16 模块（含尾部窄空，兼作分隔符）。
+ */
+const CODE39_PATTERNS = [
+  '101000111011101',
+  '111010001010111',
+  '101110001010111',
+  '111011100010101',
+  '101000111010111',
+  '111010001110101',
+  '101110001110101',
+  '101000101110111',
+  '111010001011101',
+  '101110001011101',
+  '111010100010111',
+  '101110100010111',
+  '111011101000101',
+  '101011100010111',
+  '111010111000101',
+  '101110111000101',
+  '101010001110111',
+  '111010100011101',
+  '101110100011101',
+  '101011100011101',
+  '111010101000111',
+  '101110101000111',
+  '111011101010001',
+  '101011101000111',
+  '111010111010001',
+  '101110111010001',
+  '101010111000111',
+  '111010101110001',
+  '101110101110001',
+  '101011101110001',
+  '111000101010111',
+  '100011101010111',
+  '111000111010101',
+  '100010111010111',
+  '111000101110101',
+  '100011101110101',
+  '100010101110111',
+  '111000101011101',
+  '100011101011101',
+  '100010001000101',
+  '100010001010001',
+  '100010100010001',
+  '101000100010001',
+  '1000101110111010',
+]
+
+function normalizeCode39(text: string): string {
+  let body = text
+  if (body.length >= 2 && body.startsWith('*') && body.endsWith('*')) {
+    body = body.slice(1, -1)
+  }
+  if (!body || Array.from(body).some((char) => char === '*' || CODE39_CHARS.indexOf(char) < 0)) {
+    throw new Error('CODE39 仅支持 0-9 A-Z - . $ / + % 与空格，* 只能作为起止符')
+  }
+  return body
+}
+
+function code39CheckDigit(body: string): string {
+  const sum = Array.from(body).reduce((total, char) => total + CODE39_CHARS.indexOf(char), 0)
+  return CODE39_CHARS[sum % 43]
+}
+
+/* ------------------------------------------------------------------ *
+ * 公共 API
+ * ------------------------------------------------------------------ */
+
+/**
+ * 编码条码。EAN13/EAN8/UPC-A 自动补校验位或校验已有校验位；CODE39 可选 mod43。
+ * 非法输入抛出错误，组件层捕获后转为 `error` / `valid(false)` 事件。
+ *
+ * @param text 条码内容
+ * @param format 条码格式，默认 `CODE128`
+ * @param options 可选参数（目前仅 CODE39 的 `mod43`）
+ */
+export function encodeBarCode(
+  text: string,
+  format: BarCodeFormat = 'CODE128',
+  options: BarCodeOptions = {},
+): BarCodeResult {
+  switch (format) {
+    case 'CODE128':
+      return encodeCode128(text)
+    case 'EAN13': {
+      const code = normalizeEan(text, 12, format)
+      return fromBits(ean13Bits(code), code)
+    }
+    case 'EAN8': {
+      const code = normalizeEan(text, 7, format)
+      return fromBits(ean8Bits(code), code)
+    }
+    case 'UPC-A': {
+      const code = normalizeEan(text, 11, format)
+      return fromBits(ean13Bits(`0${code}`), code)
+    }
+    case 'CODE39': {
+      const body = normalizeCode39(text)
+      const data = options.mod43 ? body + code39CheckDigit(body) : body
+      let bits = CODE39_PATTERNS[CODE39_START_INDEX]
+      for (const char of data) {
+        bits += CODE39_PATTERNS[CODE39_CHARS.indexOf(char)] + '0'
+      }
+      bits += CODE39_PATTERNS[CODE39_START_INDEX]
+      return fromBits(bits.replace(/0+$/, ''), data)
+    }
+    default:
+      throw new Error(`暂不支持条码格式 ${format as string}`)
+  }
 }
 
 /** 校验输入是否可被当前编码器编码（不绘制）。 */
-export function isValidBarCodeText(text: string, format: BarCodeFormat = 'CODE128'): boolean {
+export function isValidBarCodeText(
+  text: string,
+  format: BarCodeFormat = 'CODE128',
+  options: BarCodeOptions = {},
+): boolean {
   try {
-    encodeBarCode(text, format)
+    encodeBarCode(text, format, options)
     return true
   } catch {
     return false
+  }
+}
+
+/**
+ * 计算校验位，返回单个字符（CODE128 返回十进制数值的字符串）。
+ *
+ * - EAN13：传 12 位前缀（或 13 位完整码），返回第 13 位
+ * - EAN8：传 7 位前缀（或 8 位完整码），返回第 8 位
+ * - UPC-A：传 11 位前缀（或 12 位完整码），返回第 12 位
+ * - CODE39：传数据字符（可含 `*` 起止符），返回 mod43 校验字符
+ * - CODE128：按自动选集规则计算起始符 + 数据符的校验值
+ */
+export function getBarCodeCheckDigit(text: string, format: BarCodeFormat = 'CODE128'): string {
+  switch (format) {
+    case 'EAN13':
+      return String(eanCheckDigit(eanPrefix(text, 12, format)))
+    case 'EAN8':
+      return String(eanCheckDigit(eanPrefix(text, 7, format)))
+    case 'UPC-A':
+      return String(eanCheckDigit(eanPrefix(text, 11, format)))
+    case 'CODE39':
+      return code39CheckDigit(normalizeCode39(text))
+    case 'CODE128':
+      return String(getCode128CheckDigit(code128Values(text)))
+    default:
+      throw new Error(`暂不支持条码格式 ${format as string}`)
   }
 }

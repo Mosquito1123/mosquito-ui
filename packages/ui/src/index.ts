@@ -474,5 +474,20 @@ export { attachToastHost } from './utils/toast'
 export { showImagePreview, hideImagePreview, imagePreviewState } from './utils/image-preview'
 export { showVideoPreview, hideVideoPreview, videoPreviewState } from './utils/video-preview'
 
+// 国际化
+export { localeState, t, setLocale, addMessages, zhCN, enUS, DEFAULT_LOCALE, FALLBACK_LOCALE } from './locale'
+export type {
+  MqLocaleState,
+  MqLocaleMessages,
+  MqMessageMap,
+  MqTranslate,
+  MqTranslateParams,
+  UseLocaleReturn,
+} from './locale'
+
+// 主题令牌
+export { mqThemeVars } from './styles/theme-vars'
+export type { MqThemeVarName } from './styles/theme-vars'
+
 // 组合式函数
 export * from './composables'

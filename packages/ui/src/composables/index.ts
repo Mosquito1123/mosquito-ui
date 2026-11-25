@@ -21,3 +21,6 @@ export type { UseImagePreviewReturn } from './use-image-preview'
 
 export { useVideoPreview } from './use-video-preview'
 export type { UseVideoPreviewReturn } from './use-video-preview'
+
+export { useLocale } from './use-locale'
+export type { MqMessageInput, UseLocaleReturn } from './use-locale'

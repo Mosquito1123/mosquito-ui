@@ -19,7 +19,7 @@
           @click="onCancel"
           @keydown.enter.prevent="onCancel"
         >
-          {{ cancelText }}
+          {{ cancelLabel }}
         </text>
         <text class="mq-cascader__title">{{ title }}</text>
         <text
@@ -30,7 +30,7 @@
           @click="onConfirm"
           @keydown.enter.prevent="onConfirm"
         >
-          {{ confirmText }}
+          {{ confirmLabel }}
         </text>
       </view>
 
@@ -69,7 +69,7 @@
             ›
           </text>
         </view>
-        <view v-if="!activeOptions.length" class="mq-cascader__empty">暂无可选项</view>
+        <view v-if="!activeOptions.length" class="mq-cascader__empty">{{ t('common.noOptions') }}</view>
       </scroll-view>
 
       <mq-safe-bottom v-if="safeArea" />
@@ -79,6 +79,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import {
   cascaderLevels,
   cascaderValue,
@@ -100,8 +101,6 @@ const props = withDefaults(defineProps<MqCascaderProps>(), {
   visible: false,
   options: () => [],
   title: '',
-  cancelText: '取消',
-  confirmText: '确定',
   checkStrictly: false,
   beforeConfirm: undefined,
   maskClosable: true,
@@ -117,7 +116,9 @@ const activeIndex = ref(0)
 const pending = ref(false)
 let cancelPending = false
 
-const popupTitle = computed(() => props.title || '请选择')
+const cancelLabel = computed(() => props.cancelText?.trim() || t('common.cancel'))
+const confirmLabel = computed(() => props.confirmText?.trim() || t('common.confirm'))
+const popupTitle = computed(() => props.title?.trim() || t('common.select'))
 
 const levels = computed(() => cascaderLevels(props.options, path.value))
 

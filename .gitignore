@@ -10,3 +10,6 @@ unpackage
 coverage
 docs/.vitepress/cache
 *.tsbuildinfo
+test-results
+playwright-report
+blob-report

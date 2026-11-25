@@ -21,6 +21,7 @@ pnpm typecheck
 pnpm lint
 pnpm test          # Vitest：工具函数 + 组件
 pnpm coverage      # 带覆盖率
+pnpm test:e2e      # 文档站 E2E（需本机 Chrome）
 pnpm docs:dev      # VitePress 文档站
 ```
 
@@ -310,15 +311,37 @@ const visible = ref(false)
 | `useConfigProvider` | 共享主题与 CSS 变量，`setTheme` / `setThemeVar` / `reset`                |
 | `useImagePreview`   | 与 `<mq-image-preview />` 共享全局预览状态                               |
 | `useVideoPreview`   | 与 `<mq-video-preview />` 共享全局预览状态                               |
+| `useLocale`         | 读取 / 切换全局语言，返回 `locale` / `t` / `setLocale` / `addMessages`   |
+
+### 国际化
+
+内置 `zh-CN` 与 `en-US`，无外部依赖。组件展示文案（确认、取消、空态、星期等）走同一套消息表。
+
+```ts
+import { setLocale, addMessages, t, useLocale } from '@mosquito/ui'
+
+setLocale('en-US')
+t('common.confirm') // 'Confirm'
+addMessages('zh-CN', { common: { confirm: '好的' } })
+const { locale, t: translate } = useLocale()
+```
+
+`<mq-config-provider locale="en-US">` 也可切换全局语言。自定义语言见 [docs/guide/i18n.md](docs/guide/i18n.md)。
+
+### 主题令牌
+
+`--mq-*` 变量有唯一数据源 `packages/ui/src/styles/theme-tokens.json`，运行 `pnpm build:theme-vars` 生成 SCSS map 和 TS 类型；暗色模式同时支持 `.mq-theme-dark` 与 `[data-mq-theme='dark']`。清单见 [docs/guide/theme-vars.md](docs/guide/theme-vars.md)。
 
 ## 文档
 
 ```bash
 pnpm docs:dev     # 本地 VitePress 文档站
+pnpm docs:gen     # 为缺少文档的组件补齐 docs/component/*.md
 pnpm docs:build   # 静态产物到 docs/.vitepress/dist
+pnpm test:e2e     # 文档站 E2E（使用本机 Chrome）
 ```
 
-逐组件文档在 `docs/component/`，指南在 `docs/guide/`。新增组件后运行 `pnpm sync:easycom` 和 `pnpm sync:exports`，避免文档与入口漏登记。
+逐组件文档在 `docs/component/`，指南在 `docs/guide/`。新增组件后运行 `pnpm sync:easycom`、`pnpm sync:exports` 和 `pnpm docs:gen`，避免入口与文档漏登记。
 
 ## 性能原则
 

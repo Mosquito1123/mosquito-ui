@@ -48,7 +48,8 @@ page,
   }
 }
 
-.mq-theme-dark {
+.mq-theme-dark,
+[data-mq-theme='dark'] {
   --mq-color-primary: #8fd0b4;
   --mq-color-primary-text: #10211b;
   --mq-color-success: #8fd0a4;

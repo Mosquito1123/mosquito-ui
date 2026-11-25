@@ -15,14 +15,14 @@
           @click="onPreview(url)"
         />
         <view v-else class="mq-upload__file" @click="onOpen(url)">
-          <text class="mq-upload__file-mark">文件</text>
+          <text class="mq-upload__file-mark">{{ t('common.file') }}</text>
           <text class="mq-upload__file-name">{{ fileName(url) }}</text>
         </view>
         <text
           v-if="!readonly && !disabled"
           class="mq-upload__remove"
           role="button"
-          :aria-label="`删除第 ${index + 1} 个文件`"
+          :aria-label="t('common.removeFile', { index: index + 1 })"
           @click.stop="onRemove(index, url)"
         >
           ×
@@ -52,6 +52,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { t } from '../../locale'
 import { resolvePx } from '../../utils/model'
 import MqLoading from '../mq-loading/MqLoading.vue'
 import type { MqUploadEmits, MqUploadFile, MqUploadProps } from './types'

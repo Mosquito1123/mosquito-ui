@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { t } from '../../locale'
 import { getUni } from '../../utils/platform'
 import { generateQRCode } from './qrcode'
 import type { MqQrCodeEmits, MqQrCodeProps } from './types'
@@ -35,7 +36,7 @@ const generatedId = `mq-qr-code-${Date.now()}-${Math.random().toString(36).slice
 const resolvedCanvasId = computed(() => props.canvasId || generatedId)
 const effectiveLevel = computed(() => props.level || props.correctLevel || 'H')
 const fallback = ref(false)
-const fallbackText = computed(() => props.text || '二维码内容为空')
+const fallbackText = computed(() => props.text || t('common.qrEmpty'))
 
 function px(value: number | string | undefined, fallbackValue: number): number {
   if (typeof value === 'number' && Number.isFinite(value)) {

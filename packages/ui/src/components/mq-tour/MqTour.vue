@@ -5,13 +5,13 @@
       <text v-if="step.title" class="mq-tour__title">{{ step.title }}</text>
       <text v-if="step.content" class="mq-tour__content">{{ step.content }}</text>
       <view class="mq-tour__footer">
-        <text class="mq-tour__skip" role="button" @click="onSkip">跳过</text>
+        <text class="mq-tour__skip" role="button" @click="onSkip">{{ t('common.skip') }}</text>
         <view class="mq-tour__nav">
           <text v-if="innerCurrent > 0" class="mq-tour__button is-prev" role="button" @click="onPrev">
-            {{ prevText }}
+            {{ prevLabel }}
           </text>
           <text class="mq-tour__button is-next" role="button" @click="onNextOrDone">
-            {{ isLast ? doneText : nextText }}
+            {{ isLast ? doneLabel : nextLabel }}
           </text>
         </view>
       </view>
@@ -22,6 +22,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
+import { t } from '../../locale'
 import type { MqTourChangePayload, MqTourEmits, MqTourProps, MqTourStep } from './types'
 
 defineOptions({
@@ -33,14 +34,15 @@ const props = withDefaults(defineProps<MqTourProps>(), {
   visible: false,
   show: false,
   current: 0,
-  nextText: '下一步',
-  prevText: '上一步',
-  doneText: '完成',
   overlay: true,
   maskClosable: false,
 })
 
 const emit = defineEmits<MqTourEmits>()
+
+const nextLabel = computed(() => props.nextText?.trim() || t('common.nextStep'))
+const prevLabel = computed(() => props.prevText?.trim() || t('common.prevStep'))
+const doneLabel = computed(() => props.doneText?.trim() || t('common.done'))
 
 interface Rect {
   left: number

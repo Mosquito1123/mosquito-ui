@@ -6,7 +6,7 @@
   >
     <view class="mq-slide-verify__track">
       <view class="mq-slide-verify__fill" :style="fillStyle" />
-      <text class="mq-slide-verify__text">{{ innerVerified ? successText : text }}</text>
+      <text class="mq-slide-verify__text">{{ innerVerified ? successLabel : hintText }}</text>
       <view
         class="mq-slide-verify__handle"
         :style="handleStyle"
@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import { computed, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
+import { t } from '../../locale'
 import { getUni } from '../../utils/platform'
 import { clampSlideDistance, settleSlideDistance, slideProgress } from '../../utils/slide-verify'
 import type { MqSlideVerifyEmits, MqSlideVerifyProps } from './types'
@@ -38,14 +39,14 @@ defineOptions({
 
 const props = withDefaults(defineProps<MqSlideVerifyProps>(), {
   modelValue: false,
-  text: '按住滑块，拖动到最右侧',
-  successText: '验证通过',
   disabled: false,
   threshold: 0.9,
   height: 44,
 })
 
 const emit = defineEmits<MqSlideVerifyEmits>()
+const hintText = computed(() => props.text?.trim() || t('common.slideHint'))
+const successLabel = computed(() => props.successText?.trim() || t('common.slideSuccess'))
 const instance = getCurrentInstance()
 
 const height = computed(() => {

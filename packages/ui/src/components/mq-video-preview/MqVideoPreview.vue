@@ -4,7 +4,7 @@
     class="mq-video-preview"
     role="dialog"
     aria-modal="true"
-    :aria-label="effectiveTitle || '视频预览'"
+    :aria-label="effectiveTitle || t('common.videoPreview')"
   >
     <view v-if="effectiveTitle" class="mq-video-preview__title">{{ effectiveTitle }}</view>
     <video
@@ -22,7 +22,7 @@
       class="mq-video-preview__close"
       role="button"
       tabindex="0"
-      aria-label="关闭"
+      :aria-label="t('common.close')"
       @click="requestClose"
     >
       ×
@@ -32,6 +32,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import { hideVideoPreview, videoPreviewState } from '../../utils/video-preview'
 import type { MqVideoPreviewEmits, MqVideoPreviewProps } from './types'
 

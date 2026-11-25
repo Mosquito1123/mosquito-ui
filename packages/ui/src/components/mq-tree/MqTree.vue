@@ -35,12 +35,13 @@
         {{ row.node.label }}
       </text>
     </view>
-    <view v-if="!rows.length" class="mq-tree__empty">{{ emptyText }}</view>
+    <view v-if="!rows.length" class="mq-tree__empty">{{ emptyLabel }}</view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import {
   collectExpandableValues,
   flattenTree,
@@ -62,11 +63,12 @@ const props = withDefaults(defineProps<MqTreeProps>(), {
   defaultExpandAll: false,
   expanded: undefined,
   indent: 18,
-  emptyText: '暂无数据',
   disabled: false,
 })
 
 const emit = defineEmits<MqTreeEmits>()
+
+const emptyLabel = computed(() => props.emptyText?.trim() || t('common.noData'))
 
 const expandedValues = ref<Array<string | number>>(
   props.expanded ? [...props.expanded] : props.defaultExpandAll ? collectExpandableValues(props.data) : [],

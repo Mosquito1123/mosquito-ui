@@ -4,7 +4,7 @@
     class="mq-image-preview"
     role="dialog"
     aria-modal="true"
-    aria-label="图片预览"
+    :aria-label="t('common.imagePreview')"
     @click="onMask"
   >
     <view class="mq-image-preview__stage" @click.stop>
@@ -45,7 +45,7 @@
       class="mq-image-preview__close"
       role="button"
       tabindex="0"
-      aria-label="关闭"
+      :aria-label="t('common.close')"
       @click.stop="requestClose"
     >
       ×
@@ -55,6 +55,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import { clampImageIndex, hideImagePreview, imagePreviewState } from '../../utils/image-preview'
 import type { MqImagePreviewEmits, MqImagePreviewProps } from './types'
 

@@ -4,7 +4,7 @@
     :class="{ 'is-disabled': disabled, 'is-readonly': readonly }"
     :style="rootStyle"
     role="slider"
-    aria-label="评分"
+    :aria-label="t('common.rating')"
     :aria-valuemin="0"
     :aria-valuemax="count"
     :aria-valuenow="safeValue"
@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../../locale'
 import { nextRateValue, resolvePx } from '../../utils/model'
 import type { MqRateEmits, MqRateProps } from './types'
 

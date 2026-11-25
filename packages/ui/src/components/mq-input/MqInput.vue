@@ -25,7 +25,7 @@
     />
     <text v-if="showClear" class="mq-input__clear" @click.stop="onClear">×</text>
     <text v-if="showPassword" class="mq-input__toggle" @click.stop="onTogglePassword">
-      {{ revealed ? '隐藏' : '显示' }}
+      {{ revealed ? t('common.hide') : t('common.show') }}
     </text>
     <text v-if="showCount" class="mq-input__count">{{ text.length }}/{{ maxlength }}</text>
   </view>
@@ -33,6 +33,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { t } from '../../locale'
 import type { MqInputEmits, MqInputProps } from './types'
 
 defineOptions({

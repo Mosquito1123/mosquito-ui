@@ -19,7 +19,7 @@
           @click="onCancel"
           @keydown.enter.prevent="onCancel"
         >
-          {{ cancelText }}
+          {{ cancelLabel }}
         </text>
         <text class="mq-picker__title">{{ title }}</text>
         <text
@@ -30,7 +30,7 @@
           @click="onConfirm"
           @keydown.enter.prevent="onConfirm"
         >
-          {{ confirmText }}
+          {{ confirmLabel }}
         </text>
       </view>
       <mq-picker-view
@@ -53,6 +53,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { t } from '../../locale'
 import MqPopup from '../mq-popup/MqPopup.vue'
 import MqSafeBottom from '../mq-safe-bottom/MqSafeBottom.vue'
 import MqPickerView from '../mq-picker-view/MqPickerView.vue'
@@ -69,8 +70,6 @@ const props = withDefaults(defineProps<MqPickerProps>(), {
   columns: () => [],
   cascade: false,
   title: '',
-  cancelText: '取消',
-  confirmText: '确定',
   valueKey: 'value',
   labelKey: 'label',
   childrenKey: 'children',
@@ -90,7 +89,9 @@ const draft = ref<Array<string | number>>([])
 const pending = ref(false)
 let cancelPending = false
 
-const popupTitle = computed(() => props.title || '选择器')
+const cancelLabel = computed(() => props.cancelText?.trim() || t('common.cancel'))
+const confirmLabel = computed(() => props.confirmText?.trim() || t('common.confirm'))
+const popupTitle = computed(() => props.title?.trim() || t('common.picker'))
 
 watch(
   () => props.visible,

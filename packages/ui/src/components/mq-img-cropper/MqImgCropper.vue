@@ -21,17 +21,28 @@
     <canvas :id="canvasId" :canvas-id="canvasId" class="mq-img-cropper__canvas" :disable-scroll="true" />
 
     <view class="mq-img-cropper__footer">
-      <text class="mq-img-cropper__action" role="button" tabindex="0" @click="onChoose">选图</text>
-      <text class="mq-img-cropper__action" role="button" tabindex="0" @click="rotate">旋转</text>
-      <text class="mq-img-cropper__action" role="button" tabindex="0" @click="reset">重置</text>
-      <text class="mq-img-cropper__action" role="button" tabindex="0" @click="onCancel">取消</text>
-      <text class="mq-img-cropper__action is-confirm" role="button" tabindex="0" @click="crop">确认</text>
+      <text class="mq-img-cropper__action" role="button" tabindex="0" @click="onChoose">{{
+        t('common.chooseImage')
+      }}</text>
+      <text class="mq-img-cropper__action" role="button" tabindex="0" @click="rotate">{{
+        t('common.rotate')
+      }}</text>
+      <text class="mq-img-cropper__action" role="button" tabindex="0" @click="reset">{{
+        t('common.reset')
+      }}</text>
+      <text class="mq-img-cropper__action" role="button" tabindex="0" @click="onCancel">{{
+        t('common.cancel')
+      }}</text>
+      <text class="mq-img-cropper__action is-confirm" role="button" tabindex="0" @click="crop">{{
+        t('common.confirmOk')
+      }}</text>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { computed, getCurrentInstance, ref, watch } from 'vue'
+import { t } from '../../locale'
 import { getUni } from '../../utils/platform'
 import type { UniPlatformApi } from '../../utils/platform'
 import type { MqImgCropperEmits, MqImgCropperProps, MqImgCropperReady, MqImgCropperResult } from './types'

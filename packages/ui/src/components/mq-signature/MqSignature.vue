@@ -23,7 +23,7 @@
         :can-redo="canRedo"
       >
         <text class="mq-signature__action" role="button" tabindex="0" @click="clear">
-          {{ clearText }}
+          {{ clearLabel }}
         </text>
         <text
           v-if="enableHistory"
@@ -33,10 +33,10 @@
           tabindex="0"
           @click="revoke"
         >
-          {{ undoText }}
+          {{ undoLabel }}
         </text>
         <text class="mq-signature__action is-confirm" role="button" tabindex="0" @click="confirm">
-          {{ confirmText }}
+          {{ confirmLabel }}
         </text>
       </slot>
     </view>
@@ -45,6 +45,7 @@
 
 <script setup lang="ts">
 import { computed, getCurrentInstance, onMounted, ref } from 'vue'
+import { t } from '../../locale'
 import { getUni } from '../../utils/platform'
 import type { UniCanvasContext } from '../../utils/platform'
 import type { MqSignatureEmits, MqSignatureProps, MqSignatureResult } from './types'
@@ -56,9 +57,6 @@ defineOptions({
 const props = withDefaults(defineProps<MqSignatureProps>(), {
   penColor: '#000000',
   lineWidth: 3,
-  confirmText: '确认',
-  clearText: '清空',
-  undoText: '撤销',
   disabled: false,
   height: 240,
   width: '100%',
@@ -70,6 +68,10 @@ const props = withDefaults(defineProps<MqSignatureProps>(), {
 })
 
 const emit = defineEmits<MqSignatureEmits>()
+
+const confirmLabel = computed(() => props.confirmText?.trim() || t('common.confirmOk'))
+const clearLabel = computed(() => props.clearText?.trim() || t('common.clear'))
+const undoLabel = computed(() => props.undoText?.trim() || t('common.undo'))
 
 const instance = getCurrentInstance()
 const canvasId = `mq-signature-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
